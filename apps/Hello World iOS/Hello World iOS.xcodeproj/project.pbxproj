@@ -1,0 +1,381 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BC349DCD16CFC6C9005599A4 /* HelloApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC349DCC16CFC6C9005599A4 /* HelloApp.mm */; };
+		BC34D2EC16CE289A00B634C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2EB16CE289A00B634C0 /* UIKit.framework */; };
+		BC34D2EE16CE289A00B634C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2ED16CE289A00B634C0 /* Foundation.framework */; };
+		BC34D2F016CE289A00B634C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */; };
+		BC34D2F616CE289A00B634C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC34D2F416CE289A00B634C0 /* InfoPlist.strings */; };
+		BC34D2F816CE289A00B634C0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC34D2F716CE289A00B634C0 /* main.mm */; };
+		BC34D2FC16CE289A00B634C0 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC34D2FB16CE289A00B634C0 /* AppDelegate.mm */; };
+		BC34D2FE16CE289A00B634C0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BC34D2FD16CE289A00B634C0 /* Default.png */; };
+		BC34D30016CE289A00B634C0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC34D2FF16CE289A00B634C0 /* Default@2x.png */; };
+		BC34D30216CE289A00B634C0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC34D30116CE289A00B634C0 /* Default-568h@2x.png */; };
+		BC6B1F7E16D03229008B939C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B1F7D16D03229008B939C /* OpenGLES.framework */; };
+		BC6B1F8016D03284008B939C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B1F7F16D03284008B939C /* QuartzCore.framework */; };
+		BC9124A216DFAB8C00E7F493 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC91249D16DF9F2400E7F493 /* libdryGL-iOS.a */; };
+		BCB14A0616D7BF8800593177 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB14A0516D7BF8800593177 /* freeimage.a */; };
+		BCB14A0916D7C19C00593177 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB14A0816D7C19C00593177 /* freeimage.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC91249C16DF9F2400E7F493 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC91249816DF9F2400E7F493 /* dryGL-iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6B1F1216D02ED2008B939C;
+			remoteInfo = "dryGL-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BC349DCB16CFC6C9005599A4 /* HelloApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloApp.h; path = "dryGL Hello World/HelloApp.h"; sourceTree = SOURCE_ROOT; };
+		BC349DCC16CFC6C9005599A4 /* HelloApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = HelloApp.mm; path = "dryGL Hello World/HelloApp.mm"; sourceTree = SOURCE_ROOT; };
+		BC34D2E716CE289A00B634C0 /* Hello World iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello World iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC34D2EB16CE289A00B634C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BC34D2ED16CE289A00B634C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BC34D2F316CE289A00B634C0 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		BC34D2F516CE289A00B634C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BC34D2F716CE289A00B634C0 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		BC34D2FA16CE289A00B634C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BC34D2FB16CE289A00B634C0 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		BC34D2FD16CE289A00B634C0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BC34D2FF16CE289A00B634C0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BC34D30116CE289A00B634C0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BC6B1F7D16D03229008B939C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		BC6B1F7F16D03284008B939C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BC91249816DF9F2400E7F493 /* dryGL-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "dryGL-iOS.xcodeproj"; path = "../../src/dryGL-iOS.xcodeproj"; sourceTree = "<group>"; };
+		BCB14A0516D7BF8800593177 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/ios/freeimage.a; sourceTree = "<group>"; };
+		BCB14A0716D7C09800593177 /* Hello World iOS.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Hello World iOS.pch"; path = "dryGL Hello World/Hello World iOS.pch"; sourceTree = SOURCE_ROOT; };
+		BCB14A0816D7C19C00593177 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BC34D2E416CE289A00B634C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC9124A216DFAB8C00E7F493 /* libdryGL-iOS.a in Frameworks */,
+				BCB14A0616D7BF8800593177 /* freeimage.a in Frameworks */,
+				BC6B1F8016D03284008B939C /* QuartzCore.framework in Frameworks */,
+				BC6B1F7E16D03229008B939C /* OpenGLES.framework in Frameworks */,
+				BC34D2EC16CE289A00B634C0 /* UIKit.framework in Frameworks */,
+				BC34D2EE16CE289A00B634C0 /* Foundation.framework in Frameworks */,
+				BC34D2F016CE289A00B634C0 /* CoreGraphics.framework in Frameworks */,
+				BCB14A0916D7C19C00593177 /* freeimage.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BC34D2DC16CE289A00B634C0 = {
+			isa = PBXGroup;
+			children = (
+				BCB14A0B16D7CB0700593177 /* Data */,
+				BC34D2F116CE289A00B634C0 /* DryGL Hello World */,
+				BCB14A0A16D7C22200593177 /* dryGL */,
+				BC34D2EA16CE289A00B634C0 /* Frameworks */,
+				BC34D2E816CE289A00B634C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BC34D2E816CE289A00B634C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC34D2E716CE289A00B634C0 /* Hello World iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC34D2EA16CE289A00B634C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC34D2EB16CE289A00B634C0 /* UIKit.framework */,
+				BC34D2ED16CE289A00B634C0 /* Foundation.framework */,
+				BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */,
+				BC6B1F7F16D03284008B939C /* QuartzCore.framework */,
+				BC6B1F7D16D03229008B939C /* OpenGLES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC34D2F116CE289A00B634C0 /* DryGL Hello World */ = {
+			isa = PBXGroup;
+			children = (
+				BC349DCB16CFC6C9005599A4 /* HelloApp.h */,
+				BC349DCC16CFC6C9005599A4 /* HelloApp.mm */,
+				BC34D2FA16CE289A00B634C0 /* AppDelegate.h */,
+				BC34D2FB16CE289A00B634C0 /* AppDelegate.mm */,
+				BC34D2F216CE289A00B634C0 /* Supporting Files */,
+			);
+			path = "DryGL Hello World";
+			sourceTree = "<group>";
+		};
+		BC34D2F216CE289A00B634C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BCB14A0716D7C09800593177 /* Hello World iOS.pch */,
+				BC34D2F716CE289A00B634C0 /* main.mm */,
+				BC34D2F316CE289A00B634C0 /* info.plist */,
+				BC34D2F416CE289A00B634C0 /* InfoPlist.strings */,
+				BC34D2FD16CE289A00B634C0 /* Default.png */,
+				BC34D2FF16CE289A00B634C0 /* Default@2x.png */,
+				BC34D30116CE289A00B634C0 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC91249916DF9F2400E7F493 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC91249D16DF9F2400E7F493 /* libdryGL-iOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BCB14A0A16D7C22200593177 /* dryGL */ = {
+			isa = PBXGroup;
+			children = (
+				BC91249816DF9F2400E7F493 /* dryGL-iOS.xcodeproj */,
+				BCB14A0816D7C19C00593177 /* freeimage.a */,
+				BCB14A0516D7BF8800593177 /* freeimage.a */,
+			);
+			name = dryGL;
+			sourceTree = "<group>";
+		};
+		BCB14A0B16D7CB0700593177 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BC34D2E616CE289A00B634C0 /* Hello World iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC34D30516CE289A00B634C0 /* Build configuration list for PBXNativeTarget "Hello World iOS" */;
+			buildPhases = (
+				BC34D2E316CE289A00B634C0 /* Sources */,
+				BC34D2E416CE289A00B634C0 /* Frameworks */,
+				BC34D2E516CE289A00B634C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Hello World iOS";
+			productName = "DryGL Hello World";
+			productReference = BC34D2E716CE289A00B634C0 /* Hello World iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BC34D2DE16CE289A00B634C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Jordi Ros";
+			};
+			buildConfigurationList = BC34D2E116CE289A00B634C0 /* Build configuration list for PBXProject "Hello World iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BC34D2DC16CE289A00B634C0;
+			productRefGroup = BC34D2E816CE289A00B634C0 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BC91249916DF9F2400E7F493 /* Products */;
+					ProjectRef = BC91249816DF9F2400E7F493 /* dryGL-iOS.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				BC34D2E616CE289A00B634C0 /* Hello World iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BC91249D16DF9F2400E7F493 /* libdryGL-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdryGL-iOS.a";
+			remoteRef = BC91249C16DF9F2400E7F493 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BC34D2E516CE289A00B634C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC34D2F616CE289A00B634C0 /* InfoPlist.strings in Resources */,
+				BC34D2FE16CE289A00B634C0 /* Default.png in Resources */,
+				BC34D30016CE289A00B634C0 /* Default@2x.png in Resources */,
+				BC34D30216CE289A00B634C0 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BC34D2E316CE289A00B634C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC34D2F816CE289A00B634C0 /* main.mm in Sources */,
+				BC34D2FC16CE289A00B634C0 /* AppDelegate.mm in Sources */,
+				BC349DCD16CFC6C9005599A4 /* HelloApp.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BC34D2F416CE289A00B634C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC34D2F516CE289A00B634C0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BC34D30316CE289A00B634C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src,
+					../../libs,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BC34D30416CE289A00B634C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src,
+					../../libs,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BC34D30616CE289A00B634C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dryGL Hello World/Hello World iOS.pch";
+				INFOPLIST_FILE = "dryGL Hello World/info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../libs/freeimage/lib/ios\"",
+					"\"$(SRCROOT)/../../libs/freeimage/lib/osx\"",
+				);
+				PRODUCT_NAME = "Hello World iOS";
+				VALID_ARCHS = armv7;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BC34D30716CE289A00B634C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dryGL Hello World/Hello World iOS.pch";
+				INFOPLIST_FILE = "dryGL Hello World/info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../libs/freeimage/lib/ios\"",
+					"\"$(SRCROOT)/../../libs/freeimage/lib/osx\"",
+				);
+				PRODUCT_NAME = "Hello World iOS";
+				VALID_ARCHS = armv7;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BC34D2E116CE289A00B634C0 /* Build configuration list for PBXProject "Hello World iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC34D30316CE289A00B634C0 /* Debug */,
+				BC34D30416CE289A00B634C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC34D30516CE289A00B634C0 /* Build configuration list for PBXNativeTarget "Hello World iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC34D30616CE289A00B634C0 /* Debug */,
+				BC34D30716CE289A00B634C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BC34D2DE16CE289A00B634C0 /* Project object */;
+}

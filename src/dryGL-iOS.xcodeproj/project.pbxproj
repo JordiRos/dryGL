@@ -1,0 +1,319 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BC6B219316D13759008B939C /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC6B218116D13759008B939C /* Renderer.cpp */; };
+		BC6B219416D13759008B939C /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC6B218316D13759008B939C /* Shader.cpp */; };
+		BC6B219616D13759008B939C /* AppiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6B218916D13759008B939C /* AppiOS.mm */; };
+		BC6B219816D13759008B939C /* View.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6B218D16D13759008B939C /* View.mm */; };
+		BC6B219916D13759008B939C /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6B218F16D13759008B939C /* ViewController.mm */; };
+		BC6B229116D13E0B008B939C /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC6B229016D13E0B008B939C /* Texture.cpp */; };
+		BC6B22A616D1565D008B939C /* ShaderBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC6B22A416D1565C008B939C /* ShaderBasic.cpp */; };
+		BC6B22AA16D17C81008B939C /* Pixels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC6B22A816D17C81008B939C /* Pixels.cpp */; };
+		BC91249F16DFA8B900E7F493 /* dry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91249E16DFA8B900E7F493 /* dry.cpp */; };
+		BCB14A0D16D7CC8200593177 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB14A0C16D7CC8200593177 /* App.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BC6B1F1016D02ED2008B939C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BC6B1F1216D02ED2008B939C /* libdryGL-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libdryGL-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC6B217B16D13759008B939C /* dry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.h; sourceTree = "<group>"; };
+		BC6B218016D13759008B939C /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
+		BC6B218116D13759008B939C /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
+		BC6B218216D13759008B939C /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		BC6B218316D13759008B939C /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		BC6B218416D13759008B939C /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		BC6B218816D13759008B939C /* AppiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiOS.h; sourceTree = "<group>"; };
+		BC6B218916D13759008B939C /* AppiOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppiOS.mm; sourceTree = "<group>"; };
+		BC6B218C16D13759008B939C /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View.h; sourceTree = "<group>"; };
+		BC6B218D16D13759008B939C /* View.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = View.mm; sourceTree = "<group>"; };
+		BC6B218E16D13759008B939C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BC6B218F16D13759008B939C /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		BC6B219116D13759008B939C /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
+		BC6B219A16D13810008B939C /* dry.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.pch; sourceTree = "<group>"; };
+		BC6B229016D13E0B008B939C /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		BC6B22A216D142D0008B939C /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
+		BC6B22A416D1565C008B939C /* ShaderBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderBasic.cpp; sourceTree = "<group>"; };
+		BC6B22A516D1565C008B939C /* ShaderBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderBasic.h; sourceTree = "<group>"; };
+		BC6B22A816D17C81008B939C /* Pixels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pixels.cpp; sourceTree = "<group>"; };
+		BC6B22A916D17C81008B939C /* Pixels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pixels.h; sourceTree = "<group>"; };
+		BC6B22AB16D188EC008B939C /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		BC6B22AD16D22833008B939C /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		BC91249E16DFA8B900E7F493 /* dry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dry.cpp; sourceTree = "<group>"; };
+		BC9124A316DFAC0C00E7F493 /* dry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.h; sourceTree = "<group>"; };
+		BCB14A0C16D7CC8200593177 /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BC6B1F0F16D02ED2008B939C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BC6B1F0716D02ED2008B939C = {
+			isa = PBXGroup;
+			children = (
+				BC6B217A16D13759008B939C /* src */,
+				BC6B1F1316D02ED2008B939C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BC6B1F1316D02ED2008B939C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC6B1F1216D02ED2008B939C /* libdryGL-iOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC6B217A16D13759008B939C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				BC91249E16DFA8B900E7F493 /* dry.cpp */,
+				BC6B217B16D13759008B939C /* dry.h */,
+				BC6B219A16D13810008B939C /* dry.pch */,
+				BC6B217F16D13759008B939C /* graphics */,
+				BC6B218616D13759008B939C /* ios */,
+				BC6B219016D13759008B939C /* system */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		BC6B217F16D13759008B939C /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				BC6B22A216D142D0008B939C /* Math.h */,
+				BC6B218016D13759008B939C /* Renderer.h */,
+				BC6B218116D13759008B939C /* Renderer.cpp */,
+				BC6B218416D13759008B939C /* Texture.h */,
+				BC6B229016D13E0B008B939C /* Texture.cpp */,
+				BC6B218216D13759008B939C /* Shader.h */,
+				BC6B218316D13759008B939C /* Shader.cpp */,
+				BC6B22A516D1565C008B939C /* ShaderBasic.h */,
+				BC6B22A416D1565C008B939C /* ShaderBasic.cpp */,
+				BC6B22A916D17C81008B939C /* Pixels.h */,
+				BC6B22A816D17C81008B939C /* Pixels.cpp */,
+			);
+			path = graphics;
+			sourceTree = "<group>";
+		};
+		BC6B218616D13759008B939C /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				BC9124A316DFAC0C00E7F493 /* dry.h */,
+				BC6B218816D13759008B939C /* AppiOS.h */,
+				BC6B218916D13759008B939C /* AppiOS.mm */,
+				BC6B218C16D13759008B939C /* View.h */,
+				BC6B218D16D13759008B939C /* View.mm */,
+				BC6B218E16D13759008B939C /* ViewController.h */,
+				BC6B218F16D13759008B939C /* ViewController.mm */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		BC6B219016D13759008B939C /* system */ = {
+			isa = PBXGroup;
+			children = (
+				BC6B219116D13759008B939C /* App.h */,
+				BCB14A0C16D7CC8200593177 /* App.cpp */,
+				BC6B22AB16D188EC008B939C /* Timer.h */,
+				BC6B22AD16D22833008B939C /* Random.h */,
+			);
+			path = system;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BC6B1F1116D02ED2008B939C /* dryGL-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC6B1F2016D02ED2008B939C /* Build configuration list for PBXNativeTarget "dryGL-iOS" */;
+			buildPhases = (
+				BC6B1F0E16D02ED2008B939C /* Sources */,
+				BC6B1F0F16D02ED2008B939C /* Frameworks */,
+				BC6B1F1016D02ED2008B939C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "dryGL-iOS";
+			productName = dryGL;
+			productReference = BC6B1F1216D02ED2008B939C /* libdryGL-iOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BC6B1F0916D02ED2008B939C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Jordi Ros";
+			};
+			buildConfigurationList = BC6B1F0C16D02ED2008B939C /* Build configuration list for PBXProject "dryGL-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BC6B1F0716D02ED2008B939C;
+			productRefGroup = BC6B1F1316D02ED2008B939C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BC6B1F1116D02ED2008B939C /* dryGL-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BC6B1F0E16D02ED2008B939C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC6B219316D13759008B939C /* Renderer.cpp in Sources */,
+				BC6B219416D13759008B939C /* Shader.cpp in Sources */,
+				BC6B219616D13759008B939C /* AppiOS.mm in Sources */,
+				BC6B219816D13759008B939C /* View.mm in Sources */,
+				BC6B219916D13759008B939C /* ViewController.mm in Sources */,
+				BC6B229116D13E0B008B939C /* Texture.cpp in Sources */,
+				BC6B22A616D1565D008B939C /* ShaderBasic.cpp in Sources */,
+				BC6B22AA16D17C81008B939C /* Pixels.cpp in Sources */,
+				BCB14A0D16D7CC8200593177 /* App.cpp in Sources */,
+				BC91249F16DFA8B900E7F493 /* dry.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BC6B1F1E16D02ED2008B939C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../src,
+					../libs,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BC6B1F1F16D02ED2008B939C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../src,
+					../libs,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BC6B1F2116D02ED2008B939C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/dryGL.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = dry.pch;
+				HEADER_SEARCH_PATHS = ../libs;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "dryGL-iOS";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BC6B1F2216D02ED2008B939C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = /tmp/dryGL.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = dry.pch;
+				HEADER_SEARCH_PATHS = ../libs;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "dryGL-iOS";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BC6B1F0C16D02ED2008B939C /* Build configuration list for PBXProject "dryGL-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC6B1F1E16D02ED2008B939C /* Debug */,
+				BC6B1F1F16D02ED2008B939C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC6B1F2016D02ED2008B939C /* Build configuration list for PBXNativeTarget "dryGL-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC6B1F2116D02ED2008B939C /* Debug */,
+				BC6B1F2216D02ED2008B939C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BC6B1F0916D02ED2008B939C /* Project object */;
+}
