@@ -17,11 +17,12 @@ using namespace dry;
 // Program
 //------------------------------------------------------------------------------------------------
 static const char *s_VS =
-    "attribute vec4 aPos;"
+    "attribute vec3 Position;"
+    "uniform mat4 ModelViewProjection;"
 
     "void main(void)"
     "{"
-        "gl_Position = aPos;"
+        "gl_Position = ModelViewProjection * vec4(Position, 1.0);"
     "}";
 
 static const char *s_FS =
