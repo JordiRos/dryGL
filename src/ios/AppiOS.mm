@@ -25,7 +25,7 @@ static string Format(NSString const *nsstr)
 // Constructor
 //
 //------------------------------------------------------------------------------------------------
-dry::AppiOS::AppiOS()
+dry::AppiOS::AppiOS(AppParams const &params) : App(params)
 {
     m_ViewController = [[[dryViewController alloc] initWithFrame:[[UIScreen mainScreen] bounds] app:this] autorelease];
     string pathBundle  = Format([[NSBundle mainBundle] bundlePath]);

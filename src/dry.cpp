@@ -9,7 +9,6 @@
 #include "dry.h"
 #include "freeimage/include/FreeImage.h"
 
-
 // Private vars
 static string pathBundle  = "";
 static string pathDocpath = "";

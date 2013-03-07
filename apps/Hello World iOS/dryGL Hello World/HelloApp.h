@@ -11,6 +11,7 @@
 class HelloApp : public dry::AppiOS
 {
 public:
+            HelloApp(dry::AppParams const &params) : dry::AppiOS(params) {}
     void    Init    ();
     void    Update  ();
     void    Draw    ();

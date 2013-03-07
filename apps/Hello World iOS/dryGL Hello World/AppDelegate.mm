@@ -22,8 +22,9 @@
     // Initialize dry subsystem
     dry::Init("dry.log");
     
-    // Create app and attach itsview to rootViewController. You could also create 2 views for 2 viewcontrollers and assign anywhere                                                                                                                                
-    app = NEW HelloApp();
+    // Create app with desired resolution (retina or not) and attach itsview to rootViewController
+    // Here you could set resolution based on app frame, or even attach view controller to any place in the app
+    app = NEW HelloApp(dry::AppParams(640,960,false));
     app->Init();
     self.window.rootViewController = (UIViewController *)app->GetViewController();
     

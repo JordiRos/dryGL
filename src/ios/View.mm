@@ -48,6 +48,20 @@
         else
             dry::Log("[dryView] Failed to initialize OpenGLES 2.0 context");
 
+        int w = app->GetParams().Width;
+        int h = app->GetParams().Height;
+        // Retina?
+        m_ScaleFactor = 1;
+        if ((w == 640  && h == 960)  || // iPhone4 Retina
+            (w == 640  && h == 1136) || // iPhone5 Retina
+            (w == 2048 && h == 1536))   // iPad3 Retina
+        {
+            m_ScaleFactor = 2;
+        }
+        self.contentScaleFactor = m_ScaleFactor;
+        m_EAGLLayer.contentsScale = m_ScaleFactor;
+        dry::Log("[dryView] Initializing EAGLLayer view: %dx%d (scale %.1f)", w,h, m_ScaleFactor);
+
         // RenderBuffer
         glGenRenderbuffers(1, &m_ColorRenderBuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, m_ColorRenderBuffer);
@@ -56,7 +70,7 @@
         // DepthBuffer
         glGenRenderbuffers(1, &m_DepthRenderBuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, m_DepthRenderBuffer);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, self.frame.size.width, self.frame.size.height);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, w,h);
 
         // FrameBuffer
         glGenFramebuffers(1, &m_FrameBuffer);

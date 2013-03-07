@@ -18,6 +18,7 @@
     GLuint          m_FrameBuffer;
     BOOL            m_Active;
 	id              m_DisplayLink;
+    float           m_ScaleFactor;
     dry::AppiOS    *m_App;
 }
 

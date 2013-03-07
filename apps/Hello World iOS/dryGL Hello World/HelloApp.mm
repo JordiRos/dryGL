@@ -13,10 +13,10 @@ dry::ShaderBasic _shader;
 
 float _time = 0.f;
 
-void render()
+void render(int w,int h)
 {
     // 1
-    glViewport(0,0, 640,960);
+    glViewport(0,0, w,h);
     
     _shader.Begin();
 
@@ -36,9 +36,9 @@ void HelloApp::Init()
     _shader.Init();
     int programHandle = _shader.GetShader()->GetHandleProgram();
 
+    /*
     glBindAttribLocation(programHandle, 0, "aPos");
     
-    /*
     _positionSlot = glGetAttribLocation(programHandle, "aPos");
     _colorSlot = glGetAttribLocation(programHandle, "aColor");
     glEnableVertexAttribArray(_positionSlot);
@@ -64,5 +64,5 @@ void HelloApp::Draw()
     float r = fmod(_time, 1.f);
     glClearColor(0, r, 55.0/255.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
-    render();
+    render(GetParams().Width, GetParams().Height);
 }

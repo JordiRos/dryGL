@@ -13,7 +13,7 @@ namespace dry {
 class AppiOS : public App
 {
 public:
-                        AppiOS              ();
+                        AppiOS              (AppParams const &params);
     virtual            ~AppiOS              () { Free(); }
 
     virtual void        Init                ();

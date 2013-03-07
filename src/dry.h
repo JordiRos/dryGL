@@ -59,21 +59,19 @@ enum PixelFormat
     DRY_FMT_RGBA32,
 };
 
-// AppWindowParams
-struct AppWindowParams
+// AppParams
+struct AppParams
 {
-    AppWindowParams() {}
-    AppWindowParams(int width, int height, bool fullscreen, bool retina)
+    AppParams() {}
+    AppParams(int width, int height, bool fullscreen)
     {
         Width      = width;
         Height     = height;
         Fullscreen = fullscreen;
-        Retina     = retina;
     }
     int  Width;
     int  Height;
     bool Fullscreen;
-    bool Retina;
 };
 
 void            Init        (const string &logfile);

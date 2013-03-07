@@ -16,6 +16,7 @@ class App
 {
 public:
 
+                        App             (AppParams const &params) { m_Params = params; }
     virtual            ~App             () { Free(); }
 
     virtual void        Init            ();
@@ -33,10 +34,12 @@ public:
 	virtual void        GotFocus        () {}
 	virtual void        MemoryWarning   () {}
 
+    AppParams const    &GetParams       () { return m_Params; }
     Renderer           *GetRenderer     () { return m_Renderer; }
 
 protected:
-    
+ 
+    AppParams           m_Params;
     Renderer           *m_Renderer;
 };
 
