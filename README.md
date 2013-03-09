@@ -1,4 +1,5 @@
 dryGL
 =====
 
-dryGL is a lightweight OpenglES 2 framework for mobile devices
+dryGL is a lightweight OpenGL ES 2.0 framework for mobile devices
+
