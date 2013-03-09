@@ -23,7 +23,7 @@ public:
     int         GetWidth            () const { return m_Width;  }
     int         GetHeight           () const { return m_Height; }
     int         GetFormat           () const { return m_Format; }
-    void       *GetData             () const { return m_Data;   }
+    uchar      *GetData             () const { return m_Data;   }
     int         GetBPP              () const;
 
 private:
@@ -36,7 +36,7 @@ private:
     int         m_Width;
     int         m_Height;
     int         m_Format;
-    void       *m_Data;
+    uchar      *m_Data;
 };
 
 }

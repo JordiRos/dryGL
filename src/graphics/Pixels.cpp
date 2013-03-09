@@ -22,7 +22,7 @@ bool Pixels::Init(int width, int height, int format)
     m_Width  = width;
     m_Height = height;
     m_Format = format;
-    m_Data   = (void *)NEW_ARRAY(uchar, width * height * GetBPP());
+    m_Data   = NEW_ARRAY(uchar, width * height * GetBPP());
     return true;
 }
 
@@ -44,15 +44,29 @@ bool Pixels::InitWithFile(const string &file)
         {
             int width  = FreeImage_GetWidth (fibmp);
             int height = FreeImage_GetHeight(fibmp);
-            int bpp    = FreeImage_GetBPP   (fibmp);
+            int bpp    = FreeImage_GetBPP   (fibmp) / 8;
             int format = GetFormat(bpp);
             if (format != -1)
             {
                 if (Init(width, height, format))
                 {
-                    uchar *dst = (uchar *)m_Data;
-                    for (int i = 0; i < height; i++)
-                        memcpy(dst, FreeImage_GetScanLine(fibmp, i), bpp * width);
+                    uchar *src  = FreeImage_GetBits(fibmp);
+                    uchar *dst  = m_Data;
+                    int i, size = width * height;
+                    switch (bpp)
+                    {
+                        case 1: memcpy(dst, src, bpp * width * height); break;
+                        case 3:
+                            for (i = 0; i < size; i++)
+                            {
+                                dst[0] = src[2];
+                                dst[1] = src[1];
+                                dst[2] = src[0];
+                                src+= 3;
+                                dst+= 3;
+                            }
+                            break;
+                    }
                     res = true;
                 }
             }

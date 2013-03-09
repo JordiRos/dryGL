@@ -20,23 +20,26 @@ using namespace dry;
 bool Texture::Init(int width, int height, int format, int target)
 {
     bool res = false;
-    int glFormat = GetGLFormat();
+    m_Width  = width;
+    m_Height = height;
+    m_Format = format;
+    m_Target = target;
     
-	glEnable(m_Target);
 	glGenTextures(1, (GLuint *)&m_Handle);
     if (m_Handle != -1)
     {
+        int glFormat = GetGLFormat();
         glBindTexture  (m_Target, m_Handle);
-        glTexImage2D   (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, 0);
         glTexParameteri(m_Target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexImage2D (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, 0);
+        glBindTexture(m_Target, 0);
         res = true;
     }
     else
         dry::Log("[dryTexture] Can't create texture with params: %d,%d (%d)", width, height, format);
-	glDisable(m_Target);
     return res;
 }
 
@@ -51,7 +54,8 @@ bool Texture::InitWithData(int width, int height, int format, int target, const 
     bool res = false;
     if (Init(width, height, format, target))
     {
-        if (data) Update(data);
+        if (data)
+            Update(data);
         res = true;
     }
     return res;
@@ -81,7 +85,8 @@ bool Texture::InitWithPixels(const Pixels &pixels)
 //------------------------------------------------------------------------------------------------
 void Texture::Free()
 {
-    if (m_Handle != -1) glDeleteTextures(1, (GLuint *)&m_Handle);
+    if (m_Handle != -1)
+        glDeleteTextures(1, (GLuint *)&m_Handle);
     m_Handle = -1;
 }
 
@@ -92,18 +97,11 @@ void Texture::Free()
 //------------------------------------------------------------------------------------------------
 void Texture::Update(const void *data)
 {
-    int glFormat = GL_RGBA;
-    int align;
+    int glFormat = GetGLFormat();
 
-    Bind();
-    
-    // Update texture
-    glGetIntegerv(GL_UNPACK_ALIGNMENT, (GLint *)&align);
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    glBindTexture(m_Target, m_Handle);
     glTexImage2D (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
-    glPixelStorei(GL_UNPACK_ALIGNMENT, align);
-    
-    Unbind();
+    glBindTexture(m_Target, 0);
 }
 
 
@@ -111,9 +109,10 @@ void Texture::Update(const void *data)
 // Bind
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Bind()
+void Texture::Bind(int stage)
 {
-    glEnable(m_Target);
+    glActiveTexture(GL_TEXTURE0 + stage);
+    //glEnable(m_Target);
     glBindTexture(m_Target, m_Handle);
 }
 
@@ -124,7 +123,7 @@ void Texture::Bind()
 //------------------------------------------------------------------------------------------------
 void Texture::Unbind()
 {
-	glDisable(m_Target);
+	//glDisable(m_Target);
 }
 
 

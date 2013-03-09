@@ -20,8 +20,9 @@
 		BC6B1F7E16D03229008B939C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B1F7D16D03229008B939C /* OpenGLES.framework */; };
 		BC6B1F8016D03284008B939C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B1F7F16D03284008B939C /* QuartzCore.framework */; };
 		BC9124A216DFAB8C00E7F493 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC91249D16DF9F2400E7F493 /* libdryGL-iOS.a */; };
-		BCB14A0616D7BF8800593177 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB14A0516D7BF8800593177 /* freeimage.a */; };
-		BCB14A0916D7C19C00593177 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB14A0816D7C19C00593177 /* freeimage.a */; };
+		BCF38BDE16EAA1FE00073C11 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF38BDD16EAA1FE00073C11 /* freeimage.a */; };
+		BCF38BE116EAA20900073C11 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF38BE016EAA20900073C11 /* freeimage.a */; };
+		BCF38BE316EB34B900073C11 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = BCF38BE216EB34B900073C11 /* texture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,9 +53,10 @@
 		BC6B1F7D16D03229008B939C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BC6B1F7F16D03284008B939C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BC91249816DF9F2400E7F493 /* dryGL-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "dryGL-iOS.xcodeproj"; path = "../../src/dryGL-iOS.xcodeproj"; sourceTree = "<group>"; };
-		BCB14A0516D7BF8800593177 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/ios/freeimage.a; sourceTree = "<group>"; };
 		BCB14A0716D7C09800593177 /* Hello World iOS.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Hello World iOS.pch"; path = "dryGL Hello World/Hello World iOS.pch"; sourceTree = SOURCE_ROOT; };
-		BCB14A0816D7C19C00593177 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
+		BCF38BDD16EAA1FE00073C11 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/ios/freeimage.a; sourceTree = "<group>"; };
+		BCF38BE016EAA20900073C11 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
+		BCF38BE216EB34B900073C11 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texture.png; path = data/texture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,14 +64,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCF38BE116EAA20900073C11 /* freeimage.a in Frameworks */,
+				BCF38BDE16EAA1FE00073C11 /* freeimage.a in Frameworks */,
 				BC9124A216DFAB8C00E7F493 /* libdryGL-iOS.a in Frameworks */,
-				BCB14A0616D7BF8800593177 /* freeimage.a in Frameworks */,
 				BC6B1F8016D03284008B939C /* QuartzCore.framework in Frameworks */,
 				BC6B1F7E16D03229008B939C /* OpenGLES.framework in Frameworks */,
 				BC34D2EC16CE289A00B634C0 /* UIKit.framework in Frameworks */,
 				BC34D2EE16CE289A00B634C0 /* Foundation.framework in Frameworks */,
 				BC34D2F016CE289A00B634C0 /* CoreGraphics.framework in Frameworks */,
-				BCB14A0916D7C19C00593177 /* freeimage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,8 @@
 				BC34D2F116CE289A00B634C0 /* DryGL Hello World */,
 				BCB14A0A16D7C22200593177 /* dryGL */,
 				BC34D2EA16CE289A00B634C0 /* Frameworks */,
+				BCF38BE016EAA20900073C11 /* freeimage.a */,
+				BCF38BDD16EAA1FE00073C11 /* freeimage.a */,
 				BC34D2E816CE289A00B634C0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,8 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				BC91249816DF9F2400E7F493 /* dryGL-iOS.xcodeproj */,
-				BCB14A0816D7C19C00593177 /* freeimage.a */,
-				BCB14A0516D7BF8800593177 /* freeimage.a */,
 			);
 			name = dryGL;
 			sourceTree = "<group>";
@@ -154,6 +156,7 @@
 		BCB14A0B16D7CB0700593177 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BCF38BE216EB34B900073C11 /* texture.png */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				BC34D2FE16CE289A00B634C0 /* Default.png in Resources */,
 				BC34D30016CE289A00B634C0 /* Default@2x.png in Resources */,
 				BC34D30216CE289A00B634C0 /* Default-568h@2x.png in Resources */,
+				BCF38BE316EB34B900073C11 /* texture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
