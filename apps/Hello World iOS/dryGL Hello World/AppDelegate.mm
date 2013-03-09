@@ -14,17 +14,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    self.window = [[[UIWindow alloc] initWithFrame:frame] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
     // Initialize dry subsystem
     dry::Init("dry.log");
+    dry::Log("AppDelegate: %d,%d", frame.size.width,frame.size.height);
     
-    // Create app with desired resolution (retina or not) and attach itsview to rootViewController
-    // Here you could set resolution based on app frame, or even attach view controller to any place in the app
-    app = NEW HelloApp(dry::AppParams(640,960,false));
+    // Create app with desired resolution and attach its viewController to rootViewController
+    app = NEW HelloApp(dry::AppParams(frame.size.width,frame.size.height,false));
     app->Init();
     self.window.rootViewController = (UIViewController *)app->GetViewController();
     
