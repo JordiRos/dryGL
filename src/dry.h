@@ -100,6 +100,11 @@ const string   &GetFilePath (const string &file, const string &docpath);    // D
 #include "graphics/ShaderBasic.h"
 #include "graphics/Pixels.h"
 
+// Camera
+#include "camera/Camera.h"
+#include "camera/CameraPerspective.h"
+#include "camera/CameraOrthogonal.h"
+
 // Target iOS
 #ifdef DRY_TARGET_IOS
     #include "ios/dry.h"

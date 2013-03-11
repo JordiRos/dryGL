@@ -12,6 +12,8 @@
 dry::ShaderBasic _shader;
 dry::Pixels _pixels;
 dry::Texture _texture;
+dry::CameraPerspective _camera;
+//dry::CameraOrthogonal _camera;
 GLuint attr_position;
 GLuint attr_texcoord;
 GLuint vbo_cube_vertices;
@@ -110,6 +112,13 @@ void HelloApp::Init()
     attr_texcoord = glGetAttribLocation(programHandle, "TexCoord");
     uniform_mvp = glGetUniformLocation(programHandle, "ModelViewProjection");
     uniform_texture = glGetUniformLocation(programHandle, "Texture");
+    
+    // Camera
+    int w = GetParams().Width;
+    int h = GetParams().Height;
+    _camera.Init(45.f, (float)w / h, 0.1f, 100.f);
+    //_camera.Init(-2,-2, 2,2, 0.1f, 100.f); // Ortho
+    _camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, -0.0), glm::vec3(0.0, 1.0, 0.0));
 }
 
 
@@ -135,9 +144,7 @@ void HelloApp::Draw()
     glm::vec3 axis_y(0, 1, 0);
     glm::mat4 anim = glm::rotate(glm::mat4(1.0f), angle, axis_y);
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, -0.0));
-    glm::mat4 view = glm::lookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, -0.0), glm::vec3(0.0, 1.0, 0.0));
-    glm::mat4 projection = glm::perspective(45.0f, 1.0f*w/h, 0.1f, 10.0f);
-    glm::mat4 mvp = projection * view * model * anim;
+    glm::mat4 mvp = _camera.GetMatProj() * _camera.GetMatView() * model * anim;
 
     glEnable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
