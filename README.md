@@ -7,19 +7,21 @@ Current status:
 - iOS project
 - Texture object
 - Shader object + BasicShader
+- Camera + CameraPerspective + CameraOrthogonal
 - Basic 3D rotating textured cube example
 
 Roadmap:
 - VBO object
 - FBO object
-- Auto uniform/attribute in shader
+- Auto uniforms/attributes in shader
 - Mesh object
-- Material object
 - State manager
-- Cameras
 - Inheritable basic shader
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
 - Replace FreeImage with libpng / libjpg / libdds
+
+Addons:
+- SceneManager: Scene, Object, Material, SceneRenderer
 
 Dependencies:
 - Glm
