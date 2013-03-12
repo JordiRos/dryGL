@@ -18,9 +18,9 @@ using namespace dry;
 //------------------------------------------------------------------------------------------------
 CameraOrthogonal::CameraOrthogonal() : Camera()
 {
-    m_Left   =-1.f;
-    m_Top    =-1.f;
+    m_Left   = 0.f;
     m_Right  = 1.f;
+    m_Top    = 0.f;
     m_Bottom = 1.f;
     m_Near   = 1.f;
     m_Far    = 1000.f;
@@ -31,11 +31,11 @@ CameraOrthogonal::CameraOrthogonal() : Camera()
 // Init
 //
 //------------------------------------------------------------------------------------------------
-void CameraOrthogonal::Init(float left, float top, float right, float bottom, float near, float far)
+void CameraOrthogonal::Init(float left, float right, float top, float bottom, float near, float far)
 {
     m_Left   = left;
-    m_Top    = top;
     m_Right  = right;
+    m_Top    = top;
     m_Bottom = bottom;
     m_Near   = near;
     m_Far    = far;
@@ -49,6 +49,7 @@ void CameraOrthogonal::Init(float left, float top, float right, float bottom, fl
 //------------------------------------------------------------------------------------------------
 void CameraOrthogonal::UpdateProjection()
 {
-    // It's really left,right,bottom,top, but that inverts Y in OpenGL, so we flip Bottom / Top
-    m_MatProj = glm::ortho(m_Left, m_Right, m_Top, m_Bottom, m_Near, m_Far);
+    // It's really left,right,bottom,top, but dry is intended 0,0 top left corner so we flip Bottom / Top
+    dry::Log("[CameraOrtho] Projection: %.0f,%.0f => %.0f,%.0f", m_Left,m_Right, m_Top,m_Bottom);
+    m_MatProj = glm::ortho(m_Left, m_Right, m_Bottom, m_Top, m_Near, m_Far);
 }

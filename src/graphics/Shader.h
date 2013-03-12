@@ -20,8 +20,8 @@ public:
     bool        InitWithProgram (const string &vs, const string &fs);
     void        Free            ();
     
-    void        Begin           ();
-    void        End             ();
+    void        Bind            ();
+    void        Unbind          ();
     
     int         GetHandleProgram() const { return m_HandleProgram; }
 

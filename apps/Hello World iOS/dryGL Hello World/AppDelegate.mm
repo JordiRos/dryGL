@@ -22,10 +22,10 @@
 
     // Initialize dry subsystem
     dry::Init("dry.log");
-    dry::Log("AppDelegate: %d,%d", frame.size.width,frame.size.height);
+    dry::Log("AppDelegate: %.0f,%.0f", frame.size.width,frame.size.height);
     
     // Create app with desired resolution and attach its viewController to rootViewController
-    app = NEW HelloApp(dry::AppParams(frame.size.width,frame.size.height,false));
+    app = NEW HelloApp(dry::AppParams(frame.size.width*2,frame.size.height*2,false));
     app->Init();
     self.window.rootViewController = (UIViewController *)app->GetViewController();
     

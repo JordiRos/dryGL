@@ -8,12 +8,17 @@
 
 #include "dry.h"
 #include "HelloApp.h"
+#include "../Addons/Renderer/QuadBatch.h"
+
+dry::CameraPerspective _cameraP;
+dry::CameraOrthogonal _cameraO;
 
 dry::ShaderBasic _shader;
 dry::Pixels _pixels;
 dry::Texture _texture;
-dry::CameraPerspective _camera;
-//dry::CameraOrthogonal _camera;
+dry::Fbo _fbo;
+dry::QuadBatch _quads;
+
 GLuint attr_position;
 GLuint attr_texcoord;
 GLuint vbo_cube_vertices;
@@ -24,6 +29,11 @@ GLuint uniform_texture;
 
 float _time = 0.f;
 
+
+//------------------------------------------------------------------------------------------------
+// Init
+//
+//------------------------------------------------------------------------------------------------
 void HelloApp::Init()
 {
     // Vertices
@@ -116,46 +126,81 @@ void HelloApp::Init()
     // Camera
     int w = GetParams().Width;
     int h = GetParams().Height;
-    _camera.Init(45.f, (float)w / h, 0.1f, 100.f);
-    //_camera.Init(-2,-2, 2,2, 0.1f, 100.f); // Ortho
-    _camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, -0.0), glm::vec3(0.0, 1.0, 0.0));
-}
-
-
-void HelloApp::Update()
-{
-}
-
-void HelloApp::Draw()
-{
-    _time += 1.f/60.f;
-    //float r = fmod(_time, 1.f);
-    //glClearColor(0, r, 55.0/255.0, 1.0);
-    glClearColor(0.5f, 0.5f, 0.5f, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    // Perspective
+    _cameraP.Init(45.f, (float)w / h, 0.1f, 100.f);
+    _cameraP.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    
+    // Orthogonal
+    _cameraO.Init(0,w, 0,h, -1.f,1.f);
+    _cameraO.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    
+    // Fbo
+    dry::Fbo::Params params;
+    params.Width  = w;
+    params.Height = h;
+    _fbo.Init(params);
+    
+    // QuadBatch
+    _quads.Init();
     
     // RENDER
+    glViewport(0,0, w,h);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Update
+//
+//------------------------------------------------------------------------------------------------
+void HelloApp::Update()
+{
+    _time += 1.f/60.f;
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Draw
+//
+//------------------------------------------------------------------------------------------------
+void HelloApp::Draw()
+{
     int w = GetParams().Width;
     int h = GetParams().Height;
-    glViewport(0,0, w,h);
+
+    //float r = fmod(_time, 1.f);
+    //glClearColor(0, r, 55.0/255.0, 1.0f);
+    glClearColor(0.5f, 0.1f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // Draw QuadBatch
+    glDisable(GL_DEPTH_TEST);
+    _quads.Draw(&_texture, &_cameraO, _shader.GetShader(), glm::mat4(), 0.f,0.f, w,h);
+    glEnable(GL_DEPTH_TEST);
+
+    // Render to FBO
+    _fbo.Bind();
+    glClearColor(0.1f, 0.9f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     // Load matrices
     float angle = _time * 45;
     glm::vec3 axis_y(0, 1, 0);
     glm::mat4 anim = glm::rotate(glm::mat4(1.0f), angle, axis_y);
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, -0.0));
-    glm::mat4 mvp = _camera.GetMatProj() * _camera.GetMatView() * model * anim;
+    glm::mat4 mvp = _cameraP.GetMatProj() * _cameraP.GetMatView() * model * anim;
 
     glEnable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // Set Program + uniforms
-    _shader.Begin();
+    _shader.GetShader()->Bind();
     glUniformMatrix4fv(uniform_mvp, 1, GL_FALSE, glm::value_ptr(mvp));
     
     // Texture
-    _texture.Bind(0);
+    _texture.Bind();
+    glActiveTexture(GL_TEXTURE0);
     glUniform1i(uniform_texture, 0);
     
     // Vertices
@@ -188,6 +233,13 @@ void HelloApp::Draw()
     glDisableVertexAttribArray(attr_position);
     glDisableVertexAttribArray(attr_texcoord);
     
-    //_texture.Unbind();
-    _shader.End();
+    _texture.Unbind();
+    _shader.GetShader()->Unbind();
+    
+    _fbo.Unbind();
+
+    glDisable(GL_DEPTH_TEST);
+    _quads.Draw(&_texture, &_cameraO, _shader.GetShader(), glm::mat4(), 0,0, w/4.f,h/4.f);
+    _quads.Draw(&_fbo, &_cameraO, _shader.GetShader(), glm::mat4(), w/4.f,h/4.f, w/2.f, h/2.f);
+    glEnable(GL_DEPTH_TEST);
 }

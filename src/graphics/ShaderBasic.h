@@ -21,9 +21,6 @@ public:
     bool            Init            ();
     void            Free            ();
 
-    void            Begin           ();
-    void            End             ();
-
     Shader         *GetShader       () { return m_Shader; }
 
 private:

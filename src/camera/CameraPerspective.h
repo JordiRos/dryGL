@@ -15,24 +15,20 @@ namespace dry {
 class CameraPerspective : public Camera
 {
 public:
-                        CameraPerspective   ();
-    virtual            ~CameraPerspective   () { }
+                    CameraPerspective   ();
 
-    void                Init                (float fov, float aspect, float near, float far);
-
-    glm::mat4 const    &GetMatProj          () { return m_MatProj; }
+    void            Init                (float fov, float aspect, float near, float far);
 
 protected:
 
-    void                UpdateProjection    ();
+    void            UpdateProjection    ();
     
 protected:
     
-    float               m_Fov;
-    float               m_Aspect;
-    float               m_Near;
-    float               m_Far;
-    glm::mat4           m_MatProj;
+    float           m_Fov;
+    float           m_Aspect;
+    float           m_Near;
+    float           m_Far;
 };
 
 }

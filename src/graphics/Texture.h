@@ -24,10 +24,10 @@ public:
 
     void        Update          (const void *data);
 
-    void        Bind            (int stage);
-    void        Unbind          ();
+    void        Bind            () const;
+    void        Unbind          () const;
     
-    int         GetHandle       () { return m_Handle; }
+    int         GetHandle       () const { return m_Handle; }
     
 private:
     

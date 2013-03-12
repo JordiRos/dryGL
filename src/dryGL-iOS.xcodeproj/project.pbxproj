@@ -20,6 +20,7 @@
 		BCF38C8916ED197100073C11 /* View.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C7816ED197100073C11 /* View.mm */; };
 		BCF38C8A16ED197100073C11 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C7A16ED197100073C11 /* ViewController.mm */; };
 		BCF38C8B16ED197100073C11 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C7C16ED197100073C11 /* App.cpp */; };
+		BCF38C8E16EDD9EA00073C11 /* Fbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C8C16EDD9EA00073C11 /* Fbo.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,7 +46,6 @@
 		BCF38C6416ED197100073C11 /* CameraOrthogonal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOrthogonal.h; sourceTree = "<group>"; };
 		BCF38C6516ED197100073C11 /* CameraPerspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraPerspective.cpp; sourceTree = "<group>"; };
 		BCF38C6616ED197100073C11 /* CameraPerspective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPerspective.h; sourceTree = "<group>"; };
-		BCF38C6816ED197100073C11 /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
 		BCF38C6916ED197100073C11 /* Pixels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pixels.cpp; sourceTree = "<group>"; };
 		BCF38C6A16ED197100073C11 /* Pixels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pixels.h; sourceTree = "<group>"; };
 		BCF38C6B16ED197100073C11 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
@@ -67,6 +67,8 @@
 		BCF38C7D16ED197100073C11 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
 		BCF38C7E16ED197100073C11 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		BCF38C7F16ED197100073C11 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		BCF38C8C16EDD9EA00073C11 /* Fbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fbo.cpp; sourceTree = "<group>"; };
+		BCF38C8D16EDD9EA00073C11 /* Fbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fbo.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +128,8 @@
 		BCF38C6716ED197100073C11 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
-				BCF38C6816ED197100073C11 /* Math.h */,
+				BCF38C8C16EDD9EA00073C11 /* Fbo.cpp */,
+				BCF38C8D16EDD9EA00073C11 /* Fbo.h */,
 				BCF38C6916ED197100073C11 /* Pixels.cpp */,
 				BCF38C6A16ED197100073C11 /* Pixels.h */,
 				BCF38C6B16ED197100073C11 /* Renderer.cpp */,
@@ -230,6 +233,7 @@
 				BCF38C8916ED197100073C11 /* View.mm in Sources */,
 				BCF38C8A16ED197100073C11 /* ViewController.mm in Sources */,
 				BCF38C8B16ED197100073C11 /* App.cpp in Sources */,
+				BCF38C8E16EDD9EA00073C11 /* Fbo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

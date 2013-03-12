@@ -18,9 +18,6 @@
 #include <string>
 using std::string;
 
-// DRY platform target
-#define DRY_TARGET_IOS
-
 // Null
 #ifndef NULL
 #define NULL 0
@@ -48,7 +45,9 @@ typedef unsigned int    uint;
 //------------------------------------------------------------------------------------------------
 namespace dry {
     
-#define DRY_VERSION_STR "0.0.1"
+// DRY platform target: TEMP only iOS for now
+#define DRY_TARGET_IOS
+#define DRY_VERSION_STR "0.1.0"
     
 // PixelFormat
 enum PixelFormat
@@ -87,18 +86,22 @@ const string   &GetFilePath (const string &file, const string &docpath);    // D
 // Modules
 //------------------------------------------------------------------------------------------------
 
+// Glm
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
+
 // System
 #include "system/App.h"
 #include "system/Timer.h"
 #include "system/Random.h"
 
 // Graphics
-#include "graphics/Math.h"
 #include "graphics/Renderer.h"
 #include "graphics/Texture.h"
 #include "graphics/Shader.h"
 #include "graphics/ShaderBasic.h"
 #include "graphics/Pixels.h"
+#include "graphics/Fbo.h"
 
 // Camera
 #include "camera/Camera.h"

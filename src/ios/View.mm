@@ -60,13 +60,13 @@
         }
         self.contentScaleFactor = m_ScaleFactor;
         m_EAGLLayer.contentsScale = m_ScaleFactor;
-        dry::Log("[dryView] Initializing EAGLLayer view: %dx%d (scale %.1f)", w,h, m_ScaleFactor);
+        dry::Log("[dryView] Initializing EAGLLayer view: %dx%d (scale %.2f)", w,h, m_ScaleFactor);
 
         // RenderBuffer
         glGenRenderbuffers(1, &m_ColorRenderBuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, m_ColorRenderBuffer);
         [m_EAGLContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:m_EAGLLayer];
-        
+
         // DepthBuffer
         glGenRenderbuffers(1, &m_DepthRenderBuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, m_DepthRenderBuffer);
@@ -76,7 +76,7 @@
         glGenFramebuffers(1, &m_FrameBuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, m_ColorRenderBuffer);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_DepthRenderBuffer);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,  GL_RENDERBUFFER, m_DepthRenderBuffer);
 
         // Status Bar
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
@@ -141,39 +141,6 @@
 - (void)layoutSubviews
 {
     dry::Log("[dryView] layoutSubviews");
-
-    /*
-    UIScreen *currentScreen;
-    currentScreen = self.window.screen;
-    if(!currentScreen){
-        currentScreen = [UIScreen mainScreen];
-    }
-    
-    if(bUseRetina){
-        if([currentScreen respondsToSelector:@selector(scale)]){
-            if(scaleFactor != [currentScreen scale]){
-                scaleFactor = [currentScreen scale];
-                [self setContentScaleFactor:scaleFactor];
-            }
-        } else {
-            if(scaleFactor != 1){
-                scaleFactor = 1;
-                [self setContentScaleFactor:scaleFactor];
-            }
-        }
-    } else {
-        if(scaleFactor != 1){
-            scaleFactor = 1;
-            [self setContentScaleFactor:scaleFactor];
-        }
-    }
-
-    [renderer startRender];
-    [renderer resizeFromLayer:(CAEAGLLayer*)self.layer];
-    [renderer finishRender];
-    
-    [self notifyResized];
-     */
 }
 
 
