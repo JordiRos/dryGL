@@ -23,6 +23,7 @@
 		BCF38BDE16EAA1FE00073C11 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF38BDD16EAA1FE00073C11 /* freeimage.a */; };
 		BCF38BE116EAA20900073C11 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF38BE016EAA20900073C11 /* freeimage.a */; };
 		BCF38BE316EB34B900073C11 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = BCF38BE216EB34B900073C11 /* texture.png */; };
+		BCF38C9316EE417800073C11 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C9116EE417800073C11 /* QuadBatch.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		BCF38BDD16EAA1FE00073C11 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/ios/freeimage.a; sourceTree = "<group>"; };
 		BCF38BE016EAA20900073C11 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
 		BCF38BE216EB34B900073C11 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texture.png; path = data/texture.png; sourceTree = "<group>"; };
+		BCF38C9116EE417800073C11 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
+		BCF38C9216EE417800073C11 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,7 @@
 			children = (
 				BCB14A0B16D7CB0700593177 /* Data */,
 				BC34D2F116CE289A00B634C0 /* DryGL Hello World */,
+				BCF38C9516EE417E00073C11 /* Addons */,
 				BCB14A0A16D7C22200593177 /* dryGL */,
 				BC34D2EA16CE289A00B634C0 /* Frameworks */,
 				BCF38BE016EAA20900073C11 /* freeimage.a */,
@@ -159,6 +163,24 @@
 				BCF38BE216EB34B900073C11 /* texture.png */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		BCF38C9016EE417800073C11 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				BCF38C9116EE417800073C11 /* QuadBatch.cpp */,
+				BCF38C9216EE417800073C11 /* QuadBatch.h */,
+			);
+			name = Renderer;
+			path = ../../addons/Renderer;
+			sourceTree = "<group>";
+		};
+		BCF38C9516EE417E00073C11 /* Addons */ = {
+			isa = PBXGroup;
+			children = (
+				BCF38C9016EE417800073C11 /* Renderer */,
+			);
+			name = Addons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +268,7 @@
 				BC34D2F816CE289A00B634C0 /* main.mm in Sources */,
 				BC34D2FC16CE289A00B634C0 /* AppDelegate.mm in Sources */,
 				BC349DCD16CFC6C9005599A4 /* HelloApp.mm in Sources */,
+				BCF38C9316EE417800073C11 /* QuadBatch.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
