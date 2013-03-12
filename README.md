@@ -8,21 +8,23 @@ Current status:
 - Texture object
 - Shader object + BasicShader
 - Camera + CameraPerspective + CameraOrthogonal
-- Basic 3D rotating textured cube example
+- FBO (not working)
+- Addons/QuadBatch for simple quad drawing
+
+Example:
+- Rotating 3D cube + cameraPerspective + cameraOrthogonal
+
+Dependencies:
+- Glm
+- FreeImage
 
 Roadmap:
 - VBO object
 - FBO object
 - Auto uniforms/attributes in shader
-- Mesh object
+- Mesh object / renderer
 - State manager
 - Inheritable basic shader
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
-- Replace FreeImage with libpng / libjpg / libdds
-
-Addons:
-- SceneManager: Scene, Object, Material, SceneRenderer
-
-Dependencies:
-- Glm
-- FreeImage
+- Addons: Replace FreeImage with libpng / libjpg / libdds loaders
+- Addons: Scene, Object, Material, SceneRenderer
