@@ -238,6 +238,7 @@ void HelloApp::Draw()
     
     _fbo.Unbind();
 
+    // Draw FBO and a texture using QuadBatch
     glDisable(GL_DEPTH_TEST);
     _quads.Draw(&_texture, &_cameraO, _shader.GetShader(), glm::mat4(), 0,0, w/4.f,h/4.f);
     _quads.Draw(&_fbo, &_cameraO, _shader.GetShader(), glm::mat4(), w/4.f,h/4.f, w/2.f, h/2.f);

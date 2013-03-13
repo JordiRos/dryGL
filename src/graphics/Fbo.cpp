@@ -19,43 +19,50 @@ using namespace dry;
 bool Fbo::Init(Fbo::Params const &params)
 {
     bool res = false;
+    m_Params = params;
     m_FboDefault = -1;
     m_Target = GL_TEXTURE_2D;
+    
+    dry::Log("[Fbo] Init FBO with size %d,%d", m_Params.Width,m_Params.Height);
     
     // Create FBO
     glGenFramebuffers (1, (GLuint *)&m_Fbo);
     glGenTextures     (1, (GLuint *)&m_FboColor);
     glGenRenderbuffers(1, (GLuint *)&m_FboDepth);
 
-    // Bind
-    Bind();
-
     // Create color texture
-    glBindTexture(m_Target, m_FboColor);
-    glTexImage2D (m_Target,
-                  0,
-                  GL_RGBA,
-                  m_Params.Width, m_Params.Height,
-                  0,
-                  GL_RGBA,
-                  GL_UNSIGNED_BYTE,
-                  NULL);
-
+    glBindTexture  (m_Target, m_FboColor);
     glTexParameteri(m_Target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexImage2D   (m_Target,
+                    0,
+                    GL_RGB,
+                    m_Params.Width, m_Params.Height,
+                    0,
+                    GL_RGB,
+                    GL_UNSIGNED_BYTE,
+                    NULL);
 
     // Create depth texture
-    glBindRenderbuffer   (GL_RENDERBUFFER, m_FboDepth);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_Params.Width, m_Params.Height);
+    glBindRenderbuffer       (GL_RENDERBUFFER, m_FboDepth);
+    glRenderbufferStorage    (GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_Params.Width, m_Params.Height);
 
-    // Attach
-    glFramebufferTexture2D   (GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_Target,        m_FboColor, 0);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,  GL_RENDERBUFFER, m_FboDepth);
+    // FrameBuffer
+	glBindFramebuffer        (GL_FRAMEBUFFER,  m_Fbo);
     
-    // Unbind
-    Unbind();
+    // Attach
+    glFramebufferTexture2D   (GL_FRAMEBUFFER,  GL_COLOR_ATTACHMENT0, m_Target,        m_FboColor, 0);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER,  GL_DEPTH_ATTACHMENT,  GL_RENDERBUFFER, m_FboDepth);
+    
+    // Check status
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        dry::Log("[Fbo] Framebuffer not complete");
+    
+    // Clear
+	glBindTexture    (GL_TEXTURE_2D,  0);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
     
     return res;
 }
@@ -80,6 +87,7 @@ void Fbo::Bind()
     {
         glGetIntegerv    (GL_FRAMEBUFFER_BINDING, (GLint *)&m_FboDefault);
         glBindFramebuffer(GL_FRAMEBUFFER, m_Fbo);
+        glViewport       (0,0, m_Params.Width,m_Params.Height);
     }
 }
 
