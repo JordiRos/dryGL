@@ -15,7 +15,8 @@ Current status:
 - Addons/QuadBatch: simple quad drawing, later on it will be a real quadbatch pipeline
 
 Example:
-- Rotating 3D cube + cameraPerspective + cameraOrthogonal + Fbo example
+Single Application with multiple sub Apps for easier sample exploration (instead of many projects)
+- AppSimple: Rotating 3D cube + cameraPerspective + cameraOrthogonal + Fbo example, to be splitted in simple examples
 
 Dependencies:
 - Glm
