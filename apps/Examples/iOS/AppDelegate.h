@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "HelloApp.h"
+#include "AppSimple.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    HelloApp *app;
+    AppSimple *appSimple;
 }
 
 @property (strong, nonatomic) UIWindow *window;

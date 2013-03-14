@@ -1,13 +1,13 @@
 //
-//  HelloApp
-//  DryGL Hello World
+//  AppSimple
+//  dryExamples
 //
 //  Created by Jordi Ros on 15/02/13.
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
 #include "dry.h"
-#include "HelloApp.h"
+#include "AppSimple.h"
 #include "../Addons/Renderer/QuadBatch.h"
 
 dry::CameraPerspective _cameraP;
@@ -34,7 +34,7 @@ float _time = 0.f;
 // Init
 //
 //------------------------------------------------------------------------------------------------
-void HelloApp::Init()
+void AppSimple::Init()
 {
     // Vertices
     GLfloat cube_vertices[] = {
@@ -112,7 +112,7 @@ void HelloApp::Init()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cube_elements), cube_elements, GL_STATIC_DRAW);
     
     // Texture
-    _pixels.InitWithFile(dry::GetFilePath("texture.png"));
+    _pixels.InitWithFile(dry::GetFilePath("fire.jpg"));
     _texture.InitWithPixels(_pixels);
     
     // Shader
@@ -153,7 +153,7 @@ void HelloApp::Init()
 // Update
 //
 //------------------------------------------------------------------------------------------------
-void HelloApp::Update()
+void AppSimple::Update()
 {
     _time += 1.f/60.f;
 }
@@ -163,7 +163,7 @@ void HelloApp::Update()
 // Draw
 //
 //------------------------------------------------------------------------------------------------
-void HelloApp::Draw()
+void AppSimple::Draw()
 {
     int w = GetParams().Width;
     int h = GetParams().Height;

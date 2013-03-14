@@ -1,5 +1,0 @@
-//
-// Prefix header for all source files of the 'DryGL Hello World' target in the 'DryGL Hello World' project
-//
-
-#include "dry.h"

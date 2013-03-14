@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "HelloApp.h"
+#import "AppSimple.h"
 
 
 @implementation AppDelegate
@@ -25,16 +25,16 @@
     dry::Log("AppDelegate: %.0f,%.0f", frame.size.width,frame.size.height);
     
     // Create app with desired resolution and attach its viewController to rootViewController
-    app = NEW HelloApp(dry::AppParams(frame.size.width*2,frame.size.height*2,false));
-    app->Init();
-    self.window.rootViewController = (UIViewController *)app->GetViewController();
+    appSimple = NEW AppSimple(dry::AppParams(frame.size.width*2,frame.size.height*2,false));
+    appSimple->Init();
+    self.window.rootViewController = (UIViewController *)appSimple->GetViewController();
     
     return YES;
 }
 
 - (void)dealloc
 {
-    DISPOSE(app);
+    DISPOSE(appSimple);
     [super dealloc];
 }
 
