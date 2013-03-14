@@ -26,6 +26,7 @@ Temp:
 - Move FreeImage loader to Addons/FreeImageLoader
 
 Roadmap:
+- Android project & example
 - Renderer utilities (clear, viewports, renderstates, etc)
 - Vbo
 - Mesh
