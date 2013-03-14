@@ -33,7 +33,11 @@ Roadmap:
 - State/Render manager
 - Inheritable basic shader
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
+- Addons: TextRendering (FreeType, Bitmap)
 - Addons: Add libpng / libjpg / libdds loaders
 - Addons: Scene, Object, Material, SceneRenderer
+- Addons: Material instances
+- Addons: ParticleSystem
 - Addons: EffectComposer, Postprocess effects / shaders
+- Defines for debug/release, logs, etc
 
