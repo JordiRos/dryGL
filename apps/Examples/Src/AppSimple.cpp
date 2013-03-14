@@ -1,5 +1,5 @@
 //
-//  AppSimple
+//  AppSimple.cpp
 //  dryExamples
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -10,24 +10,24 @@
 #include "AppSimple.h"
 #include "../Addons/Renderer/QuadBatch.h"
 
-dry::CameraPerspective _cameraP;
-dry::CameraOrthogonal _cameraO;
+static dry::CameraPerspective _cameraP;
+static dry::CameraOrthogonal _cameraO;
 
-dry::ShaderBasic _shader;
-dry::Pixels _pixels;
-dry::Texture _texture;
-dry::Fbo _fbo;
-dry::QuadBatch _quads;
+static dry::ShaderBasic _shader;
+static dry::Pixels _pixels;
+static dry::Texture _texture;
+static dry::Fbo _fbo;
+static dry::QuadBatch _quads;
 
-GLuint attr_position;
-GLuint attr_texcoord;
-GLuint vbo_cube_vertices;
-GLuint vbo_cube_texcoords;
-GLuint ibo_cube_elements;
-GLuint uniform_mvp;
-GLuint uniform_texture;
+static GLuint attr_position;
+static GLuint attr_texcoord;
+static GLuint vbo_cube_vertices;
+static GLuint vbo_cube_texcoords;
+static GLuint ibo_cube_elements;
+static GLuint uniform_mvp;
+static GLuint uniform_texture;
 
-float _time = 0.f;
+static float _time = 0.f;
 
 
 //------------------------------------------------------------------------------------------------

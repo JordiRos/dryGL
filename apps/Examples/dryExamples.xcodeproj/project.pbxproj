@@ -24,6 +24,7 @@
 		BC6F4DC816F2210600B094F0 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC716F220C500B094F0 /* libdryGL-iOS.a */; };
 		BC6F4DCA16F2226E00B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC916F2226E00B094F0 /* freeimage.a */; };
 		BC6F4DCC16F2227900B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DCB16F2227900B094F0 /* freeimage.a */; };
+		BCD9FE4216F2290600C38D61 /* AppFbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4016F2290600C38D61 /* AppFbo.cpp */; };
 		BCF38C9316EE417800073C11 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C9116EE417800073C11 /* QuadBatch.cpp */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		BC6F4DBC16F1DD8000B094F0 /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fire.jpg; path = Data/fire.jpg; sourceTree = "<group>"; };
 		BC6F4DC916F2226E00B094F0 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/ios/freeimage.a; sourceTree = "<group>"; };
 		BC6F4DCB16F2227900B094F0 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
+		BCD9FE4016F2290600C38D61 /* AppFbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppFbo.cpp; sourceTree = "<group>"; };
+		BCD9FE4116F2290600C38D61 /* AppFbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppFbo.h; sourceTree = "<group>"; };
 		BCF38C9116EE417800073C11 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCF38C9216EE417800073C11 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +141,8 @@
 		BC6F4D9F16F1D90600B094F0 /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				BCD9FE4016F2290600C38D61 /* AppFbo.cpp */,
+				BCD9FE4116F2290600C38D61 /* AppFbo.h */,
 				BC6F4DA016F1D90600B094F0 /* AppSimple.cpp */,
 				BC6F4DA116F1D90600B094F0 /* AppSimple.h */,
 			);
@@ -265,6 +270,7 @@
 				BC6F4DA216F1D90600B094F0 /* AppDelegate.mm in Sources */,
 				BC6F4DA916F1D90600B094F0 /* main.mm in Sources */,
 				BC6F4DAA16F1D90600B094F0 /* AppSimple.cpp in Sources */,
+				BCD9FE4216F2290600C38D61 /* AppFbo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

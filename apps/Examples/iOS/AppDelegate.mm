@@ -25,16 +25,16 @@
     dry::Log("[AppDelegate] Screen Size: %.0f,%.0f", frame.size.width,frame.size.height);
     
     // Create app with desired resolution and attach its viewController to rootViewController
-    appSimple = NEW AppSimple(dry::AppParams(frame.size.width*2,frame.size.height*2,false));
-    appSimple->Init();
-    self.window.rootViewController = (UIViewController *)appSimple->GetViewController();
+    app = NEW AppSimple(dry::AppParams(frame.size.width*2,frame.size.height*2,false));
+    app->Init();
+    self.window.rootViewController = (UIViewController *)app->GetViewController();
     
     return YES;
 }
 
 - (void)dealloc
 {
-    DISPOSE(appSimple);
+    DISPOSE(app);
     [super dealloc];
 }
 

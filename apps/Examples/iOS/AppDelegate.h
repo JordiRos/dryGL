@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "AppSimple.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    AppSimple *appSimple;
+    dry::AppiOS *app;
 }
 
 @property (strong, nonatomic) UIWindow *window;
