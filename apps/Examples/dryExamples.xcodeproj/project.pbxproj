@@ -20,12 +20,22 @@
 		BC6F4DA816F1D90600B094F0 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9D16F1D90600B094F0 /* info.plist */; };
 		BC6F4DA916F1D90600B094F0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4D9E16F1D90600B094F0 /* main.mm */; };
 		BC6F4DAA16F1D90600B094F0 /* AppSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4DA016F1D90600B094F0 /* AppSimple.cpp */; };
-		BC6F4DBB16F1DB4300B094F0 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */; };
 		BC6F4DBD16F1DD8000B094F0 /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4DBC16F1DD8000B094F0 /* fire.jpg */; };
-		BCF38BDE16EAA1FE00073C11 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF38BDD16EAA1FE00073C11 /* freeimage.a */; };
-		BCF38BE116EAA20900073C11 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF38BE016EAA20900073C11 /* freeimage.a */; };
+		BC6F4DC816F2210600B094F0 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC716F220C500B094F0 /* libdryGL-iOS.a */; };
+		BC6F4DCA16F2226E00B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC916F2226E00B094F0 /* freeimage.a */; };
+		BC6F4DCC16F2227900B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DCB16F2227900B094F0 /* freeimage.a */; };
 		BCF38C9316EE417800073C11 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C9116EE417800073C11 /* QuadBatch.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC6F4DC616F220C500B094F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6B1F1216D02ED2008B939C;
+			remoteInfo = "dryGL-iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		BC34D2E716CE289A00B634C0 /* dryExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dryExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,10 +56,10 @@
 		BC6F4DA016F1D90600B094F0 /* AppSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppSimple.cpp; sourceTree = "<group>"; };
 		BC6F4DA116F1D90600B094F0 /* AppSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSimple.h; sourceTree = "<group>"; };
 		BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "dryGL-iOS.xcodeproj"; path = "../../src/dryGL-iOS.xcodeproj"; sourceTree = "<group>"; };
-		BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libdryGL-iOS.a"; path = "../../src/build/Release-iphoneos/libdryGL-iOS.a"; sourceTree = "<group>"; };
+		BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libdryGL-iOS.a"; path = "../../src/build/Release-iphoneos/libdryGL-iOS.a"; sourceTree = "<group>"; };
 		BC6F4DBC16F1DD8000B094F0 /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fire.jpg; path = Data/fire.jpg; sourceTree = "<group>"; };
-		BCF38BDD16EAA1FE00073C11 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/ios/freeimage.a; sourceTree = "<group>"; };
-		BCF38BE016EAA20900073C11 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
+		BC6F4DC916F2226E00B094F0 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/ios/freeimage.a; sourceTree = "<group>"; };
+		BC6F4DCB16F2227900B094F0 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
 		BCF38C9116EE417800073C11 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCF38C9216EE417800073C11 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,9 +69,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC6F4DBB16F1DB4300B094F0 /* libdryGL-iOS.a in Frameworks */,
-				BCF38BE116EAA20900073C11 /* freeimage.a in Frameworks */,
-				BCF38BDE16EAA1FE00073C11 /* freeimage.a in Frameworks */,
+				BC6F4DCC16F2227900B094F0 /* freeimage.a in Frameworks */,
+				BC6F4DCA16F2226E00B094F0 /* freeimage.a in Frameworks */,
+				BC6F4DC816F2210600B094F0 /* libdryGL-iOS.a in Frameworks */,
 				BC6B1F8016D03284008B939C /* QuartzCore.framework in Frameworks */,
 				BC6B1F7E16D03229008B939C /* OpenGLES.framework in Frameworks */,
 				BC34D2EC16CE289A00B634C0 /* UIKit.framework in Frameworks */,
@@ -97,9 +107,9 @@
 		BC34D2EA16CE289A00B634C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BCF38BE016EAA20900073C11 /* freeimage.a */,
-				BCF38BDD16EAA1FE00073C11 /* freeimage.a */,
 				BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */,
+				BC6F4DCB16F2227900B094F0 /* freeimage.a */,
+				BC6F4DC916F2226E00B094F0 /* freeimage.a */,
 				BC34D2EB16CE289A00B634C0 /* UIKit.framework */,
 				BC34D2ED16CE289A00B634C0 /* Foundation.framework */,
 				BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */,
@@ -132,6 +142,14 @@
 				BC6F4DA116F1D90600B094F0 /* AppSimple.h */,
 			);
 			path = Src;
+			sourceTree = "<group>";
+		};
+		BC6F4DC316F220C500B094F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC6F4DC716F220C500B094F0 /* libdryGL-iOS.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BCB14A0B16D7CB0700593177 /* Data */ = {
@@ -199,12 +217,28 @@
 			mainGroup = BC34D2DC16CE289A00B634C0;
 			productRefGroup = BC34D2E816CE289A00B634C0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BC6F4DC316F220C500B094F0 /* Products */;
+					ProjectRef = BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				BC34D2E616CE289A00B634C0 /* dryExamples */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BC6F4DC716F220C500B094F0 /* libdryGL-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdryGL-iOS.a";
+			remoteRef = BC6F4DC616F220C500B094F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BC34D2E516CE289A00B634C0 /* Resources */ = {
@@ -277,6 +311,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -304,6 +339,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
@@ -314,12 +350,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iOS/dry.pch;
 				INFOPLIST_FILE = iOS/info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../libs/freeimage/lib/ios\"",
 					"\"$(SRCROOT)/../../libs/freeimage/lib/osx\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = dryExamples;
+				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -332,12 +371,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iOS/dry.pch;
 				INFOPLIST_FILE = iOS/info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../libs/freeimage/lib/ios\"",
 					"\"$(SRCROOT)/../../libs/freeimage/lib/osx\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = dryExamples;
+				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

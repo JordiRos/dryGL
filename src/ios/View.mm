@@ -60,7 +60,7 @@
         }
         self.contentScaleFactor = m_ScaleFactor;
         m_EAGLLayer.contentsScale = m_ScaleFactor;
-        dry::Log("[dryView] Initializing EAGLLayer view: %dx%d (scale %.2f)", w,h, m_ScaleFactor);
+        dry::Log("[View] Initializing EAGLLayer view: %dx%d (scale %.2f)", w,h, m_ScaleFactor);
 
         // RenderBuffer
         glGenRenderbuffers(1, &m_ColorRenderBuffer);
@@ -140,7 +140,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)layoutSubviews
 {
-    dry::Log("[dryView] layoutSubviews");
+    dry::Log("[View] layoutSubviews");
 }
 
 
