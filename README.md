@@ -26,6 +26,7 @@ Temp:
 
 Roadmap:
 - Android project & example
+- Input manager
 - Renderer utilities (clear, viewports, renderstates, etc)
 - Vbo
 - Mesh
