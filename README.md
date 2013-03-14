@@ -9,7 +9,6 @@ Current status:
 - Texture
 - Pixels
 - Shader
-- BasicShader
 - Camera: CameraPerspective, CameraOrthogonal
 - Fbo
 - Addons/QuadBatch: simple quad drawing, later on it will be a real quadbatch pipeline
@@ -32,7 +31,6 @@ Roadmap:
 - Mesh
 - Auto uniforms/attributes in shader object, and maybe basic auto attributes/uniforms (positions, texcoords, colors, etc)
 - State/Render manager
-- Inheritable basic shader
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
 - Addons: TextRendering (FreeType, Bitmap)
 - Addons: Add libpng / libjpg / libdds loaders
