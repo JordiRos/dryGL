@@ -8,24 +8,14 @@
 
 #pragma once
 
+#include "Shader.h"
+
 namespace dry {
     
-class Shader;
-
-class ShaderBasic
+class ShaderBasic : public Shader
 {
 public:
-                    ShaderBasic     () { m_Shader = NULL; }
-                   ~ShaderBasic     () { Free(); }
-
-    bool            Init            ();
-    void            Free            ();
-
-    Shader         *GetShader       () { return m_Shader; }
-
-private:
-
-    Shader         *m_Shader;
+    bool Init();
 };
 
 }

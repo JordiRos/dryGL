@@ -13,22 +13,24 @@ namespace dry {
 class Shader
 {
 public:
-                Shader          () { m_HandleVS = -1; m_HandleFS = -1; m_HandleProgram = -1; }
-               ~Shader          () { Free(); }
+                Shader              () { m_HandleVS = -1; m_HandleFS = -1; m_HandleProgram = -1; }
+               ~Shader              () { Free(); }
 
-    bool        InitWithFile    (const string &vs, const string &fs);
-    bool        InitWithProgram (const string &vs, const string &fs);
-    void        Free            ();
+    bool        InitWithFile        (const string &vs, const string &fs);
+    bool        InitWithProgram     (const string &vs, const string &fs);
+    void        Free                ();
     
-    void        Bind            ();
-    void        Unbind          ();
+    void        Bind                ();
+    void        Unbind              ();
     
-    int         GetHandleProgram() const { return m_HandleProgram; }
-
+    int         GetHandleProgram    () const { return m_HandleProgram; }
+    int         GetAttribLocation   (const char *name);
+    int         GetUniformLocation  (const char *name);
+    
 private:
 
-    void        LogShaderError  (int handle, const string &info);
-    void        LogProgramError (int handle, const string &info);
+    void        LogShaderError      (int handle, const string &info);
+    void        LogProgramError     (int handle, const string &info);
 
 private:
 

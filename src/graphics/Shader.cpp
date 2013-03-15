@@ -141,3 +141,23 @@ void Shader::LogProgramError(int handle, const string &info)
     dry::Log("[dryShader] Error compiling %s", info.c_str());
     dry::Log(messages);
 }
+
+
+//------------------------------------------------------------------------------------------------
+// GetAttribLocation
+//
+//------------------------------------------------------------------------------------------------
+int Shader::GetAttribLocation(const char *name)
+{
+    return glGetAttribLocation(m_HandleProgram, name);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// GetUniformLocation
+//
+//------------------------------------------------------------------------------------------------
+int Shader::GetUniformLocation(const char *name)
+{
+    return glGetUniformLocation(m_HandleProgram, name);
+}

@@ -48,22 +48,9 @@ bool ShaderBasic::Init()
 {
     Free();
     bool res = false;
-    m_Shader = new Shader();
-    if (m_Shader->InitWithProgram(s_VS, s_FS))
-    {
+    if (InitWithProgram(s_VS, s_FS))
         res = true;
-    }
     else
         Free();
     return res;
-}
-
-
-//------------------------------------------------------------------------------------------------
-// Free
-//
-//------------------------------------------------------------------------------------------------
-void ShaderBasic::Free()
-{
-    DISPOSE(m_Shader);
 }

@@ -117,11 +117,10 @@ void AppSimple::Init()
     
     // Shader
     _shader.Init();
-    int programHandle = _shader.GetShader()->GetHandleProgram();
-    attr_position = glGetAttribLocation(programHandle, "Position");
-    attr_texcoord = glGetAttribLocation(programHandle, "TexCoord");
-    uniform_mvp = glGetUniformLocation(programHandle, "ModelViewProjection");
-    uniform_texture = glGetUniformLocation(programHandle, "Texture");
+    attr_position = _shader.GetAttribLocation("Position");
+    attr_texcoord = _shader.GetAttribLocation("TexCoord");
+    uniform_mvp = _shader.GetUniformLocation("ModelViewProjection");
+    uniform_texture = _shader.GetUniformLocation("Texture");
     
     // Camera
     int w = GetParams().Width;
@@ -173,7 +172,7 @@ void AppSimple::Draw()
 
     // Draw QuadBatch
     glDisable(GL_DEPTH_TEST);
-    _quads.Draw(&_texture, &_cameraO, _shader.GetShader(), glm::mat4(), 0.f,0.f, w,h);
+    _quads.Draw(&_texture, &_cameraO, &_shader, glm::mat4(), 0.f,0.f, w,h);
     glEnable(GL_DEPTH_TEST);
 
     // Render to FBO
@@ -187,12 +186,12 @@ void AppSimple::Draw()
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, -0.0));
     glm::mat4 mvp = _cameraP.GetMatProj() * _cameraP.GetMatView() * model * anim;
 
-    glEnable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // Set Program + uniforms
-    _shader.GetShader()->Bind();
+    _shader.Bind();
     glUniformMatrix4fv(uniform_mvp, 1, GL_FALSE, glm::value_ptr(mvp));
     
     // Texture
@@ -231,13 +230,13 @@ void AppSimple::Draw()
     glDisableVertexAttribArray(attr_texcoord);
     
     _texture.Unbind();
-    _shader.GetShader()->Unbind();
+    _shader.Unbind();
     
     _fbo.Unbind();
 
     // Draw FBO and a texture using QuadBatch
     glDisable(GL_DEPTH_TEST);
-    _quads.Draw(&_texture, &_cameraO, _shader.GetShader(), glm::mat4(), 0,0, w/4.f,h/4.f);
-    _quads.Draw(&_fbo, &_cameraO, _shader.GetShader(), glm::mat4(), w/4.f,h/4.f, w/2.f, h/2.f);
+    _quads.Draw(&_texture, &_cameraO, &_shader, glm::mat4(), 0,0, w/4.f,h/4.f);
+    _quads.Draw(&_fbo, &_cameraO, &_shader, glm::mat4(), w/4.f,h/4.f, w/2.f, h/2.f);
     glEnable(GL_DEPTH_TEST);
 }
