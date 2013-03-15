@@ -17,7 +17,6 @@
 		BC6F4DA416F1D90600B094F0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9716F1D90600B094F0 /* Default.png */; };
 		BC6F4DA516F1D90600B094F0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9816F1D90600B094F0 /* Default@2x.png */; };
 		BC6F4DA616F1D90600B094F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9916F1D90600B094F0 /* InfoPlist.strings */; };
-		BC6F4DA816F1D90600B094F0 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9D16F1D90600B094F0 /* info.plist */; };
 		BC6F4DA916F1D90600B094F0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4D9E16F1D90600B094F0 /* main.mm */; };
 		BC6F4DAA16F1D90600B094F0 /* AppSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4DA016F1D90600B094F0 /* AppSimple.cpp */; };
 		BC6F4DBD16F1DD8000B094F0 /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4DBC16F1DD8000B094F0 /* fire.jpg */; };
@@ -209,7 +208,7 @@
 		BC34D2DE16CE289A00B634C0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Jordi Ros";
 			};
 			buildConfigurationList = BC34D2E116CE289A00B634C0 /* Build configuration list for PBXProject "dryExamples" */;
@@ -254,7 +253,6 @@
 				BC6F4DA416F1D90600B094F0 /* Default.png in Resources */,
 				BC6F4DA516F1D90600B094F0 /* Default@2x.png in Resources */,
 				BC6F4DA616F1D90600B094F0 /* InfoPlist.strings in Resources */,
-				BC6F4DA816F1D90600B094F0 /* info.plist in Resources */,
 				BC6F4DBD16F1DD8000B094F0 /* fire.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -40,6 +40,7 @@
 		BC6B217B16D13759008B939C /* dry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.h; sourceTree = "<group>"; };
 		BC6B219A16D13810008B939C /* dry.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.pch; sourceTree = "<group>"; };
 		BC91249E16DFA8B900E7F493 /* dry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dry.cpp; sourceTree = "<group>"; };
+		BCD9FE4716F3924F00C38D61 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		BCF38C6116ED197100073C11 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		BCF38C6216ED197100073C11 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		BCF38C6316ED197100073C11 /* CameraOrthogonal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraOrthogonal.cpp; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		BCF38C6716ED197100073C11 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				BCD9FE4716F3924F00C38D61 /* Color.h */,
 				BCF38C8C16EDD9EA00073C11 /* Fbo.cpp */,
 				BCF38C8D16EDD9EA00073C11 /* Fbo.h */,
 				BCF38C6916ED197100073C11 /* Pixels.cpp */,

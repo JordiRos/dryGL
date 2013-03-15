@@ -37,3 +37,20 @@ void Renderer::Begin()
 void Renderer::End()
 {
 }
+
+
+//------------------------------------------------------------------------------------------------
+// Clear
+//
+//------------------------------------------------------------------------------------------------
+void Renderer::Clear(int bits, ColorF const &color, float depth, int stencil)
+{
+    if (bits & GL_COLOR_BUFFER_BIT)
+        glClearColor(color.r, color.g, color.b, color.a);
+    if (bits & GL_DEPTH_BUFFER_BIT)
+        glClearDepthf(depth);
+    if (bits & GL_STENCIL_BUFFER_BIT)
+        glClearStencil(stencil);
+    // Clear
+    glClear(bits);
+}

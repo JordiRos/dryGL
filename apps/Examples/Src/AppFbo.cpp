@@ -1,5 +1,5 @@
 //
-//  AppSimple.cpp
+//  AppFbo.cpp
 //  dryExamples
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -7,7 +7,7 @@
 //
 
 #include "dry.h"
-#include "AppSimple.h"
+#include "AppFbo.h"
 #include "../Addons/Renderer/QuadBatch.h"
 
 static dry::CameraPerspective _cameraP;
@@ -34,7 +34,7 @@ static float _time = 0.f;
 // Init
 //
 //------------------------------------------------------------------------------------------------
-void AppSimple::Init()
+void AppFbo::Init()
 {
     // Vertices
     GLfloat cube_vertices[] = {
@@ -153,7 +153,7 @@ void AppSimple::Init()
 // Update
 //
 //------------------------------------------------------------------------------------------------
-void AppSimple::Update()
+void AppFbo::Update()
 {
     _time += 1.f/60.f;
 }
@@ -163,13 +163,15 @@ void AppSimple::Update()
 // Draw
 //
 //------------------------------------------------------------------------------------------------
-void AppSimple::Draw()
+void AppFbo::Draw()
 {
     int w = GetParams().Width;
     int h = GetParams().Height;
 
     //float r = fmod(_time, 1.f);
-    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::ColorF(0.5f, 0.1f, 0.1f, 1.0f), 1.0f);
+    //glClearColor(0, r, 55.0/255.0, 1.0f);
+    glClearColor(0.5f, 0.1f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Draw QuadBatch
     glDisable(GL_DEPTH_TEST);
@@ -178,7 +180,8 @@ void AppSimple::Draw()
 
     // Render to FBO
     _fbo.Bind();
-    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::ColorF(0.1f, 0.9f, 0.1f, 1.0f), 1.0f);
+    glClearColor(0.1f, 0.9f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     // Load matrices
     float angle = _time * 45;

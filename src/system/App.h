@@ -34,8 +34,8 @@ public:
 	virtual void        GotFocus        () {}
 	virtual void        MemoryWarning   () {}
 
-    AppParams const    &GetParams       () { return m_Params; }
     Renderer           *GetRenderer     () { return m_Renderer; }
+    AppParams const    &GetParams       () { return m_Params; }
 
 protected:
  

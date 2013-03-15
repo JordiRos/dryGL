@@ -96,6 +96,7 @@ const string   &GetFilePath (const string &file, const string &docpath);    // D
 #include "system/Random.h"
 
 // Graphics
+#include "graphics/Color.h"
 #include "graphics/Renderer.h"
 #include "graphics/Texture.h"
 #include "graphics/Shader.h"

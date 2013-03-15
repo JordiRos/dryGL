@@ -23,7 +23,7 @@ bool Fbo::Init(Fbo::Params const &params)
     m_FboDefault = -1;
     m_Target = GL_TEXTURE_2D;
     
-    dry::Log("[Fbo] Init FBO with size %d,%d", m_Params.Width,m_Params.Height);
+    dry::Log("[Fbo] Initialize: %d,%d", m_Params.Width,m_Params.Height);
     
     // Create FBO
     glGenFramebuffers (1, (GLuint *)&m_Fbo);
