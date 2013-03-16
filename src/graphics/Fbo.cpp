@@ -104,11 +104,8 @@ void Fbo::Unbind()
 void Fbo::BindFboColor(int uniform, int stage) const
 {
     glBindTexture(m_Target, m_FboColor);
-    if (uniform)
-    {
-        glActiveTexture(GL_TEXTURE0 + stage);
-        glUniform1i(uniform, 0);
-    }
+    glActiveTexture(GL_TEXTURE0 + stage);
+    glUniform1i(uniform, 0);
 }
 
 

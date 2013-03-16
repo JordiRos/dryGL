@@ -24,7 +24,7 @@ public:
 
     void        Update          (const void *data);
 
-    void        Bind            (int uniform, int stage = 0) const;
+    void        Bind            (int uniform, int stage) const;
     void        Unbind          () const;
     
 private:
