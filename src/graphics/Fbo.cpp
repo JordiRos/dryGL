@@ -23,8 +23,6 @@ bool Fbo::Init(Fbo::Params const &params)
     m_FboDefault = -1;
     m_Target = GL_TEXTURE_2D;
     
-    dry::Log("[Fbo] Initialize: %d,%d", m_Params.Width,m_Params.Height);
-    
     // Create FBO
     glGenFramebuffers (1, (GLuint *)&m_Fbo);
     glGenTextures     (1, (GLuint *)&m_FboColor);
@@ -36,14 +34,7 @@ bool Fbo::Init(Fbo::Params const &params)
     glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexImage2D   (m_Target,
-                    0,
-                    GL_RGB,
-                    m_Params.Width, m_Params.Height,
-                    0,
-                    GL_RGB,
-                    GL_UNSIGNED_BYTE,
-                    NULL);
+    glTexImage2D   (m_Target, 0, GL_RGBA, m_Params.Width, m_Params.Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 
     // Create depth texture
     glBindRenderbuffer       (GL_RENDERBUFFER, m_FboDepth);
