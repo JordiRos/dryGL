@@ -1,5 +1,5 @@
 //
-//  Vbo.cpp
+//  Ibo.cpp
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -7,7 +7,7 @@
 //
 
 #include "dry.h"
-#include "Vbo.h"
+#include "Ibo.h"
 
 using namespace dry;
 
@@ -17,11 +17,10 @@ using namespace dry;
 //
 //------------------------------------------------------------------------------------------------
 template<class T>
-bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
+bool Ibo<T>::Init(int size, bool dynamic, T const *data)
 {
     bool res = true;
     
-    m_Elements = elements;
     m_Dynamic  = dynamic;
     m_Size = size * sizeof(T);
     m_Data = NEW_ARRAY(T, size);
@@ -30,9 +29,9 @@ bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
     else
         memset(m_Data, 0, m_Size);
     // Create GL buffers
-    glGenBuffers(1, (GLuint *)&m_Vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
-    glBufferData(GL_ARRAY_BUFFER, m_Size, m_Data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+    glGenBuffers(1, (GLuint *)&m_Ibo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Size, m_Data, GL_STATIC_DRAW);
 
     return res;
 }
@@ -43,12 +42,12 @@ bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
 //
 //------------------------------------------------------------------------------------------------
 template<class T>
-void Vbo<T>::Free()
+void Ibo<T>::Free()
 {
     if (m_Data)
     {
-        glDeleteBuffers(1, (GLuint *)&m_Vbo);
-        m_Vbo = 0;
+        glDeleteBuffers(1, (GLuint *)&m_Ibo);
+        m_Ibo = 0;
         DISPOSE_ARRAY(m_Data);
     }
 }
@@ -59,14 +58,9 @@ void Vbo<T>::Free()
 //
 //------------------------------------------------------------------------------------------------
 template<class T>
-void Vbo<T>::Bind(int attr, bool forceUpdate)
+void Ibo<T>::Bind()
 {
-    glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
-    if (m_Dynamic || forceUpdate)
-        glBufferData(GL_ARRAY_BUFFER, m_Size, m_Data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
-    // Send to attribute
-    glEnableVertexAttribArray(attr);
-    glVertexAttribPointer(attr, m_Elements, GL_FLOAT, GL_FALSE, 0, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
 }
 
 
@@ -75,19 +69,13 @@ void Vbo<T>::Bind(int attr, bool forceUpdate)
 //
 //------------------------------------------------------------------------------------------------
 template<class T>
-void Vbo<T>::Unbind(int attr)
+void Ibo<T>::Unbind()
 {
-    // Clear attribute
-    glEnableVertexAttribArray(attr);
 }
 
 
 //------------------------------------------------------------------------------------------------
-// Implicit Vbo definitions
+// Implicit Ibo definitions
 //------------------------------------------------------------------------------------------------
-template class dry::Vbo<float>;
-template class dry::Vbo<glm::vec2>;
-template class dry::Vbo<glm::vec3>;
-template class dry::Vbo<glm::vec4>;
-template class dry::Vbo<glm::mat4>;
-template class dry::Vbo<dry::Colorf>;
+template class dry::Ibo<ushort>;
+template class dry::Ibo<uint>;

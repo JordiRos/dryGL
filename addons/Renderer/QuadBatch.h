@@ -13,7 +13,7 @@ namespace dry {
 class QuadBatch
 {
 public:
-                    QuadBatch       () { m_Indices = 0; }
+                    QuadBatch       () { }
                    ~QuadBatch       () { Free(); }
     
     void            Init            ();
@@ -28,9 +28,9 @@ private:
 
 private:
     
-    Vbo<float>  m_Vertices;
-    Vbo<float>  m_TexCoords;
-    int             m_Indices;
+    Vbo<float>      m_Vertices;
+    Vbo<float>      m_TexCoords;
+    Ibo<ushort>     m_Indices;
 };
 
 }

@@ -41,11 +41,8 @@ void QuadBatch::Init()
     // Vbo
     m_Vertices.Init(12, false, 3, vertices);
     m_TexCoords.Init(8, false, 2, texcoords);
-
     // Ibo
-    glGenBuffers(1, (GLuint *)&m_Indices);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Indices);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    m_Indices.Init(6, false, indices);
 }
 
 
@@ -55,12 +52,6 @@ void QuadBatch::Init()
 //------------------------------------------------------------------------------------------------
 void QuadBatch::Free()
 {
-    if (m_Indices > 0)
-    {
-        // Ibo
-        glDeleteBuffers(1, (GLuint *)&m_Indices);
-        m_Indices   = 0;
-    }
 }
 
 
@@ -114,18 +105,17 @@ void QuadBatch::Draw(Camera const *camera, Shader *shader, glm::mat4 const &tran
     glm::mat4 const &mvp = camera->GetMatProj() * camera->GetMatView() * model;
     glUniformMatrix4fv(uMvp, 1, GL_FALSE, glm::value_ptr(mvp));
 
-    // Vertices
+    // Bind
     m_Vertices.Bind(aPosition);
     m_TexCoords.Bind(aTexCoord);
+    m_Indices.Bind();
 
-    // Index
-    int size;
-    glBindBuffer          (GL_ELEMENT_ARRAY_BUFFER, m_Indices);
-    glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
-    glDrawElements        (GL_TRIANGLES, size/sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
+    // Draw!
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, 0);
     
     // Unbind
     m_Vertices.Unbind(aPosition);
     m_TexCoords.Unbind(aTexCoord);
+    m_Indices.Unbind();
 }
 

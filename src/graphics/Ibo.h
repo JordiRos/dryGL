@@ -1,5 +1,5 @@
 //
-//  Vbo.h
+//  Ibo.h
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -11,26 +11,25 @@
 namespace dry {
 
 template <class T>
-class Vbo
+class Ibo
 {
 public:
-                Vbo     () { m_Vbo = 0; m_Data = NULL; }
-               ~Vbo     () { Free(); }
+                Ibo     () { m_Ibo = 0; m_Data = NULL; }
+               ~Ibo     () { Free(); }
     
-    bool        Init    (int size, bool dynamic, int elements, T const *data);
+    bool        Init    (int size, bool dynamic, T const *data);
     void        Free    ();
     
     T          *GetData () { return m_Data; }
 
-    void        Bind    (int attr, bool forceUpdate = false);
-    void        Unbind  (int attr);
+    void        Bind    ();
+    void        Unbind  ();
 
 private:
     
-    int         m_Elements;
     bool        m_Dynamic;
     int         m_Size;
-    int         m_Vbo;
+    int         m_Ibo;
     T          *m_Data;
 };
 

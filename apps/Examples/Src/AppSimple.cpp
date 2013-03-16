@@ -20,10 +20,10 @@ static dry::Fbo _fbo;
 static dry::QuadBatch _quads;
 static dry::Vbo<float> _vbo_vertices;
 static dry::Vbo<float> _vbo_texcoords;
+static dry::Ibo<ushort> _ibo_elements;
 
 static GLuint attr_position;
 static GLuint attr_texcoord;
-static GLuint ibo_cube_elements;
 static GLuint uniform_mvp;
 static GLuint uniform_texture;
 
@@ -103,11 +103,8 @@ void AppSimple::Init()
     // Vbo
     _vbo_vertices.Init(sizeof(cube_vertices) / sizeof(float), false, 3, cube_vertices);
     _vbo_texcoords.Init(sizeof(cube_texcoords) / sizeof(float), false, 2, cube_texcoords);
-
     // Ibo
-    glGenBuffers(1, &ibo_cube_elements);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_cube_elements);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cube_elements), cube_elements, GL_STATIC_DRAW);
+    _ibo_elements.Init(sizeof(cube_elements) / sizeof(ushort), false, cube_elements);
     
     // Texture
     _pixels.InitWithFile(dry::GetFilePath("fire.jpg"));
@@ -187,7 +184,8 @@ void AppSimple::Draw()
     _texture.Bind(uniform_texture, 0);
     _vbo_vertices.Bind(attr_position, false);
     _vbo_texcoords.Bind(attr_texcoord, false);
-
+    _ibo_elements.Bind();
+    
     // Load matrices
     float angle = _time * 45;
     glm::vec3 axis_y(0, 1, 0);
@@ -196,13 +194,13 @@ void AppSimple::Draw()
     glm::mat4 mvp = _cameraP.GetMatProj() * _cameraP.GetMatView() * model * anim;
     glUniformMatrix4fv(uniform_mvp, 1, GL_FALSE, glm::value_ptr(mvp));
 
-    // Index
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_cube_elements);
+    // Draw!
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
 
     // Unbind
     _vbo_vertices.Unbind(attr_position);
     _vbo_texcoords.Unbind(attr_texcoord);
+    _ibo_elements.Unbind();
     _texture.Unbind();
     _shader.Unbind();
     _fbo.Unbind();

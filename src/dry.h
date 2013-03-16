@@ -104,6 +104,7 @@ const string   &GetFilePath (const string &file, const string &docpath);    // D
 #include "graphics/Pixels.h"
 #include "graphics/Fbo.h"
 #include "graphics/Vbo.h"
+#include "graphics/Ibo.h"
 
 // Camera
 #include "camera/Camera.h"

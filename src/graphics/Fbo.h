@@ -28,9 +28,6 @@ public:
     
     void    Bind            ();
     void    Unbind          ();
-    
-    int     GetFboColor     () const { return m_FboColor; }
-    int     GetFboDepth     () const { return m_FboDepth; }
 
     void    BindFboColor    (int uniform = 0, int stage = 0) const;
     void    UnbindFboColor  () const;
