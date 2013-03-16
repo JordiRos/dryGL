@@ -10,12 +10,13 @@ Current status:
 - Pixels
 - Shader
 - Camera: CameraPerspective, CameraOrthogonal
-- Fbo
 - Vbo
+- Ibo
+- Fbo
 - Addons/QuadBatch: simple quad drawing, later on it will be a real quadbatch pipeline
 
 Example:
-- AppSimple: Rotating 3D cube, cameraPerspective, cameraOrthogonal, Vbo, Fbo
+- AppSimple: Rotating 3D cube, cameraPerspective, cameraOrthogonal, Vbo, Ibo, Fbo
 
 Dependencies:
 - Glm
