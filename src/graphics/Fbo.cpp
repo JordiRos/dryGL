@@ -110,9 +110,14 @@ void Fbo::Unbind()
 // BindFboColor
 //
 //------------------------------------------------------------------------------------------------
-void Fbo::BindFboColor() const
+void Fbo::BindFboColor(int uniform, int stage) const
 {
     glBindTexture(m_Target, m_FboColor);
+    if (uniform)
+    {
+        glActiveTexture(GL_TEXTURE0 + stage);
+        glUniform1i(uniform, 0);
+    }
 }
 
 
@@ -130,9 +135,11 @@ void Fbo::UnbindFboColor() const
 // BindFboDepth
 //
 //------------------------------------------------------------------------------------------------
-void Fbo::BindFboDepth() const
+void Fbo::BindFboDepth(int uniform, int stage) const
 {
-    glBindTexture(m_Target, m_FboDepth);
+    glBindTexture  (m_Target, m_FboDepth);
+    glActiveTexture(GL_TEXTURE0 + stage);
+    glUniform1i    (uniform, 0);
 }
 
 

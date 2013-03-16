@@ -25,26 +25,24 @@ void QuadBatch::Init()
          1.0f,  1.0f, 0.0f,
         -1.0f,  1.0f, 0.0f,
     };
-    glGenBuffers(1, (GLuint *)&m_Vertices);
-    glBindBuffer(GL_ARRAY_BUFFER, m_Vertices);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    
     // TexCoords
-    GLfloat texcoords[2*4] = {
+    GLfloat texcoords[] = {
         0.0f, 1.0f,
         1.0f, 1.0f,
         1.0f, 0.0f,
         0.0f, 0.0f,
     };
-    glGenBuffers(1, (GLuint *)&m_TexCoords);
-    glBindBuffer(GL_ARRAY_BUFFER, m_TexCoords);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(texcoords), texcoords, GL_STATIC_DRAW);
-
     // Indices
     GLushort indices[] = {
         0,  1,  2,
         2,  3,  0,
     };
+    
+    // Vbo
+    m_Vertices.Init(12, false, 3, vertices);
+    m_TexCoords.Init(8, false, 2, texcoords);
+
+    // Ibo
     glGenBuffers(1, (GLuint *)&m_Indices);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Indices);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
@@ -57,14 +55,10 @@ void QuadBatch::Init()
 //------------------------------------------------------------------------------------------------
 void QuadBatch::Free()
 {
-    if (m_Vertices > 0)
+    if (m_Indices > 0)
     {
-        // Delete buffers
-        glDeleteBuffers(1, (GLuint *)&m_Vertices);
-        glDeleteBuffers(1, (GLuint *)&m_TexCoords);
+        // Ibo
         glDeleteBuffers(1, (GLuint *)&m_Indices);
-        m_Vertices  = 0;
-        m_TexCoords = 0;
         m_Indices   = 0;
     }
 }
@@ -76,10 +70,13 @@ void QuadBatch::Free()
 //------------------------------------------------------------------------------------------------
 void QuadBatch::Draw(Texture const *texture, Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h)
 {
-    glActiveTexture(GL_TEXTURE0);
-    texture->Bind();
-    Draw(texture->GetHandle(), camera, shader, transform, x,y, w,h);
+    shader->Bind();
+    texture->Bind(shader->GetUniformLocation("Texture"), 0);
+
+    Draw(camera, shader, transform, x,y, w,h);
+
     texture->Unbind();
+    shader->Unbind();
 }
 
 
@@ -89,10 +86,13 @@ void QuadBatch::Draw(Texture const *texture, Camera const *camera, Shader *shade
 //------------------------------------------------------------------------------------------------
 void QuadBatch::Draw(Fbo const *fbo, Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h)
 {
-    glActiveTexture(GL_TEXTURE0);
-    fbo->BindFboColor();
-    Draw(fbo->GetFboColor(), camera, shader, transform, x,y, w,h);
+    shader->Bind();
+    fbo->BindFboColor(shader->GetUniformLocation("Texture"), 0);
+
+    Draw(camera, shader, transform, x,y, w,h);
+
     fbo->UnbindFboColor();
+    shader->Unbind();
 }
 
 
@@ -100,16 +100,12 @@ void QuadBatch::Draw(Fbo const *fbo, Camera const *camera, Shader *shader, glm::
 // Draw internal
 //
 //------------------------------------------------------------------------------------------------
-void QuadBatch::Draw(int texture, Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h)
+void QuadBatch::Draw(Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h)
 {
-    shader->Bind();
-    
     // Attributes/Uniforms
-    int program = shader->GetHandleProgram();
-    int aPosition = glGetAttribLocation (program, "Position");
-    int aTexCoord = glGetAttribLocation (program, "TexCoord");
-    int uMvp      = glGetUniformLocation(program, "ModelViewProjection");
-    int uTexture  = glGetUniformLocation(program, "Texture");
+    int aPosition = shader->GetAttribLocation ("Position");
+    int aTexCoord = shader->GetAttribLocation ("TexCoord");
+    int uMvp      = shader->GetUniformLocation("ModelViewProjection");
 
     // Mvp
     float hw = w * 0.5f;
@@ -118,30 +114,9 @@ void QuadBatch::Draw(int texture, Camera const *camera, Shader *shader, glm::mat
     glm::mat4 const &mvp = camera->GetMatProj() * camera->GetMatView() * model;
     glUniformMatrix4fv(uMvp, 1, GL_FALSE, glm::value_ptr(mvp));
 
-    // Texture
-    glUniform1i(uTexture, 0);
-
     // Vertices
-    glEnableVertexAttribArray(aPosition);
-    glBindBuffer(GL_ARRAY_BUFFER, m_Vertices);
-    glVertexAttribPointer(aPosition,        // attribute
-                          3,                // number of elements per vertex, here (x,y,z)
-                          GL_FLOAT,         // the type of each element
-                          GL_FALSE,         // take our values as-is
-                          0,                // no extra data between each position
-                          0                 // offset of first element
-                          );
-
-    // TexCoords
-    glEnableVertexAttribArray(aTexCoord);
-    glBindBuffer(GL_ARRAY_BUFFER, m_TexCoords);
-    glVertexAttribPointer(aTexCoord,        // attribute
-                          2,                // number of elements per vertex, here (x,y)
-                          GL_FLOAT,         // the type of each element
-                          GL_FALSE,         // take our values as-is
-                          0,                // no extra data between each position
-                          0                 // offset of first element
-                          );
+    m_Vertices.Bind(aPosition);
+    m_TexCoords.Bind(aTexCoord);
 
     // Index
     int size;
@@ -150,9 +125,7 @@ void QuadBatch::Draw(int texture, Camera const *camera, Shader *shader, glm::mat
     glDrawElements        (GL_TRIANGLES, size/sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
     
     // Unbind
-    glDisableVertexAttribArray(aPosition);
-    glDisableVertexAttribArray(aTexCoord);
-    
-    shader->Unbind();
+    m_Vertices.Unbind(aPosition);
+    m_TexCoords.Unbind(aTexCoord);
 }
 

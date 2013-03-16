@@ -29,13 +29,13 @@ bool Texture::Init(int width, int height, int format, int target)
     if (m_Handle != -1)
     {
         int glFormat = GetGLFormat();
-        Bind();
+        glBindTexture  (m_Target, m_Handle);
         glTexParameteri(m_Target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexImage2D   (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, 0);
-        Unbind();
+        glBindTexture  (m_Target, 0);
         res = true;
     }
     else
@@ -109,9 +109,11 @@ void Texture::Update(const void *data)
 // Bind
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Bind() const
+void Texture::Bind(int uniform, int stage) const
 {
-    glBindTexture(m_Target, m_Handle);
+    glBindTexture  (m_Target, m_Handle);
+    glActiveTexture(GL_TEXTURE0 + stage);
+    glUniform1i    (uniform, 0);
 }
 
 

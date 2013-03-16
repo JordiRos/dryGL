@@ -18,11 +18,11 @@ static dry::Pixels _pixels;
 static dry::Texture _texture;
 static dry::Fbo _fbo;
 static dry::QuadBatch _quads;
+static dry::Vbo<float> _vbo_vertices;
+static dry::Vbo<float> _vbo_texcoords;
 
 static GLuint attr_position;
 static GLuint attr_texcoord;
-static GLuint vbo_cube_vertices;
-static GLuint vbo_cube_texcoords;
 static GLuint ibo_cube_elements;
 static GLuint uniform_mvp;
 static GLuint uniform_texture;
@@ -69,10 +69,6 @@ void AppSimple::Init()
         1.0,  1.0, -1.0,
         1.0,  1.0,  1.0,
     };
-    glGenBuffers(1, &vbo_cube_vertices);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo_cube_vertices);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cube_vertices), cube_vertices, GL_STATIC_DRAW);
-
     // TexCoords
     GLfloat cube_texcoords[2*4*6] = {
         0.0, 0.0,
@@ -82,10 +78,6 @@ void AppSimple::Init()
     };
     for (int i = 1; i < 6; i++)
         memcpy(&cube_texcoords[i*4*2], &cube_texcoords[0], 2*4*sizeof(GLfloat));
-    glGenBuffers(1, &vbo_cube_texcoords);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo_cube_texcoords);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cube_texcoords), cube_texcoords, GL_STATIC_DRAW);
-    
     // Indices
     GLushort cube_elements[] = {
         // front
@@ -107,6 +99,12 @@ void AppSimple::Init()
         20, 21, 22,
         22, 23, 20,
     };
+    
+    // Vbo
+    _vbo_vertices.Init(sizeof(cube_vertices) / sizeof(float), false, 3, cube_vertices);
+    _vbo_texcoords.Init(sizeof(cube_texcoords) / sizeof(float), false, 2, cube_texcoords);
+
+    // Ibo
     glGenBuffers(1, &ibo_cube_elements);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_cube_elements);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cube_elements), cube_elements, GL_STATIC_DRAW);
@@ -125,15 +123,15 @@ void AppSimple::Init()
     // Camera
     int w = GetParams().Width;
     int h = GetParams().Height;
-    
+
     // Perspective
     _cameraP.Init(45.f, (float)w / h, 0.1f, 100.f);
     _cameraP.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-    
+
     // Orthogonal
     _cameraO.Init(0,w, 0,h, -1.f,1.f);
     _cameraO.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-    
+
     // Fbo
     dry::Fbo::Params params;
     params.Width  = w;
@@ -168,7 +166,7 @@ void AppSimple::Draw()
     int h = GetParams().Height;
 
     //float r = fmod(_time, 1.f);
-    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::ColorF(0.5f, 0.1f, 0.1f, 1.0f), 1.0f);
+    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::Colorf(0.5f, 0.1f, 0.1f, 1.0f), 1.0f);
 
     // Draw QuadBatch
     glDisable(GL_DEPTH_TEST);
@@ -177,61 +175,36 @@ void AppSimple::Draw()
 
     // Render to FBO
     _fbo.Bind();
-    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::ColorF(0.1f, 0.9f, 0.1f, 1.0f), 1.0f);
+    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::Colorf(0.1f, 0.9f, 0.1f, 1.0f), 1.0f);
     
+    // Alpha blending
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Bind
+    _shader.Bind();
+    _texture.Bind(uniform_texture, 0);
+    _vbo_vertices.Bind(attr_position, false);
+    _vbo_texcoords.Bind(attr_texcoord, false);
+
     // Load matrices
     float angle = _time * 45;
     glm::vec3 axis_y(0, 1, 0);
     glm::mat4 anim = glm::rotate(glm::mat4(1.0f), angle, axis_y);
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, -0.0));
     glm::mat4 mvp = _cameraP.GetMatProj() * _cameraP.GetMatView() * model * anim;
-
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    // Set Program + uniforms
-    _shader.Bind();
     glUniformMatrix4fv(uniform_mvp, 1, GL_FALSE, glm::value_ptr(mvp));
-    
-    // Texture
-    _texture.Bind();
-    glActiveTexture(GL_TEXTURE0);
-    glUniform1i(uniform_texture, 0);
-    
-    // Vertices
-    glEnableVertexAttribArray(attr_position);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo_cube_vertices);
-    glVertexAttribPointer(attr_position,    // attribute
-                          3,                // number of elements per vertex, here (x,y,z)
-                          GL_FLOAT,         // the type of each element
-                          GL_FALSE,         // take our values as-is
-                          0,                // no extra data between each position
-                          0                 // offset of first element
-                          );
-    
-    // TexCoords
-    glEnableVertexAttribArray(attr_texcoord);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo_cube_texcoords);
-    glVertexAttribPointer(attr_texcoord,    // attribute
-                          2,                // number of elements per vertex, here (x,y)
-                          GL_FLOAT,         // the type of each element
-                          GL_FALSE,         // take our values as-is
-                          0,                // no extra data between each position
-                          0                 // offset of first element
-                          );
-    
+
     // Index
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_cube_elements);
-    int size;
-    glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
-    glDrawElements(GL_TRIANGLES, size/sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
-    glDisableVertexAttribArray(attr_position);
-    glDisableVertexAttribArray(attr_texcoord);
-    
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
+
+    // Unbind
+    _vbo_vertices.Unbind(attr_position);
+    _vbo_texcoords.Unbind(attr_texcoord);
     _texture.Unbind();
     _shader.Unbind();
-    
     _fbo.Unbind();
 
     // Draw FBO and a texture using QuadBatch

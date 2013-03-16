@@ -43,7 +43,7 @@ void Renderer::End()
 // Clear
 //
 //------------------------------------------------------------------------------------------------
-void Renderer::Clear(int bits, ColorF const &color, float depth, int stencil)
+void Renderer::Clear(int bits, Colorf const &color, float depth, int stencil)
 {
     if (bits & GL_COLOR_BUFFER_BIT)
         glClearColor(color.r, color.g, color.b, color.a);

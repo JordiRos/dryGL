@@ -103,6 +103,7 @@ const string   &GetFilePath (const string &file, const string &docpath);    // D
 #include "graphics/ShaderBasic.h"
 #include "graphics/Pixels.h"
 #include "graphics/Fbo.h"
+#include "graphics/Vbo.h"
 
 // Camera
 #include "camera/Camera.h"
