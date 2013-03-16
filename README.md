@@ -11,10 +11,11 @@ Current status:
 - Shader
 - Camera: CameraPerspective, CameraOrthogonal
 - Fbo
+- Vbo
 - Addons/QuadBatch: simple quad drawing, later on it will be a real quadbatch pipeline
 
 Example:
-- AppSimple: Rotating 3D cube + cameraPerspective + cameraOrthogonal + Fbo example, to be splitted in simple examples
+- AppSimple: Rotating 3D cube, cameraPerspective, cameraOrthogonal, Vbo, Fbo
 
 Dependencies:
 - Glm
@@ -27,7 +28,6 @@ Roadmap:
 - Android project & example
 - Input manager
 - Renderer utilities (clear, viewports, renderstates, etc)
-- Vbo
 - Mesh
 - Auto uniforms/attributes in shader object, and maybe basic auto attributes/uniforms (positions, texcoords, colors, etc)
 - State/Render manager
