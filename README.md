@@ -16,7 +16,8 @@ Current status:
 - Addons/QuadBatch: simple quad drawing, later on it will be a real quadbatch pipeline
 
 Example:
-- AppSimple: Rotating 3D cube, cameraPerspective, cameraOrthogonal, Vbo, Ibo, Fbo
+- AppSimple: Rotating 3D cube
+- AppFbo
 
 Dependencies:
 - Glm
@@ -28,9 +29,8 @@ Temp:
 Roadmap:
 - Android project & example
 - Input manager
-- Renderer utilities (clear, viewports, renderstates, etc)
+- Renderer utilities (viewports, renderstates, etc)
 - Mesh
-- Auto uniforms/attributes in shader object, and maybe basic auto attributes/uniforms (positions, texcoords, colors, etc)
 - State/Render manager
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
 - Addons: TextRendering (FreeType, Bitmap)
