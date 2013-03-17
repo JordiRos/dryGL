@@ -15,6 +15,8 @@ class Fbo
 public:
     struct Params
     {
+        Params() { }
+        Params(int width, int height) { Width = width; Height = height; }
         int  Width;
         int  Height;
     };

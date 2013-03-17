@@ -39,7 +39,7 @@ bool Texture::Init(int width, int height, int format, int target)
         res = true;
     }
     else
-        dry::Log("[dryTexture] Can't create texture with params: %d,%d (%d)", width, height, format);
+        dry::Log(LOG_WARNING, "[dryTexture] Can't create texture with params: %d,%d (%d)", width, height, format);
     return res;
 }
 

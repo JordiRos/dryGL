@@ -19,8 +19,6 @@ using namespace dry;
 template<class T>
 bool Ibo<T>::Init(int size, bool dynamic, T const *data)
 {
-    bool res = true;
-    
     m_Dynamic  = dynamic;
     m_Size = size * sizeof(T);
     m_Data = NEW_ARRAY(T, size);
@@ -33,7 +31,7 @@ bool Ibo<T>::Init(int size, bool dynamic, T const *data)
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Size, m_Data, GL_STATIC_DRAW);
 
-    return res;
+    return true;
 }
 
 

@@ -45,9 +45,8 @@ typedef unsigned int    uint;
 //------------------------------------------------------------------------------------------------
 namespace dry {
     
-// DRY platform target: TEMP only iOS for now
-#define DRY_TARGET_IOS
-#define DRY_VERSION_STR "0.1.0"
+#define DRY_TARGET_IOS                  // DRY platform target: only iOS for now
+#define DRY_VERSION_STR     "0.1.0"     // DRY version
     
 // PixelFormat
 enum PixelFormat
@@ -73,12 +72,25 @@ struct AppParams
     bool Fullscreen;
 };
 
-void            Init        (const string &logfile);
+enum LogLevel
+{
+    LOG_SYSTEM  = 1<<0,
+    LOG_WARNING = 1<<1,
+    LOG_INFO    = 1<<2,
+    LOG_DEBUG   = 1<<3,
+    // Presets
+    LOG_FLAG_WARNINGS = LOG_WARNING,
+    LOG_FLAG_DEBUG = LOG_WARNING | LOG_INFO | LOG_DEBUG,
+    LOG_FLAG_ALL = 0xFFFFFFFF,
+};
+    
+void            Init        (int loglevel, const string &logfile);
 void            Free        ();
-void            Log         (const char *log, ...);
-void            SetPaths    (const string &bundle, const string &docpath);  // Set directories
-const string   &GetFilePath (const string &file);                           // Main bundle path
-const string   &GetFilePath (const string &file, const string &docpath);    // Documents path
+void            Log         (int loglevel, const char *log, ...);
+void            SetPaths    (const string &bundle, const string &docpath);  // Set app paths
+const string   &GetFilePath (const string &file);                           // Main bundle path (read only)
+const string   &GetFilePath (const string &file, const string &docpath);    // Documents path (read/write)
+float           GetTime     ();                                             // Get system time
     
 }
 
@@ -91,9 +103,9 @@ const string   &GetFilePath (const string &file, const string &docpath);    // D
 #include <glm/ext.hpp>
 
 // System
-#include "system/App.h"
 #include "system/Timer.h"
 #include "system/Random.h"
+#include "system/App.h"
 
 // Graphics
 #include "graphics/Color.h"
@@ -110,6 +122,11 @@ const string   &GetFilePath (const string &file, const string &docpath);    // D
 #include "camera/Camera.h"
 #include "camera/CameraPerspective.h"
 #include "camera/CameraOrthogonal.h"
+
+// Scene
+#include "scene/Material.h"
+#include "scene/Geometry.h"
+#include "scene/Mesh.h"
 
 // Target iOS
 #ifdef DRY_TARGET_IOS

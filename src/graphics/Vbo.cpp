@@ -19,8 +19,6 @@ using namespace dry;
 template<class T>
 bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
 {
-    bool res = true;
-    
     m_Elements = elements;
     m_Dynamic  = dynamic;
     m_Size = size * sizeof(T);
@@ -34,7 +32,7 @@ bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
     glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
     glBufferData(GL_ARRAY_BUFFER, m_Size, m_Data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
 
-    return res;
+    return true;
 }
 
 

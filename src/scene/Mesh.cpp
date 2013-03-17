@@ -1,5 +1,5 @@
 //
-//  CameraOrthogonal.cpp
+//  Mesh.cpp
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -7,23 +7,17 @@
 //
 
 #include "dry.h"
-#include "CameraOrthogonal.h"
+#include "Mesh.h"
 
 using namespace dry;
 
 
 //------------------------------------------------------------------------------------------------
-// CameraOrthogonal
+// Constructor
 //
 //------------------------------------------------------------------------------------------------
-CameraOrthogonal::CameraOrthogonal() : Camera()
+Mesh::Mesh()
 {
-    m_Left   = 0.f;
-    m_Right  = 1.f;
-    m_Top    = 0.f;
-    m_Bottom = 1.f;
-    m_Near   = 1.f;
-    m_Far    = 1000.f;
 }
 
 
@@ -31,23 +25,38 @@ CameraOrthogonal::CameraOrthogonal() : Camera()
 // Init
 //
 //------------------------------------------------------------------------------------------------
-void CameraOrthogonal::Init(float left, float right, float top, float bottom, float near, float far)
+bool Mesh::Init(Geometry *geometry, Material *material)
 {
-    m_Left   = left;
-    m_Right  = right;
-    m_Top    = top;
-    m_Bottom = bottom;
-    m_Near   = near;
-    m_Far    = far;
-    UpdateProjection();
+    bool res = true;
+    
+    m_Geometry = geometry;
+    m_Material = material;
+    
+    return res;
 }
 
 
 //------------------------------------------------------------------------------------------------
-// UpdateProjection
+// Free
 //
 //------------------------------------------------------------------------------------------------
-void CameraOrthogonal::UpdateProjection()
+void Mesh::Free()
 {
-    m_MatProj = glm::ortho(m_Left, m_Right, m_Bottom, m_Top, m_Near, m_Far);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Draw
+//
+//------------------------------------------------------------------------------------------------
+void Mesh::Draw()
+{
+    m_UpdateVertices   = false;
+    m_UpdateTexCoords0 = false;
+    m_UpdateTexCoords1 = false;
+    m_UpdateTexCoords2 = false;
+    m_UpdateTexCoords3 = false;
+    m_UpdateNormals    = false;
+    m_UpdateColors     = false;
+    m_UpdateIndices    = false;
 }

@@ -21,8 +21,8 @@
     [self.window makeKeyAndVisible];
 
     // Initialize dry subsystem
-    dry::Init("dry.log");
-    dry::Log("[AppDelegate] Screen Size: %.0f,%.0f", frame.size.width,frame.size.height);
+    dry::Init(dry::LOG_FLAG_ALL, "dry.log");
+    dry::Log(dry::LOG_INFO, "[AppDelegate] Screen Size: %.0f,%.0f", frame.size.width,frame.size.height);
     
     // Create app with desired resolution and attach its viewController to rootViewController
     app = NEW AppSimple(dry::AppParams(frame.size.width*2,frame.size.height*2,false));

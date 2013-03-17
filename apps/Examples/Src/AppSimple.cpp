@@ -11,23 +11,19 @@
 #include "../Addons/Renderer/QuadBatch.h"
 
 static dry::CameraPerspective _cameraP;
-static dry::CameraOrthogonal _cameraO;
 
 static dry::ShaderBasic _shader;
 static dry::Pixels _pixels;
 static dry::Texture _texture;
-static dry::Fbo _fbo;
-static dry::QuadBatch _quads;
-static dry::Vbo<float> _vbo_vertices;
-static dry::Vbo<float> _vbo_texcoords;
+static dry::Vbo<glm::vec3> _vbo_vertices;
+static dry::Vbo<glm::vec2> _vbo_texcoords;
 static dry::Ibo<ushort> _ibo_elements;
+static dry::QuadBatch _quads;
 
 static GLuint attr_position;
 static GLuint attr_texcoord;
 static GLuint uniform_mvp;
 static GLuint uniform_texture;
-
-static float _time = 0.f;
 
 
 //------------------------------------------------------------------------------------------------
@@ -101,8 +97,8 @@ void AppSimple::Init()
     };
     
     // Vbo
-    _vbo_vertices.Init(sizeof(cube_vertices) / sizeof(float), false, 3, cube_vertices);
-    _vbo_texcoords.Init(sizeof(cube_texcoords) / sizeof(float), false, 2, cube_texcoords);
+    _vbo_vertices.Init(sizeof(cube_vertices) / 3*sizeof(float), false, 3, (glm::vec3 *)cube_vertices);
+    _vbo_texcoords.Init(sizeof(cube_texcoords) / 2*sizeof(float), false, 2, (glm::vec2 *)cube_texcoords);
     // Ibo
     _ibo_elements.Init(sizeof(cube_elements) / sizeof(ushort), false, cube_elements);
     
@@ -124,21 +120,11 @@ void AppSimple::Init()
     // Perspective
     _cameraP.Init(45.f, (float)w / h, 0.1f, 100.f);
     _cameraP.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-
-    // Orthogonal
-    _cameraO.Init(0,w, 0,h, -1.f,1.f);
-    _cameraO.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-
-    // Fbo
-    dry::Fbo::Params params;
-    params.Width  = w;
-    params.Height = h;
-    _fbo.Init(params);
     
     // QuadBatch
     _quads.Init();
     
-    // RENDER
+    // Viewport
     glViewport(0,0, w,h);
 }
 
@@ -149,7 +135,6 @@ void AppSimple::Init()
 //------------------------------------------------------------------------------------------------
 void AppSimple::Update()
 {
-    _time += 1.f/60.f;
 }
 
 
@@ -159,22 +144,9 @@ void AppSimple::Update()
 //------------------------------------------------------------------------------------------------
 void AppSimple::Draw()
 {
-    int w = GetParams().Width;
-    int h = GetParams().Height;
+    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::Colorf(0.5f, 0.5f, 0.5f, 1.0f), 1.0f);
 
-    //float r = fmod(_time, 1.f);
-    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::Colorf(0.5f, 0.1f, 0.1f, 1.0f), 1.0f);
-
-    // Draw QuadBatch
-    glDisable(GL_DEPTH_TEST);
-    _quads.Draw(&_texture, &_cameraO, &_shader, glm::mat4(), 0.f,0.f, w,h);
-    glEnable(GL_DEPTH_TEST);
-
-    // Render to FBO
-    _fbo.Bind();
-    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::Colorf(0.1f, 0.9f, 0.1f, 1.0f), 1.0f);
-    
-    // Alpha blending
+    // Alpha blendings
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -187,7 +159,7 @@ void AppSimple::Draw()
     _ibo_elements.Bind();
     
     // Load matrices
-    float angle = _time * 45;
+    float angle = GetTimer().GetTime() * 45;
     glm::vec3 axis_y(0, 1, 0);
     glm::mat4 anim = glm::rotate(glm::mat4(1.0f), angle, axis_y);
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, -0.0));
@@ -203,11 +175,4 @@ void AppSimple::Draw()
     _ibo_elements.Unbind();
     _texture.Unbind();
     _shader.Unbind();
-    _fbo.Unbind();
-
-    // Draw FBO and a texture using QuadBatch
-    glDisable(GL_DEPTH_TEST);
-    _quads.Draw(&_texture, &_cameraO, &_shader, glm::mat4(), 0,0, w/4.f,h/4.f);
-    _quads.Draw(&_fbo, &_cameraO, &_shader, glm::mat4(), w/4.f,h/4.f, w/2.f, h/2.f);
-    glEnable(GL_DEPTH_TEST);
 }

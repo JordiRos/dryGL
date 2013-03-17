@@ -34,12 +34,14 @@ public:
 	virtual void        GotFocus        () {}
 	virtual void        MemoryWarning   () {}
 
-    Renderer           *GetRenderer     () { return m_Renderer; }
     AppParams const    &GetParams       () { return m_Params; }
+    Timer              &GetTimer        () { return m_Timer; }
+    Renderer           *GetRenderer     () { return m_Renderer; }
 
 protected:
  
     AppParams           m_Params;
+    Timer               m_Timer;
     Renderer           *m_Renderer;
 };
 

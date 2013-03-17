@@ -12,46 +12,38 @@ class Timer
 {
 public:
 
-    Timer()
-    {
-        reset();
-    }
-    
-    void reset()
+    Timer() { Reset(); }
+
+    void Reset()
     {
         m_TimeIni   = 0;
         m_TimePause = 0.f;
         m_Paused    = false;
     }
     
-    void pause()
+    void Pause()
     {
-      if (!m_Paused)
-      {
-        m_TimePause = getTime();
-        m_Paused    = true;
-      }
+        if (!m_Paused)
+        {
+            m_TimePause = GetTime();
+            m_Paused    = true;
+        }
     }
     
-    void resume()
+    void Resume()
     {
-      if (m_Paused)
-      {
-        m_TimeIni+= getTime() - m_TimePause;
-        m_Paused  = false;
-      }
+        if (m_Paused)
+        {
+            m_TimeIni+= GetTime() - m_TimePause;
+            m_Paused  = false;
+        }
     }
     
-    float getTime()
+    float GetTime()
     {
-      if (m_Paused)
-      {
-        return m_TimePause;
-      }
-      else
-      {
-        return m_TimeIni;
-      }
+        if (m_Paused)
+            return m_TimePause;
+        return dry::GetTime() - m_TimeIni;
     }
 
   protected:

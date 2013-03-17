@@ -46,7 +46,7 @@
         if (m_EAGLContext)
             [EAGLContext setCurrentContext:m_EAGLContext];
         else
-            dry::Log("[dryView] Failed to initialize OpenGLES 2.0 context");
+            dry::Log(dry::LOG_WARNING, "[dryView] Failed to initialize OpenGLES 2.0 context");
 
         int w = app->GetParams().Width;
         int h = app->GetParams().Height;
@@ -60,7 +60,7 @@
         }
         self.contentScaleFactor = m_ScaleFactor;
         m_EAGLLayer.contentsScale = m_ScaleFactor;
-        dry::Log("[View] Initializing EAGLLayer view: %dx%d (scale %.2f)", w,h, m_ScaleFactor);
+        dry::Log(dry::LOG_SYSTEM, "[View] Initializing EAGLLayer view: %dx%d (scale %.2f)", w,h, m_ScaleFactor);
 
         // RenderBuffer
         glGenRenderbuffers(1, &m_ColorRenderBuffer);
@@ -140,7 +140,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)layoutSubviews
 {
-    dry::Log("[View] layoutSubviews");
+    dry::Log(dry::LOG_SYSTEM, "[View] layoutSubviews");
 }
 
 

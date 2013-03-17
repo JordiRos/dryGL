@@ -39,8 +39,8 @@ void QuadBatch::Init()
     };
     
     // Vbo
-    m_Vertices.Init(12, false, 3, vertices);
-    m_TexCoords.Init(8, false, 2, texcoords);
+    m_Vertices.Init(4, false, 3, (glm::vec3 *)vertices);
+    m_TexCoords.Init(4, false, 2, (glm::vec2 *)texcoords);
     // Ibo
     m_Indices.Init(6, false, indices);
 }

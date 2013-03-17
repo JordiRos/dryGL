@@ -21,7 +21,7 @@
 //------------------------------------------------------------------------------------------------
 - (id)initWithFrame:(CGRect)frame app:(dry::AppiOS *)app
 {
-    dry::Log("[ViewController] initWithFrame");
+    dry::Log(dry::LOG_SYSTEM, "[ViewController] initWithFrame");
     if ((self = [super init]))
     {
         glView = [[[dryView alloc] initWithFrame:frame app:app] autorelease];
@@ -37,7 +37,7 @@
 //------------------------------------------------------------------------------------------------
 - (void) dealloc
 {
-    dry::Log("[ViewController] dealloc");
+    dry::Log(dry::LOG_SYSTEM, "[ViewController] dealloc");
     [glView stopAnimation];
     [glView removeFromSuperview];
     glView = nil;
@@ -51,7 +51,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
-    dry::Log("[ViewController] viewDidLoad");
+    dry::Log(dry::LOG_SYSTEM, "[ViewController] viewDidLoad");
     [super viewDidLoad];
     [glView startAnimation];
 }
@@ -63,7 +63,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)viewWillAppear:(BOOL)animated
 {
-    dry::Log("[ViewController] viewWillAppear");
+    dry::Log(dry::LOG_SYSTEM, "[ViewController] viewWillAppear");
     [super viewWillAppear:animated];
     [glView startAnimation];
 }
@@ -75,7 +75,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)viewDidDisappear:(BOOL)animated
 {
-    dry::Log("[ViewController] viewDidDisappear");
+    dry::Log(dry::LOG_SYSTEM, "[ViewController] viewDidDisappear");
     [super viewDidDisappear:animated];
     [glView stopAnimation];
 }

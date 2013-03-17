@@ -125,8 +125,8 @@ void Shader::LogShaderError(int handle, const string &info)
 {
     char messages[256];
     glGetShaderInfoLog(handle, sizeof(messages), 0, &messages[0]);
-    dry::Log("[dryShader] Error compiling %s", info.c_str());
-    dry::Log(messages);
+    dry::Log(LOG_WARNING, "[dryShader] Error compiling %s", info.c_str());
+    dry::Log(LOG_WARNING, messages);
 }
 
 
@@ -138,8 +138,8 @@ void Shader::LogProgramError(int handle, const string &info)
 {
     GLchar messages[256];
     glGetProgramInfoLog(handle, sizeof(messages), 0, &messages[0]);
-    dry::Log("[dryShader] Error compiling %s", info.c_str());
-    dry::Log(messages);
+    dry::Log(LOG_WARNING, "[dryShader] Error compiling %s", info.c_str());
+    dry::Log(LOG_WARNING, messages);
 }
 
 

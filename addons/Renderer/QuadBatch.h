@@ -28,8 +28,8 @@ private:
 
 private:
     
-    Vbo<float>      m_Vertices;
-    Vbo<float>      m_TexCoords;
+    Vbo<glm::vec3>  m_Vertices;
+    Vbo<glm::vec2>  m_TexCoords;
     Ibo<ushort>     m_Indices;
 };
 

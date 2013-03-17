@@ -71,7 +71,7 @@ bool Pixels::InitWithFile(const string &file)
                 }
             }
             else
-                dry::Log("[dryPixels] Unsupported format in image: BPP = %d", bpp);
+                dry::Log(LOG_WARNING, "[dryPixels] Unsupported format in image: BPP = %d", bpp);
             FreeImage_Unload(fibmp);
         }
     }

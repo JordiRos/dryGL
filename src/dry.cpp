@@ -10,18 +10,20 @@
 #include "freeimage/include/FreeImage.h"
 
 // Private vars
-static string pathBundle  = "";
-static string pathDocpath = "";
+static string s_pathBundle  = "";
+static string s_pathDocpath = "";
+static int    s_logLevel    = 0;
 
 
 //------------------------------------------------------------------------------------------------
 // Init
 //
 //------------------------------------------------------------------------------------------------
-void dry::Init(const string &logfile)
+void dry::Init(int loglevel, const string &logfile)
 {
-    dry::Log("dryGL v%s", DRY_VERSION_STR);
-    dry::Log("[dry] Initializing FreeImage %s...", FreeImage_GetVersion());
+    s_logLevel = loglevel;
+    dry::Log(LOG_SYSTEM, "dryGL v%s", DRY_VERSION_STR);
+    dry::Log(LOG_SYSTEM, "[dry] Initializing FreeImage %s...", FreeImage_GetVersion());
     FreeImage_Initialise();
 }
 
@@ -39,15 +41,18 @@ void dry::Free()
 // Log
 //
 //------------------------------------------------------------------------------------------------
-void dry::Log(const char *log, ...)
+void dry::Log(int loglevel, const char *log, ...)
 {
-    char tmp[65535];
-    va_list  body;
-    va_start(body, log);
-    vsprintf(tmp, log, body);
-    va_end  (body);
-    // Real print
-    printf("%s\n", tmp);
+    if (s_logLevel & loglevel)
+    {
+        char tmp[65535];
+        va_list  body;
+        va_start(body, log);
+        vsprintf(tmp, log, body);
+        va_end  (body);
+        // Real print
+        printf("%s\n", tmp);
+    }
 }
 
 
@@ -57,8 +62,8 @@ void dry::Log(const char *log, ...)
 //------------------------------------------------------------------------------------------------
 void dry::SetPaths(const string &bundle, const string &docpath)
 {
-    pathBundle  = bundle;
-    pathDocpath = docpath;
+    s_pathBundle  = bundle;
+    s_pathDocpath = docpath;
 }
 
 
@@ -69,7 +74,7 @@ void dry::SetPaths(const string &bundle, const string &docpath)
 const string &dry::GetFilePath(const string &file)
 {
     static string res;
-    res = pathBundle + "/" + file;
+    res = s_pathBundle + "/" + file;
     return res;
 }
 
@@ -81,6 +86,6 @@ const string &dry::GetFilePath(const string &file)
 const string &dry::GetFilePath(const string &file, const string &docpath)
 {
     static string res;
-    res = pathDocpath + "/" + file;
+    res = s_pathDocpath + "/" + file;
     return res;
 }

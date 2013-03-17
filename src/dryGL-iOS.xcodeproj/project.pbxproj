@@ -10,6 +10,10 @@
 		BC91249F16DFA8B900E7F493 /* dry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91249E16DFA8B900E7F493 /* dry.cpp */; };
 		BCD9FE4D16F3DA3B00C38D61 /* Vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */; };
 		BCD9FE5016F5258700C38D61 /* Ibo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4E16F5258600C38D61 /* Ibo.cpp */; };
+		BCD9FE5416F52B5E00C38D61 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE5216F52B5E00C38D61 /* Mesh.cpp */; };
+		BCD9FE5716F5B91800C38D61 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE5516F5B91700C38D61 /* Geometry.cpp */; };
+		BCD9FE5A16F6421C00C38D61 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE5816F6421C00C38D61 /* Material.cpp */; };
+		BCD9FE5C16F650A900C38D61 /* Time.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE5B16F650A900C38D61 /* Time.mm */; };
 		BCF38C8016ED197100073C11 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6116ED197100073C11 /* Camera.cpp */; };
 		BCF38C8116ED197100073C11 /* CameraOrthogonal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6316ED197100073C11 /* CameraOrthogonal.cpp */; };
 		BCF38C8216ED197100073C11 /* CameraPerspective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6516ED197100073C11 /* CameraPerspective.cpp */; };
@@ -47,6 +51,13 @@
 		BCD9FE4C16F3DA3B00C38D61 /* Vbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vbo.h; sourceTree = "<group>"; };
 		BCD9FE4E16F5258600C38D61 /* Ibo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ibo.cpp; sourceTree = "<group>"; };
 		BCD9FE4F16F5258700C38D61 /* Ibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ibo.h; sourceTree = "<group>"; };
+		BCD9FE5216F52B5E00C38D61 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mesh.cpp; path = scene/Mesh.cpp; sourceTree = "<group>"; };
+		BCD9FE5316F52B5E00C38D61 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mesh.h; path = scene/Mesh.h; sourceTree = "<group>"; };
+		BCD9FE5516F5B91700C38D61 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = scene/Geometry.cpp; sourceTree = "<group>"; };
+		BCD9FE5616F5B91700C38D61 /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = scene/Geometry.h; sourceTree = "<group>"; };
+		BCD9FE5816F6421C00C38D61 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Material.cpp; path = scene/Material.cpp; sourceTree = "<group>"; };
+		BCD9FE5916F6421C00C38D61 /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Material.h; path = scene/Material.h; sourceTree = "<group>"; };
+		BCD9FE5B16F650A900C38D61 /* Time.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Time.mm; sourceTree = "<group>"; };
 		BCF38C6116ED197100073C11 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		BCF38C6216ED197100073C11 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		BCF38C6316ED197100073C11 /* CameraOrthogonal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraOrthogonal.cpp; sourceTree = "<group>"; };
@@ -115,8 +126,22 @@
 				BCF38C7B16ED197100073C11 /* system */,
 				BCF38C6716ED197100073C11 /* graphics */,
 				BCF38C6016ED197100073C11 /* camera */,
+				BCD9FE5116F52B3900C38D61 /* scene */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		BCD9FE5116F52B3900C38D61 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				BCD9FE5816F6421C00C38D61 /* Material.cpp */,
+				BCD9FE5916F6421C00C38D61 /* Material.h */,
+				BCD9FE5516F5B91700C38D61 /* Geometry.cpp */,
+				BCD9FE5616F5B91700C38D61 /* Geometry.h */,
+				BCD9FE5216F52B5E00C38D61 /* Mesh.cpp */,
+				BCD9FE5316F52B5E00C38D61 /* Mesh.h */,
+			);
+			name = scene;
 			sourceTree = "<group>";
 		};
 		BCF38C6016ED197100073C11 /* camera */ = {
@@ -166,6 +191,7 @@
 				BCF38C7816ED197100073C11 /* View.mm */,
 				BCF38C7916ED197100073C11 /* ViewController.h */,
 				BCF38C7A16ED197100073C11 /* ViewController.mm */,
+				BCD9FE5B16F650A900C38D61 /* Time.mm */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -248,6 +274,10 @@
 				BCF38C8E16EDD9EA00073C11 /* Fbo.cpp in Sources */,
 				BCD9FE4D16F3DA3B00C38D61 /* Vbo.cpp in Sources */,
 				BCD9FE5016F5258700C38D61 /* Ibo.cpp in Sources */,
+				BCD9FE5416F52B5E00C38D61 /* Mesh.cpp in Sources */,
+				BCD9FE5716F5B91800C38D61 /* Geometry.cpp in Sources */,
+				BCD9FE5A16F6421C00C38D61 /* Material.cpp in Sources */,
+				BCD9FE5C16F650A900C38D61 /* Time.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

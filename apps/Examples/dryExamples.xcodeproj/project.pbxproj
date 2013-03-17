@@ -85,9 +85,9 @@
 		BC34D2DC16CE289A00B634C0 = {
 			isa = PBXGroup;
 			children = (
-				BCB14A0B16D7CB0700593177 /* Data */,
-				BC6F4D9316F1D90600B094F0 /* iOS */,
-				BC6F4D9F16F1D90600B094F0 /* Src */,
+				BCB14A0B16D7CB0700593177 /* data */,
+				BC6F4D9316F1D90600B094F0 /* ios */,
+				BC6F4D9F16F1D90600B094F0 /* src */,
 				BCF38C9516EE417E00073C11 /* Addons */,
 				BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */,
 				BC34D2EA16CE289A00B634C0 /* Frameworks */,
@@ -118,7 +118,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BC6F4D9316F1D90600B094F0 /* iOS */ = {
+		BC6F4D9316F1D90600B094F0 /* ios */ = {
 			isa = PBXGroup;
 			children = (
 				BC6F4D9616F1D90600B094F0 /* Default-568h@2x.png */,
@@ -131,15 +131,17 @@
 				BC6F4D9516F1D90600B094F0 /* AppDelegate.mm */,
 				BC6F4D9E16F1D90600B094F0 /* main.mm */,
 			);
+			name = ios;
 			path = iOS;
 			sourceTree = "<group>";
 		};
-		BC6F4D9F16F1D90600B094F0 /* Src */ = {
+		BC6F4D9F16F1D90600B094F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				BC6F4DA016F1D90600B094F0 /* AppSimple.cpp */,
 				BC6F4DA116F1D90600B094F0 /* AppSimple.h */,
 			);
+			name = src;
 			path = Src;
 			sourceTree = "<group>";
 		};
@@ -151,12 +153,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BCB14A0B16D7CB0700593177 /* Data */ = {
+		BCB14A0B16D7CB0700593177 /* data */ = {
 			isa = PBXGroup;
 			children = (
 				BC6F4DBC16F1DD8000B094F0 /* fire.jpg */,
 			);
-			name = Data;
+			name = data;
 			sourceTree = "<group>";
 		};
 		BCF38C9016EE417800073C11 /* Renderer */ = {

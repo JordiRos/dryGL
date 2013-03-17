@@ -18,7 +18,6 @@ using namespace dry;
 //------------------------------------------------------------------------------------------------
 bool Fbo::Init(Fbo::Params const &params)
 {
-    bool res = false;
     m_Params = params;
     m_FboDefault = -1;
     m_Target = GL_TEXTURE_2D;
@@ -49,13 +48,13 @@ bool Fbo::Init(Fbo::Params const &params)
     
     // Check status
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        dry::Log("[Fbo] Framebuffer not complete");
+        dry::Log(LOG_WARNING, "[Fbo] Framebuffer not complete");
     
     // Clear
 	glBindTexture    (GL_TEXTURE_2D,  0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
     
-    return res;
+    return true;
 }
 
 
