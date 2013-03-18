@@ -14,6 +14,7 @@
 		BCD9FE5716F5B91800C38D61 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE5516F5B91700C38D61 /* Geometry.cpp */; };
 		BCD9FE5A16F6421C00C38D61 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE5816F6421C00C38D61 /* Material.cpp */; };
 		BCD9FE5C16F650A900C38D61 /* Time.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE5B16F650A900C38D61 /* Time.mm */; };
+		BCD9FEB616F744DF00C38D61 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FEB516F744DE00C38D61 /* Object.cpp */; };
 		BCF38C8016ED197100073C11 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6116ED197100073C11 /* Camera.cpp */; };
 		BCF38C8116ED197100073C11 /* CameraOrthogonal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6316ED197100073C11 /* CameraOrthogonal.cpp */; };
 		BCF38C8216ED197100073C11 /* CameraPerspective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6516ED197100073C11 /* CameraPerspective.cpp */; };
@@ -58,6 +59,8 @@
 		BCD9FE5816F6421C00C38D61 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Material.cpp; path = scene/Material.cpp; sourceTree = "<group>"; };
 		BCD9FE5916F6421C00C38D61 /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Material.h; path = scene/Material.h; sourceTree = "<group>"; };
 		BCD9FE5B16F650A900C38D61 /* Time.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Time.mm; sourceTree = "<group>"; };
+		BCD9FEB416F744D400C38D61 /* Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Object.h; path = scene/Object.h; sourceTree = "<group>"; };
+		BCD9FEB516F744DE00C38D61 /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Object.cpp; path = scene/Object.cpp; sourceTree = "<group>"; };
 		BCF38C6116ED197100073C11 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		BCF38C6216ED197100073C11 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		BCF38C6316ED197100073C11 /* CameraOrthogonal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraOrthogonal.cpp; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 				BCD9FE5616F5B91700C38D61 /* Geometry.h */,
 				BCD9FE5216F52B5E00C38D61 /* Mesh.cpp */,
 				BCD9FE5316F52B5E00C38D61 /* Mesh.h */,
+				BCD9FEB516F744DE00C38D61 /* Object.cpp */,
+				BCD9FEB416F744D400C38D61 /* Object.h */,
 			);
 			name = scene;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				BCD9FE5716F5B91800C38D61 /* Geometry.cpp in Sources */,
 				BCD9FE5A16F6421C00C38D61 /* Material.cpp in Sources */,
 				BCD9FE5C16F650A900C38D61 /* Time.mm in Sources */,
+				BCD9FEB616F744DF00C38D61 /* Object.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

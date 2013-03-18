@@ -8,15 +8,17 @@
 
 #pragma once
 
+#include "Object.h"
+
 namespace dry {
 
 class Geometry;
 class Material;
     
-class Mesh
+class Mesh : public Object
 {
 public:
-                    Mesh            ();
+                    Mesh            () { m_Geometry = NULL; m_Material = NULL; }
                    ~Mesh            () { Free(); }
     
     bool            Init            (Geometry *geometry, Material *material);
@@ -25,7 +27,6 @@ public:
     void            Update          ();
     void            Draw            ();
     
-    // Update
     void            UpdateVertices  () { m_UpdateVertices   = true; }
     void            UpdateTexCoords0() { m_UpdateTexCoords0 = true; }
     void            UpdateTexCoords1() { m_UpdateTexCoords1 = true; }
@@ -47,9 +48,6 @@ protected:
     bool            m_UpdateNormals;
     bool            m_UpdateColors;
     bool            m_UpdateIndices;
-    glm::mat4       m_Transform;
-    glm::vec3       m_Position;
-    glm::vec3       m_Rotation;
 };
     
 }
