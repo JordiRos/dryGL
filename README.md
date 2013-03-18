@@ -15,6 +15,7 @@ Current status
 - Ibo
 - Fbo
 - Addons/QuadBatch: simple quad drawing, later on it will be a real quadbatch pipeline
+- Scene/Object/Mesh/Material (WIP)
 
 Examples:
 - AppSimple: Rotating 3D cube
@@ -29,12 +30,10 @@ Roadmap
 - Android project & example
 - Input manager
 - Renderer utilities (viewports, renderstates, etc)
-- Mesh
 - State/Render manager
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
 - Addons: TextRendering (FreeType, Bitmap)
 - Addons: Add libpng / libjpg / libdds loaders
-- Addons: Scene, Object, Material, SceneRenderer
 - Addons: Material instances
 - Addons: ParticleSystem
 - Addons: EffectComposer, Postprocess effects / shaders
