@@ -3,7 +3,8 @@ dryGL
 
 dryGL is a lightweight OpenGL ES 2.0 framework for mobile devices, targeting iOS & Android
 
-Current status:
+Current status
+==============
 - iOS project
 - FreeImage loader
 - Texture
@@ -15,18 +16,16 @@ Current status:
 - Fbo
 - Addons/QuadBatch: simple quad drawing, later on it will be a real quadbatch pipeline
 
-Example:
+Examples:
 - AppSimple: Rotating 3D cube
-- AppFbo
+- AppFbo:
 
-Dependencies:
-- Glm
-- FreeImage
-
-Temp:
+ToDo
+====
 - Move FreeImage loader to Addons/FreeImageLoader
 
-Roadmap:
+Roadmap
+=======
 - Android project & example
 - Input manager
 - Renderer utilities (viewports, renderstates, etc)
@@ -41,3 +40,7 @@ Roadmap:
 - Addons: EffectComposer, Postprocess effects / shaders
 - Defines for debug/release, logs, etc
 
+Dependencies
+============
+- Glm
+- FreeImage
