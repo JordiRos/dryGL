@@ -99,25 +99,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../src/system/App.cpp"
-         timestampString = "385391858.381034"
+         timestampString = "385410179.905609"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "22"
-         endingLineNumber = "22"
-         landmarkName = "App::Init()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../src/ios/AppiOS.mm"
-         timestampString = "385391863.395439"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "43"
-         endingLineNumber = "43"
-         landmarkName = "dry::AppiOS::Init()"
+         startingLineNumber = "23"
+         endingLineNumber = "23"
+         landmarkName = "App::App(Params const &amp;params)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -138,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Src/AppSimple.cpp"
-         timestampString = "385392678.538837"
+         timestampString = "385410063.770743"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "172"
-         endingLineNumber = "172"
+         startingLineNumber = "171"
+         endingLineNumber = "171"
          landmarkName = "AppSimple::Draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,7 +138,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Src/AppSimple.cpp"
-         timestampString = "385392025.520876"
+         timestampString = "385409305.871669"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "105"
@@ -164,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Src/AppSimple.cpp"
-         timestampString = "385392678.538837"
+         timestampString = "385410063.770743"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "154"
-         endingLineNumber = "154"
+         startingLineNumber = "153"
+         endingLineNumber = "153"
          landmarkName = "AppSimple::Draw()"
          landmarkType = "5">
       </FileBreakpoint>

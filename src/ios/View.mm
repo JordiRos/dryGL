@@ -67,10 +67,10 @@
         glBindRenderbuffer(GL_RENDERBUFFER, m_ColorRenderBuffer);
         [m_EAGLContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:m_EAGLLayer];
 
-        // DepthBuffer
+        // DepthBuffer/StencilBuffer
         glGenRenderbuffers(1, &m_DepthRenderBuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, m_DepthRenderBuffer);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, w,h);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8_OES, w,h);
 
         // FrameBuffer
         glGenFramebuffers(1, &m_FrameBuffer);

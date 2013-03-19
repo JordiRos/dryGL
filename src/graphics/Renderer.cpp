@@ -13,13 +13,15 @@ using namespace dry;
 
 
 //------------------------------------------------------------------------------------------------
-// Init
+// Constructor
 //
 //------------------------------------------------------------------------------------------------
-void Renderer::Init()
+Renderer::Renderer()
 {
-    m_BlendMode = BLEND_UNKNOWN;
-    SetBlendMode(BLEND_ALPHA);
+    m_ClearColor   = Colorf(0.f,0.f,0.f,0.f);
+    m_ClearDepth   = 0.f;
+    m_ClearStencil = 0;
+    m_BlendMode    = BLEND_UNKNOWN;
 }
 
 
@@ -45,16 +47,36 @@ void Renderer::End()
 // Clear
 //
 //------------------------------------------------------------------------------------------------
-void Renderer::Clear(int bits, Colorf const &color, float depth, int stencil)
+void Renderer::Clear(bool color, bool depth, bool stencil)
 {
-    if (bits & GL_COLOR_BUFFER_BIT)
-        glClearColor(color.r, color.g, color.b, color.a);
-    if (bits & GL_DEPTH_BUFFER_BIT)
-        glClearDepthf(depth);
-    if (bits & GL_STENCIL_BUFFER_BIT)
-        glClearStencil(stencil);
+    glClearColor  (m_ClearColor.r, m_ClearColor.g, m_ClearColor.b, m_ClearColor.a);
+    glClearDepthf (m_ClearDepth);
+    glClearStencil(m_ClearStencil);
     // Clear
+    int bits = (color ? GL_COLOR_BUFFER_BIT : 0) | (depth ? GL_DEPTH_BUFFER_BIT : 0) | (stencil ? GL_STENCIL_BUFFER_BIT : 0);
     glClear(bits);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// SetViewport
+//
+//------------------------------------------------------------------------------------------------
+void Renderer::SetViewport(int x, int y, int w, int h)
+{
+    glViewport(x, y, w, h);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// SetClearColor
+//
+//------------------------------------------------------------------------------------------------
+void Renderer::SetClearColor(Colorf const &color, float depth, int stencil)
+{
+    m_ClearColor = color;
+    m_ClearDepth = depth;
+    m_ClearStencil = stencil;
 }
 
 

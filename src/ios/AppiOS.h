@@ -14,10 +14,7 @@ class AppiOS : public App
 {
 public:
                         AppiOS              (AppParams const &params);
-    virtual            ~AppiOS              () { Free(); }
 
-    virtual void        Init                ();
-    virtual void        Free                ();
 	virtual void        Update              () {}
 	virtual void        Draw                () {}
     

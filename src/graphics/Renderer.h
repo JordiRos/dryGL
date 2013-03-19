@@ -13,18 +13,22 @@ namespace dry {
 class Renderer
 {
 public:
-
-    void            Init        ();
+                    Renderer        ();
     
-    void            Begin       ();
-    void            End         ();
+    void            Begin           ();
+    void            End             ();
 
-    void            Clear       (int bits, Colorf const &color, float depth = 0.f, int stencil = 0);
+    void            Clear           (bool color, bool depth, bool stencil);
     
-    void            SetBlendMode(BlendMode blend);
+    void            SetViewport     (int x, int y, int w, int h);
+    void            SetClearColor   (Colorf const &color, float depth, int stencil);
+    void            SetBlendMode    (BlendMode blend);
     
 private:
     
+    Colorf          m_ClearColor;
+    float           m_ClearDepth;
+    float           m_ClearStencil;
     BlendMode       m_BlendMode;
 };
 

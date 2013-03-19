@@ -125,9 +125,10 @@ void AppSimple::Init()
     
     // QuadBatch
     _quads.Init();
-    
+
     // Viewport
-    glViewport(0,0, w,h);
+    GetRenderer()->SetViewport  (0,0, w,h);
+    GetRenderer()->SetClearColor(dry::Colorf(0.5f, 0.5f, 0.5f, 1.0f), 1.0f, 0);
 }
 
 
@@ -148,9 +149,7 @@ void AppSimple::Draw()
 {
     glEnable(GL_DEPTH_TEST);
 
-    GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::Colorf(0.5f, 0.5f, 0.5f, 1.0f), 1.0f);
-
-    // Alpha blendings
+    GetRenderer()->Clear(true, true, false);
     GetRenderer()->SetBlendMode(dry::BLEND_ALPHA);
     
     // Bind

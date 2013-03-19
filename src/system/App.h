@@ -16,11 +16,10 @@ class App
 {
 public:
 
-                        App             (AppParams const &params) { m_Params = params; }
-    virtual            ~App             () { Free(); }
+                        App             (AppParams const &params);
+    virtual            ~App             ();
 
-    virtual void        Init            ();
-    virtual void        Free            ();
+    virtual void        Init            () {}
 	virtual void        Update          () {}
 	virtual void        Draw            () {}
 
