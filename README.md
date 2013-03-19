@@ -13,7 +13,7 @@ Current status
 - Vbo
 - Ibo
 - Fbo
-- FreeImage loader / TODO: Move to Addons/ImageLoaders
+- FreeImage loader
 - Scene/Object/Mesh/Material (WIP)
 - Addons/QuadBatch / TODO: Make it a real quadbatch pipeline
 
@@ -26,7 +26,7 @@ Roadmap
 - Input manager
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
 - Addons: TextRendering (FreeType, Bitmap)
-- Addons: Add libpng / libjpg / libdds Addons/ImageLoaders
+- Addons: Add libpng / libjpg / libdds / iOS ObjC ImageLoaders
 - Addons: Material instances (Diffuse, Lambert, etc)
 - Addons: ParticleSystem
 - Addons: EffectComposer, Postprocess effects / shaders
