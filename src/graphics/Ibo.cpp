@@ -20,16 +20,16 @@ template<class T>
 bool Ibo<T>::Init(int size, bool dynamic, T const *data)
 {
     m_Dynamic  = dynamic;
-    m_Size = size * sizeof(T);
+    m_Size = size;
     m_Data = NEW_ARRAY(T, size);
     if (data)
-        memcpy(m_Data, data, m_Size);
+        memcpy(m_Data, data, m_Size * sizeof(T));
     else
-        memset(m_Data, 0, m_Size);
+        memset(m_Data, 0, m_Size * sizeof(T));
     // Create GL buffers
     glGenBuffers(1, (GLuint *)&m_Ibo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Size, m_Data, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Size * sizeof(T), m_Data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
 
     return true;
 }
@@ -69,6 +69,17 @@ void Ibo<T>::Bind()
 template<class T>
 void Ibo<T>::Unbind()
 {
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Draw
+//
+//------------------------------------------------------------------------------------------------
+template<class T>
+void Ibo<T>::Draw(int type)
+{
+    glDrawElements(type, m_Size, GL_UNSIGNED_SHORT, 0);
 }
 
 

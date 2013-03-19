@@ -19,11 +19,13 @@ public:
     
     bool        Init    (int size, bool dynamic, T const *data);
     void        Free    ();
-    
-    T          *GetData () { return m_Data; }
 
     void        Bind    ();
     void        Unbind  ();
+    
+    void        Draw    (int type);
+
+    T          *GetData () { return m_Data; }
 
 private:
     

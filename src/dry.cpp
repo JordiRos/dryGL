@@ -9,19 +9,22 @@
 #include "dry.h"
 #include "freeimage/include/FreeImage.h"
 
+using namespace dry;
+
+
 // Private vars
-static string s_pathBundle  = "";
-static string s_pathDocpath = "";
-static int    s_logLevel    = 0;
+static string   s_PathBundle  = "";
+static string   s_PathDocpath = "";
+static LogLevel s_LogLevel    = LOG_FLAG_ALL;
 
 
 //------------------------------------------------------------------------------------------------
 // Init
 //
 //------------------------------------------------------------------------------------------------
-void dry::Init(int loglevel, const string &logfile)
+void dry::Init(LogLevel loglevel, const string &logfile)
 {
-    s_logLevel = loglevel;
+    s_LogLevel = loglevel;
     dry::Log(LOG_SYSTEM, "dryGL v%s", DRY_VERSION_STR);
     dry::Log(LOG_SYSTEM, "[dry] Initializing FreeImage %s...", FreeImage_GetVersion());
     FreeImage_Initialise();
@@ -41,9 +44,9 @@ void dry::Free()
 // Log
 //
 //------------------------------------------------------------------------------------------------
-void dry::Log(int loglevel, const char *log, ...)
+void dry::Log(LogLevel loglevel, const char *log, ...)
 {
-    if (s_logLevel & loglevel)
+    if (s_LogLevel & loglevel)
     {
         char tmp[65535];
         va_list  body;
@@ -62,8 +65,8 @@ void dry::Log(int loglevel, const char *log, ...)
 //------------------------------------------------------------------------------------------------
 void dry::SetPaths(const string &bundle, const string &docpath)
 {
-    s_pathBundle  = bundle;
-    s_pathDocpath = docpath;
+    s_PathBundle  = bundle;
+    s_PathDocpath = docpath;
 }
 
 
@@ -74,7 +77,7 @@ void dry::SetPaths(const string &bundle, const string &docpath)
 const string &dry::GetFilePath(const string &file)
 {
     static string res;
-    res = s_pathBundle + "/" + file;
+    res = s_PathBundle + "/" + file;
     return res;
 }
 
@@ -86,6 +89,6 @@ const string &dry::GetFilePath(const string &file)
 const string &dry::GetFilePath(const string &file, const string &docpath)
 {
     static string res;
-    res = s_pathDocpath + "/" + file;
+    res = s_PathDocpath + "/" + file;
     return res;
 }

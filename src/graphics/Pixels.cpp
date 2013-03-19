@@ -17,7 +17,7 @@ using namespace dry;
 // Init
 //
 //------------------------------------------------------------------------------------------------
-bool Pixels::Init(int width, int height, int format)
+bool Pixels::Init(int width, int height, PixelFormat format)
 {
     m_Width  = width;
     m_Height = height;
@@ -45,7 +45,7 @@ bool Pixels::InitWithFile(const string &file)
             int width  = FreeImage_GetWidth (fibmp);
             int height = FreeImage_GetHeight(fibmp);
             int bpp    = FreeImage_GetBPP   (fibmp) / 8;
-            int format = GetFormat(bpp);
+            PixelFormat format = GetFormat(bpp);
             if (format != -1)
             {
                 if (Init(width, height, format))
@@ -97,11 +97,13 @@ int Pixels::GetBPP() const
 {
     switch (m_Format)
     {
-        case DRY_FMT_ALPHA:  return 1;
-        case DRY_FMT_RGB24:  return 3;
-        case DRY_FMT_RGBA32: return 4;
+        case PF_ALPHA:   return 1;
+        case PF_RGB565:  return 2;
+        case PF_RGB24:   return 3;
+        case PF_RGBA32:  return 4;
+        case PF_UNKNOWN: return 0;
     }
-    return -1;
+    return 0;
 }
 
 
@@ -109,13 +111,13 @@ int Pixels::GetBPP() const
 // GetFormat
 //
 //------------------------------------------------------------------------------------------------
-int Pixels::GetFormat(int bpp) const
+PixelFormat Pixels::GetFormat(int bpp) const
 {
     switch (bpp)
     {
-        case 1: return DRY_FMT_ALPHA;
-        case 3: return DRY_FMT_RGB24;
-        case 4: return DRY_FMT_RGBA32;
+        case 1: return PF_ALPHA;
+        case 3: return PF_RGB24;
+        case 4: return PF_RGBA32;
     }
-    return -1;
+    return PF_UNKNOWN;
 }

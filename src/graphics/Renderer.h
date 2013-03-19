@@ -20,9 +20,12 @@ public:
     void            End         ();
 
     void            Clear       (int bits, Colorf const &color, float depth = 0.f, int stencil = 0);
-                                 
+    
+    void            SetBlendMode(BlendMode blend);
+    
 private:
-                                 
+    
+    BlendMode       m_BlendMode;
 };
 
 }

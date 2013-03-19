@@ -17,14 +17,14 @@ using namespace dry;
 // Init
 //
 //------------------------------------------------------------------------------------------------
-bool Texture::Init(int width, int height, int format, int target)
+bool Texture::Init(int width, int height, PixelFormat format, int target)
 {
     bool res = false;
     m_Width  = width;
     m_Height = height;
     m_Format = format;
     m_Target = target;
-    
+
 	glGenTextures(1, (GLuint *)&m_Handle);
     if (m_Handle != -1)
     {
@@ -48,7 +48,7 @@ bool Texture::Init(int width, int height, int format, int target)
 // InitWithDatanit
 //
 //------------------------------------------------------------------------------------------------
-bool Texture::InitWithData(int width, int height, int format, int target, const void *data)
+bool Texture::InitWithData(int width, int height, PixelFormat format, int target, const void *data)
 {
     Free();
     bool res = false;
@@ -135,12 +135,13 @@ int Texture::GetGLFormat() const
 {
     switch (m_Format)
     {
-        case DRY_FMT_ALPHA:  return GL_ALPHA;
-        case DRY_FMT_RGB565: return GL_RGB;
-        case DRY_FMT_RGB24:  return GL_RGB;
-        case DRY_FMT_RGBA32: return GL_RGBA;
+        case PF_ALPHA:   return GL_ALPHA;
+        case PF_RGB565:  return GL_RGB;
+        case PF_RGB24:   return GL_RGB;
+        case PF_RGBA32:  return GL_RGBA;
+        case PF_UNKNOWN: return 0;
     }
-    return -1;
+    return 0;
 }
 
 
@@ -152,10 +153,11 @@ int Texture::GetGLType() const
 {
     switch (m_Format)
     {
-        case DRY_FMT_ALPHA:  return GL_UNSIGNED_BYTE;
-        case DRY_FMT_RGB565: return GL_UNSIGNED_BYTE;
-        case DRY_FMT_RGB24:  return GL_UNSIGNED_BYTE;
-        case DRY_FMT_RGBA32: return GL_UNSIGNED_BYTE;
+        case PF_ALPHA:   return GL_UNSIGNED_BYTE;
+        case PF_RGB565:  return GL_UNSIGNED_BYTE;
+        case PF_RGB24:   return GL_UNSIGNED_BYTE;
+        case PF_RGBA32:  return GL_UNSIGNED_BYTE;
+        case PF_UNKNOWN: return 0;
     }
-    return -1;
+    return 0;
 }

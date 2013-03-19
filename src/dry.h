@@ -48,15 +48,6 @@ namespace dry {
 #define DRY_TARGET_IOS                  // DRY platform target: only iOS for now
 #define DRY_VERSION_STR     "0.1.0"     // DRY version
     
-// PixelFormat
-enum PixelFormat
-{
-    DRY_FMT_ALPHA,
-    DRY_FMT_RGB565,
-    DRY_FMT_RGB24,
-    DRY_FMT_RGBA32,
-};
-
 // AppParams
 struct AppParams
 {
@@ -72,6 +63,7 @@ struct AppParams
     bool Fullscreen;
 };
 
+// LogLevel
 enum LogLevel
 {
     LOG_SYSTEM  = 1<<0,
@@ -84,14 +76,36 @@ enum LogLevel
     LOG_FLAG_ALL = 0xFFFFFFFF,
 };
     
-void            Init        (int loglevel, const string &logfile);
+void            Init        (LogLevel loglevel, const string &logfile);
 void            Free        ();
-void            Log         (int loglevel, const char *log, ...);
+void            Log         (LogLevel loglevel, const char *log, ...);
 void            SetPaths    (const string &bundle, const string &docpath);  // Set app paths
 const string   &GetFilePath (const string &file);                           // Main bundle path (read only)
 const string   &GetFilePath (const string &file, const string &docpath);    // Documents path (read/write)
 float           GetTime     ();                                             // Get system time
-    
+
+// PixelFormat
+enum PixelFormat
+{
+    PF_ALPHA,
+    PF_RGB565,
+    PF_RGB24,
+    PF_RGBA32,
+    PF_UNKNOWN = 0xFFFFFFFF,
+};
+
+// BlendMode
+enum BlendMode
+{
+    BLEND_ALPHA,
+    BLEND_ADD,
+    BLEND_PMALPHA,
+    BLEND_PMADD,
+    BLEND_SCREEN,
+    BLEND_MULTIPLY,
+    BLEND_UNKNOWN = 0xFFFFFFFF,
+};
+
 }
 
 //------------------------------------------------------------------------------------------------

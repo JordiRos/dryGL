@@ -32,6 +32,8 @@ static GLuint uniform_texture;
 //------------------------------------------------------------------------------------------------
 void AppSimple::Init()
 {
+    AppiOS::Init();
+    
     // Vertices
     GLfloat cube_vertices[] = {
         // front
@@ -97,10 +99,10 @@ void AppSimple::Init()
     };
     
     // Vbo
-    _vbo_vertices.Init(sizeof(cube_vertices) / 3*sizeof(float), false, 3, (glm::vec3 *)cube_vertices);
-    _vbo_texcoords.Init(sizeof(cube_texcoords) / 2*sizeof(float), false, 2, (glm::vec2 *)cube_texcoords);
+    _vbo_vertices.Init(sizeof(cube_vertices) / 3*sizeof(GLfloat), false, 3, (glm::vec3 *)cube_vertices);
+    _vbo_texcoords.Init(sizeof(cube_texcoords) / 2*sizeof(GLfloat), false, 2, (glm::vec2 *)cube_texcoords);
     // Ibo
-    _ibo_elements.Init(sizeof(cube_elements) / sizeof(ushort), false, cube_elements);
+    _ibo_elements.Init(sizeof(cube_elements) / sizeof(GLushort), false, cube_elements);
     
     // Texture
     _pixels.InitWithFile(dry::GetFilePath("fire.jpg"));
@@ -144,13 +146,13 @@ void AppSimple::Update()
 //------------------------------------------------------------------------------------------------
 void AppSimple::Draw()
 {
+    glEnable(GL_DEPTH_TEST);
+
     GetRenderer()->Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, dry::Colorf(0.5f, 0.5f, 0.5f, 1.0f), 1.0f);
 
     // Alpha blendings
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+    GetRenderer()->SetBlendMode(dry::BLEND_ALPHA);
+    
     // Bind
     _shader.Bind();
     _texture.Bind(uniform_texture, 0);
@@ -167,7 +169,7 @@ void AppSimple::Draw()
     glUniformMatrix4fv(uniform_mvp, 1, GL_FALSE, glm::value_ptr(mvp));
 
     // Draw!
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
+    _ibo_elements.Draw(GL_TRIANGLES);
 
     // Unbind
     _vbo_vertices.Unbind(attr_position);

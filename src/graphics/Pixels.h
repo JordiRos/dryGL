@@ -22,20 +22,20 @@ public:
 
     int         GetWidth            () const { return m_Width;  }
     int         GetHeight           () const { return m_Height; }
-    int         GetFormat           () const { return m_Format; }
+    PixelFormat GetFormat           () const { return m_Format; }
     uchar      *GetData             () const { return m_Data;   }
     int         GetBPP              () const;
 
 private:
     
-    bool        Init                (int width, int height, int format);
-    int         GetFormat           (int bpp) const;
+    bool        Init                (int width, int height, PixelFormat format);
+    PixelFormat GetFormat           (int bpp) const;
 
 private:
     
     int         m_Width;
     int         m_Height;
-    int         m_Format;
+    PixelFormat m_Format;
     uchar      *m_Data;
 };
 

@@ -21,12 +21,12 @@ bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
 {
     m_Elements = elements;
     m_Dynamic  = dynamic;
-    m_Size = size * sizeof(T);
-    m_Data = NEW_ARRAY(T, size);
+    m_Size = size;
+    m_Data = NEW_ARRAY(T, m_Size);
     if (data)
-        memcpy(m_Data, data, m_Size);
+        memcpy(m_Data, data, m_Size * sizeof(T));
     else
-        memset(m_Data, 0, m_Size);
+        memset(m_Data, 0, m_Size * sizeof(T));
     // Create GL buffers
     glGenBuffers(1, (GLuint *)&m_Vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
