@@ -11,8 +11,7 @@
 class AppSimple : public dry::AppiOS
 {
 public:
-            AppSimple   (dry::AppParams const &params) : dry::AppiOS(params) {}
-    void    Init        ();
+            AppSimple   (dry::AppParams const &params);
     void    Update      ();
     void    Draw        ();
 };

@@ -35,6 +35,8 @@
         self.multipleTouchEnabled = true;
         self.opaque = YES;
         m_App = app;
+        m_Time = 0.f;
+        m_First = true;
 
         // Layer
         m_EAGLLayer = (CAEAGLLayer *)super.layer;
@@ -124,10 +126,15 @@
 //------------------------------------------------------------------------------------------------
 - (void)onDraw
 {
+    if (m_First)
+        m_App->GetTimer().Reset();
+    
     [self beginRender];
     if (m_App)
     {
-        m_App->Update();
+        float time = m_App->GetTimer().GetTime();
+        float delta = time - m_Time;
+        m_App->Update(time, delta);
         m_App->Draw();
     }
     [self endRender];
@@ -156,6 +163,8 @@
         [m_DisplayLink setFrameInterval:1];
         [m_DisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         m_Active = YES;
+        if (m_App)
+            m_App->GetTimer().Resume();
 	}
 }
 
@@ -171,6 +180,8 @@
         [m_DisplayLink invalidate];
 		m_DisplayLink = nil;
         m_Active = NO;
+        if (m_App)
+            m_App->GetTimer().Pause();
     }
 }
 

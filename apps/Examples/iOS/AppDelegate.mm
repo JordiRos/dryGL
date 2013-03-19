@@ -26,7 +26,6 @@
     
     // Create app with desired resolution and attach its viewController to rootViewController
     app = NEW AppSimple(dry::AppParams(frame.size.width*2,frame.size.height*2,false));
-    app->Init();
     self.window.rootViewController = (UIViewController *)app->GetViewController();
     
     return YES;

@@ -15,9 +15,6 @@ class AppiOS : public App
 public:
                         AppiOS              (AppParams const &params);
 
-	virtual void        Update              () {}
-	virtual void        Draw                () {}
-    
 	virtual void        TouchDown           (int x, int y, int id) {}
 	virtual void        TouchMoved          (int x, int y, int id) {}
 	virtual void        TouchUp             (int x, int y, int id) {}

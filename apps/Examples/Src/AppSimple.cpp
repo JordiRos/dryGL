@@ -27,13 +27,11 @@ static GLuint uniform_texture;
 
 
 //------------------------------------------------------------------------------------------------
-// Init
+// Constructor
 //
 //------------------------------------------------------------------------------------------------
-void AppSimple::Init()
+AppSimple::AppSimple(dry::AppParams const &params) : dry::AppiOS(params)
 {
-    AppiOS::Init();
-    
     // Vertices
     GLfloat cube_vertices[] = {
         // front

@@ -19,8 +19,7 @@ public:
                         App             (AppParams const &params);
     virtual            ~App             ();
 
-    virtual void        Init            () {}
-	virtual void        Update          () {}
+	virtual void        Update          (float time, float delta) {}
 	virtual void        Draw            () {}
 
 	virtual void        TouchDown       (int x, int y, int id) {}
