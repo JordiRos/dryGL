@@ -38,11 +38,12 @@ void QuadBatch::Init()
         2,  3,  0,
     };
     
-    // Vbo
+    // Buffers
     m_Vertices.Init(4, false, 3, (glm::vec3 *)vertices);
     m_TexCoords.Init(4, false, 2, (glm::vec2 *)texcoords);
-    // Ibo
     m_Indices.Init(6, false, indices);
+    // Shader
+    m_Shader.Init();
 }
 
 
@@ -59,15 +60,15 @@ void QuadBatch::Free()
 // Draw Texture
 //
 //------------------------------------------------------------------------------------------------
-void QuadBatch::Draw(Texture const *texture, Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h)
+void QuadBatch::DrawTexture(Texture *texture, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
-    shader->Bind();
-    texture->Bind(shader->GetUniformLocation("Texture"), 0);
+    m_Shader.Bind();
+    texture->Bind(m_Shader.GetUniformLocation("Texture"), 0);
 
-    Draw(camera, shader, transform, x,y, w,h);
+    DrawShader(&m_Shader, camera, transform, x,y, w,h);
 
     texture->Unbind();
-    shader->Unbind();
+    m_Shader.Unbind();
 }
 
 
@@ -75,23 +76,23 @@ void QuadBatch::Draw(Texture const *texture, Camera const *camera, Shader *shade
 // Draw Fbo
 //
 //------------------------------------------------------------------------------------------------
-void QuadBatch::Draw(Fbo const *fbo, Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h)
+void QuadBatch::DrawFbo(Fbo *fbo, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
-    shader->Bind();
-    fbo->BindFboColor(shader->GetUniformLocation("Texture"), 0);
+    m_Shader.Bind();
+    fbo->BindFboColor(m_Shader.GetUniformLocation("Texture"), 0);
 
-    Draw(camera, shader, transform, x,y, w,h);
+    DrawShader(&m_Shader, camera, transform, x,y, w,h);
 
     fbo->UnbindFboColor();
-    shader->Unbind();
+    m_Shader.Unbind();
 }
 
 
 //------------------------------------------------------------------------------------------------
-// Draw internal
+// Draw a shader
 //
 //------------------------------------------------------------------------------------------------
-void QuadBatch::Draw(Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h)
+void QuadBatch::DrawShader(Shader *shader, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
     // Attributes/Uniforms
     int aPosition = shader->GetAttribLocation ("Position");
@@ -111,7 +112,7 @@ void QuadBatch::Draw(Camera const *camera, Shader *shader, glm::mat4 const &tran
     m_Indices.Bind();
 
     // Draw!
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, 0);
+    m_Indices.Draw(GL_TRIANGLES);
     
     // Unbind
     m_Vertices.Unbind(aPosition);

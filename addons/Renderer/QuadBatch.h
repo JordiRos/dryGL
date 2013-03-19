@@ -19,18 +19,19 @@ public:
     void            Init            ();
     void            Free            ();
     
-    void            Draw            (Texture const *texture, Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h);
-    void            Draw            (Fbo     const *fbo,     Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h);
+    void            DrawTexture     (Texture *texture, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h);
+    void            DrawFbo         (Fbo     *fbo,     Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h);
+    void            DrawShader      (Shader  *shader,  Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h);
 
 private:
     
-    void            Draw            (Camera const *camera, Shader *shader, glm::mat4 const &transform, float x, float y, float w, float h);
 
 private:
     
     Vbo<glm::vec3>  m_Vertices;
     Vbo<glm::vec2>  m_TexCoords;
     Ibo<ushort>     m_Indices;
+    ShaderBasic     m_Shader;
 };
 
 }
