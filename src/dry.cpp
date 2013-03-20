@@ -7,7 +7,6 @@
 //
 
 #include "dry.h"
-#include "freeimage/include/FreeImage.h"
 
 using namespace dry;
 
@@ -26,8 +25,6 @@ void dry::Init(LogLevel loglevel, const string &logfile)
 {
     s_LogLevel = loglevel;
     dry::Log(LOG_SYSTEM, "dryGL v%s", DRY_VERSION_STR);
-    dry::Log(LOG_SYSTEM, "[dry] Initializing FreeImage %s...", FreeImage_GetVersion());
-    FreeImage_Initialise();
 }
 
 

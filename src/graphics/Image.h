@@ -1,5 +1,5 @@
 //
-//  Pixels.h
+//  Image.h
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -10,13 +10,13 @@
 
 namespace dry {
     
-class Pixels
+class Image
 {
 public:
-                Pixels              () { m_Data = NULL; }
-               ~Pixels              () { Free(); }
+                Image               () { m_Data = NULL; }
+               ~Image               () { Free(); }
 
-    bool        InitWithFile        (const string &file);
+    bool        InitWithData        (int width, int height, PixelFormat format, const void *data);
     void        Free                ();
     void        Update              (const void *data);
 
@@ -28,7 +28,6 @@ public:
 
 private:
     
-    bool        Init                (int width, int height, PixelFormat format);
     PixelFormat GetFormat           (int bpp) const;
 
 private:

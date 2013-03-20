@@ -20,10 +20,8 @@
 		BC6F4DA916F1D90600B094F0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4D9E16F1D90600B094F0 /* main.mm */; };
 		BC6F4DBD16F1DD8000B094F0 /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4DBC16F1DD8000B094F0 /* fire.jpg */; };
 		BC6F4DC816F2210600B094F0 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC716F220C500B094F0 /* libdryGL-iOS.a */; };
-		BC6F4DCA16F2226E00B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC916F2226E00B094F0 /* freeimage.a */; };
-		BC6F4DCC16F2227900B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DCB16F2227900B094F0 /* freeimage.a */; };
 		BC91903E16F9EA7300507A00 /* AppVbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91903C16F9EA7300507A00 /* AppVbo.cpp */; };
-		BC91904416FA33C800507A00 /* ImageLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC91904316FA33C800507A00 /* ImageLoader.mm */; };
+		BC91904916FA510C00507A00 /* ImageLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC91904816FA510C00507A00 /* ImageLoader.mm */; };
 		BCF38C9316EE417800073C11 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C9116EE417800073C11 /* QuadBatch.cpp */; };
 /* End PBXBuildFile section */
 
@@ -56,12 +54,10 @@
 		BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "dryGL-iOS.xcodeproj"; path = "../../src/dryGL-iOS.xcodeproj"; sourceTree = "<group>"; };
 		BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libdryGL-iOS.a"; path = "../../src/build/Release-iphoneos/libdryGL-iOS.a"; sourceTree = "<group>"; };
 		BC6F4DBC16F1DD8000B094F0 /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fire.jpg; path = Data/fire.jpg; sourceTree = "<group>"; };
-		BC6F4DC916F2226E00B094F0 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/ios/freeimage.a; sourceTree = "<group>"; };
-		BC6F4DCB16F2227900B094F0 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
 		BC91903C16F9EA7300507A00 /* AppVbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppVbo.cpp; path = src/AppVbo.cpp; sourceTree = SOURCE_ROOT; };
 		BC91903D16F9EA7300507A00 /* AppVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVbo.h; path = src/AppVbo.h; sourceTree = SOURCE_ROOT; };
-		BC91904216FA33C800507A00 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
-		BC91904316FA33C800507A00 /* ImageLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageLoader.mm; sourceTree = "<group>"; };
+		BC91904716FA510C00507A00 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
+		BC91904816FA510C00507A00 /* ImageLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageLoader.mm; sourceTree = "<group>"; };
 		BCF38C9116EE417800073C11 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCF38C9216EE417800073C11 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,8 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC6F4DCC16F2227900B094F0 /* freeimage.a in Frameworks */,
-				BC6F4DCA16F2226E00B094F0 /* freeimage.a in Frameworks */,
 				BC6F4DC816F2210600B094F0 /* libdryGL-iOS.a in Frameworks */,
 				BC6B1F8016D03284008B939C /* QuartzCore.framework in Frameworks */,
 				BC6B1F7E16D03229008B939C /* OpenGLES.framework in Frameworks */,
@@ -110,8 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */,
-				BC6F4DCB16F2227900B094F0 /* freeimage.a */,
-				BC6F4DC916F2226E00B094F0 /* freeimage.a */,
 				BC34D2EB16CE289A00B634C0 /* UIKit.framework */,
 				BC34D2ED16CE289A00B634C0 /* Foundation.framework */,
 				BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */,
@@ -156,11 +148,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BC91904116FA33C800507A00 /* ios */ = {
+		BC91904616FA510C00507A00 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				BC91904216FA33C800507A00 /* ImageLoader.h */,
-				BC91904316FA33C800507A00 /* ImageLoader.mm */,
+				BC91904816FA510C00507A00 /* ImageLoader.mm */,
+				BC91904716FA510C00507A00 /* ImageLoader.h */,
 			);
 			name = ios;
 			path = ../../addons/ios;
@@ -187,7 +179,7 @@
 		BCF38C9516EE417E00073C11 /* Addons */ = {
 			isa = PBXGroup;
 			children = (
-				BC91904116FA33C800507A00 /* ios */,
+				BC91904616FA510C00507A00 /* ios */,
 				BCF38C9016EE417800073C11 /* renderer */,
 			);
 			name = Addons;
@@ -279,7 +271,7 @@
 				BC6F4DA216F1D90600B094F0 /* AppDelegate.mm in Sources */,
 				BC6F4DA916F1D90600B094F0 /* main.mm in Sources */,
 				BC91903E16F9EA7300507A00 /* AppVbo.cpp in Sources */,
-				BC91904416FA33C800507A00 /* ImageLoader.mm in Sources */,
+				BC91904916FA510C00507A00 /* ImageLoader.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

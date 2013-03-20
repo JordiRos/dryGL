@@ -18,7 +18,7 @@
 		BCF38C8016ED197100073C11 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6116ED197100073C11 /* Camera.cpp */; };
 		BCF38C8116ED197100073C11 /* CameraOrthogonal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6316ED197100073C11 /* CameraOrthogonal.cpp */; };
 		BCF38C8216ED197100073C11 /* CameraPerspective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6516ED197100073C11 /* CameraPerspective.cpp */; };
-		BCF38C8316ED197100073C11 /* Pixels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6916ED197100073C11 /* Pixels.cpp */; };
+		BCF38C8316ED197100073C11 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6916ED197100073C11 /* Image.cpp */; };
 		BCF38C8416ED197100073C11 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6B16ED197100073C11 /* Renderer.cpp */; };
 		BCF38C8516ED197100073C11 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6D16ED197100073C11 /* Shader.cpp */; };
 		BCF38C8616ED197100073C11 /* ShaderBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6F16ED197100073C11 /* ShaderBasic.cpp */; };
@@ -47,7 +47,7 @@
 		BC6B217B16D13759008B939C /* dry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.h; sourceTree = "<group>"; };
 		BC6B219A16D13810008B939C /* dry.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.pch; sourceTree = "<group>"; };
 		BC91249E16DFA8B900E7F493 /* dry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dry.cpp; sourceTree = "<group>"; };
-		BCD9FE4716F3924F00C38D61 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		BC91904B16FA641D00507A00 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vbo.cpp; sourceTree = "<group>"; };
 		BCD9FE4C16F3DA3B00C38D61 /* Vbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vbo.h; sourceTree = "<group>"; };
 		BCD9FE4E16F5258600C38D61 /* Ibo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ibo.cpp; sourceTree = "<group>"; };
@@ -67,8 +67,8 @@
 		BCF38C6416ED197100073C11 /* CameraOrthogonal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOrthogonal.h; sourceTree = "<group>"; };
 		BCF38C6516ED197100073C11 /* CameraPerspective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraPerspective.cpp; sourceTree = "<group>"; };
 		BCF38C6616ED197100073C11 /* CameraPerspective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPerspective.h; sourceTree = "<group>"; };
-		BCF38C6916ED197100073C11 /* Pixels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pixels.cpp; sourceTree = "<group>"; };
-		BCF38C6A16ED197100073C11 /* Pixels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pixels.h; sourceTree = "<group>"; };
+		BCF38C6916ED197100073C11 /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
+		BCF38C6A16ED197100073C11 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		BCF38C6B16ED197100073C11 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		BCF38C6C16ED197100073C11 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		BCF38C6D16ED197100073C11 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
@@ -165,11 +165,10 @@
 		BCF38C6716ED197100073C11 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
-				BCD9FE4716F3924F00C38D61 /* Color.h */,
-				BCF38C6916ED197100073C11 /* Pixels.cpp */,
-				BCF38C6A16ED197100073C11 /* Pixels.h */,
 				BCF38C6B16ED197100073C11 /* Renderer.cpp */,
 				BCF38C6C16ED197100073C11 /* Renderer.h */,
+				BCF38C6916ED197100073C11 /* Image.cpp */,
+				BCF38C6A16ED197100073C11 /* Image.h */,
 				BCF38C6D16ED197100073C11 /* Shader.cpp */,
 				BCF38C6E16ED197100073C11 /* Shader.h */,
 				BCF38C6F16ED197100073C11 /* ShaderBasic.cpp */,
@@ -204,10 +203,11 @@
 		BCF38C7B16ED197100073C11 /* system */ = {
 			isa = PBXGroup;
 			children = (
+				BCF38C7F16ED197100073C11 /* Timer.h */,
+				BCF38C7E16ED197100073C11 /* Random.h */,
+				BC91904B16FA641D00507A00 /* Color.h */,
 				BCF38C7C16ED197100073C11 /* App.cpp */,
 				BCF38C7D16ED197100073C11 /* App.h */,
-				BCF38C7E16ED197100073C11 /* Random.h */,
-				BCF38C7F16ED197100073C11 /* Timer.h */,
 			);
 			path = system;
 			sourceTree = "<group>";
@@ -267,7 +267,7 @@
 				BCF38C8016ED197100073C11 /* Camera.cpp in Sources */,
 				BCF38C8116ED197100073C11 /* CameraOrthogonal.cpp in Sources */,
 				BCF38C8216ED197100073C11 /* CameraPerspective.cpp in Sources */,
-				BCF38C8316ED197100073C11 /* Pixels.cpp in Sources */,
+				BCF38C8316ED197100073C11 /* Image.cpp in Sources */,
 				BCF38C8416ED197100073C11 /* Renderer.cpp in Sources */,
 				BCF38C8516ED197100073C11 /* Shader.cpp in Sources */,
 				BCF38C8616ED197100073C11 /* ShaderBasic.cpp in Sources */,

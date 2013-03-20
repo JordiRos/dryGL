@@ -8,6 +8,8 @@
 
 #pragma once
 
+namespace dry {
+    
 class Timer
 {
 public:
@@ -52,3 +54,5 @@ public:
     float   m_TimePause;
     bool    m_Paused;
 };
+
+}

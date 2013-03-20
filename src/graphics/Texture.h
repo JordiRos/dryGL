@@ -18,8 +18,8 @@ public:
                 Texture         () { m_Handle = -1; }
                ~Texture         () { Free(); }
 
-    bool        InitWithData    (int width, int height, PixelFormat format, int target, const void *data);
-    bool        InitWithPixels  (const Pixels &pixels);
+    bool        InitWithData    (int width, int height, PixelFormat format, const void *data);
+    bool        InitWithImage   (const Image &img);
     void        Free            ();
 
     void        Update          (const void *data);
@@ -29,7 +29,6 @@ public:
     
 private:
     
-    bool        Init            (int width, int height, PixelFormat format, int target);
     int         GetGLFormat     () const;
     int         GetGLType       () const;
     

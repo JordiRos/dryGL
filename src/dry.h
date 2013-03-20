@@ -90,7 +90,7 @@ enum PixelFormat
     PF_ALPHA,
     PF_RGB565,
     PF_RGB24,
-    PF_RGBA32,
+    PF_ARGB32,
     PF_UNKNOWN = 0xFFFFFFFF,
 };
 
@@ -119,15 +119,15 @@ enum BlendMode
 // System
 #include "system/Timer.h"
 #include "system/Random.h"
+#include "system/Color.h"
 #include "system/App.h"
 
 // Graphics
-#include "graphics/Color.h"
 #include "graphics/Renderer.h"
+#include "graphics/Image.h"
 #include "graphics/Texture.h"
 #include "graphics/Shader.h"
 #include "graphics/ShaderBasic.h"
-#include "graphics/Pixels.h"
 #include "graphics/Fbo.h"
 #include "graphics/Vbo.h"
 #include "graphics/Ibo.h"
