@@ -53,13 +53,7 @@
         int w = app->GetParams().Width;
         int h = app->GetParams().Height;
         // Retina?
-        m_ScaleFactor = 1;
-        if ((w == 640  && h == 960)  || // iPhone4 Retina
-            (w == 640  && h == 1136) || // iPhone5 Retina
-            (w == 2048 && h == 1536))   // iPad3 Retina
-        {
-            m_ScaleFactor = 2;
-        }
+        m_ScaleFactor = app->GetParams().Retina ? 2 : 1;
         self.contentScaleFactor = m_ScaleFactor;
         m_EAGLLayer.contentsScale = m_ScaleFactor;
         dry::Log(dry::LOG_SYSTEM, "[View] Initializing EAGLLayer view: %dx%d (scale %.2f)", w,h, m_ScaleFactor);

@@ -68,7 +68,7 @@ void dry::SetPaths(const string &bundle, const string &docpath)
 
 
 //------------------------------------------------------------------------------------------------
-// GetPathFile
+// GetFilePath
 //
 //------------------------------------------------------------------------------------------------
 const string &dry::GetFilePath(const string &file)
@@ -80,7 +80,7 @@ const string &dry::GetFilePath(const string &file)
 
 
 //------------------------------------------------------------------------------------------------
-// GetPathFile
+// GetFilePath
 //
 //------------------------------------------------------------------------------------------------
 const string &dry::GetFilePath(const string &file, const string &docpath)

@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../src/ios/View.mm"
-         timestampString = "385412234.669925"
+         timestampString = "385509105.456748"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "68"
-         endingLineNumber = "68"
+         startingLineNumber = "62"
+         endingLineNumber = "62"
          landmarkName = "-initWithFrame:app:"
          landmarkType = "5">
       </FileBreakpoint>

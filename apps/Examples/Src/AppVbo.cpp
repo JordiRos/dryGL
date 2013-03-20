@@ -114,8 +114,6 @@ AppVbo::AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
     // Camera
     int w = GetParams().Width;
     int h = GetParams().Height;
-
-    // Perspective
     _camera.Init(45.f, (float)w / h, 0.1f, 100.f);
     _camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 

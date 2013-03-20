@@ -52,15 +52,15 @@ namespace dry {
 struct AppParams
 {
     AppParams() {}
-    AppParams(int width, int height, bool fullscreen)
+    AppParams(int width, int height, bool retina)
     {
         Width      = width;
         Height     = height;
-        Fullscreen = fullscreen;
+        Retina     = retina;
     }
     int  Width;
     int  Height;
-    bool Fullscreen;
+    bool Retina;
 };
 
 // LogLevel
