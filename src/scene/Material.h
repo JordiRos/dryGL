@@ -15,14 +15,15 @@ class Material
 public:
                     Material        ();
                    ~Material        () { Free(); }
-    
-    bool            Init            ();
+
+    bool            Init            (Shader *shader);
     void            Free            ();
 
     void            Bind            ();
 
 protected:
 
+    Shader         *m_Shader;
 };
     
 }

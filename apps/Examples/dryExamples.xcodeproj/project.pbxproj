@@ -18,11 +18,11 @@
 		BC6F4DA516F1D90600B094F0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9816F1D90600B094F0 /* Default@2x.png */; };
 		BC6F4DA616F1D90600B094F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9916F1D90600B094F0 /* InfoPlist.strings */; };
 		BC6F4DA916F1D90600B094F0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4D9E16F1D90600B094F0 /* main.mm */; };
-		BC6F4DAA16F1D90600B094F0 /* AppSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4DA016F1D90600B094F0 /* AppSimple.cpp */; };
 		BC6F4DBD16F1DD8000B094F0 /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4DBC16F1DD8000B094F0 /* fire.jpg */; };
 		BC6F4DC816F2210600B094F0 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC716F220C500B094F0 /* libdryGL-iOS.a */; };
 		BC6F4DCA16F2226E00B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC916F2226E00B094F0 /* freeimage.a */; };
 		BC6F4DCC16F2227900B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DCB16F2227900B094F0 /* freeimage.a */; };
+		BC91903E16F9EA7300507A00 /* AppVbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91903C16F9EA7300507A00 /* AppVbo.cpp */; };
 		BCF38C9316EE417800073C11 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C9116EE417800073C11 /* QuadBatch.cpp */; };
 /* End PBXBuildFile section */
 
@@ -52,13 +52,13 @@
 		BC6F4D9B16F1D90600B094F0 /* dry.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.pch; sourceTree = "<group>"; };
 		BC6F4D9D16F1D90600B094F0 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		BC6F4D9E16F1D90600B094F0 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		BC6F4DA016F1D90600B094F0 /* AppSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppSimple.cpp; sourceTree = "<group>"; };
-		BC6F4DA116F1D90600B094F0 /* AppSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSimple.h; sourceTree = "<group>"; };
 		BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "dryGL-iOS.xcodeproj"; path = "../../src/dryGL-iOS.xcodeproj"; sourceTree = "<group>"; };
 		BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libdryGL-iOS.a"; path = "../../src/build/Release-iphoneos/libdryGL-iOS.a"; sourceTree = "<group>"; };
 		BC6F4DBC16F1DD8000B094F0 /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fire.jpg; path = Data/fire.jpg; sourceTree = "<group>"; };
 		BC6F4DC916F2226E00B094F0 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/ios/freeimage.a; sourceTree = "<group>"; };
 		BC6F4DCB16F2227900B094F0 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
+		BC91903C16F9EA7300507A00 /* AppVbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppVbo.cpp; path = src/AppVbo.cpp; sourceTree = SOURCE_ROOT; };
+		BC91903D16F9EA7300507A00 /* AppVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVbo.h; path = src/AppVbo.h; sourceTree = SOURCE_ROOT; };
 		BCF38C9116EE417800073C11 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCF38C9216EE417800073C11 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,8 +138,8 @@
 		BC6F4D9F16F1D90600B094F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				BC6F4DA016F1D90600B094F0 /* AppSimple.cpp */,
-				BC6F4DA116F1D90600B094F0 /* AppSimple.h */,
+				BC91903C16F9EA7300507A00 /* AppVbo.cpp */,
+				BC91903D16F9EA7300507A00 /* AppVbo.h */,
 			);
 			name = src;
 			path = Src;
@@ -264,7 +264,7 @@
 				BCF38C9316EE417800073C11 /* QuadBatch.cpp in Sources */,
 				BC6F4DA216F1D90600B094F0 /* AppDelegate.mm in Sources */,
 				BC6F4DA916F1D90600B094F0 /* main.mm in Sources */,
-				BC6F4DAA16F1D90600B094F0 /* AppSimple.cpp in Sources */,
+				BC91903E16F9EA7300507A00 /* AppVbo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

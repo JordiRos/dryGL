@@ -23,6 +23,7 @@ bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
     m_Dynamic  = dynamic;
     m_Size = size;
     m_Data = NEW_ARRAY(T, m_Size);
+    m_Attribute = 0;
     if (data)
         memcpy(m_Data, data, m_Size * sizeof(T));
     else
@@ -57,14 +58,15 @@ void Vbo<T>::Free()
 //
 //------------------------------------------------------------------------------------------------
 template<class T>
-void Vbo<T>::Bind(int attr, bool forceUpdate)
+void Vbo<T>::Bind(int attribute, bool forceUpdate)
 {
     glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
     if (m_Dynamic || forceUpdate)
-        glBufferData(GL_ARRAY_BUFFER, m_Size, m_Data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
-    // Send to attribute
-    glEnableVertexAttribArray(attr);
-    glVertexAttribPointer(attr, m_Elements, GL_FLOAT, GL_FALSE, 0, 0);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, m_Size, m_Data);
+    // Send data
+    m_Attribute = attribute;
+    glEnableVertexAttribArray(attribute);
+    glVertexAttribPointer(attribute, m_Elements, GL_FLOAT, GL_FALSE, 0, 0);
 }
 
 
@@ -73,10 +75,9 @@ void Vbo<T>::Bind(int attr, bool forceUpdate)
 //
 //------------------------------------------------------------------------------------------------
 template<class T>
-void Vbo<T>::Unbind(int attr)
+void Vbo<T>::Unbind()
 {
-    // Clear attribute
-    glEnableVertexAttribArray(attr);
+    glDisableVertexAttribArray(m_Attribute);
 }
 
 

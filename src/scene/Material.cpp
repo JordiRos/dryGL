@@ -18,6 +18,7 @@ using namespace dry;
 //------------------------------------------------------------------------------------------------
 Material::Material()
 {
+    m_Shader = NULL;
 }
 
 
@@ -25,9 +26,21 @@ Material::Material()
 // Init
 //
 //------------------------------------------------------------------------------------------------
-bool Material::Init()
+bool Material::Init(Shader *shader)
 {
-    return true;
+    m_Shader = shader;
+    int uniforms = 0;
+    glGetProgramiv(m_Shader->GetHandleProgram(), GL_ACTIVE_UNIFORMS, &uniforms);
+    for (int i = 0; i < uniforms; ++i)
+    {
+        int len = 0;
+        int num = 0;
+        char name[100];
+        GLenum type = GL_ZERO;
+        glGetActiveUniform(m_Shader->GetHandleProgram(), (GLuint)i, sizeof(name)-1, &len, &num, &type, name);
+        name[len] = 0;
+        GLuint location = glGetUniformLocation(m_Shader->GetHandleProgram(), name);
+    }
 }
 
 
@@ -37,6 +50,7 @@ bool Material::Init()
 //------------------------------------------------------------------------------------------------
 void Material::Free()
 {
+    m_Shader = NULL;
 }
 
 

@@ -69,6 +69,7 @@ void Ibo<T>::Bind()
 template<class T>
 void Ibo<T>::Unbind()
 {
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 

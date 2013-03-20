@@ -115,8 +115,8 @@ void QuadBatch::DrawShader(Shader *shader, Camera const *camera, glm::mat4 const
     m_Indices.Draw(GL_TRIANGLES);
     
     // Unbind
-    m_Vertices.Unbind(aPosition);
-    m_TexCoords.Unbind(aTexCoord);
+    m_Vertices.Unbind();
+    m_TexCoords.Unbind();
     m_Indices.Unbind();
 }
 

@@ -22,8 +22,8 @@ public:
     
     T          *GetData () { return m_Data; }
 
-    void        Bind    (int attr, bool forceUpdate = false);
-    void        Unbind  (int attr);
+    void        Bind    (int attribute, bool forceUpdate = false);
+    void        Unbind  ();
 
 private:
     
@@ -31,6 +31,7 @@ private:
     bool        m_Dynamic;
     int         m_Size;
     int         m_Vbo;
+    int         m_Attribute;
     T          *m_Data;
 };
 

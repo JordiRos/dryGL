@@ -10,6 +10,7 @@
 
 namespace dry {
 
+// Byte Color
 struct Color {
     Color() { Set(0); }
     Color(unsigned int color) { Set(color); }
@@ -37,6 +38,7 @@ struct Color {
     unsigned char a;
 };
 
+// Float Color
 struct Colorf {
     Colorf() { Set(0.f,0.f,0.f,0.f); }
     Colorf(float _r, float _g, float _b, float _a) { Set(_r,_g,_b,_a); }
@@ -49,9 +51,9 @@ struct Colorf {
         a = _a;
     }
     // Data
-    float b;
-    float g;
     float r;
+    float g;
+    float b;
     float a;
 };
 
