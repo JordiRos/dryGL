@@ -18,7 +18,7 @@ Current status
 - Addons/QuadBatch / TODO: Make it a real quadbatch pipeline
 
 Examples:
-- AppSimple / Rotating 3D cube
+- AppFbo: Use of Vbo / Ibo for rendering a cube
 
 Roadmap
 =======
