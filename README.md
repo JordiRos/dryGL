@@ -19,7 +19,7 @@ Current features
 - Addons/QuadBatch / TODO: Make it a real quadbatch pipeline
 
 Examples:
-- AppFbo: Use of Vbo / Ibo for rendering a cube, ImageLoader for loading images
+- AppFbo: Use of Vbo / Ibo for rendering a cube
 
 Roadmap
 =======
