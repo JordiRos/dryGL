@@ -23,6 +23,7 @@
 		BC6F4DCA16F2226E00B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC916F2226E00B094F0 /* freeimage.a */; };
 		BC6F4DCC16F2227900B094F0 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DCB16F2227900B094F0 /* freeimage.a */; };
 		BC91903E16F9EA7300507A00 /* AppVbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91903C16F9EA7300507A00 /* AppVbo.cpp */; };
+		BC91904416FA33C800507A00 /* ImageLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC91904316FA33C800507A00 /* ImageLoader.mm */; };
 		BCF38C9316EE417800073C11 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C9116EE417800073C11 /* QuadBatch.cpp */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,8 @@
 		BC6F4DCB16F2227900B094F0 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../libs/freeimage/lib/osx/freeimage.a; sourceTree = "<group>"; };
 		BC91903C16F9EA7300507A00 /* AppVbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppVbo.cpp; path = src/AppVbo.cpp; sourceTree = SOURCE_ROOT; };
 		BC91903D16F9EA7300507A00 /* AppVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVbo.h; path = src/AppVbo.h; sourceTree = SOURCE_ROOT; };
+		BC91904216FA33C800507A00 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
+		BC91904316FA33C800507A00 /* ImageLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageLoader.mm; sourceTree = "<group>"; };
 		BCF38C9116EE417800073C11 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCF38C9216EE417800073C11 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +156,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		BC91904116FA33C800507A00 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				BC91904216FA33C800507A00 /* ImageLoader.h */,
+				BC91904316FA33C800507A00 /* ImageLoader.mm */,
+			);
+			name = ios;
+			path = ../../addons/ios;
+			sourceTree = "<group>";
+		};
 		BCB14A0B16D7CB0700593177 /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,20 +174,21 @@
 			name = data;
 			sourceTree = "<group>";
 		};
-		BCF38C9016EE417800073C11 /* Renderer */ = {
+		BCF38C9016EE417800073C11 /* renderer */ = {
 			isa = PBXGroup;
 			children = (
 				BCF38C9116EE417800073C11 /* QuadBatch.cpp */,
 				BCF38C9216EE417800073C11 /* QuadBatch.h */,
 			);
-			name = Renderer;
+			name = renderer;
 			path = ../../addons/Renderer;
 			sourceTree = "<group>";
 		};
 		BCF38C9516EE417E00073C11 /* Addons */ = {
 			isa = PBXGroup;
 			children = (
-				BCF38C9016EE417800073C11 /* Renderer */,
+				BC91904116FA33C800507A00 /* ios */,
+				BCF38C9016EE417800073C11 /* renderer */,
 			);
 			name = Addons;
 			sourceTree = "<group>";
@@ -265,6 +279,7 @@
 				BC6F4DA216F1D90600B094F0 /* AppDelegate.mm in Sources */,
 				BC6F4DA916F1D90600B094F0 /* main.mm in Sources */,
 				BC91903E16F9EA7300507A00 /* AppVbo.cpp in Sources */,
+				BC91904416FA33C800507A00 /* ImageLoader.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
