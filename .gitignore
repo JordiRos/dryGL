@@ -1,7 +1,3 @@
 *.DS_Store
-*.xcworkspacedata
-apps/Hello World iOS/Hello World iOS.xcodeproj/project.xcworkspace/xcuserdata/jordiros.xcuserdatad/UserInterfaceState.xcuserstate
-apps/Hello World iOS/Hello World iOS.xcodeproj/project.xcworkspace/xcuserdata/jordiros.xcuserdatad/WorkspaceSettings.xcsettings
-apps/Hello World iOS/Hello World iOS.xcodeproj/xcuserdata/jordiros.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
-apps/Hello World iOS/Hello World iOS.xcodeproj/xcuserdata/jordiros.xcuserdatad/xcschemes/DryGL Hello World.xcscheme
-apps/Hello World iOS/Hello World iOS.xcodeproj/xcuserdata/jordiros.xcuserdatad/xcschemes/xcschememanagement.plist
+project.xcworkspace
+xcuserdata
