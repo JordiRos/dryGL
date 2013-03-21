@@ -1,5 +1,5 @@
 //
-//  AppSimple.h
+//  AppFbo.h
 //  dryExamples
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -8,11 +8,10 @@
 
 #import "dry.h"
 
-class AppSimple : public dry::AppiOS
+class AppFbo : public dry::AppiOS
 {
 public:
-            AppSimple   (dry::AppParams const &params) : dry::AppiOS(params) {}
-    void    Init        ();
-    void    Update      ();
+            AppFbo      (dry::AppParams const &params);
+    void    Update      (float time, float delta);
     void    Draw        ();
 };

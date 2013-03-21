@@ -31,7 +31,7 @@ bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
     // Create GL buffers
     glGenBuffers(1, (GLuint *)&m_Vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
-    glBufferData(GL_ARRAY_BUFFER, m_Size, m_Data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, m_Size * sizeof(T), m_Data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
 
     return true;
 }
@@ -77,7 +77,7 @@ void Vbo<T>::Bind(int attribute, bool forceUpdate)
 template<class T>
 void Vbo<T>::Unbind()
 {
-    glDisableVertexAttribArray(m_Attribute);
+    glEnableVertexAttribArray(0);
 }
 
 

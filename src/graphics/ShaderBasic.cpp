@@ -17,26 +17,28 @@ using namespace dry;
 // Program
 //------------------------------------------------------------------------------------------------
 static const char *s_VS =
+    "precision mediump float;"
+
     "attribute vec3 Position;"
     "attribute vec2 TexCoord;"
-    "varying vec2 vTexCoord;"
     "uniform mat4 ModelViewProjection;"
+    "varying vec2 vUv;"
 
     "void main(void)"
     "{"
         "gl_Position = ModelViewProjection * vec4(Position, 1.0);"
-        "vTexCoord = TexCoord;"
+        "vUv = TexCoord;"
     "}";
 
 static const char *s_FS =
     "precision mediump float;"
 
-    "varying vec2 vTexCoord;"
     "uniform sampler2D Texture;"
+    "varying vec2 vUv;"
 
     "void main(void)"
     "{"
-        "gl_FragColor = texture2D(Texture, vTexCoord);"
+        "gl_FragColor = texture2D(Texture, vUv);"
     "}";
 
 

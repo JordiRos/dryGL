@@ -12,12 +12,37 @@
 using namespace dry;
 
 
+bool ReadFileContents(const string &filename, char **buffer)
+{
+    FILE *file = fopen(filename.c_str(), "r");
+    if (file)
+    {
+        fseek(file, 0, SEEK_END);
+        int size = ftell(file);
+        fseek(file, 0, SEEK_SET);
+        *buffer = NEW_ARRAY(char, size);
+        fread(*buffer, 1, size, file);
+        (*buffer)[size] = 0;
+        fclose(file);
+        return true;
+    }
+    return false;
+}
+
+
 //------------------------------------------------------------------------------------------------
 // InitWithFile
 //
 //------------------------------------------------------------------------------------------------
 bool Shader::InitWithFile(const string &vs, const string &fs)
 {
+    bool res = false;
+    char *bvs = NULL;
+    char *bfs = NULL;
+    if (ReadFileContents(vs, &bvs) && ReadFileContents(fs, &bfs))
+        res = InitWithProgram(bvs, bfs);
+    DISPOSE_ARRAY(bvs);
+    DISPOSE_ARRAY(bfs);
     return false;
 }
 
@@ -149,7 +174,10 @@ void Shader::LogProgramError(int handle, const string &info)
 //------------------------------------------------------------------------------------------------
 int Shader::GetAttribLocation(const char *name)
 {
-    return glGetAttribLocation(m_HandleProgram, name);
+    int attribute = glGetAttribLocation(m_HandleProgram, name);
+    if (attribute < 0)
+        dry::Log(LOG_WARNING, "[Shader] Can't find attribute %s", name);
+    return attribute;
 }
 
 
@@ -159,5 +187,8 @@ int Shader::GetAttribLocation(const char *name)
 //------------------------------------------------------------------------------------------------
 int Shader::GetUniformLocation(const char *name)
 {
-    return glGetUniformLocation(m_HandleProgram, name);
+    int uniform = glGetUniformLocation(m_HandleProgram, name);
+    if (uniform < 0)
+        dry::Log(LOG_WARNING, "[Shader] Can't find uniform %s", name);
+    return uniform;
 }

@@ -18,8 +18,8 @@ using namespace dry;
 //------------------------------------------------------------------------------------------------
 Renderer::Renderer()
 {
-    m_ClearColor   = Colorf(0.f,0.f,0.f,0.f);
-    m_ClearDepth   = 0.f;
+    m_ClearColor   = Colorf(81.f / 255.f, 142.f / 255.f, 149.f / 255.f, 1.0f);
+    m_ClearDepth   = 1.f;
     m_ClearStencil = 0;
     m_BlendMode    = BLEND_UNKNOWN;
 }

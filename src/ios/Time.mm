@@ -8,7 +8,7 @@
 
 #include "dry.h"
 
-static double s_TimeIni = [[NSDate date] timeIntervalSince1970];
+static double s_TimeIni = -1;
 
 
 //------------------------------------------------------------------------------------------------
@@ -17,5 +17,7 @@ static double s_TimeIni = [[NSDate date] timeIntervalSince1970];
 //------------------------------------------------------------------------------------------------
 float dry::GetTime()
 {
+    if (s_TimeIni < 0)
+        s_TimeIni = [[NSDate date] timeIntervalSince1970];
     return (float)([[NSDate date] timeIntervalSince1970] - s_TimeIni);
 }

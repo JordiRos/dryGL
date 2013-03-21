@@ -92,31 +92,27 @@ void QuadBatch::DrawFbo(Fbo *fbo, Camera const *camera, glm::mat4 const &transfo
 // Draw a shader
 //
 //------------------------------------------------------------------------------------------------
+static float angle = 0.f;
+
 void QuadBatch::DrawShader(Shader *shader, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
-    // Attributes/Uniforms
-    int aPosition = shader->GetAttribLocation ("Position");
-    int aTexCoord = shader->GetAttribLocation ("TexCoord");
-    int uMvp      = shader->GetUniformLocation("ModelViewProjection");
-
     // Mvp
     float hw = w * 0.5f;
     float hh = h * 0.5f;
     glm::mat4 model = glm::translate(x + hw, y + hh, 0.f) * glm::scale(hw, hh, 1.f);
-    glm::mat4 const &mvp = camera->GetMatProj() * camera->GetMatView() * model;
-    glUniformMatrix4fv(uMvp, 1, GL_FALSE, glm::value_ptr(mvp));
+    glm::mat4 const &mvp = camera->GetMatProj() * camera->GetMatView() * model * transform;
+    glUniformMatrix4fv(shader->GetUniformLocation("ModelViewProjection"), 1, GL_FALSE, glm::value_ptr(mvp));
 
     // Bind
-    m_Vertices.Bind(aPosition);
-    m_TexCoords.Bind(aTexCoord);
+    m_Vertices.Bind(shader->GetAttribLocation("Position"));
+    m_TexCoords.Bind(shader->GetAttribLocation("TexCoord"));
     m_Indices.Bind();
 
     // Draw!
     m_Indices.Draw(GL_TRIANGLES);
-    
+
     // Unbind
     m_Vertices.Unbind();
     m_TexCoords.Unbind();
     m_Indices.Unbind();
 }
-

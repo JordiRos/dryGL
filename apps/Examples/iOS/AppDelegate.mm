@@ -8,25 +8,29 @@
 
 #import "AppDelegate.h"
 #import "AppVbo.h"
+#import "AppFbo.h"
+#import "AppGLSL.h"
 
 
 @implementation AppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     CGRect frame = [[UIScreen mainScreen] bounds];
     self.window = [[[UIWindow alloc] initWithFrame:frame] autorelease];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
 
     // Initialize dry subsystem
     dry::Init(dry::LOG_FLAG_ALL, "dry.log");
     dry::Log(dry::LOG_INFO, "[AppDelegate] Screen Size: %.0f,%.0f", frame.size.width,frame.size.height);
     
     // Create app with desired resolution and attach its viewController to rootViewController
-    app = NEW AppVbo(dry::AppParams(frame.size.width,frame.size.height, false));
+    //app = NEW AppVbo(dry::AppParams(frame.size.width,frame.size.height, false));
+    //app = NEW AppFbo(dry::AppParams(frame.size.width,frame.size.height, false));
+    app = NEW AppGLSL(dry::AppParams(frame.size.width,frame.size.height, false));
     self.window.rootViewController = (UIViewController *)app->GetViewController();
+
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

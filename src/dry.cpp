@@ -15,6 +15,9 @@ using namespace dry;
 static string   s_PathBundle  = "";
 static string   s_PathDocpath = "";
 static LogLevel s_LogLevel    = LOG_FLAG_ALL;
+#define MAX_STATIC_DIR 10
+static string   s_StaticDir[MAX_STATIC_DIR];
+static int      s_StaticIdx = 0;
 
 
 //------------------------------------------------------------------------------------------------
@@ -73,9 +76,9 @@ void dry::SetPaths(const string &bundle, const string &docpath)
 //------------------------------------------------------------------------------------------------
 const string &dry::GetFilePath(const string &file)
 {
-    static string res;
-    res = s_PathBundle + "/" + file;
-    return res;
+    s_StaticIdx = (s_StaticIdx+1) % 10;
+    s_StaticDir[s_StaticIdx] = s_PathBundle + "/" + file;
+    return s_StaticDir[s_StaticIdx];
 }
 
 
@@ -85,7 +88,7 @@ const string &dry::GetFilePath(const string &file)
 //------------------------------------------------------------------------------------------------
 const string &dry::GetFilePath(const string &file, const string &docpath)
 {
-    static string res;
-    res = s_PathDocpath + "/" + file;
-    return res;
+    s_StaticIdx = (s_StaticIdx+1) % 10;
+    s_StaticDir[s_StaticIdx] = s_PathDocpath + "/" + file;
+    return s_StaticDir[s_StaticIdx];
 }

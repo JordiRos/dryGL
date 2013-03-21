@@ -12,6 +12,6 @@ class AppVbo : public dry::AppiOS
 {
 public:
             AppVbo      (dry::AppParams const &params);
-    void    Update      ();
+    void    Update      (float time, float delta);
     void    Draw        ();
 };

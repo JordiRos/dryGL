@@ -8,12 +8,12 @@
 
 #include "dry.h"
 #include "AppSimple.h"
-#include "../Addons/Renderer/QuadBatch.h"
+#include "QuadBatch.h"
+#include "ImageLoader.h"
 
 static dry::CameraPerspective _cameraP;
 
 static dry::ShaderBasic _shader;
-static dry::Pixels _pixels;
 static dry::Texture _texture;
 static dry::Vbo<glm::vec3> _vbo_vertices;
 static dry::Vbo<glm::vec2> _vbo_texcoords;
@@ -103,8 +103,8 @@ AppSimple::AppSimple(dry::AppParams const &params) : dry::AppiOS(params)
     _ibo_elements.Init(sizeof(cube_elements) / sizeof(GLushort), false, cube_elements);
     
     // Texture
-    _pixels.InitWithFile(dry::GetFilePath("fire.jpg"));
-    _texture.InitWithPixels(_pixels);
+    string file = dry::GetFilePath("fire.jpg");
+    dry::ImageLoader::LoadTexture(file, _texture);
     
     // Shader
     _shader.Init();
@@ -169,8 +169,8 @@ void AppSimple::Draw()
     _ibo_elements.Draw(GL_TRIANGLES);
 
     // Unbind
-    _vbo_vertices.Unbind(attr_position);
-    _vbo_texcoords.Unbind(attr_texcoord);
+    _vbo_vertices.Unbind();
+    _vbo_texcoords.Unbind();
     _ibo_elements.Unbind();
     _texture.Unbind();
     _shader.Unbind();

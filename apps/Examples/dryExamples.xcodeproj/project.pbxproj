@@ -10,6 +10,9 @@
 		BC34D2EC16CE289A00B634C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2EB16CE289A00B634C0 /* UIKit.framework */; };
 		BC34D2EE16CE289A00B634C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2ED16CE289A00B634C0 /* Foundation.framework */; };
 		BC34D2F016CE289A00B634C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */; };
+		BC5704FE16FB47CA00B45C68 /* AppGLSL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC5704FC16FB47CA00B45C68 /* AppGLSL.cpp */; };
+		BC57050916FB4ED300B45C68 /* glsl_lights.fs in Sources */ = {isa = PBXBuildFile; fileRef = BC57050516FB4ED300B45C68 /* glsl_lights.fs */; };
+		BC57050A16FB4ED300B45C68 /* glsl.vs in Sources */ = {isa = PBXBuildFile; fileRef = BC57050616FB4ED300B45C68 /* glsl.vs */; };
 		BC6B1F7E16D03229008B939C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B1F7D16D03229008B939C /* OpenGLES.framework */; };
 		BC6B1F8016D03284008B939C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B1F7F16D03284008B939C /* QuartzCore.framework */; };
 		BC6F4DA216F1D90600B094F0 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4D9516F1D90600B094F0 /* AppDelegate.mm */; };
@@ -18,10 +21,13 @@
 		BC6F4DA516F1D90600B094F0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9816F1D90600B094F0 /* Default@2x.png */; };
 		BC6F4DA616F1D90600B094F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9916F1D90600B094F0 /* InfoPlist.strings */; };
 		BC6F4DA916F1D90600B094F0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4D9E16F1D90600B094F0 /* main.mm */; };
-		BC6F4DBD16F1DD8000B094F0 /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4DBC16F1DD8000B094F0 /* fire.jpg */; };
 		BC6F4DC816F2210600B094F0 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC716F220C500B094F0 /* libdryGL-iOS.a */; };
 		BC91903E16F9EA7300507A00 /* AppVbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91903C16F9EA7300507A00 /* AppVbo.cpp */; };
 		BC91904916FA510C00507A00 /* ImageLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC91904816FA510C00507A00 /* ImageLoader.mm */; };
+		BCB50F6316FB5A9B009A5476 /* glsl_lights.fs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050516FB4ED300B45C68 /* glsl_lights.fs */; };
+		BCB50F6416FB5A9B009A5476 /* glsl.vs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050616FB4ED300B45C68 /* glsl.vs */; };
+		BCB50F6A16FB6C59009A5476 /* AppFbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F6816FB6C59009A5476 /* AppFbo.cpp */; };
+		BCB50F6E16FB918A009A5476 /* metal.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F6D16FB918A009A5476 /* metal.png */; };
 		BCF38C9316EE417800073C11 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C9116EE417800073C11 /* QuadBatch.cpp */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +46,10 @@
 		BC34D2EB16CE289A00B634C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC34D2ED16CE289A00B634C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BC5704FC16FB47CA00B45C68 /* AppGLSL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppGLSL.cpp; path = src/AppGLSL.cpp; sourceTree = SOURCE_ROOT; };
+		BC5704FD16FB47CA00B45C68 /* AppGLSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppGLSL.h; path = src/AppGLSL.h; sourceTree = SOURCE_ROOT; };
+		BC57050516FB4ED300B45C68 /* glsl_lights.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glsl_lights.fs; sourceTree = "<group>"; };
+		BC57050616FB4ED300B45C68 /* glsl.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glsl.vs; sourceTree = "<group>"; };
 		BC6B1F7D16D03229008B939C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BC6B1F7F16D03284008B939C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BC6F4D9416F1D90600B094F0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,11 +63,13 @@
 		BC6F4D9E16F1D90600B094F0 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "dryGL-iOS.xcodeproj"; path = "../../src/dryGL-iOS.xcodeproj"; sourceTree = "<group>"; };
 		BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libdryGL-iOS.a"; path = "../../src/build/Release-iphoneos/libdryGL-iOS.a"; sourceTree = "<group>"; };
-		BC6F4DBC16F1DD8000B094F0 /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fire.jpg; path = Data/fire.jpg; sourceTree = "<group>"; };
 		BC91903C16F9EA7300507A00 /* AppVbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppVbo.cpp; path = src/AppVbo.cpp; sourceTree = SOURCE_ROOT; };
 		BC91903D16F9EA7300507A00 /* AppVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVbo.h; path = src/AppVbo.h; sourceTree = SOURCE_ROOT; };
 		BC91904716FA510C00507A00 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
 		BC91904816FA510C00507A00 /* ImageLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageLoader.mm; sourceTree = "<group>"; };
+		BCB50F6816FB6C59009A5476 /* AppFbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppFbo.cpp; path = src/AppFbo.cpp; sourceTree = SOURCE_ROOT; };
+		BCB50F6916FB6C59009A5476 /* AppFbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppFbo.h; path = src/AppFbo.h; sourceTree = SOURCE_ROOT; };
+		BCB50F6D16FB918A009A5476 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		BCF38C9116EE417800073C11 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCF38C9216EE417800073C11 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,10 +94,10 @@
 		BC34D2DC16CE289A00B634C0 = {
 			isa = PBXGroup;
 			children = (
-				BCB14A0B16D7CB0700593177 /* data */,
+				BC57050316FB4ED300B45C68 /* data */,
 				BC6F4D9316F1D90600B094F0 /* ios */,
 				BC6F4D9F16F1D90600B094F0 /* src */,
-				BCF38C9516EE417E00073C11 /* Addons */,
+				BCF38C9516EE417E00073C11 /* addons */,
 				BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */,
 				BC34D2EA16CE289A00B634C0 /* Frameworks */,
 				BC34D2E816CE289A00B634C0 /* Products */,
@@ -113,6 +125,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BC57050316FB4ED300B45C68 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				BC57050416FB4ED300B45C68 /* shaders */,
+				BC57050716FB4ED300B45C68 /* textures */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		BC57050416FB4ED300B45C68 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				BC57050516FB4ED300B45C68 /* glsl_lights.fs */,
+				BC57050616FB4ED300B45C68 /* glsl.vs */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		BC57050716FB4ED300B45C68 /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				BCB50F6D16FB918A009A5476 /* metal.png */,
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
 		BC6F4D9316F1D90600B094F0 /* ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +173,10 @@
 			children = (
 				BC91903C16F9EA7300507A00 /* AppVbo.cpp */,
 				BC91903D16F9EA7300507A00 /* AppVbo.h */,
+				BCB50F6816FB6C59009A5476 /* AppFbo.cpp */,
+				BCB50F6916FB6C59009A5476 /* AppFbo.h */,
+				BC5704FC16FB47CA00B45C68 /* AppGLSL.cpp */,
+				BC5704FD16FB47CA00B45C68 /* AppGLSL.h */,
 			);
 			name = src;
 			path = Src;
@@ -158,14 +200,6 @@
 			path = ../../addons/ios;
 			sourceTree = "<group>";
 		};
-		BCB14A0B16D7CB0700593177 /* data */ = {
-			isa = PBXGroup;
-			children = (
-				BC6F4DBC16F1DD8000B094F0 /* fire.jpg */,
-			);
-			name = data;
-			sourceTree = "<group>";
-		};
 		BCF38C9016EE417800073C11 /* renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,13 +210,13 @@
 			path = ../../addons/Renderer;
 			sourceTree = "<group>";
 		};
-		BCF38C9516EE417E00073C11 /* Addons */ = {
+		BCF38C9516EE417E00073C11 /* addons */ = {
 			isa = PBXGroup;
 			children = (
 				BC91904616FA510C00507A00 /* ios */,
 				BCF38C9016EE417800073C11 /* renderer */,
 			);
-			name = Addons;
+			name = addons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,11 +286,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB50F6316FB5A9B009A5476 /* glsl_lights.fs in Resources */,
+				BCB50F6416FB5A9B009A5476 /* glsl.vs in Resources */,
 				BC6F4DA316F1D90600B094F0 /* Default-568h@2x.png in Resources */,
 				BC6F4DA416F1D90600B094F0 /* Default.png in Resources */,
 				BC6F4DA516F1D90600B094F0 /* Default@2x.png in Resources */,
 				BC6F4DA616F1D90600B094F0 /* InfoPlist.strings in Resources */,
-				BC6F4DBD16F1DD8000B094F0 /* fire.jpg in Resources */,
+				BCB50F6E16FB918A009A5476 /* metal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +308,10 @@
 				BC6F4DA916F1D90600B094F0 /* main.mm in Sources */,
 				BC91903E16F9EA7300507A00 /* AppVbo.cpp in Sources */,
 				BC91904916FA510C00507A00 /* ImageLoader.mm in Sources */,
+				BC5704FE16FB47CA00B45C68 /* AppGLSL.cpp in Sources */,
+				BC57050916FB4ED300B45C68 /* glsl_lights.fs in Sources */,
+				BC57050A16FB4ED300B45C68 /* glsl.vs in Sources */,
+				BCB50F6A16FB6C59009A5476 /* AppFbo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

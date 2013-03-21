@@ -11,18 +11,16 @@
 #include "dry.h"
 #include "AppVbo.h"
 #include "ImageLoader.h"
+#include "QuadBatch.h"
 
 static dry::CameraPerspective _camera;
+static dry::CameraOrthogonal _cameraO;
 static dry::ShaderBasic _shader;
 static dry::Texture _texture;
 static dry::Vbo<glm::vec3> _vbo_vertices;
 static dry::Vbo<glm::vec2> _vbo_texcoords;
 static dry::Ibo<ushort> _ibo_elements;
-
-static GLuint attr_position;
-static GLuint attr_texcoord;
-static GLuint uniform_mvp;
-static GLuint uniform_texture;
+static dry::QuadBatch _quads;
 
 //------------------------------------------------------------------------------------------------
 // Constructor
@@ -31,7 +29,7 @@ static GLuint uniform_texture;
 AppVbo::AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
 {
     // Vertices
-    GLfloat cube_vertices[] = {
+    GLfloat vertices[] = {
         // front
         -1.0, -1.0,  1.0,
         1.0, -1.0,  1.0,
@@ -64,16 +62,16 @@ AppVbo::AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
         1.0,  1.0,  1.0,
     };
     // TexCoords
-    GLfloat cube_texcoords[2*4*6] = {
+    GLfloat texcoords[2*4*6] = {
         0.0, 0.0,
         1.0, 0.0,
         1.0, 1.0,
         0.0, 1.0,
     };
     for (int i = 1; i < 6; i++)
-        memcpy(&cube_texcoords[i*4*2], &cube_texcoords[0], 2*4*sizeof(GLfloat));
+        memcpy(&texcoords[i*4*2], &texcoords[0], 2*4*sizeof(GLfloat));
     // Indices
-    GLushort cube_elements[] = {
+    GLushort indices[] = {
         // front
         0,  1,  2,
         2,  3,  0,
@@ -95,21 +93,17 @@ AppVbo::AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
     };
     
     // Vbo
-    _vbo_vertices.Init(sizeof(cube_vertices) / 3*sizeof(GLfloat), false, 3, (glm::vec3 *)cube_vertices);
-    _vbo_texcoords.Init(sizeof(cube_texcoords) / 2*sizeof(GLfloat), false, 2, (glm::vec2 *)cube_texcoords);
+    _vbo_vertices.Init(24, false, 3, (glm::vec3 *)vertices);
+    _vbo_texcoords.Init(24, false, 2, (glm::vec2 *)texcoords);
     // Ibo
-    _ibo_elements.Init(sizeof(cube_elements) / sizeof(GLushort), false, cube_elements);
+    _ibo_elements.Init(36, false, indices);
     
     // Texture
-    string file = dry::GetFilePath("fire.jpg");
+    string file = dry::GetFilePath("metal.png");
     dry::ImageLoader::LoadTexture(file, _texture);
     
     // Shader
     _shader.Init();
-    attr_position = _shader.GetAttribLocation("Position");
-    attr_texcoord = _shader.GetAttribLocation("TexCoord");
-    uniform_mvp = _shader.GetUniformLocation("ModelViewProjection");
-    uniform_texture = _shader.GetUniformLocation("Texture");
     
     // Camera
     int w = GetParams().Width;
@@ -117,9 +111,15 @@ AppVbo::AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
     _camera.Init(45.f, (float)w / h, 0.1f, 100.f);
     _camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 
+    // Orthogonal
+    _cameraO.Init(0,w, 0,h, -1.f,1.f);
+    _cameraO.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+
+    // QuadBatch
+    _quads.Init();
+
     // Viewport
-    GetRenderer()->SetViewport  (0,0, w,h);
-    GetRenderer()->SetClearColor(dry::Colorf(0.5f, 0.5f, 0.5f, 1.0f), 1.0f, 0);
+    GetRenderer()->SetViewport(0,0, w,h);
 }
 
 
@@ -127,7 +127,7 @@ AppVbo::AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
 // Update
 //
 //------------------------------------------------------------------------------------------------
-void AppVbo::Update()
+void AppVbo::Update(float time, float delta)
 {
 }
 
@@ -138,12 +138,19 @@ void AppVbo::Update()
 //------------------------------------------------------------------------------------------------
 void AppVbo::Draw()
 {
-    glEnable(GL_DEPTH_TEST);
+    int w = GetParams().Width;
+    int h = GetParams().Height;
 
     GetRenderer()->Clear(true, true, false);
     GetRenderer()->SetBlendMode(dry::BLEND_ALPHA);
     
-    // Bind
+    // Locations
+    int attr_position = _shader.GetAttribLocation("Position");
+    int attr_texcoord = _shader.GetAttribLocation("TexCoord");
+    int uniform_mvp = _shader.GetUniformLocation("ModelViewProjection");
+    int uniform_texture = _shader.GetUniformLocation("Texture");
+
+     // Bind
     _shader.Bind();
     _texture.Bind(uniform_texture, 0);
     _vbo_vertices.Bind(attr_position, false);
@@ -152,9 +159,8 @@ void AppVbo::Draw()
     
     // Load matrices
     float angle = GetTimer().GetTime() * 45;
-    glm::vec3 axis_y(0, 1, 0);
-    glm::mat4 anim = glm::rotate(glm::mat4(1.0f), angle, axis_y);
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, -0.0));
+    glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
+    glm::mat4 model = glm::translate(glm::vec3(0.0, 0.0, 0.0));
     glm::mat4 mvp = _camera.GetMatProj() * _camera.GetMatView() * model * anim;
     glUniformMatrix4fv(uniform_mvp, 1, GL_FALSE, glm::value_ptr(mvp));
 
@@ -167,4 +173,10 @@ void AppVbo::Draw()
     _ibo_elements.Unbind();
     _texture.Unbind();
     _shader.Unbind();
+    
+    // Draw QuadBatch
+    glDisable(GL_DEPTH_TEST);
+    _quads.DrawTexture(&_texture, &_cameraO, model, 0,0,w,h);
+    glEnable(GL_DEPTH_TEST);
+
 }

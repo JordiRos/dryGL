@@ -87,8 +87,8 @@ void Texture::Update(const void *data)
 //------------------------------------------------------------------------------------------------
 void Texture::Bind(int uniform, int stage) const
 {
-    glBindTexture  (m_Target, m_Handle);
     glActiveTexture(GL_TEXTURE0 + stage);
+    glBindTexture  (m_Target, m_Handle);
     glUniform1i    (uniform, 0);
 }
 
