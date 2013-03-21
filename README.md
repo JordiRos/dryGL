@@ -19,7 +19,9 @@ Current features
 - Addons/QuadBatch / TODO: Make it a real quadbatch pipeline
 
 Examples:
-- AppFbo: Use of Vbo / Ibo for rendering a cube
+- AppVbo: Use of Vbo / Ibo for rendering a cube
+- AppFbp: Usage of Fbo objects (render to texture)
+- AppGLSL: Simple, screen space GLSL project
 
 Roadmap
 =======
