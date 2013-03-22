@@ -24,7 +24,7 @@ Dependencies
 
 Examples
 ========
-- AppVbo: Useage of Vbo / Ibo for rendering a cube in 3D
+- AppVbo: Usage of Vbo / Ibo for rendering a cube in 3D
 - AppFbp: Usage of Fbo object for rendering to texture
 - AppGLSL: Simple, screen space GLSL shader
 
