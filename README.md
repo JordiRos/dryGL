@@ -18,10 +18,15 @@ Current features
 - Addons/ImageLoader (only iOS)
 - Addons/QuadBatch / TODO: Make it a real quadbatch pipeline
 
-Examples:
-- AppVbo: Use of Vbo / Ibo for rendering a cube
-- AppFbp: Usage of Fbo objects (render to texture)
-- AppGLSL: Simple, screen space GLSL project
+Dependencies
+============
+- Glm
+
+Examples
+========
+- AppVbo: Useage of Vbo / Ibo for rendering a cube in 3D
+- AppFbp: Usage of Fbo object for rendering to texture
+- AppGLSL: Simple, screen space GLSL shader
 
 Roadmap
 =======
@@ -34,7 +39,3 @@ Roadmap
 - Addons: ParticleSystem
 - Addons: EffectComposer, Postprocess effects / shaders
 - Addons: iOS features / accelerometer, camera, microphone, etc
-
-Dependencies
-============
-- Glm
