@@ -17,25 +17,32 @@ using namespace dry;
 // InitWithData
 //
 //------------------------------------------------------------------------------------------------
-bool Texture::InitWithData(int width, int height, PixelFormat format, const void *data)
+bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::Params const &params, const void *data)
 {
     Free();
     bool res = false;
     m_Width  = width;
     m_Height = height;
     m_Format = format;
+    m_Params = params;
     m_Target = GL_TEXTURE_2D;
 
 	glGenTextures(1, (GLuint *)&m_Handle);
     if (m_Handle != -1)
     {
+        int filter = 0;
+        if (m_Params.Mipmaps)
+            filter = m_Params.Bilinear ? GL_LINEAR_MIPMAP_LINEAR : GL_LINEAR_MIPMAP_NEAREST;
+        else
+            filter = m_Params.Bilinear ? GL_LINEAR : GL_NEAREST;
         int glFormat = GetGLFormat();
         glBindTexture  (m_Target, m_Handle);
-        glTexParameteri(m_Target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(m_Target, GL_TEXTURE_MIN_FILTER, filter);
+        glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, filter);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexImage2D   (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
+        if (m_Params.Mipmaps) glGenerateMipmap(m_Target);
         glBindTexture  (m_Target, 0);
         res = true;
     }
@@ -49,9 +56,9 @@ bool Texture::InitWithData(int width, int height, PixelFormat format, const void
 // InitWithImage
 //
 //------------------------------------------------------------------------------------------------
-bool Texture::InitWithImage(const Image &img)
+bool Texture::InitWithImage(const Image &img, Texture::Params const &params)
 {
-    return InitWithData(img.GetWidth(), img.GetHeight(), img.GetFormat(), img.GetData());
+    return InitWithData(img.GetWidth(), img.GetHeight(), img.GetFormat(), params, img.GetData());
 }
 
 
@@ -75,10 +82,10 @@ void Texture::Update(const void *data)
 {
     int glFormat = GetGLFormat();
 
-    glBindTexture   (m_Target, m_Handle);
-    glGenerateMipmap(m_Target);
-    glTexImage2D    (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
-    glBindTexture   (m_Target, 0);
+    glBindTexture(m_Target, m_Handle);
+    glTexImage2D (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
+    if (m_Params.Mipmaps) glGenerateMipmap(m_Target);
+    glBindTexture(m_Target, 0);
 }
 
 

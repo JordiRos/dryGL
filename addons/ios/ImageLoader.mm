@@ -16,7 +16,7 @@ using namespace dry;
 // LoadTexture
 //
 //------------------------------------------------------------------------------------------------
-bool ImageLoader::LoadTexture(string const &file, Texture &tex)
+bool ImageLoader::LoadTexture(string const &file, Texture &tex, Texture::Params const &params)
 {
     bool res = false;
     NSString *path  = [NSString stringWithUTF8String:file.c_str()];
@@ -35,7 +35,7 @@ bool ImageLoader::LoadTexture(string const &file, Texture &tex)
         CGContextDrawImage(context, CGRectMake(0,0, w,h), image.CGImage);
 
         // Create and load texture data
-        tex.InitWithData(w, h, PixelFormat::PF_ARGB32, buffer);
+        tex.InitWithData(w, h, PixelFormat::PF_ARGB32, params, buffer);
         res = true;
         
         // Release

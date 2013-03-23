@@ -33,6 +33,13 @@ public:
             Dynamic     = false;
             Indices     = NULL;
             Vertices    = NULL;
+            TexCoords0  = NULL;
+            TexCoords1  = NULL;
+            TexCoords2  = NULL;
+            TexCoords3  = NULL;
+            Normals     = NULL;
+            Tangents    = NULL;
+            Colors      = NULL;
         }
         int         NumVertices;
         int         NumIndices;

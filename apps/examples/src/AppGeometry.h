@@ -31,10 +31,10 @@ AppGeometry(dry::AppParams const &params) : dry::AppiOS(params)
     
     Shader.Init();
     Camera.Init(45.f, (float)w / h, 0.1f, 100.f);
-    Camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-    Plane.Init(1, 1, glm::mat4());
+    Camera.LookAt(glm::vec3(0.0, 4.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    Plane.Init(2, 2, glm::vec3(0.f, 1.f, 0.f));
     
-    dry::ImageLoader::LoadTexture(dry::GetFilePath("metal.png"), Texture);
+    dry::ImageLoader::LoadTexture(dry::GetFilePath("grid.jpg"), Texture, dry::Texture::Params(false, false));
 
     GetRenderer()->SetViewport(0,0, w,h);
 }

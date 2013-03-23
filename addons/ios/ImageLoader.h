@@ -15,7 +15,7 @@ class ImageLoader
 public:
 
     static bool LoadImage   (string const &file, Image   &img);
-    static bool LoadTexture (string const &file, Texture &tex);
+    static bool LoadTexture (string const &file, Texture &tex, Texture::Params const &params);
 };
 
 }

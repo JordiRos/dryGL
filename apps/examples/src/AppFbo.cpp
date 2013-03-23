@@ -107,7 +107,7 @@ AppFbo::AppFbo(dry::AppParams const &params) : dry::AppiOS(params)
     
     // Texture
     string file = dry::GetFilePath("metal.png");
-    dry::ImageLoader::LoadTexture(file, _texture);
+    dry::ImageLoader::LoadTexture(file, _texture, dry::Texture::Params(false, true));
     
     // Shader
     _shader.Init();
@@ -169,7 +169,6 @@ void AppFbo::Draw()
 
     // Render to FBO
     _fbo.Bind();
-    //GetRenderer()->SetClearColor(dry::Colorf(0.5f, 1.0f, 0.5f, 1.0f), 1.0f, 0);
     GetRenderer()->Clear(true, false, false);
     
     // Alpha blending

@@ -94,7 +94,7 @@ AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
     Texcoords.Init(24, false, 2, (glm::vec2 *)texcoords);
     
     // Texture
-    dry::ImageLoader::LoadTexture(dry::GetFilePath("metal.png"), Texture);
+    dry::ImageLoader::LoadTexture(dry::GetFilePath("metal.png"), Texture, dry::Texture::Params(true, true));
     
     // Shader
     Shader.Init();

@@ -21,12 +21,12 @@ public:
     void            Clear           (bool color, bool depth, bool stencil);
     
     void            SetViewport     (int x, int y, int w, int h);
-    void            SetClearColor   (Colorf const &color, float depth, int stencil);
+    void            SetClearColor   (glm::vec4 const &color, float depth, int stencil);
     void            SetBlendMode    (BlendMode blend);
     
 private:
     
-    Colorf          m_ClearColor;
+    glm::vec4       m_ClearColor;
     float           m_ClearDepth;
     float           m_ClearStencil;
     BlendMode       m_BlendMode;

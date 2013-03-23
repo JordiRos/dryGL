@@ -101,4 +101,3 @@ template class dry::Vbo<glm::vec2>;
 template class dry::Vbo<glm::vec3>;
 template class dry::Vbo<glm::vec4>;
 template class dry::Vbo<glm::mat4>;
-template class dry::Vbo<dry::Colorf>;

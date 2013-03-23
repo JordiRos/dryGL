@@ -15,11 +15,27 @@ class Pixels;
 class Texture
 {
 public:
+    struct Params
+    {
+        Params()
+        {
+            Bilinear = true;
+            Mipmaps  = false;
+        }
+        Params(bool bilinear, bool mipmaps)
+        {
+            Bilinear = bilinear;
+            Mipmaps  = mipmaps;
+        }
+        bool    Bilinear;
+        bool    Mipmaps;
+    };
+public:
                 Texture         () { m_Handle = -1; }
                ~Texture         () { Free(); }
 
-    bool        InitWithData    (int width, int height, PixelFormat format, const void *data);
-    bool        InitWithImage   (const Image &img);
+    bool        InitWithData    (int width, int height, PixelFormat format, Params const &params, const void *data);
+    bool        InitWithImage   (const Image &img, Params const &params);
     void        Free            ();
 
     void        Update          (const void *data);
@@ -38,6 +54,7 @@ private:
     int         m_Width;
     int         m_Height;
     PixelFormat m_Format;
+    Params      m_Params;
     int         m_Target;
 };
 

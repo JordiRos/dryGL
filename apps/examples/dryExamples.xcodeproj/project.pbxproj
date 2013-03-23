@@ -30,6 +30,7 @@
 		BCB50F7416FC8D40009A5476 /* glsl_isoshader.fs in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */; };
 		BCB50F7916FD2320009A5476 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F7716FD2320009A5476 /* QuadBatch.cpp */; };
 		BCB50F7C16FD23F1009A5476 /* GeometryPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F7A16FD23F1009A5476 /* GeometryPlane.cpp */; };
+		BCB50F8016FE34E7009A5476 /* grid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F7F16FE34E7009A5476 /* grid.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		BCB50F7A16FD23F1009A5476 /* GeometryPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryPlane.cpp; sourceTree = "<group>"; };
 		BCB50F7B16FD23F1009A5476 /* GeometryPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryPlane.h; sourceTree = "<group>"; };
 		BCB50F7D16FDB6A4009A5476 /* AppGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppGeometry.h; path = src/AppGeometry.h; sourceTree = SOURCE_ROOT; };
+		BCB50F7F16FE34E7009A5476 /* grid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grid.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		BC57050716FB4ED300B45C68 /* textures */ = {
 			isa = PBXGroup;
 			children = (
+				BCB50F7F16FE34E7009A5476 /* grid.jpg */,
 				BCB50F6D16FB918A009A5476 /* metal.png */,
 			);
 			path = textures;
@@ -307,6 +310,7 @@
 				BC6F4DA516F1D90600B094F0 /* Default@2x.png in Resources */,
 				BC6F4DA616F1D90600B094F0 /* InfoPlist.strings in Resources */,
 				BCB50F6E16FB918A009A5476 /* metal.png in Resources */,
+				BCB50F8016FE34E7009A5476 /* grid.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

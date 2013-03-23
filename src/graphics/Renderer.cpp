@@ -18,7 +18,7 @@ using namespace dry;
 //------------------------------------------------------------------------------------------------
 Renderer::Renderer()
 {
-    m_ClearColor   = Colorf(81.f / 255.f, 142.f / 255.f, 149.f / 255.f, 1.0f);
+    m_ClearColor   = glm::vec4(81.f / 255.f, 142.f / 255.f, 149.f / 255.f, 1.0f);
     m_ClearDepth   = 1.f;
     m_ClearStencil = 0;
     m_BlendMode    = BLEND_UNKNOWN;
@@ -72,7 +72,7 @@ void Renderer::SetViewport(int x, int y, int w, int h)
 // SetClearColor
 //
 //------------------------------------------------------------------------------------------------
-void Renderer::SetClearColor(Colorf const &color, float depth, int stencil)
+void Renderer::SetClearColor(glm::vec4 const &color, float depth, int stencil)
 {
     m_ClearColor = color;
     m_ClearDepth = depth;
