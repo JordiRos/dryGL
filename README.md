@@ -15,7 +15,7 @@ Current features
 - Fbo
 - Cameras
 - Scene/Object/Mesh/Material (WIP)
-- Addons/ImageLoader (only iOS)
+- Addons/ImageLoader (iOS only)
 - Addons/QuadBatch / TODO: Make it a real quadbatch pipeline
 
 Dependencies
