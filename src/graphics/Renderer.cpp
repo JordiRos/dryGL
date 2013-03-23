@@ -86,7 +86,6 @@ void Renderer::SetClearColor(Colorf const &color, float depth, int stencil)
 //------------------------------------------------------------------------------------------------
 void Renderer::SetBlendMode(BlendMode blend)
 {
-    glEnable(GL_BLEND);
     switch (m_BlendMode)
     {
         case BLEND_ALPHA:    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); break;

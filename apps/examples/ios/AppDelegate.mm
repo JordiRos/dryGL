@@ -10,6 +10,7 @@
 #import "AppVbo.h"
 #import "AppFbo.h"
 #import "AppGLSL.h"
+#import "AppGeometry.h"
 
 
 @implementation AppDelegate
@@ -27,7 +28,8 @@
     // Create app with desired resolution and attach its viewController to rootViewController
     //app = NEW AppVbo(dry::AppParams(frame.size.width,frame.size.height, false));
     //app = NEW AppFbo(dry::AppParams(frame.size.width,frame.size.height, false));
-    app = NEW AppGLSL(dry::AppParams(frame.size.width,frame.size.height, false));
+    //app = NEW AppGLSL(dry::AppParams(frame.size.width,frame.size.height, false));
+    app = NEW AppGeometry(dry::AppParams(frame.size.width,frame.size.height, false));
     self.window.rootViewController = (UIViewController *)app->GetViewController();
 
     [self.window makeKeyAndVisible];

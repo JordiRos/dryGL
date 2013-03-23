@@ -92,8 +92,6 @@ void QuadBatch::DrawFbo(Fbo *fbo, Camera const *camera, glm::mat4 const &transfo
 // Draw a shader
 //
 //------------------------------------------------------------------------------------------------
-static float angle = 0.f;
-
 void QuadBatch::DrawShader(Shader *shader, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
     // Mvp

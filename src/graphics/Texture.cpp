@@ -75,9 +75,10 @@ void Texture::Update(const void *data)
 {
     int glFormat = GetGLFormat();
 
-    glBindTexture(m_Target, m_Handle);
-    glTexImage2D (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
-    glBindTexture(m_Target, 0);
+    glBindTexture   (m_Target, m_Handle);
+    glGenerateMipmap(m_Target);
+    glTexImage2D    (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
+    glBindTexture   (m_Target, 0);
 }
 
 

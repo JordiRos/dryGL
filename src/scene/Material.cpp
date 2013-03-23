@@ -39,8 +39,9 @@ bool Material::Init(Shader *shader)
         GLenum type = GL_ZERO;
         glGetActiveUniform(m_Shader->GetHandleProgram(), (GLuint)i, sizeof(name)-1, &len, &num, &type, name);
         name[len] = 0;
-        GLuint location = glGetUniformLocation(m_Shader->GetHandleProgram(), name);
+        glGetUniformLocation(m_Shader->GetHandleProgram(), name);
     }
+    return false;
 }
 
 

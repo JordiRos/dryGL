@@ -39,6 +39,8 @@ bool Shader::InitWithFile(const string &vs, const string &fs)
     bool res = false;
     char *bvs = NULL;
     char *bfs = NULL;
+    dry::Log(LOG_SYSTEM, "[Shader] Load VS: %s", vs.c_str());
+    dry::Log(LOG_SYSTEM, "[Shader] Load FS: %s", fs.c_str());
     if (ReadFileContents(vs, &bvs) && ReadFileContents(fs, &bfs))
         res = InitWithProgram(bvs, bfs);
     DISPOSE_ARRAY(bvs);

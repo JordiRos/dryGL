@@ -21,6 +21,7 @@ public:
     void        Free    ();
     
     T          *GetData () { return m_Data; }
+    void        Update  (T const *data);
 
     void        Bind    (int attribute, bool forceUpdate = false);
     void        Unbind  ();
