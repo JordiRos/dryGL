@@ -25,8 +25,9 @@ Dependencies
 Examples
 ========
 - AppVbo: Usage of Vbo / Ibo for rendering a cube in 3D
-- AppFbp: Usage of Fbo object for rendering to texture
-- AppGLSL: Simple, screen space GLSL shader
+- AppFbo: Usage of Fbo object for rendering to texture
+- AppQuadBatch: Usage of QuadBatch for rendering quads to screen the easy way
+- AppGLSL: Screen space GLSL shader
 
 Roadmap
 =======
