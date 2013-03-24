@@ -16,22 +16,33 @@ using namespace dry;
 // Init
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-bool Ibo<T>::Init(int size, bool dynamic, T const *data)
+bool Ibo::Init(void const *data, int size, int type, bool dynamic)
 {
-    m_Dynamic  = dynamic;
-    m_Size = size;
-    m_Data = NEW_ARRAY(T, size);
-    if (data)
-        memcpy(m_Data, data, m_Size * sizeof(T));
+    bool res = false;
+    int typeSize = 0;
+    int dataType = 0;
+    switch (type)
+    {
+        case GL_UNSIGNED_BYTE:  typeSize = sizeof(GLubyte);  dataType = GL_UNSIGNED_BYTE;  break;
+        case GL_UNSIGNED_SHORT: typeSize = sizeof(GLushort); dataType = GL_UNSIGNED_SHORT; break;
+        case GL_UNSIGNED_INT:   typeSize = sizeof(GLuint);   dataType = GL_UNSIGNED_INT;   break;
+    }
+    if (typeSize > 0)
+    {
+        m_Size     = size;
+        m_Type     = type;
+        m_TypeSize = typeSize;
+        m_DataType = dataType;
+        m_Dynamic  = dynamic;
+        // Create GL buffers
+        glGenBuffers(1, (GLuint *)&m_Ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Size * m_TypeSize, data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+        res = true;
+    }
     else
-        memset(m_Data, 0, m_Size * sizeof(T));
-    // Create GL buffers
-    glGenBuffers(1, (GLuint *)&m_Ibo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Size * sizeof(T), m_Data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
-
-    return true;
+        dry::Log(LogWarning, "[Ibo] Error creating IndexBufferObject with size %d", size);
+    return res;
 }
 
 
@@ -39,14 +50,12 @@ bool Ibo<T>::Init(int size, bool dynamic, T const *data)
 // Free
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-void Ibo<T>::Free()
+void Ibo::Free()
 {
-    if (m_Data)
+    if (m_Ibo > 0)
     {
         glDeleteBuffers(1, (GLuint *)&m_Ibo);
         m_Ibo = 0;
-        DISPOSE_ARRAY(m_Data);
     }
 }
 
@@ -55,8 +64,7 @@ void Ibo<T>::Free()
 // Bind
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-void Ibo<T>::Bind()
+void Ibo::Bind()
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
 }
@@ -66,8 +74,7 @@ void Ibo<T>::Bind()
 // Unbind
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-void Ibo<T>::Unbind()
+void Ibo::Unbind()
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
@@ -77,15 +84,7 @@ void Ibo<T>::Unbind()
 // Draw
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-void Ibo<T>::Draw(int type)
+void Ibo::Draw(int primitive)
 {
-    glDrawElements(type, m_Size, GL_UNSIGNED_SHORT, 0);
+    glDrawElements(primitive, m_Size, m_DataType, 0);
 }
-
-
-//------------------------------------------------------------------------------------------------
-// Implicit Ibo definitions
-//------------------------------------------------------------------------------------------------
-template class dry::Ibo<ushort>;
-template class dry::Ibo<uint>;

@@ -10,29 +10,28 @@
 
 namespace dry {
 
-template <class T>
 class Ibo
 {
 public:
-                Ibo     () { m_Ibo = 0; m_Data = NULL; }
+                Ibo     () { m_Ibo = 0; }
                ~Ibo     () { Free(); }
     
-    bool        Init    (int size, bool dynamic, T const *data);
+    bool        Init    (void const *data, int size, int type, bool dynamic);
     void        Free    ();
 
     void        Bind    ();
     void        Unbind  ();
+
+    void        Draw    (int primitive);
     
-    void        Draw    (int type);
-
-    T          *GetData () { return m_Data; }
-
 private:
     
-    bool        m_Dynamic;
-    int         m_Size;
     int         m_Ibo;
-    T          *m_Data;
+    int         m_Size;
+    int         m_Type;
+    int         m_TypeSize;
+    int         m_DataType;
+    bool        m_Dynamic;
 };
 
 }

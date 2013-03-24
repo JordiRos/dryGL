@@ -13,8 +13,9 @@ namespace dry {
 class Renderer
 {
 public:
-                    Renderer        ();
-    
+                    Renderer        (int w, int h, bool depth, bool stencil);
+                   ~Renderer        ();
+
     void            Begin           ();
     void            End             ();
 
@@ -23,9 +24,16 @@ public:
     void            SetViewport     (int x, int y, int w, int h);
     void            SetClearColor   (glm::vec4 const &color, float depth, int stencil);
     void            SetBlendMode    (BlendMode blend);
-    
+
+    uint            GetColorBuffer  () { return m_ColorRenderBuffer; }
+    uint            GetDepthBuffer  () { return m_DepthRenderBuffer; }
+    uint            GetFrameBuffer  () { return m_FrameBuffer; }
+
 private:
     
+    uint            m_ColorRenderBuffer;
+    uint            m_DepthRenderBuffer;
+    uint            m_FrameBuffer;
     glm::vec4       m_ClearColor;
     float           m_ClearDepth;
     float           m_ClearStencil;

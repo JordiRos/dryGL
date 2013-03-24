@@ -46,11 +46,11 @@ int Image::GetBPP() const
 {
     switch (m_Format)
     {
-        case PF_ALPHA:   return 1;
-        case PF_RGB565:  return 2;
-        case PF_RGB24:   return 3;
-        case PF_ARGB32:  return 4;
-        case PF_UNKNOWN: return 0;
+        case PixelFormatAlpha:   return 1;
+        case PixelFormatRgb565:  return 2;
+        case PixelFormatRgb24:   return 3;
+        case PixelFormatArgb32:  return 4;
+        case PixelFormatUnknown: return 0;
     }
     return 0;
 }
@@ -64,10 +64,10 @@ PixelFormat Image::GetFormat(int bpp) const
 {
     switch (bpp)
     {
-        case 1: return PF_ALPHA;
-        case 2: return PF_RGB565;
-        case 3: return PF_RGB24;
-        case 4: return PF_ARGB32;
+        case 1: return PixelFormatAlpha;
+        case 2: return PixelFormatRgb565;
+        case 3: return PixelFormatRgb24;
+        case 4: return PixelFormatArgb32;
     }
-    return PF_UNKNOWN;
+    return PixelFormatUnknown;
 }

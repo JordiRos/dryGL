@@ -10,30 +10,30 @@
 
 namespace dry {
 
-template <class T>
 class Vbo
 {
 public:
-                Vbo     () { m_Vbo = 0; m_Data = NULL; }
-               ~Vbo     () { Free(); }
+                Vbo         () { m_Vbo = 0; }
+               ~Vbo         () { Free(); }
     
-    bool        Init    (int size, bool dynamic, int elements, T const *data);
-    void        Free    ();
+    bool        Init        (void const *data, int size, int type, bool dynamic);
+    void        Free        ();
     
-    T          *GetData () { return m_Data; }
-    void        Update  (T const *data);
+    void        Update      (void const *data, int size, int offset);
 
-    void        Bind    (int attribute, bool forceUpdate = false);
-    void        Unbind  ();
-
+    void        Bind        (int attribute);
+    void        Unbind      ();
+    
 private:
     
+    int         m_Vbo;
+    int         m_Size;
+    int         m_Type;
+    int         m_TypeSize;
+    int         m_DataType;
     int         m_Elements;
     bool        m_Dynamic;
-    int         m_Size;
-    int         m_Vbo;
     int         m_Attribute;
-    T          *m_Data;
 };
 
 }

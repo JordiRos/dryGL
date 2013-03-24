@@ -20,7 +20,6 @@ using namespace dry;
 App::App(AppParams const &params)
 {
     m_Params = params;
-    m_Renderer = new Renderer();
 }
 
 

@@ -14,7 +14,7 @@ using namespace dry;
 // Private vars
 static string   s_PathBundle  = "";
 static string   s_PathDocpath = "";
-static LogLevel s_LogLevel    = LOG_FLAG_ALL;
+static LogLevel s_LogLevel    = LogRelease;
 #define MAX_STATIC_DIR 10
 static string   s_StaticDir[MAX_STATIC_DIR];
 static int      s_StaticIdx = 0;
@@ -27,15 +27,15 @@ static int      s_StaticIdx = 0;
 void dry::Init(LogLevel loglevel, const string &logfile)
 {
     s_LogLevel = loglevel;
-    dry::Log(LOG_SYSTEM, "dryGL v%s", DRY_VERSION_STR);
+    dry::Log(LogSystem, "dryGL v%s", DRY_VERSION_STR);
 }
 
 
 //------------------------------------------------------------------------------------------------
-// Free
+// Shut
 //
 //------------------------------------------------------------------------------------------------
-void dry::Free()
+void dry::Shut()
 {
 }
 

@@ -27,10 +27,10 @@ private:
     
 
 private:
-    
-    Vbo<glm::vec3>  m_Vertices;
-    Vbo<glm::vec2>  m_TexCoords;
-    Ibo<ushort>     m_Indices;
+
+    Vbo             m_Vertices;
+    Vbo             m_TexCoords;
+    Ibo             m_Indices;
     ShaderBasic     m_Shader;
 };
 

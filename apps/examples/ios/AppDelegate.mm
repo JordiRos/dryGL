@@ -6,11 +6,14 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#import "AppDelegate.h"
-#import "AppVbo.h"
-#import "AppFbo.h"
-#import "AppGLSL.h"
-#import "AppGeometry.h"
+#include "AppDelegate.h"
+#include "AppVbo.h"
+#include "AppQuadBatch.h"
+#include "AppGLSL.h"
+#include "AppFbo.h"
+//#include "AppGeometry.h"
+//#include "AppMaterial.h"
+
 
 
 @implementation AppDelegate
@@ -22,14 +25,17 @@
     self.window = [[[UIWindow alloc] initWithFrame:frame] autorelease];
 
     // Initialize dry subsystem
-    dry::Init(dry::LOG_FLAG_ALL, "dry.log");
-    dry::Log(dry::LOG_INFO, "[AppDelegate] Screen Size: %.0f,%.0f", frame.size.width,frame.size.height);
+    dry::Init(dry::LogDebug, "dry.log");
+    dry::Log(dry::LogInfo, "[AppDelegate] Screen Size: %.0f,%.0f", frame.size.width,frame.size.height);
     
     // Create app with desired resolution and attach its viewController to rootViewController
-    //app = NEW AppVbo(dry::AppParams(frame.size.width,frame.size.height, false));
-    //app = NEW AppFbo(dry::AppParams(frame.size.width,frame.size.height, false));
-    //app = NEW AppGLSL(dry::AppParams(frame.size.width,frame.size.height, false));
-    app = NEW AppGeometry(dry::AppParams(frame.size.width,frame.size.height, false));
+    //app = NEW AppVbo(dry::AppParams(frame.size.width, frame.size.height, false));
+    //app = NEW AppQuadBatch(dry::AppParams(frame.size.width, frame.size.height, false));
+    //app = NEW AppGLSL(dry::AppParams(frame.size.width, frame.size.height, false));
+    app = NEW AppFbo(dry::AppParams(frame.size.width, frame.size.height, false));
+    //app = NEW AppGeometry(dry::AppParams(frame.size.width, frame.size.height, false));
+    //app = NEW AppMaterial(dry::AppParams(frame.size.width, frame.size.height, false));
+    app->Init();
     self.window.rootViewController = (UIViewController *)app->GetViewController();
 
     [self.window makeKeyAndVisible];
@@ -40,6 +46,7 @@
 - (void)dealloc
 {
     DISPOSE(app);
+    dry::Shut();
     [super dealloc];
 }
 

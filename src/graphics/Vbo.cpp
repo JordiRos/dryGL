@@ -16,22 +16,39 @@ using namespace dry;
 // Init
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
+bool Vbo::Init(void const *data, int size, int type, bool dynamic)
 {
-    m_Elements = elements;
-    m_Dynamic  = dynamic;
-    m_Size = size;
-    m_Data = NEW_ARRAY(T, m_Size);
-    m_Attribute = 0;
-    if (data)
-        memcpy(m_Data, data, m_Size * sizeof(T));
+    bool res = false;
+    int elements = 0;
+    int typeSize = 0;
+    int dataType = 0;
+    switch (type)
+    {
+        case GL_INT:        elements = 1;  typeSize = sizeof(GLint);          dataType = GL_INT;   break;
+        case GL_FLOAT:      elements = 1;  typeSize = sizeof(GLfloat);        dataType = GL_FLOAT; break;
+        case GL_FLOAT_VEC2: elements = 2;  typeSize = sizeof(GLfloat) * 2.f;  dataType = GL_FLOAT; break;
+        case GL_FLOAT_VEC3: elements = 3;  typeSize = sizeof(GLfloat) * 3.f;  dataType = GL_FLOAT; break;
+        case GL_FLOAT_VEC4: elements = 4;  typeSize = sizeof(GLfloat) * 4.f;  dataType = GL_FLOAT; break;
+        case GL_FLOAT_MAT3: elements = 9;  typeSize = sizeof(GLfloat) * 9.f;  dataType = GL_FLOAT; break;
+        case GL_FLOAT_MAT4: elements = 16; typeSize = sizeof(GLfloat) * 16.f; dataType = GL_FLOAT; break;
+    }
+    if (typeSize > 0)
+    {
+        m_Size      = size;
+        m_Type      = type;
+        m_TypeSize  = typeSize;
+        m_DataType  = dataType;
+        m_Elements  = elements;
+        m_Dynamic   = dynamic;
+        m_Attribute = 0;
+        // Create GL buffers
+        glGenBuffers(1, (GLuint *)&m_Vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
+        glBufferData(GL_ARRAY_BUFFER, m_Size * m_TypeSize, data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+        res = true;
+    }
     else
-        memset(m_Data, 0, m_Size * sizeof(T));
-    // Create GL buffers
-    glGenBuffers(1, (GLuint *)&m_Vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
-    glBufferData(GL_ARRAY_BUFFER, m_Size * sizeof(T), m_Data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+        dry::Log(LogWarning, "[Vbo] Error creating VertexBufferObject with size %d", size);
 
     return true;
 }
@@ -41,14 +58,12 @@ bool Vbo<T>::Init(int size, bool dynamic, int elements, T const *data)
 // Free
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-void Vbo<T>::Free()
+void Vbo::Free()
 {
-    if (m_Data)
+    if (m_Vbo > 0)
     {
         glDeleteBuffers(1, (GLuint *)&m_Vbo);
         m_Vbo = 0;
-        DISPOSE_ARRAY(m_Data);
     }
 }
 
@@ -57,11 +72,10 @@ void Vbo<T>::Free()
 // Update
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-void Vbo<T>::Update(T const *data)
+void Vbo::Update(void const *data, int size, int offset)
 {
     glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, m_Size, m_Data);
+    glBufferSubData(GL_ARRAY_BUFFER, offset, m_Size * m_TypeSize, data);
 }
 
 
@@ -69,16 +83,12 @@ void Vbo<T>::Update(T const *data)
 // Bind
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-void Vbo<T>::Bind(int attribute, bool forceUpdate)
+void Vbo::Bind(int attribute)
 {
-    glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
-    if (m_Dynamic || forceUpdate)
-        glBufferSubData(GL_ARRAY_BUFFER, 0, m_Size, m_Data);
-    // Send data
     m_Attribute = attribute;
-    glEnableVertexAttribArray(attribute);
-    glVertexAttribPointer(attribute, m_Elements, GL_FLOAT, GL_FALSE, 0, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
+    glEnableVertexAttribArray(m_Attribute);
+    glVertexAttribPointer(m_Attribute, m_Elements, m_DataType, GL_FALSE, 0, 0);
 }
 
 
@@ -86,18 +96,11 @@ void Vbo<T>::Bind(int attribute, bool forceUpdate)
 // Unbind
 //
 //------------------------------------------------------------------------------------------------
-template<class T>
-void Vbo<T>::Unbind()
+void Vbo::Unbind()
 {
-    glEnableVertexAttribArray(0);
+    if (m_Attribute > 0)
+    {
+        glDisableVertexAttribArray(m_Attribute);
+        m_Attribute = 0;
+    }
 }
-
-
-//------------------------------------------------------------------------------------------------
-// Implicit Vbo definitions
-//------------------------------------------------------------------------------------------------
-template class dry::Vbo<float>;
-template class dry::Vbo<glm::vec2>;
-template class dry::Vbo<glm::vec3>;
-template class dry::Vbo<glm::vec4>;
-template class dry::Vbo<glm::mat4>;

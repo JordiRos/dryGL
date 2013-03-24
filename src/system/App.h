@@ -19,6 +19,7 @@ public:
                         App             (AppParams const &params);
     virtual            ~App             ();
 
+    virtual void        Init            () {}
 	virtual void        Update          (float time, float delta) {}
 	virtual void        Draw            () {}
 
@@ -28,9 +29,12 @@ public:
 	virtual void        TouchDoubleTap  (int x, int y, int id) {}
 	virtual void        TouchCancelled  (int x, int y, int id) {}
 
+    virtual void        OnRotate        (DeviceOrientation orientation) {}
 	virtual void        LostFocus       () {}
 	virtual void        GotFocus        () {}
 	virtual void        MemoryWarning   () {}
+
+    void                SetRenderer     (Renderer *renderer) { m_Renderer = renderer; }
 
     AppParams const    &GetParams       () { return m_Params; }
     Timer              &GetTimer        () { return m_Timer; }

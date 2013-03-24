@@ -16,12 +16,42 @@ using namespace dry;
 // Constructor
 //
 //------------------------------------------------------------------------------------------------
-Renderer::Renderer()
+Renderer::Renderer(int w, int h, bool depth, bool stencil)
 {
-    m_ClearColor   = glm::vec4(81.f / 255.f, 142.f / 255.f, 149.f / 255.f, 1.0f);
+    // Vars
+    m_ClearColor   = glm::vec4(80.f / 255.f, 130.f / 255.f, 200.f / 255.f, 1.0f);
     m_ClearDepth   = 1.f;
     m_ClearStencil = 0;
-    m_BlendMode    = BLEND_UNKNOWN;
+    m_BlendMode    = BlendUnknown;
+
+    // RenderBuffer
+    glGenRenderbuffers(1, &m_ColorRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, m_ColorRenderBuffer);
+    
+    // DepthBuffer/StencilBuffer
+    glGenRenderbuffers(1, &m_DepthRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, m_DepthRenderBuffer);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8_OES, w,h);
+    
+    // FrameBuffer
+    glGenFramebuffers(1, &m_FrameBuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, m_ColorRenderBuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,  GL_RENDERBUFFER, m_DepthRenderBuffer);
+    
+    // Default gl states
+    SetBlendMode(dry::BlendAlpha);
+    SetViewport (0, 0, w, h);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Renderer
+//
+//------------------------------------------------------------------------------------------------
+Renderer::~Renderer()
+{
+    
 }
 
 
@@ -31,6 +61,13 @@ Renderer::Renderer()
 //------------------------------------------------------------------------------------------------
 void Renderer::Begin()
 {
+    glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
+
+    // Default options
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_ALPHA);
+    glEnable(GL_TEXTURE_2D);
+
 }
 
 
@@ -40,6 +77,7 @@ void Renderer::Begin()
 //------------------------------------------------------------------------------------------------
 void Renderer::End()
 {
+    glBindRenderbuffer(GL_RENDERBUFFER, m_ColorRenderBuffer);
 }
 
 
@@ -88,13 +126,13 @@ void Renderer::SetBlendMode(BlendMode blend)
 {
     switch (m_BlendMode)
     {
-        case BLEND_ALPHA:    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); break;
-        case BLEND_ADD:      glBlendFunc(GL_SRC_ALPHA, GL_ONE); break;
-        case BLEND_PMALPHA:  glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA); break;
-        case BLEND_PMADD:    glBlendFunc(GL_ONE, GL_ONE); break;
-        case BLEND_SCREEN:   glBlendFunc(GL_ONE, GL_ONE); break;
-        case BLEND_MULTIPLY: glBlendFunc(GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA); break;
-        case BLEND_UNKNOWN:  return;
+        case BlendAlpha:    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); break;
+        case BlendAdd:      glBlendFunc(GL_SRC_ALPHA, GL_ONE); break;
+        case BlendPMAlpha:  glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA); break;
+        case BlendPMAdd:    glBlendFunc(GL_ONE, GL_ONE); break;
+        case BlendScreen:   glBlendFunc(GL_ONE, GL_ONE); break;
+        case BlendMultiply: glBlendFunc(GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA); break;
+        case BlendUnknown:  return;
     }
     m_BlendMode = blend;
 }

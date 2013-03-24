@@ -30,15 +30,22 @@ bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::P
 	glGenTextures(1, (GLuint *)&m_Handle);
     if (m_Handle != -1)
     {
-        int filter = 0;
+        int minf = 0;
+        int magf = 0;
         if (m_Params.Mipmaps)
-            filter = m_Params.Bilinear ? GL_LINEAR_MIPMAP_LINEAR : GL_LINEAR_MIPMAP_NEAREST;
+        {
+            minf = m_Params.Bilinear ? GL_LINEAR_MIPMAP_LINEAR : GL_LINEAR_MIPMAP_NEAREST;
+            magf = GL_LINEAR_MIPMAP_NEAREST;
+        }
         else
-            filter = m_Params.Bilinear ? GL_LINEAR : GL_NEAREST;
+        {
+            minf = m_Params.Bilinear ? GL_LINEAR : GL_NEAREST;
+            magf = GL_NEAREST;
+        }
         int glFormat = GetGLFormat();
         glBindTexture  (m_Target, m_Handle);
-        glTexParameteri(m_Target, GL_TEXTURE_MIN_FILTER, filter);
-        glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, filter);
+        glTexParameteri(m_Target, GL_TEXTURE_MIN_FILTER, minf);
+        glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, magf);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexImage2D   (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
@@ -47,7 +54,7 @@ bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::P
         res = true;
     }
     else
-        dry::Log(LOG_WARNING, "[dryTexture] Can't create texture with params: %d,%d / PixelFormat: %d", width, height, format);
+        dry::Log(LogError, "[dryTexture] Can't create texture with params: %d,%d / PixelFormat: %d", width, height, format);
     return res;
 }
 
@@ -119,11 +126,11 @@ int Texture::GetGLFormat() const
 {
     switch (m_Format)
     {
-        case PF_ALPHA:   return GL_ALPHA;
-        case PF_RGB565:  return GL_RGB;
-        case PF_RGB24:   return GL_RGB;
-        case PF_ARGB32:  return GL_RGBA;
-        case PF_UNKNOWN: return 0;
+        case PixelFormatAlpha:   return GL_ALPHA;
+        case PixelFormatRgb565:  return GL_RGB;
+        case PixelFormatRgb24:   return GL_RGB;
+        case PixelFormatArgb32:  return GL_RGBA;
+        case PixelFormatUnknown: return 0;
     }
     return 0;
 }
@@ -137,11 +144,11 @@ int Texture::GetGLType() const
 {
     switch (m_Format)
     {
-        case PF_ALPHA:   return GL_UNSIGNED_BYTE;
-        case PF_RGB565:  return GL_UNSIGNED_BYTE;
-        case PF_RGB24:   return GL_UNSIGNED_BYTE;
-        case PF_ARGB32:  return GL_UNSIGNED_BYTE;
-        case PF_UNKNOWN: return 0;
+        case PixelFormatAlpha:   return GL_UNSIGNED_BYTE;
+        case PixelFormatRgb565:  return GL_UNSIGNED_BYTE;
+        case PixelFormatRgb24:   return GL_UNSIGNED_BYTE;
+        case PixelFormatArgb32:  return GL_UNSIGNED_BYTE;
+        case PixelFormatUnknown: return 0;
     }
     return 0;
 }

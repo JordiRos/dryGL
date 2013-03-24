@@ -24,7 +24,6 @@
 		BC91904916FA510C00507A00 /* ImageLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC91904816FA510C00507A00 /* ImageLoader.mm */; };
 		BCB50F6316FB5A9B009A5476 /* glsl_lights.fs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050516FB4ED300B45C68 /* glsl_lights.fs */; };
 		BCB50F6416FB5A9B009A5476 /* glsl.vs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050616FB4ED300B45C68 /* glsl.vs */; };
-		BCB50F6A16FB6C59009A5476 /* AppFbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F6816FB6C59009A5476 /* AppFbo.cpp */; };
 		BCB50F6E16FB918A009A5476 /* metal.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F6D16FB918A009A5476 /* metal.png */; };
 		BCB50F7216FC8D39009A5476 /* glsl_isoshader.fs in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */; };
 		BCB50F7416FC8D40009A5476 /* glsl_isoshader.fs in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */; };
@@ -44,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC25527816FF75CC00D3F375 /* AppQuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppQuadBatch.h; path = src/AppQuadBatch.h; sourceTree = SOURCE_ROOT; };
+		BC25527916FFAEAC00D3F375 /* AppFbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppFbo.h; path = src/AppFbo.h; sourceTree = SOURCE_ROOT; };
 		BC34D2E716CE289A00B634C0 /* dryExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dryExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC34D2EB16CE289A00B634C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC34D2ED16CE289A00B634C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,15 +68,12 @@
 		BC91903D16F9EA7300507A00 /* AppVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVbo.h; path = src/AppVbo.h; sourceTree = SOURCE_ROOT; };
 		BC91904716FA510C00507A00 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
 		BC91904816FA510C00507A00 /* ImageLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageLoader.mm; sourceTree = "<group>"; };
-		BCB50F6816FB6C59009A5476 /* AppFbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppFbo.cpp; path = src/AppFbo.cpp; sourceTree = SOURCE_ROOT; };
-		BCB50F6916FB6C59009A5476 /* AppFbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppFbo.h; path = src/AppFbo.h; sourceTree = SOURCE_ROOT; };
 		BCB50F6D16FB918A009A5476 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glsl_isoshader.fs; sourceTree = "<group>"; };
 		BCB50F7716FD2320009A5476 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCB50F7816FD2320009A5476 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
 		BCB50F7A16FD23F1009A5476 /* GeometryPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryPlane.cpp; sourceTree = "<group>"; };
 		BCB50F7B16FD23F1009A5476 /* GeometryPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryPlane.h; sourceTree = "<group>"; };
-		BCB50F7D16FDB6A4009A5476 /* AppGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppGeometry.h; path = src/AppGeometry.h; sourceTree = SOURCE_ROOT; };
 		BCB50F7F16FE34E7009A5476 /* grid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grid.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,10 +176,9 @@
 		BC6F4D9F16F1D90600B094F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				BCB50F7D16FDB6A4009A5476 /* AppGeometry.h */,
+				BC25527816FF75CC00D3F375 /* AppQuadBatch.h */,
 				BC91903D16F9EA7300507A00 /* AppVbo.h */,
-				BCB50F6816FB6C59009A5476 /* AppFbo.cpp */,
-				BCB50F6916FB6C59009A5476 /* AppFbo.h */,
+				BC25527916FFAEAC00D3F375 /* AppFbo.h */,
 				BC5704FD16FB47CA00B45C68 /* AppGLSL.h */,
 			);
 			name = src;
@@ -326,7 +323,6 @@
 				BC91904916FA510C00507A00 /* ImageLoader.mm in Sources */,
 				BC57050916FB4ED300B45C68 /* glsl_lights.fs in Sources */,
 				BC57050A16FB4ED300B45C68 /* glsl.vs in Sources */,
-				BCB50F6A16FB6C59009A5476 /* AppFbo.cpp in Sources */,
 				BCB50F7216FC8D39009A5476 /* glsl_isoshader.fs in Sources */,
 				BCB50F7916FD2320009A5476 /* QuadBatch.cpp in Sources */,
 				BCB50F7C16FD23F1009A5476 /* GeometryPlane.cpp in Sources */,

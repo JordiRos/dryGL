@@ -36,11 +36,11 @@ bool Fbo::Init(Fbo::Params const &params)
     glTexImage2D   (m_Target, 0, GL_RGBA, m_Params.Width, m_Params.Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 
     // Create depth texture
-    glBindRenderbuffer       (GL_RENDERBUFFER, m_FboDepth);
-    glRenderbufferStorage    (GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_Params.Width, m_Params.Height);
+    glBindRenderbuffer   (GL_RENDERBUFFER, m_FboDepth);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_Params.Width, m_Params.Height);
 
     // FrameBuffer
-	glBindFramebuffer        (GL_FRAMEBUFFER,  m_Fbo);
+	glBindFramebuffer    (GL_FRAMEBUFFER, m_Fbo);
     
     // Attach
     glFramebufferTexture2D   (GL_FRAMEBUFFER,  GL_COLOR_ATTACHMENT0, m_Target,        m_FboColor, 0);
@@ -48,7 +48,7 @@ bool Fbo::Init(Fbo::Params const &params)
     
     // Check status
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        dry::Log(LOG_WARNING, "[Fbo] Framebuffer not complete");
+        dry::Log(LogWarning, "[Fbo] Error creating FrameBuffer: %d,%d", params.Width, params.Height);
     
     // Clear
 	glBindTexture    (GL_TEXTURE_2D,  0);
@@ -102,9 +102,9 @@ void Fbo::Unbind()
 //------------------------------------------------------------------------------------------------
 void Fbo::BindFboColor(int uniform, int stage) const
 {
-    glBindTexture(m_Target, m_FboColor);
     glActiveTexture(GL_TEXTURE0 + stage);
-    glUniform1i(uniform, 0);
+    glBindTexture  (m_Target, m_FboColor);
+    glUniform1i    (uniform, 0);
 }
 
 
@@ -124,8 +124,8 @@ void Fbo::UnbindFboColor() const
 //------------------------------------------------------------------------------------------------
 void Fbo::BindFboDepth(int uniform, int stage) const
 {
-    glBindTexture  (m_Target, m_FboDepth);
     glActiveTexture(GL_TEXTURE0 + stage);
+    glBindTexture  (m_Target, m_FboDepth);
     glUniform1i    (uniform, 0);
 }
 

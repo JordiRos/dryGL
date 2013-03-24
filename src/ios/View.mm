@@ -48,7 +48,7 @@
         if (m_EAGLContext)
             [EAGLContext setCurrentContext:m_EAGLContext];
         else
-            dry::Log(dry::LOG_WARNING, "[dryView] Failed to initialize OpenGLES 2.0 context");
+            dry::Log(dry::LogError, "[dryView] Failed to initialize OpenGLES 2.0 context");
 
         int w = app->GetParams().Width;
         int h = app->GetParams().Height;
@@ -56,30 +56,22 @@
         m_ScaleFactor = app->GetParams().Retina ? 2 : 1;
         self.contentScaleFactor = m_ScaleFactor;
         m_EAGLLayer.contentsScale = m_ScaleFactor;
-        dry::Log(dry::LOG_SYSTEM, "[View] Initializing EAGLLayer view: %dx%d (scale %.2f)", w,h, m_ScaleFactor);
+        dry::Log(dry::LogSystem, "[View] Initializing GLView: %dx%d (scale %.2f)", w,h, m_ScaleFactor);
 
-        // RenderBuffer
-        glGenRenderbuffers(1, &m_ColorRenderBuffer);
-        glBindRenderbuffer(GL_RENDERBUFFER, m_ColorRenderBuffer);
+        // Renderer
+        m_Renderer = NEW dry::Renderer(w * m_ScaleFactor, h * m_ScaleFactor, true, true);
+        app->SetRenderer(m_Renderer);
+
+        // Bind render buffer to EAGLLayer
+        glBindRenderbuffer(GL_RENDERBUFFER, m_Renderer->GetColorBuffer());
         [m_EAGLContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:m_EAGLLayer];
-
-        // DepthBuffer/StencilBuffer
-        glGenRenderbuffers(1, &m_DepthRenderBuffer);
-        glBindRenderbuffer(GL_RENDERBUFFER, m_DepthRenderBuffer);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8_OES, w,h);
-
-        // FrameBuffer
-        glGenFramebuffers(1, &m_FrameBuffer);
-        glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, m_ColorRenderBuffer);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,  GL_RENDERBUFFER, m_DepthRenderBuffer);
-
-        // Default options
-        glEnable(GL_DEPTH_TEST);
-        glEnable(GL_ALPHA);
 
         // Status Bar
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+
+        // Rotation
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
     }
     return self;
 }
@@ -91,6 +83,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)dealloc
 {
+    DISPOSE(m_Renderer);
     [m_EAGLContext release];
 	[super dealloc];
 }
@@ -103,7 +96,7 @@
 - (void)beginRender
 {
     [EAGLContext setCurrentContext:m_EAGLContext];
-    glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
+    m_Renderer->Begin();
 }
 
 
@@ -113,7 +106,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)endRender
 {
-    glBindRenderbuffer(GL_RENDERBUFFER, m_ColorRenderBuffer);
+    m_Renderer->End();
     [m_EAGLContext presentRenderbuffer:GL_RENDERBUFFER];
 }
 
@@ -145,7 +138,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)layoutSubviews
 {
-    dry::Log(dry::LOG_SYSTEM, "[View] layoutSubviews");
+    dry::Log(dry::LogSystem, "[View] layoutSubviews");
 }
 
 
@@ -181,6 +174,17 @@
         if (m_App)
             m_App->GetTimer().Pause();
     }
+}
+
+
+//------------------------------------------------------------------------------------------------
+// onRotate
+//
+//------------------------------------------------------------------------------------------------
+- (void)onRotate:(NSNotification *)notification
+{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    dry::Log(dry::LogSystem, "[View] didRotate: %d", orientation);
 }
 
 

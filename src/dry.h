@@ -47,65 +47,87 @@ namespace dry {
     
 #define DRY_TARGET_IOS                  // DRY platform target: only iOS for now
 #define DRY_VERSION_STR     "0.1.0"     // DRY version
+
+// LogLevel
+enum LogLevel
+{
+    LogSystem  = 1<<0,
+    LogError   = 1<<0,
+    LogWarning = 1<<1,
+    LogInfo    = 1<<3,
+    // Presets
+    LogErrors   = LogError | LogWarning,
+    LogDebug    = LogSystem | LogError | LogWarning | LogInfo,
+    LogRelease  = LogError,
+};
     
+void            Init        (LogLevel loglevel, const string &logfile);
+void            Shut        ();
+void            Log         (LogLevel loglevel, const char *log, ...);      // Log function
+void            SetPaths    (const string &bundle, const string &docpath);  // Set app paths
+const string   &GetFilePath (const string &file);                           // Main bundle path (read only)
+const string   &GetFilePath (const string &file, const string &docpath);    // Documents path (read/write)
+float           GetTime     ();                                             // Get system time
+
 // AppParams
 struct AppParams
 {
-    AppParams() {}
+    AppParams() { }
     AppParams(int width, int height, bool retina)
     {
-        Width      = width;
-        Height     = height;
-        Retina     = retina;
+        Width   = width;
+        Height  = height;
+        Retina  = retina;
     }
     int  Width;
     int  Height;
     bool Retina;
 };
 
-// LogLevel
-enum LogLevel
+// DeviceOrientation
+enum DeviceOrientation
 {
-    LOG_SYSTEM  = 1<<0,
-    LOG_WARNING = 1<<1,
-    LOG_INFO    = 1<<2,
-    LOG_DEBUG   = 1<<3,
-    // Presets
-    LOG_FLAG_WARNINGS = LOG_WARNING,
-    LOG_FLAG_DEBUG = LOG_WARNING | LOG_INFO | LOG_DEBUG,
-    LOG_FLAG_ALL = 0xFFFFFFFF,
+    DeviceOrientationPortrait,
+    DeviceOrientationPortraitUpsideDown,
+    DeviceOrientationLandscapeLeft,
+    DeviceOrientationLandscapeRight,
+    DeviceOrientationUnknown = 0xFFFFFFFF,
 };
-    
-void            Init        (LogLevel loglevel, const string &logfile);
-void            Free        ();
-void            Log         (LogLevel loglevel, const char *log, ...);
-void            SetPaths    (const string &bundle, const string &docpath);  // Set app paths
-const string   &GetFilePath (const string &file);                           // Main bundle path (read only)
-const string   &GetFilePath (const string &file, const string &docpath);    // Documents path (read/write)
-float           GetTime     ();                                             // Get system time
 
 // PixelFormat
 enum PixelFormat
 {
-    PF_ALPHA,
-    PF_RGB565,
-    PF_RGB24,
-    PF_ARGB32,
-    PF_UNKNOWN = 0xFFFFFFFF,
+    PixelFormatAlpha,
+    PixelFormatRgb565,
+    PixelFormatRgb24,
+    PixelFormatArgb32,
+    PixelFormatUnknown = 0xFFFFFFFF,
 };
 
 // BlendMode
 enum BlendMode
 {
-    BLEND_ALPHA,
-    BLEND_ADD,
-    BLEND_PMALPHA,
-    BLEND_PMADD,
-    BLEND_SCREEN,
-    BLEND_MULTIPLY,
-    BLEND_UNKNOWN = 0xFFFFFFFF,
+    BlendAlpha,
+    BlendAdd,
+    BlendPMAlpha,
+    BlendPMAdd,
+    BlendScreen,
+    BlendMultiply,
+    BlendUnknown = 0xFFFFFFFF,
 };
 
+// DataType
+enum DataType
+{
+    DataTypeInt,
+    DataTypeFloat,
+    DataTypeVec2f,
+    DataTypeVec3f,
+    DataTypeVec4f,
+    DataTypeMat3f,
+    DataTypeMat4f,
+};
+    
 }
 
 //------------------------------------------------------------------------------------------------

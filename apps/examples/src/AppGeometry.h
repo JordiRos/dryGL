@@ -5,11 +5,12 @@
 //  Created by Jordi Ros on 15/02/13.
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
-//  How to use Geometries
+//  Geometry example
 //
 
+#pragma once
+
 #include "dry.h"
-#include "AppGLSL.h"
 #include "ImageLoader.h"
 #include "GeometryPlane.h"
 
@@ -23,18 +24,20 @@ dry::GeometryPlane      Plane;
 dry::ShaderBasic        Shader;
 dry::Texture            Texture;
 
+AppGeometry(dry::AppParams const &params) : dry::AppiOS(params) { }
+    
 
-AppGeometry(dry::AppParams const &params) : dry::AppiOS(params)
+void Init()
 {
     int w = GetParams().Width;
     int h = GetParams().Height;
     
     Shader.Init();
     Camera.Init(45.f, (float)w / h, 0.1f, 100.f);
-    Camera.LookAt(glm::vec3(0.0, 4.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    Camera.LookAt(glm::vec3(0.f, 4.f, -8.f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 1.f, 0.f));
     Plane.Init(2, 2, glm::vec3(0.f, 1.f, 0.f));
     
-    dry::ImageLoader::LoadTexture(dry::GetFilePath("grid.jpg"), Texture, dry::Texture::Params(false, false));
+    dry::ImageLoader::LoadTexture(dry::GetFilePath("grid.jpg"), Texture, dry::Texture::Params(true, true));
 
     GetRenderer()->SetViewport(0,0, w,h);
 }
@@ -43,7 +46,7 @@ AppGeometry(dry::AppParams const &params) : dry::AppiOS(params)
 void Draw()
 {
     GetRenderer()->Clear(true, true, false);
-    GetRenderer()->SetBlendMode(dry::BLEND_ALPHA);
+    GetRenderer()->SetBlendMode(dry::BlendAlpha);
     
     // Bind
     Shader.Bind();

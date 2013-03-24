@@ -14,16 +14,6 @@ class AppiOS : public App
 {
 public:
                         AppiOS              (AppParams const &params);
-
-	virtual void        TouchDown           (int x, int y, int id) {}
-	virtual void        TouchMoved          (int x, int y, int id) {}
-	virtual void        TouchUp             (int x, int y, int id) {}
-	virtual void        TouchDoubleTap      (int x, int y, int id) {}
-	virtual void        TouchCancelled      (int x, int y, int id) {}
-    
-	virtual void        LostFocus           () {}
-	virtual void        GotFocus            () {}
-	virtual void        MemoryWarning       () {}
     
     void               *GetViewController   () { return m_ViewController; }
 

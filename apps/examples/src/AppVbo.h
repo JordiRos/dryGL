@@ -1,14 +1,13 @@
 //
 //  AppVbo.h
-//  dryExamples
 //
-//  Created by Jordi Ros on 15/02/13.
-//  Copyright (c) 2013 Jordi Ros. All rights reserved.
+//  Example: How to setup VertexBufferObjects and use them for custom rendering
 //
+
+#pragma once
 
 #include "dry.h"
 #include "ImageLoader.h"
-
 
 class AppVbo : public dry::AppiOS
 {
@@ -17,12 +16,13 @@ public:
 dry::CameraPerspective  Camera;
 dry::ShaderBasic        Shader;
 dry::Texture            Texture;
-dry::Vbo<glm::vec3>     Vertices;
-dry::Vbo<glm::vec2>     Texcoords;
-dry::Ibo<ushort>        Indices;
+dry::Vbo                Vertices;
+dry::Vbo                TexCoords;
+dry::Ibo                Indices;
 
-
-AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
+AppVbo(dry::AppParams const &params) : dry::AppiOS(params) { }
+    
+void Init()
 {
     // Vertices
     GLfloat vertices[] = {
@@ -89,12 +89,12 @@ AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
     };
 
     // Buffers
-    Indices.Init(36, false, indices);
-    Vertices.Init(24, false, 3, (glm::vec3 *)vertices);
-    Texcoords.Init(24, false, 2, (glm::vec2 *)texcoords);
-    
+    Indices.Init(indices, 36, GL_UNSIGNED_SHORT, false);
+    Vertices.Init(vertices, 24, GL_FLOAT_VEC3, false);
+    TexCoords.Init(texcoords, 24, GL_FLOAT_VEC2, false);
+
     // Texture
-    dry::ImageLoader::LoadTexture(dry::GetFilePath("metal.png"), Texture, dry::Texture::Params(true, true));
+    dry::ImageLoader::LoadTexture(dry::GetFilePath("metal.png"), Texture, dry::Texture::Params(true, false));
     
     // Shader
     Shader.Init();
@@ -102,18 +102,13 @@ AppVbo(dry::AppParams const &params) : dry::AppiOS(params)
     // Camera
     int w = GetParams().Width;
     int h = GetParams().Height;
-    Camera.Init(45.f, (float)w / h, 0.1f, 100.f);
+    Camera.Init(45.f, (float)w / h, 0.1f, 10000.f);
     Camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-    
-    // Viewport
-    GetRenderer()->SetViewport(0,0, w,h);
 }
-    
 
 void Draw()
 {
     GetRenderer()->Clear(true, true, false);
-    GetRenderer()->SetBlendMode(dry::BLEND_ALPHA);
     
     // Bind
     Shader.Bind();
@@ -127,20 +122,19 @@ void Draw()
 
     // Buffers
     Texture.Bind(Shader.GetUniformLocation("Texture"), 0);
-    Vertices.Bind(Shader.GetAttribLocation("Position"), false);
-    Texcoords.Bind(Shader.GetAttribLocation("TexCoord"), false);
+    Vertices.Bind(Shader.GetAttribLocation("Position"));
+    TexCoords.Bind(Shader.GetAttribLocation("TexCoord"));
     Indices.Bind();
     
     // Draw!
     Indices.Draw(GL_TRIANGLES);
     
     // Unbind
-    Vertices.Unbind();
-    Texcoords.Unbind();
-    Indices.Unbind();
     Texture.Unbind();
+    Vertices.Unbind();
+    TexCoords.Unbind();
+    Indices.Unbind();
     Shader.Unbind();
 }
-
 
 };

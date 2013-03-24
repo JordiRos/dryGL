@@ -30,10 +30,10 @@ static GLuint uniform_texture;
 
 
 //------------------------------------------------------------------------------------------------
-// AppFbo
+// Init
 //
 //------------------------------------------------------------------------------------------------
-AppFbo::AppFbo(dry::AppParams const &params) : dry::AppiOS(params)
+void AppFbo::Init()
 {
     // Vertices
     GLfloat cube_vertices[] = {

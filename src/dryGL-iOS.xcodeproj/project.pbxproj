@@ -175,12 +175,12 @@
 				BCF38C7016ED197100073C11 /* ShaderBasic.h */,
 				BCF38C7116ED197100073C11 /* Texture.cpp */,
 				BCF38C7216ED197100073C11 /* Texture.h */,
+				BCF38C8C16EDD9EA00073C11 /* Fbo.cpp */,
+				BCF38C8D16EDD9EA00073C11 /* Fbo.h */,
 				BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */,
 				BCD9FE4C16F3DA3B00C38D61 /* Vbo.h */,
 				BCD9FE4E16F5258600C38D61 /* Ibo.cpp */,
 				BCD9FE4F16F5258700C38D61 /* Ibo.h */,
-				BCF38C8C16EDD9EA00073C11 /* Fbo.cpp */,
-				BCF38C8D16EDD9EA00073C11 /* Fbo.h */,
 			);
 			path = graphics;
 			sourceTree = "<group>";

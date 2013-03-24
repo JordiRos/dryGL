@@ -39,9 +39,9 @@ void QuadBatch::Init()
     };
     
     // Buffers
-    m_Vertices.Init(4, false, 3, (glm::vec3 *)vertices);
-    m_TexCoords.Init(4, false, 2, (glm::vec2 *)texcoords);
-    m_Indices.Init(6, false, indices);
+    m_Vertices.Init(vertices, 4, GL_FLOAT_VEC3, false);
+    m_TexCoords.Init(texcoords, 4, GL_FLOAT_VEC2, false);
+    m_Indices.Init(indices, 6, GL_UNSIGNED_SHORT, false);
     // Shader
     m_Shader.Init();
 }

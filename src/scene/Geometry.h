@@ -63,6 +63,7 @@ public:
     bool            Init            (Params const &params);
     void            Free            ();
     
+    /*
     // Data
     Ibo<ushort>    *GetIndices      () { return &m_Indices; }
     Vbo<glm::vec3> *GetVertices     () { return &m_Vertices; }
@@ -73,10 +74,12 @@ public:
     Vbo<glm::vec3> *GetNormals      () { return &m_Normals; }
     Vbo<glm::vec3> *GetTangents     () { return &m_Tangents; }
     Vbo<glm::vec4> *GetColors       () { return &m_Colors; }
+     */
 
 protected:
     
     Params          m_Params;
+    /*
     Ibo<ushort>     m_Indices;
     Vbo<glm::vec3>  m_Vertices;
     Vbo<glm::vec2>  m_TexCoords0;
@@ -86,6 +89,7 @@ protected:
     Vbo<glm::vec3>  m_Normals;
     Vbo<glm::vec3>  m_Tangents;
     Vbo<glm::vec4>  m_Colors;
+     */
 };
     
 }

@@ -39,8 +39,8 @@ bool Shader::InitWithFile(const string &vs, const string &fs)
     bool res = false;
     char *bvs = NULL;
     char *bfs = NULL;
-    dry::Log(LOG_SYSTEM, "[Shader] Load VS: %s", vs.c_str());
-    dry::Log(LOG_SYSTEM, "[Shader] Load FS: %s", fs.c_str());
+    dry::Log(LogInfo, "[Shader] Load VS from file %s", vs.c_str());
+    dry::Log(LogInfo, "[Shader] Load FS from file %s", fs.c_str());
     if (ReadFileContents(vs, &bvs) && ReadFileContents(fs, &bfs))
         res = InitWithProgram(bvs, bfs);
     DISPOSE_ARRAY(bvs);
@@ -152,8 +152,8 @@ void Shader::LogShaderError(int handle, const string &info)
 {
     char messages[256];
     glGetShaderInfoLog(handle, sizeof(messages), 0, &messages[0]);
-    dry::Log(LOG_WARNING, "[dryShader] Error compiling %s", info.c_str());
-    dry::Log(LOG_WARNING, messages);
+    dry::Log(LogError, "[dryShader] Error compiling %s", info.c_str());
+    dry::Log(LogError, messages);
 }
 
 
@@ -165,8 +165,8 @@ void Shader::LogProgramError(int handle, const string &info)
 {
     GLchar messages[256];
     glGetProgramInfoLog(handle, sizeof(messages), 0, &messages[0]);
-    dry::Log(LOG_WARNING, "[dryShader] Error compiling %s", info.c_str());
-    dry::Log(LOG_WARNING, messages);
+    dry::Log(LogError, "[dryShader] Error compiling %s", info.c_str());
+    dry::Log(LogError, messages);
 }
 
 
@@ -178,7 +178,7 @@ int Shader::GetAttribLocation(const char *name)
 {
     int attribute = glGetAttribLocation(m_HandleProgram, name);
     if (attribute < 0)
-        dry::Log(LOG_WARNING, "[Shader] Can't find attribute %s", name);
+        dry::Log(LogWarning, "[Shader] Can't find attribute %s", name);
     return attribute;
 }
 
@@ -191,6 +191,6 @@ int Shader::GetUniformLocation(const char *name)
 {
     int uniform = glGetUniformLocation(m_HandleProgram, name);
     if (uniform < 0)
-        dry::Log(LOG_WARNING, "[Shader] Can't find uniform %s", name);
+        dry::Log(LogWarning, "[Shader] Can't find uniform %s", name);
     return uniform;
 }
