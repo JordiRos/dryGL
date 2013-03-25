@@ -8,7 +8,6 @@
 
 #include "dry.h"
 #include "QuadBatch.h"
-#include "ImageLoader.h"
 
 class AppFbo : public dry::AppiOS
 {

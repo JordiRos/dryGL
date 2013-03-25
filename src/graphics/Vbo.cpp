@@ -50,7 +50,7 @@ bool Vbo::Init(void const *data, int size, int type, bool dynamic)
     else
         dry::Log(LogWarning, "[Vbo] Error creating VertexBufferObject with size %d", size);
 
-    return true;
+    return res;
 }
 
 

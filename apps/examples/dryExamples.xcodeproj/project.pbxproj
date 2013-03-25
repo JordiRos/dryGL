@@ -21,7 +21,6 @@
 		BC6F4DA616F1D90600B094F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC6F4D9916F1D90600B094F0 /* InfoPlist.strings */; };
 		BC6F4DA916F1D90600B094F0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4D9E16F1D90600B094F0 /* main.mm */; };
 		BC6F4DC816F2210600B094F0 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC716F220C500B094F0 /* libdryGL-iOS.a */; };
-		BC91904916FA510C00507A00 /* ImageLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC91904816FA510C00507A00 /* ImageLoader.mm */; };
 		BCB50F6316FB5A9B009A5476 /* glsl_lights.fs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050516FB4ED300B45C68 /* glsl_lights.fs */; };
 		BCB50F6416FB5A9B009A5476 /* glsl.vs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050616FB4ED300B45C68 /* glsl.vs */; };
 		BCB50F6E16FB918A009A5476 /* metal.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F6D16FB918A009A5476 /* metal.png */; };
@@ -66,8 +65,6 @@
 		BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "dryGL-iOS.xcodeproj"; path = "../../src/dryGL-iOS.xcodeproj"; sourceTree = "<group>"; };
 		BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libdryGL-iOS.a"; path = "../../src/build/Release-iphoneos/libdryGL-iOS.a"; sourceTree = "<group>"; };
 		BC91903D16F9EA7300507A00 /* AppVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVbo.h; path = src/AppVbo.h; sourceTree = SOURCE_ROOT; };
-		BC91904716FA510C00507A00 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
-		BC91904816FA510C00507A00 /* ImageLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageLoader.mm; sourceTree = "<group>"; };
 		BCB50F6D16FB918A009A5476 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glsl_isoshader.fs; sourceTree = "<group>"; };
 		BCB50F7716FD2320009A5476 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
@@ -193,16 +190,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BC91904616FA510C00507A00 /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				BC91904816FA510C00507A00 /* ImageLoader.mm */,
-				BC91904716FA510C00507A00 /* ImageLoader.h */,
-			);
-			name = ios;
-			path = ../../addons/ios;
-			sourceTree = "<group>";
-		};
 		BCB50F7516FD2320009A5476 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				BCB50F7516FD2320009A5476 /* graphics */,
-				BC91904616FA510C00507A00 /* ios */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -320,7 +306,6 @@
 			files = (
 				BC6F4DA216F1D90600B094F0 /* AppDelegate.mm in Sources */,
 				BC6F4DA916F1D90600B094F0 /* main.mm in Sources */,
-				BC91904916FA510C00507A00 /* ImageLoader.mm in Sources */,
 				BC57050916FB4ED300B45C68 /* glsl_lights.fs in Sources */,
 				BC57050A16FB4ED300B45C68 /* glsl.vs in Sources */,
 				BCB50F7216FC8D39009A5476 /* glsl_isoshader.fs in Sources */,

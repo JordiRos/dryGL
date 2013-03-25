@@ -24,3 +24,4 @@
 
 // dry
 #include "AppiOS.h"
+#include "ImageLoader.h"

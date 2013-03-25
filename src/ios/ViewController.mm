@@ -37,7 +37,7 @@
 //------------------------------------------------------------------------------------------------
 - (void) dealloc
 {
-    dry::Log(dry::LogSystem, "[ViewController] dealloc");
+    dry::Log(dry::LogInfo, "[ViewController] dealloc");
     [glView stopAnimation];
     [glView removeFromSuperview];
     glView = nil;
@@ -51,7 +51,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
 {
-    dry::Log(dry::LogSystem, "[ViewController] viewDidLoad");
+    dry::Log(dry::LogInfo, "[ViewController] viewDidLoad");
     [super viewDidLoad];
     [glView startAnimation];
 }
@@ -63,7 +63,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)viewWillAppear:(BOOL)animated
 {
-    dry::Log(dry::LogSystem, "[ViewController] viewWillAppear");
+    dry::Log(dry::LogInfo, "[ViewController] viewWillAppear");
     [super viewWillAppear:animated];
     [glView startAnimation];
 }
@@ -75,7 +75,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)viewDidDisappear:(BOOL)animated
 {
-    dry::Log(dry::LogSystem, "[ViewController] viewDidDisappear");
+    dry::Log(dry::LogInfo, "[ViewController] viewDidDisappear");
     [super viewDidDisappear:animated];
     [glView stopAnimation];
 }

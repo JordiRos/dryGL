@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC25527D170042B500D3F375 /* ImageLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC25527C170042B500D3F375 /* ImageLoader.mm */; };
 		BC91249F16DFA8B900E7F493 /* dry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91249E16DFA8B900E7F493 /* dry.cpp */; };
 		BCD9FE4D16F3DA3B00C38D61 /* Vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */; };
 		BCD9FE5016F5258700C38D61 /* Ibo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4E16F5258600C38D61 /* Ibo.cpp */; };
@@ -43,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BC25527B170042B500D3F375 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
+		BC25527C170042B500D3F375 /* ImageLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageLoader.mm; sourceTree = "<group>"; };
 		BC6B1F1216D02ED2008B939C /* libdryGL-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libdryGL-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC6B217B16D13759008B939C /* dry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.h; sourceTree = "<group>"; };
 		BC6B219A16D13810008B939C /* dry.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.pch; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				BCF38C7916ED197100073C11 /* ViewController.h */,
 				BCF38C7A16ED197100073C11 /* ViewController.mm */,
 				BCD9FE5B16F650A900C38D61 /* Time.mm */,
+				BC25527B170042B500D3F375 /* ImageLoader.h */,
+				BC25527C170042B500D3F375 /* ImageLoader.mm */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				BCD9FE5A16F6421C00C38D61 /* Material.cpp in Sources */,
 				BCD9FE5C16F650A900C38D61 /* Time.mm in Sources */,
 				BCD9FEB616F744DF00C38D61 /* Object.cpp in Sources */,
+				BC25527D170042B500D3F375 /* ImageLoader.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

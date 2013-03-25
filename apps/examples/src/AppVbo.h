@@ -7,7 +7,6 @@
 #pragma once
 
 #include "dry.h"
-#include "ImageLoader.h"
 
 class AppVbo : public dry::AppiOS
 {

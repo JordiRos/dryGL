@@ -138,7 +138,7 @@
 //------------------------------------------------------------------------------------------------
 - (void)layoutSubviews
 {
-    dry::Log(dry::LogSystem, "[View] layoutSubviews");
+    dry::Log(dry::LogInfo, "[View] layoutSubviews");
 }
 
 
@@ -184,7 +184,7 @@
 - (void)onRotate:(NSNotification *)notification
 {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    dry::Log(dry::LogSystem, "[View] didRotate: %d", orientation);
+    dry::Log(dry::LogInfo, "[View] didRotate: %d", orientation);
 }
 
 
