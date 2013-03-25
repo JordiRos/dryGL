@@ -30,10 +30,10 @@
     
     // Create app with desired resolution and attach its viewController to rootViewController
     dry::AppParams params = dry::AppParams(frame.size.width, frame.size.height, false);
-    app = NEW AppVbo      (params);
+    //app = NEW AppVbo      (params);
     //app = NEW AppQuadBatch(params);
     //app = NEW AppGLSL     (params);
-    //app = NEW AppFbo      (params);
+    app = NEW AppFbo      (params);
     //app = NEW AppGeometry (params);
     //app = NEW AppMaterial (params);
     app->Init();

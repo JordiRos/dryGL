@@ -16,7 +16,7 @@ using namespace dry;
 // Init
 //
 //------------------------------------------------------------------------------------------------
-void QuadBatch::Init()
+void QuadBatch::Init(Renderer *renderer)
 {
     // Vertices
     GLfloat vertices[] = {
@@ -37,6 +37,8 @@ void QuadBatch::Init()
         0,  1,  2,
         2,  3,  0,
     };
+    
+    m_Renderer = renderer;
     
     // Buffers
     m_Vertices.Init(vertices, 4, GL_FLOAT_VEC3, false);
@@ -64,6 +66,7 @@ void QuadBatch::DrawTexture(Texture *texture, Camera const *camera, glm::mat4 co
 {
     m_Shader.Bind();
     texture->Bind(0);
+    glUniform1i(m_Shader.GetUniformLocation("Texture"), 0);
 
     DrawShader(&m_Shader, camera, transform, x,y, w,h);
 
@@ -108,7 +111,7 @@ void QuadBatch::DrawShader(Shader *shader, Camera const *camera, glm::mat4 const
     m_Indices.Bind();
 
     // Draw!
-    m_Indices.Draw(GL_TRIANGLES);
+    m_Renderer->DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT);
 
     // Unbind
     m_Vertices.Unbind();

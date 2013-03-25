@@ -21,6 +21,9 @@ public:
 
     void            Clear           (bool color, bool depth, bool stencil);
     
+    void            DrawArrays      (int mode, int count);
+    void            DrawElements    (int mode, int count, int type);
+    
     void            SetViewport     (int x, int y, int w, int h);
     void            SetClearColor   (glm::vec4 const &color, float depth, int stencil);
     void            SetBlendMode    (BlendMode blend);

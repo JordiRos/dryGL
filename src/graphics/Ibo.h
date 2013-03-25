@@ -21,9 +21,10 @@ public:
 
     void        Bind    ();
     void        Unbind  ();
-
-    void        Draw    (int primitive);
     
+    int         GetSize () { return m_Size; }
+    int         GetType () { return m_Type; }
+
 private:
     
     int         m_Ibo;

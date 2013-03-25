@@ -16,7 +16,7 @@ public:
                     QuadBatch       () { }
                    ~QuadBatch       () { Free(); }
     
-    void            Init            ();
+    void            Init            (Renderer *renderer);
     void            Free            ();
     
     void            DrawTexture     (Texture *texture, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h);
@@ -28,6 +28,7 @@ private:
 
 private:
 
+    Renderer       *m_Renderer;
     Vbo             m_Vertices;
     Vbo             m_TexCoords;
     Ibo             m_Indices;

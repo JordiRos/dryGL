@@ -95,7 +95,7 @@ void Init()
     TexCoords.Init(texcoords, 24, GL_FLOAT_VEC2, false);
 
     // Texture
-    dry::ImageLoader::LoadTexture(dry::GetFilePath("metal.png"), Texture, dry::Texture::Params(true, false));
+    dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("metal.png"), dry::Texture::Params(true, false));
     
     // Shader
     Shader.Init();
@@ -135,7 +135,7 @@ void Draw()
     Indices.Bind();
     
     // Draw!
-    Indices.Draw(GL_TRIANGLES);
+    GetRenderer()->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
     
     // Unbind
     Texture.Unbind();

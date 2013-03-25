@@ -100,7 +100,7 @@ void Init()
     TexCoords.Init(texcoords, 24, GL_FLOAT_VEC2, false);
     
     // Texture
-    dry::ImageLoader::LoadTexture(dry::GetFilePath("grid.jpg"), Texture, dry::Texture::Params(true, true));
+    dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true));
     
     // Shader
     Shader.Init();
@@ -114,15 +114,15 @@ void Init()
     params.Height = h;
     Fbo.Init(params);
     
-    // QuadBatch
-    QuadBatch.Init();
-    
     // Perspective
     CameraP.Init(45.f, (float)w / h, 0.1f, 10000.f);
     CameraP.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
     // Orthogonal
     CameraO.Init(0,w, 0,h, 0.1f,10000.f);
     CameraO.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    
+    // QuadBatch
+    QuadBatch.Init(GetRenderer());
 }
 
 //------------------------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ void Draw()
     Indices.Bind();
     
     // Draw!
-    Indices.Draw(GL_TRIANGLES);
+    GetRenderer()->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
     
     // Unbind
     Texture.Unbind();

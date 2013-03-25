@@ -137,3 +137,22 @@ void Renderer::SetBlendMode(BlendMode blend)
     m_BlendMode = blend;
 }
 
+
+//------------------------------------------------------------------------------------------------
+// DrawArrays
+//
+//------------------------------------------------------------------------------------------------
+void Renderer::DrawArrays(int mode, int count)
+{
+    glDrawArrays(mode, 0, count);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// DrawElements
+//
+//------------------------------------------------------------------------------------------------
+void Renderer::DrawElements(int mode, int count, int type)
+{
+    glDrawElements(mode, count, type, 0);
+}
