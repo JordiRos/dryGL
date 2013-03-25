@@ -15,7 +15,6 @@ Current features
 - Fbo
 - Cameras
 - Uniform utils
-- LoadTexture(LoadImage (iOS only)
 - Scene/Object/Mesh/Material (WIP)
 - Addons/QuadBatch / TODO: Make it a real quadbatch pipeline
 
