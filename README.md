@@ -38,7 +38,6 @@ Examples
 Roadmap
 =======
 - Android version
-- Input manager
 - Sound manager
 - Handle device rotations
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
