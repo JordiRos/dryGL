@@ -29,7 +29,7 @@
     dry::Log(dry::LogInfo, "[AppDelegate] Screen Size: %.0f,%.0f", frame.size.width,frame.size.height);
     
     // Create app with desired resolution and attach its viewController to rootViewController
-    dry::AppParams params = dry::AppParams(frame.size.width, frame.size.height, false);
+    dry::AppParams params = dry::AppParams(frame.size.width * 2, frame.size.height * 2, true);
     //app = NEW AppVbo      (params);
     //app = NEW AppQuadBatch(params);
     //app = NEW AppGLSL     (params);

@@ -10,10 +10,9 @@
 
 namespace dry {
 
-// DataVar variant with unions
 union DataVar
 {
-    DataVar() { };
+    DataVar() {}
     int         i;
     float       f;
     glm::vec2   v2;

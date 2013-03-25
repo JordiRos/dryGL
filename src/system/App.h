@@ -23,11 +23,11 @@ public:
 	virtual void        Update          (float time, float delta) {}
 	virtual void        Draw            () {}
 
-	virtual void        TouchDown       (int x, int y, int id) {}
-	virtual void        TouchMoved      (int x, int y, int id) {}
-	virtual void        TouchUp         (int x, int y, int id) {}
-	virtual void        TouchDoubleTap  (int x, int y, int id) {}
-	virtual void        TouchCancelled  (int x, int y, int id) {}
+	virtual void        TouchDown       (float x, float y, int id) {}
+	virtual void        TouchMoved      (float x, float y, int id) {}
+	virtual void        TouchUp         (float x, float y, int id) {}
+	virtual void        TouchDoubleTap  (float x, float y, int id) {}
+	virtual void        TouchCancelled  (float x, float y, int id) {}
 
     virtual void        OnRotate        (DeviceOrientation orientation) {}
 	virtual void        LostFocus       () {}

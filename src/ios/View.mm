@@ -59,7 +59,7 @@
         dry::Log(dry::LogSystem, "[View] Initializing GLView: %dx%d (scale %.2f)", w,h, m_ScaleFactor);
 
         // Renderer
-        m_Renderer = NEW dry::Renderer(w * m_ScaleFactor, h * m_ScaleFactor, true, true);
+        m_Renderer = NEW dry::Renderer(w, h, true, true);
         app->SetRenderer(m_Renderer);
 
         // Bind render buffer to EAGLLayer
@@ -185,6 +185,70 @@
 {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     dry::Log(dry::LogInfo, "[View] didRotate: %d", orientation);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// touchesBegan
+//
+//------------------------------------------------------------------------------------------------
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (m_App)
+    {
+        UITouch *touch    = [touches anyObject];
+        CGPoint  location = [touch locationInView:self];
+        float x = location.x * m_ScaleFactor;
+        float y = location.y * m_ScaleFactor;
+        dry::Log(dry::LogInfo, "[View] touchesBegan: %.2f,%.2f", x, y);
+        m_App->TouchDown(x, y, 0);
+    }
+}
+
+
+//------------------------------------------------------------------------------------------------
+// touchesMoved
+//
+//------------------------------------------------------------------------------------------------
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (m_App)
+    {
+        UITouch *touch    = [touches anyObject];
+        CGPoint  location = [touch locationInView:self];
+        float x = location.x * m_ScaleFactor;
+        float y = location.y * m_ScaleFactor;
+        dry::Log(dry::LogInfo, "[View] touchesMoved: %.2f,%.2f", x, y);
+        m_App->TouchMoved(x, y, 0);
+    }
+}
+
+
+//------------------------------------------------------------------------------------------------
+// touchesEnded
+//
+//------------------------------------------------------------------------------------------------
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (m_App)
+    {
+        UITouch *touch    = [touches anyObject];
+        CGPoint  location = [touch locationInView:self];
+        float x = location.x * m_ScaleFactor;
+        float y = location.y * m_ScaleFactor;
+        dry::Log(dry::LogInfo, "[View] touchesEnded: %.2f,%.2f", x, y);
+        m_App->TouchUp(x, y, 0);
+    }
+}
+
+
+//------------------------------------------------------------------------------------------------
+// touchesCancelled
+//
+//------------------------------------------------------------------------------------------------
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self touchesEnded:touches withEvent:event];
 }
 
 
