@@ -41,3 +41,8 @@ Roadmap
 - Addons: ParticleSystem
 - Addons: EffectComposer, Postprocess effects / shaders
 - Addons: iOS features / accelerometer, camera, microphone, etc
+
+License
+=======
+
+Licensed under the MIT license.
