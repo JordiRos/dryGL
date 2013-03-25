@@ -38,8 +38,7 @@ Examples
 Roadmap
 =======
 - Android version
-- Sound manager
-- Handle device rotations
+- Sound engine (OpenAL?)
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
 - Addons: TextRendering (FreeType, Bitmap)
 - Addons: Material instances (Diffuse, Lambert, etc)
