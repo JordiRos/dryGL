@@ -3,9 +3,10 @@ dryGL
 
 dryGL is a lightweight OpenGL ES 2.0 framework for mobile devices, targeting iOS & Android
 
-The main aim is to have a super simple way of creating an ES 2.0 render setup, and a complete list of low level classes for rendering things to screen.
+The main aim is to have a super simple way of creating an ES 2.0 application, and a complete list of low level classes for rendering things to screen.
 This mean Vbo / Ibo buffers, Fbo, Shader / Texture loaders and utils, Cameras, etc, so then you can write your own object structures, scene renderers and custom shaders.
-And on top of that, write some generic addons, like device hardware (accelerometer, camera), sound engine, postprocess effects, materials, text rendering, physics, resource manager, and so on.
+
+On top of that, we plan to write some generic addons, like device hardware (accelerometer, camera), sound engine, a basic scene/object/material renderer, postprocess effects, text rendering, physics, resource manager, and so on.
 
 Currently it is still in alpha, but things are going ok and we currently have some examples working, that work as tutorials on how to use current objects.
 
