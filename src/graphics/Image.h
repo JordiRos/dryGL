@@ -16,9 +16,9 @@ public:
                 Image               () { m_Data = NULL; }
                ~Image               () { Free(); }
 
-    bool        InitWithData        (int width, int height, PixelFormat format, const void *data);
+    bool        InitWithData        (int width, int height, PixelFormat format, void const *data);
     void        Free                ();
-    void        Update              (const void *data);
+    void        Update              (void const *data);
 
     int         GetWidth            () const { return m_Width;  }
     int         GetHeight           () const { return m_Height; }

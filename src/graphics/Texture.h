@@ -34,13 +34,13 @@ public:
                 Texture         () { m_Handle = -1; }
                ~Texture         () { Free(); }
 
-    bool        InitWithData    (int width, int height, PixelFormat format, Params const &params, const void *data);
+    bool        InitWithData    (int width, int height, PixelFormat format, Params const &params, void const *data);
     bool        InitWithImage   (const Image &img, Params const &params);
     void        Free            ();
 
-    void        Update          (const void *data);
+    void        Update          (void const *data);
 
-    void        Bind            (int uniform, int stage) const;
+    void        Bind            (int stage) const;
     void        Unbind          () const;
     
 private:

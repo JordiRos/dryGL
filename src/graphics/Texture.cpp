@@ -17,7 +17,7 @@ using namespace dry;
 // InitWithData
 //
 //------------------------------------------------------------------------------------------------
-bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::Params const &params, const void *data)
+bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::Params const &params, void const *data)
 {
     Free();
     bool res = false;
@@ -85,7 +85,7 @@ void Texture::Free()
 // Update
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Update(const void *data)
+void Texture::Update(void const *data)
 {
     int glFormat = GetGLFormat();
 
@@ -100,11 +100,10 @@ void Texture::Update(const void *data)
 // Bind
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Bind(int uniform, int stage) const
+void Texture::Bind(int stage) const
 {
     glActiveTexture(GL_TEXTURE0 + stage);
     glBindTexture  (m_Target, m_Handle);
-    glUniform1i    (uniform, 0);
 }
 
 

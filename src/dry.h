@@ -117,17 +117,21 @@ enum BlendMode
 };
 
 // DataType
-enum DataType
+enum UniformType
 {
-    DataTypeInt,
-    DataTypeFloat,
-    DataTypeVec2f,
-    DataTypeVec3f,
-    DataTypeVec4f,
-    DataTypeMat3f,
-    DataTypeMat4f,
+    UniformTypeInt,
+    UniformTypeFloat,
+    UniformTypeVec2,
+    UniformTypeVec3,
+    UniformTypeVec4,
+    UniformTypeMat2,
+    UniformTypeMat3,
+    UniformTypeMat4,
+    UniformTypeTex2D,
+    UniformTypeTexCube,
+    UniformTypeUnknown = 0xFFFFFFFF,
 };
-    
+
 }
 
 //------------------------------------------------------------------------------------------------
@@ -142,6 +146,7 @@ enum DataType
 #include "system/Timer.h"
 #include "system/Random.h"
 #include "system/Color.h"
+#include "system/DataVar.h"
 #include "system/App.h"
 
 // Graphics
@@ -153,6 +158,7 @@ enum DataType
 #include "graphics/Fbo.h"
 #include "graphics/Vbo.h"
 #include "graphics/Ibo.h"
+#include "graphics/Uniform.h"
 
 // Camera
 #include "camera/Camera.h"
@@ -161,8 +167,8 @@ enum DataType
 
 // Scene
 #include "scene/Material.h"
-#include "scene/Geometry.h"
-#include "scene/Mesh.h"
+//#include "scene/Geometry.h"
+//#include "scene/Mesh.h"
 
 // Target iOS
 #ifdef DRY_TARGET_IOS

@@ -16,7 +16,7 @@ using namespace dry;
 // InitWithData
 //
 //------------------------------------------------------------------------------------------------
-bool Image::InitWithData(int width, int height, PixelFormat format, const void *data)
+bool Image::InitWithData(int width, int height, PixelFormat format, void const *data)
 {
     m_Width  = width;
     m_Height = height;

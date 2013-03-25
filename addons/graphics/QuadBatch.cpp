@@ -63,7 +63,7 @@ void QuadBatch::Free()
 void QuadBatch::DrawTexture(Texture *texture, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
     m_Shader.Bind();
-    texture->Bind(m_Shader.GetUniformLocation("Texture"), 0);
+    texture->Bind(0);
 
     DrawShader(&m_Shader, camera, transform, x,y, w,h);
 
@@ -79,8 +79,9 @@ void QuadBatch::DrawTexture(Texture *texture, Camera const *camera, glm::mat4 co
 void QuadBatch::DrawFbo(Fbo *fbo, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
     m_Shader.Bind();
-    fbo->BindFboColor(m_Shader.GetUniformLocation("Texture"), 0);
-
+    fbo->BindFboColor(0);
+    glUniform1i(m_Shader.GetUniformLocation("Texture"), 0);
+    
     DrawShader(&m_Shader, camera, transform, x,y, w,h);
 
     fbo->UnbindFboColor();

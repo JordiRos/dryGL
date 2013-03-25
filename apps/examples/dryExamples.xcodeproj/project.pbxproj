@@ -10,8 +10,6 @@
 		BC34D2EC16CE289A00B634C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2EB16CE289A00B634C0 /* UIKit.framework */; };
 		BC34D2EE16CE289A00B634C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2ED16CE289A00B634C0 /* Foundation.framework */; };
 		BC34D2F016CE289A00B634C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */; };
-		BC57050916FB4ED300B45C68 /* glsl_lights.fs in Sources */ = {isa = PBXBuildFile; fileRef = BC57050516FB4ED300B45C68 /* glsl_lights.fs */; };
-		BC57050A16FB4ED300B45C68 /* glsl.vs in Sources */ = {isa = PBXBuildFile; fileRef = BC57050616FB4ED300B45C68 /* glsl.vs */; };
 		BC6B1F7E16D03229008B939C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B1F7D16D03229008B939C /* OpenGLES.framework */; };
 		BC6B1F8016D03284008B939C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B1F7F16D03284008B939C /* QuartzCore.framework */; };
 		BC6F4DA216F1D90600B094F0 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4D9516F1D90600B094F0 /* AppDelegate.mm */; };
@@ -24,7 +22,6 @@
 		BCB50F6316FB5A9B009A5476 /* glsl_lights.fs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050516FB4ED300B45C68 /* glsl_lights.fs */; };
 		BCB50F6416FB5A9B009A5476 /* glsl.vs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050616FB4ED300B45C68 /* glsl.vs */; };
 		BCB50F6E16FB918A009A5476 /* metal.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F6D16FB918A009A5476 /* metal.png */; };
-		BCB50F7216FC8D39009A5476 /* glsl_isoshader.fs in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */; };
 		BCB50F7416FC8D40009A5476 /* glsl_isoshader.fs in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */; };
 		BCB50F7916FD2320009A5476 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F7716FD2320009A5476 /* QuadBatch.cpp */; };
 		BCB50F7C16FD23F1009A5476 /* GeometryPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F7A16FD23F1009A5476 /* GeometryPlane.cpp */; };
@@ -306,9 +303,6 @@
 			files = (
 				BC6F4DA216F1D90600B094F0 /* AppDelegate.mm in Sources */,
 				BC6F4DA916F1D90600B094F0 /* main.mm in Sources */,
-				BC57050916FB4ED300B45C68 /* glsl_lights.fs in Sources */,
-				BC57050A16FB4ED300B45C68 /* glsl.vs in Sources */,
-				BCB50F7216FC8D39009A5476 /* glsl_isoshader.fs in Sources */,
 				BCB50F7916FD2320009A5476 /* QuadBatch.cpp in Sources */,
 				BCB50F7C16FD23F1009A5476 /* GeometryPlane.cpp in Sources */,
 			);
@@ -397,11 +391,7 @@
 				GCC_PREFIX_HEADER = iOS/dry.pch;
 				INFOPLIST_FILE = iOS/info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../libs/freeimage/lib/ios\"",
-					"\"$(SRCROOT)/../../libs/freeimage/lib/osx\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = dryExamples;
 				SDKROOT = iphoneos;
@@ -418,11 +408,7 @@
 				GCC_PREFIX_HEADER = iOS/dry.pch;
 				INFOPLIST_FILE = iOS/info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../libs/freeimage/lib/ios\"",
-					"\"$(SRCROOT)/../../libs/freeimage/lib/osx\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = dryExamples;
 				SDKROOT = iphoneos;

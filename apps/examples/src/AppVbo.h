@@ -18,6 +18,8 @@ dry::Texture            Texture;
 dry::Vbo                Vertices;
 dry::Vbo                TexCoords;
 dry::Ibo                Indices;
+dry::Uniform            UTexture;
+dry::Uniform            UModelViewProjection;
 
 AppVbo(dry::AppParams const &params) : dry::AppiOS(params) { }
     
@@ -103,6 +105,10 @@ void Init()
     int h = GetParams().Height;
     Camera.Init(45.f, (float)w / h, 0.1f, 10000.f);
     Camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    
+    // Uniforms
+    UTexture.Init(Shader.GetUniformLocation("Texture"), dry::UniformTypeTex2D);
+    UModelViewProjection.Init(Shader.GetUniformLocation("ModelViewProjection"), dry::UniformTypeMat4);
 }
 
 void Draw()
@@ -116,11 +122,14 @@ void Draw()
     float angle = GetTimer().GetTime() * 45;
     glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
     glm::mat4 model = glm::translate(glm::vec3(0.0, 0.0, 0.0));
-    glm::mat4 mvp = Camera.GetMatProj() * Camera.GetMatView() * model * anim;
-    glUniformMatrix4fv(Shader.GetUniformLocation("ModelViewProjection"), 1, GL_FALSE, glm::value_ptr(mvp));
+    UModelViewProjection.Value = Camera.GetMatProj() * Camera.GetMatView() * model * anim;
+    UModelViewProjection.Bind();
 
     // Buffers
-    Texture.Bind(Shader.GetUniformLocation("Texture"), 0);
+    int stage = 1; // Bind texture to stage, set uniform to stage
+    Texture.Bind(stage);
+    UTexture.Value = stage;
+    UTexture.Bind();
     Vertices.Bind(Shader.GetAttribLocation("Position"));
     TexCoords.Bind(Shader.GetAttribLocation("TexCoord"));
     Indices.Bind();

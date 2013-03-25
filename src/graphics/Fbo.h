@@ -31,9 +31,9 @@ public:
     void    Bind            ();
     void    Unbind          ();
 
-    void    BindFboColor    (int uniform, int stage) const;
+    void    BindFboColor    (int stage) const;
     void    UnbindFboColor  () const;
-    void    BindFboDepth    (int uniform, int stage) const;
+    void    BindFboDepth    (int stage) const;
     void    UnbindFboDepth  () const;
     
 private:

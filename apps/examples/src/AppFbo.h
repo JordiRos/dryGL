@@ -149,7 +149,8 @@ void Draw()
     glUniformMatrix4fv(Shader.GetUniformLocation("ModelViewProjection"), 1, GL_FALSE, glm::value_ptr(mvp));
 
     // Buffers
-    Texture.Bind(Shader.GetUniformLocation("Texture"), 0);
+    Texture.Bind(0);
+    glUniform1i(Shader.GetUniformLocation("Texture"), 0);
     Vertices.Bind(Shader.GetAttribLocation("Position"));
     TexCoords.Bind(Shader.GetAttribLocation("TexCoord"));
     Indices.Bind();
