@@ -14,8 +14,9 @@ Current features
 - Ibo
 - Fbo
 - Cameras
+- Uniform utils
+- LoadTexture(LoadImage (iOS only)
 - Scene/Object/Mesh/Material (WIP)
-- Addons/ImageLoader (iOS only)
 - Addons/QuadBatch / TODO: Make it a real quadbatch pipeline
 
 Dependencies
@@ -26,7 +27,7 @@ Examples
 ========
 - AppVbo: Usage of Vbo / Ibo for rendering a cube in 3D
 - AppFbo: Usage of Fbo object for rendering to texture
-- AppQuadBatch: Usage of QuadBatch for rendering quads to screen the easy way
+- AppQuadBatch: Usage of QuadBatch for rendering quads to screen the easy way with mat4 transforms
 - AppGLSL: Screen space GLSL shader
 
 Roadmap
