@@ -3,18 +3,23 @@ dryGL
 
 dryGL is a lightweight OpenGL ES 2.0 framework for mobile devices, targeting iOS & Android
 
+The main aim is to have a super simple way of creating an ES 2.0 render setup, and a complete list of low level classes for rendering things to screen.
+This mean Vbo / Ibo buffers, Fbo, Shader / Texture loaders and utils, Cameras, etc, so then you can write your own object structures, scene renderers and custom shaders.
+And on top of that, write some generic addons, like device hardware (accelerometer, camera), sound engine, postprocess effects, materials, text rendering, physics, resource manager, and so on.
+
+Currently it is still in alpha, but things are going ok and we currently have some examples working, that work as tutorials on how to use current objects.
+
 Current features
 ================
-- iOS version
+- iOS version only (3.1+)
 - Renderer
-- Image
-- Texture
 - Shader
 - Vbo
 - Ibo
 - Fbo
 - Cameras
 - Uniform utils
+- Image/Texture
 - Scene/Object/Mesh/Material (WIP)
 - Addons/QuadBatch / TODO: Make it a real quadbatch pipeline
 
@@ -25,8 +30,8 @@ Dependencies
 Examples
 ========
 - AppVbo: Usage of Vbo / Ibo for rendering a cube in 3D
-- AppFbo: Usage of Fbo object for rendering to texture
-- AppQuadBatch: Usage of QuadBatch for rendering quads to screen the easy way with mat4 transforms
+- AppFbo: Usage of Fbo object for rendering scene to texture
+- AppQuadBatch: Usage of QuadBatch for rendering quads to screen the easy way
 - AppGLSL: Screen space GLSL shader
 
 Roadmap
