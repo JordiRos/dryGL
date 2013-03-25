@@ -35,6 +35,7 @@ Roadmap
 - Android version
 - Input manager
 - Sound manager
+- Handle device rotations
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
 - Addons: TextRendering (FreeType, Bitmap)
 - Addons: Material instances (Diffuse, Lambert, etc)
