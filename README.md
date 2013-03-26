@@ -56,7 +56,7 @@ Roadmap
 Contributions
 =============
 
-Once we release the first beta, you can contribute with fixes/addons/examples forking the project and pulling any request. We would be very happy!
+Once we release the first beta, we will create a dev branch were you would be able contribute with fixes/addons/examples forking the project and pulling any request. We would be very happy!
 
 License
 =======
