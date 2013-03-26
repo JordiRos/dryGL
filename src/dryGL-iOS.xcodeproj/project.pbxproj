@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BC25527D170042B500D3F375 /* ImageLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC25527C170042B500D3F375 /* ImageLoader.mm */; };
 		BC2552861700635E00D3F375 /* Uniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC2552841700635D00D3F375 /* Uniform.cpp */; };
+		BC887D611701DB0900BABCF8 /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D5F1701DB0800BABCF8 /* Attribute.cpp */; };
+		BC887D6617023CD900BABCF8 /* DataType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D6517023CD900BABCF8 /* DataType.cpp */; };
 		BC91249F16DFA8B900E7F493 /* dry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91249E16DFA8B900E7F493 /* dry.cpp */; };
 		BCD9FE4D16F3DA3B00C38D61 /* Vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */; };
 		BCD9FE5016F5258700C38D61 /* Ibo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4E16F5258600C38D61 /* Ibo.cpp */; };
@@ -53,6 +55,11 @@
 		BC6B1F1216D02ED2008B939C /* libdryGL-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libdryGL-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC6B217B16D13759008B939C /* dry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.h; sourceTree = "<group>"; };
 		BC6B219A16D13810008B939C /* dry.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.pch; sourceTree = "<group>"; };
+		BC887D5F1701DB0800BABCF8 /* Attribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Attribute.cpp; sourceTree = "<group>"; };
+		BC887D601701DB0900BABCF8 /* Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attribute.h; sourceTree = "<group>"; };
+		BC887D6317023AA800BABCF8 /* DataType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataType.h; sourceTree = "<group>"; };
+		BC887D6417023B3600BABCF8 /* DataTypeEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTypeEnum.h; sourceTree = "<group>"; };
+		BC887D6517023CD900BABCF8 /* DataType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataType.cpp; sourceTree = "<group>"; };
 		BC91249E16DFA8B900E7F493 /* dry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dry.cpp; sourceTree = "<group>"; };
 		BC91904B16FA641D00507A00 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vbo.cpp; sourceTree = "<group>"; };
@@ -176,20 +183,22 @@
 				BCF38C6C16ED197100073C11 /* Renderer.h */,
 				BCF38C6916ED197100073C11 /* Image.cpp */,
 				BCF38C6A16ED197100073C11 /* Image.h */,
-				BCF38C6D16ED197100073C11 /* Shader.cpp */,
-				BCF38C6E16ED197100073C11 /* Shader.h */,
-				BCF38C6F16ED197100073C11 /* ShaderBasic.cpp */,
-				BCF38C7016ED197100073C11 /* ShaderBasic.h */,
 				BCF38C7116ED197100073C11 /* Texture.cpp */,
 				BCF38C7216ED197100073C11 /* Texture.h */,
 				BCF38C8C16EDD9EA00073C11 /* Fbo.cpp */,
 				BCF38C8D16EDD9EA00073C11 /* Fbo.h */,
+				BCF38C6D16ED197100073C11 /* Shader.cpp */,
+				BCF38C6E16ED197100073C11 /* Shader.h */,
+				BCF38C6F16ED197100073C11 /* ShaderBasic.cpp */,
+				BCF38C7016ED197100073C11 /* ShaderBasic.h */,
 				BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */,
 				BCD9FE4C16F3DA3B00C38D61 /* Vbo.h */,
 				BCD9FE4E16F5258600C38D61 /* Ibo.cpp */,
 				BCD9FE4F16F5258700C38D61 /* Ibo.h */,
 				BC2552841700635D00D3F375 /* Uniform.cpp */,
 				BC2552851700635D00D3F375 /* Uniform.h */,
+				BC887D5F1701DB0800BABCF8 /* Attribute.cpp */,
+				BC887D601701DB0900BABCF8 /* Attribute.h */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -218,6 +227,9 @@
 				BCF38C7E16ED197100073C11 /* Random.h */,
 				BC91904B16FA641D00507A00 /* Color.h */,
 				BC2552871700688600D3F375 /* DataVar.h */,
+				BC887D6517023CD900BABCF8 /* DataType.cpp */,
+				BC887D6317023AA800BABCF8 /* DataType.h */,
+				BC887D6417023B3600BABCF8 /* DataTypeEnum.h */,
 				BCF38C7C16ED197100073C11 /* App.cpp */,
 				BCF38C7D16ED197100073C11 /* App.h */,
 			);
@@ -298,6 +310,8 @@
 				BCD9FEB616F744DF00C38D61 /* Object.cpp in Sources */,
 				BC25527D170042B500D3F375 /* ImageLoader.mm in Sources */,
 				BC2552861700635E00D3F375 /* Uniform.cpp in Sources */,
+				BC887D611701DB0900BABCF8 /* Attribute.cpp in Sources */,
+				BC887D6617023CD900BABCF8 /* DataType.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

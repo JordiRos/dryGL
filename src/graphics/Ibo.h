@@ -13,25 +13,28 @@ namespace dry {
 class Ibo
 {
 public:
-                Ibo     () { m_Ibo = 0; }
-               ~Ibo     () { Free(); }
+                Ibo         () { m_Ibo = 0; }
+               ~Ibo         () { Free(); }
     
-    bool        Init    (void const *data, int size, int type, bool dynamic);
-    void        Free    ();
+    bool        Init        (void const *data, int size, DataType type, bool dynamic);
+    void        Free        ();
 
-    void        Bind    ();
-    void        Unbind  ();
+    void        Update      (void const *data, int size, int offset);
+
+    void        Bind        ();
+    void        Unbind      ();
     
-    int         GetSize () { return m_Size; }
-    int         GetType () { return m_Type; }
+    int         GetType     () { return m_Type; }
+    int         GetSize     () { return m_Size; }
+    int         GetGLType   () { return m_GLType; }
 
 private:
     
     int         m_Ibo;
     int         m_Size;
-    int         m_Type;
+    DataType    m_Type;
     int         m_TypeSize;
-    int         m_DataType;
+    int         m_GLType;
     bool        m_Dynamic;
 };
 

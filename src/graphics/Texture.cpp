@@ -129,9 +129,8 @@ int Texture::GetGLFormat() const
         case PixelFormatRgb565:  return GL_RGB;
         case PixelFormatRgb24:   return GL_RGB;
         case PixelFormatArgb32:  return GL_RGBA;
-        case PixelFormatUnknown: return 0;
+        default:                 return 0;
     }
-    return 0;
 }
 
 
@@ -143,11 +142,10 @@ int Texture::GetGLType() const
 {
     switch (m_Format)
     {
-        case PixelFormatAlpha:   return GL_UNSIGNED_BYTE;
-        case PixelFormatRgb565:  return GL_UNSIGNED_BYTE;
-        case PixelFormatRgb24:   return GL_UNSIGNED_BYTE;
-        case PixelFormatArgb32:  return GL_UNSIGNED_BYTE;
-        case PixelFormatUnknown: return 0;
+        case PixelFormatAlpha:  return GL_UNSIGNED_BYTE;
+        case PixelFormatRgb565: return GL_UNSIGNED_BYTE;
+        case PixelFormatRgb24:  return GL_UNSIGNED_BYTE;
+        case PixelFormatArgb32: return GL_UNSIGNED_BYTE;
+        default:                return 0;
     }
-    return 0;
 }

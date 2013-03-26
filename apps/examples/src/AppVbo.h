@@ -90,9 +90,9 @@ void Init()
     };
 
     // Buffers
-    Indices.Init(indices, 36, GL_UNSIGNED_SHORT, false);
-    Vertices.Init(vertices, 24, GL_FLOAT_VEC3, false);
-    TexCoords.Init(texcoords, 24, GL_FLOAT_VEC2, false);
+    Indices.Init(indices, 36, dry::DataTypeUShort, false);
+    Vertices.Init(vertices, 24, dry::DataTypeVec3, false);
+    TexCoords.Init(texcoords, 24, dry::DataTypeVec2, false);
 
     // Texture
     dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("metal.png"), dry::Texture::Params(true, false));
@@ -107,8 +107,8 @@ void Init()
     Camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
     
     // Uniforms
-    UTexture.Init(Shader.GetUniformLocation("Texture"), dry::UniformTypeTex2D);
-    UModelViewProjection.Init(Shader.GetUniformLocation("ModelViewProjection"), dry::UniformTypeMat4);
+    UTexture.Init(Shader.GetUniformLocation("Texture"), dry::DataTypeTex2D);
+    UModelViewProjection.Init(Shader.GetUniformLocation("ModelViewProjection"), dry::DataTypeMat4);
 }
 
 void Draw()

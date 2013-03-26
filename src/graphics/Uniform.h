@@ -16,7 +16,7 @@ public:
                     Uniform () { m_Uniform = 0; }
                    ~Uniform () { Free(); }
 
-    bool            Init    (int uniform, UniformType type);
+    bool            Init    (int uniform, DataType type);
     void            Free    ();
 
     void            Bind    ();
@@ -28,7 +28,7 @@ public:
 protected:
 
     int             m_Uniform;
-    UniformType     m_Type;
+    DataType        m_Type;
 };
     
 }

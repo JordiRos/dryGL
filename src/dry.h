@@ -116,22 +116,6 @@ enum BlendMode
     BlendUnknown = 0xFFFFFFFF,
 };
 
-// DataType
-enum UniformType
-{
-    UniformTypeInt,
-    UniformTypeFloat,
-    UniformTypeVec2,
-    UniformTypeVec3,
-    UniformTypeVec4,
-    UniformTypeMat2,
-    UniformTypeMat3,
-    UniformTypeMat4,
-    UniformTypeTex2D,
-    UniformTypeTexCube,
-    UniformTypeUnknown = 0xFFFFFFFF,
-};
-
 }
 
 //------------------------------------------------------------------------------------------------
@@ -146,6 +130,7 @@ enum UniformType
 #include "system/Timer.h"
 #include "system/Random.h"
 #include "system/Color.h"
+#include "system/DataType.h"
 #include "system/DataVar.h"
 #include "system/App.h"
 
@@ -153,12 +138,13 @@ enum UniformType
 #include "graphics/Renderer.h"
 #include "graphics/Image.h"
 #include "graphics/Texture.h"
+#include "graphics/Fbo.h"
 #include "graphics/Shader.h"
 #include "graphics/ShaderBasic.h"
-#include "graphics/Fbo.h"
 #include "graphics/Vbo.h"
 #include "graphics/Ibo.h"
 #include "graphics/Uniform.h"
+#include "graphics/Attribute.h"
 
 // Camera
 #include "camera/Camera.h"

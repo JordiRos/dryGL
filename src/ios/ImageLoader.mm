@@ -31,8 +31,8 @@ bool ImageLoader::LoadTexture(Texture &tex, string const &file, Texture::Params 
         uchar *buffer = NEW_ARRAY(uchar, w*h*4);
         CGContextRef context = CGBitmapContextCreate(buffer, w,h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
         CGColorSpaceRelease(colorSpace);
-        //CGContextTranslateCTM(context, 0, h);
-        //CGContextScaleCTM (context, 1.0, -1.0);
+        CGContextTranslateCTM(context, 0, h);
+        CGContextScaleCTM (context, 1.0, -1.0);
         CGContextDrawImage(context, CGRectMake(0,0, w,h), image.CGImage);
 
         // Create and load texture data
@@ -68,8 +68,8 @@ bool ImageLoader::LoadImage(Image &img, string const &file)
         uchar *buffer = NEW_ARRAY(uchar, w*h*4);
         CGContextRef context = CGBitmapContextCreate(buffer, w,h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
         CGColorSpaceRelease(colorSpace);
-        //CGContextTranslateCTM(context, 0, h);
-        //CGContextScaleCTM (context, 1.0, -1.0);
+        CGContextTranslateCTM(context, 0, h);
+        CGContextScaleCTM (context, 1.0, -1.0);
         CGContextDrawImage(context, CGRectMake(0,0, w,h), image.CGImage);
         
         // Create and load texture data

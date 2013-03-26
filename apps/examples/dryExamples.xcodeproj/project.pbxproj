@@ -174,11 +174,11 @@
 		BC6F4D9F16F1D90600B094F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				BC255297170190FF00D3F375 /* AppParticles.h */,
 				BC25527816FF75CC00D3F375 /* AppQuadBatch.h */,
 				BC91903D16F9EA7300507A00 /* AppVbo.h */,
 				BC25527916FFAEAC00D3F375 /* AppFbo.h */,
 				BC5704FD16FB47CA00B45C68 /* AppGLSL.h */,
+				BC255297170190FF00D3F375 /* AppParticles.h */,
 			);
 			name = src;
 			path = Src;

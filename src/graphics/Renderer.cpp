@@ -130,7 +130,7 @@ void Renderer::SetBlendMode(BlendMode blend)
         case BlendPMAdd:    glBlendFunc(GL_ONE, GL_ONE); break;
         case BlendScreen:   glBlendFunc(GL_ONE, GL_ONE); break;
         case BlendMultiply: glBlendFunc(GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA); break;
-        case BlendUnknown:  return;
+        default: return;
     }
     m_BlendMode = blend;
 }

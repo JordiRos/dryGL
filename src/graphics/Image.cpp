@@ -50,9 +50,8 @@ int Image::GetBPP() const
         case PixelFormatRgb565:  return 2;
         case PixelFormatRgb24:   return 3;
         case PixelFormatArgb32:  return 4;
-        case PixelFormatUnknown: return 0;
+        default:                 return 0;
     }
-    return 0;
 }
 
 

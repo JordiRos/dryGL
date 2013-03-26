@@ -41,9 +41,9 @@ void QuadBatch::Init(Renderer *renderer)
     m_Renderer = renderer;
     
     // Buffers
-    m_Vertices.Init(vertices, 4, GL_FLOAT_VEC3, false);
-    m_TexCoords.Init(texcoords, 4, GL_FLOAT_VEC2, false);
-    m_Indices.Init(indices, 6, GL_UNSIGNED_SHORT, false);
+    m_Vertices.Init(vertices, 4, DataTypeVec3, false);
+    m_TexCoords.Init(texcoords, 4, DataTypeVec2, false);
+    m_Indices.Init(indices, 6, DataTypeUShort, false);
     // Shader
     m_Shader.Init();
 }

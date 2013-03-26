@@ -1,5 +1,5 @@
 //
-//  Ibo.cpp
+//  Attribute.cpp
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -7,33 +7,31 @@
 //
 
 #include "dry.h"
-#include "Ibo.h"
+#include "Attribute.h"
 
 using namespace dry;
 
 
 //------------------------------------------------------------------------------------------------
-// Init
+// Attribute
 //
 //------------------------------------------------------------------------------------------------
-bool Ibo::Init(void const *data, int size, DataType type, bool dynamic)
+bool Attribute::Init(int attribute, int size, DataType type, bool dynamic)
 {
     bool res = false;
-    if (GetDataTypeIbo(type))
+    if (GetDataTypeAttribute(type))
     {
-        m_Size     = size;
-        m_Type     = type;
-        m_TypeSize = GetDataTypeSize  (m_Type);
-        m_GLType   = GetDataTypeGLType(m_Type);
-        m_Dynamic  = dynamic;
-        // Create GL buffers
-        glGenBuffers(1, (GLuint *)&m_Ibo);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Size * m_TypeSize, data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+        m_Attribute = attribute;
+        m_Type      = type;
+        m_Size      = size;
+        m_Update    = false;
+        m_Vbo.Init(NULL, m_Size, m_Type, dynamic);
+        m_Data = NEW_ARRAY(uchar, m_Size * GetDataTypeSize(type));
         res = true;
     }
     else
-        dry::Log(LogWarning, "[Ibo] Error creating IndexBufferObject with type: %d and size: %d", type, size);
+        dry::Log(LogWarning, "[Attribute] Error creating Attribute with type: %d and size: %d", type, size);
+
     return res;
 }
 
@@ -42,13 +40,10 @@ bool Ibo::Init(void const *data, int size, DataType type, bool dynamic)
 // Free
 //
 //------------------------------------------------------------------------------------------------
-void Ibo::Free()
+void Attribute::Free()
 {
-    if (m_Ibo > 0)
-    {
-        glDeleteBuffers(1, (GLuint *)&m_Ibo);
-        m_Ibo = 0;
-    }
+    m_Vbo.Free();
+    DISPOSE_ARRAY(m_Data);
 }
 
 
@@ -56,10 +51,13 @@ void Ibo::Free()
 // Update
 //
 //------------------------------------------------------------------------------------------------
-void Ibo::Update(void const *data, int size, int offset)
+void Attribute::Update(bool now)
 {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
-    glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset, m_Size * m_TypeSize, data);
+    if (m_Data)
+    {
+        m_Vbo.Update(m_Data, m_Size, 0);
+        m_Update = false;
+    }
 }
 
 
@@ -67,9 +65,11 @@ void Ibo::Update(void const *data, int size, int offset)
 // Bind
 //
 //------------------------------------------------------------------------------------------------
-void Ibo::Bind()
+void Attribute::Bind()
 {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Ibo);
+    if (m_Update)
+        Update(true);
+    m_Vbo.Bind(m_Attribute);
 }
 
 
@@ -77,7 +77,7 @@ void Ibo::Bind()
 // Unbind
 //
 //------------------------------------------------------------------------------------------------
-void Ibo::Unbind()
+void Attribute::Unbind()
 {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    m_Vbo.Unbind();
 }

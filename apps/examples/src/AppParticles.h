@@ -20,13 +20,14 @@ dry::CameraPerspective  Camera;
 dry::QuadBatch          QuadBatch;
 dry::Shader             Shader;
 dry::Texture            Texture;
-dry::Vbo                Vertices;
-dry::Vbo                VAttributes;
+dry::Attribute          APositions;
+dry::Attribute          AAttributes;
 dry::Uniform            UModelViewProjection;
 dry::Uniform            UTime;
 dry::Uniform            UTexture;
-glm::vec3               Positions[PARTICLES];
-glm::vec2               Attributes[PARTICLES];
+glm::vec3              *Positions;
+glm::vec2              *Attributes;
+
     
 string VS = STRINGIFY(
     precision mediump float;
@@ -71,8 +72,22 @@ void Init()
     Shader.InitWithProgram(VS, FS);
     dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("particle.png"), dry::Texture::Params(false, false));
 
+    // Uniforms
+    UModelViewProjection.Init(Shader.GetUniformLocation("ModelViewProjection"), dry::DataTypeMat4);
+    UTime.Init(Shader.GetUniformLocation("Time"), dry::DataTypeFloat);
+    UTexture.Init(Shader.GetUniformLocation("Texture"), dry::DataTypeTex2D);
+    UTexture.Value = 0;
+    
+    // Attributes
+    //Vertices.Init(Positions, PARTICLES, dry::DataTypeVec3, false);
+    //VAttributes.Init(Attributes, PARTICLES, dry::DataTypeVec2, false);
+    APositions.Init(Shader.GetAttribLocation("Position"), PARTICLES, dry::DataTypeVec3, false);
+    AAttributes.Init(Shader.GetAttribLocation("Attribute"), PARTICLES, dry::DataTypeVec2, false);
+    
     dry::Log(dry::LogInfo, "Initialize %d particles", PARTICLES);
     dry::Random random;
+    Positions  = (glm::vec3 *)APositions.GetBuffer();
+    Attributes = (glm::vec2 *)AAttributes.GetBuffer();
     for (int i = 0; i < PARTICLES; i++)
     {
         Positions[i].x = random.Next(-0.5f, 0.5f);
@@ -81,15 +96,8 @@ void Init()
         Attributes[i].x = random.Next(0.f, (float)M_PI); // Offset
         Attributes[i].y = random.Next(5.f, 10.f);         // Speed
     }
-
-    Vertices.Init(Positions, PARTICLES, GL_FLOAT_VEC3, false);
-    VAttributes.Init(Attributes, PARTICLES, GL_FLOAT_VEC2, false);
-
-    // Uniforms
-    UModelViewProjection.Init(Shader.GetUniformLocation("ModelViewProjection"), dry::UniformTypeMat4);
-    UTime.Init(Shader.GetUniformLocation("Time"), dry::UniformTypeFloat);
-    UTexture.Init(Shader.GetUniformLocation("Texture"), dry::UniformTypeTex2D);
-    UTexture.Value = 0;
+    APositions.Update(true);
+    AAttributes.Update(true);
 }
 
 void Draw()
@@ -108,15 +116,16 @@ void Draw()
     UModelViewProjection.Value = Camera.GetMatProj() * Camera.GetMatView() * model * anim;
     UModelViewProjection.Bind();
 
-    UTime.Value = time;
-    UTime.Bind();
     Texture.Bind(UTexture.Value.i);
     UTexture.Bind();
-    Vertices.Bind(Shader.GetAttribLocation("Position"));
-    VAttributes.Bind(Shader.GetAttribLocation("Attribute"));
+    UTime.Value = time;
+    UTime.Bind();
+    APositions.Bind();
+    AAttributes.Bind();
     
     GetRenderer()->DrawArrays(GL_POINTS, PARTICLES);
     
+    Texture.Unbind();
     Shader.Unbind();
 }
 

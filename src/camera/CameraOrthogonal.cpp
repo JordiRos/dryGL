@@ -49,5 +49,5 @@ void CameraOrthogonal::Init(float left, float right, float top, float bottom, fl
 //------------------------------------------------------------------------------------------------
 void CameraOrthogonal::UpdateProjection()
 {
-    m_MatProj = glm::ortho(m_Left, m_Right, m_Top, m_Bottom, m_Near, m_Far);
+    m_MatProj = glm::ortho(m_Left, m_Right, m_Bottom, m_Top, m_Near, m_Far);
 }

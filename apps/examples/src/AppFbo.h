@@ -95,9 +95,9 @@ void Init()
     };
     
     // Buffers
-    Indices.Init(indices, 36, GL_UNSIGNED_SHORT, false);
-    Vertices.Init(vertices, 24, GL_FLOAT_VEC3, false);
-    TexCoords.Init(texcoords, 24, GL_FLOAT_VEC2, false);
+    Indices.Init(indices, 36, dry::DataTypeUShort, false);
+    Vertices.Init(vertices, 24, dry::DataTypeVec3, false);
+    TexCoords.Init(texcoords, 24, dry::DataTypeVec2, false);
     
     // Texture
     dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true));

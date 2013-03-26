@@ -12,9 +12,6 @@
 #include "AppGLSL.h"
 #include "AppFbo.h"
 #include "AppParticles.h"
-//#include "AppGeometry.h"
-//#include "AppMaterial.h"
-
 
 
 @implementation AppDelegate
@@ -38,7 +35,6 @@
     app = NEW AppParticles  (params);
     app->Init();
     self.window.rootViewController = (UIViewController *)app->GetViewController();
-
     [self.window makeKeyAndVisible];
     
     return YES;
