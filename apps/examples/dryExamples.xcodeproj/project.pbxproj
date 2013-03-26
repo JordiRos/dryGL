@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC25529A1701A18A00D3F375 /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2552991701A18A00D3F375 /* particle.png */; };
 		BC34D2EC16CE289A00B634C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2EB16CE289A00B634C0 /* UIKit.framework */; };
 		BC34D2EE16CE289A00B634C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2ED16CE289A00B634C0 /* Foundation.framework */; };
 		BC34D2F016CE289A00B634C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		BC25527816FF75CC00D3F375 /* AppQuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppQuadBatch.h; path = src/AppQuadBatch.h; sourceTree = SOURCE_ROOT; };
 		BC25527916FFAEAC00D3F375 /* AppFbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppFbo.h; path = src/AppFbo.h; sourceTree = SOURCE_ROOT; };
+		BC255297170190FF00D3F375 /* AppParticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppParticles.h; path = src/AppParticles.h; sourceTree = SOURCE_ROOT; };
+		BC2552991701A18A00D3F375 /* particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle.png; sourceTree = "<group>"; };
 		BC34D2E716CE289A00B634C0 /* dryExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dryExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC34D2EB16CE289A00B634C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC34D2ED16CE289A00B634C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +147,7 @@
 		BC57050716FB4ED300B45C68 /* textures */ = {
 			isa = PBXGroup;
 			children = (
+				BC2552991701A18A00D3F375 /* particle.png */,
 				BCB50F7F16FE34E7009A5476 /* grid.jpg */,
 				BCB50F6D16FB918A009A5476 /* metal.png */,
 			);
@@ -170,6 +174,7 @@
 		BC6F4D9F16F1D90600B094F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				BC255297170190FF00D3F375 /* AppParticles.h */,
 				BC25527816FF75CC00D3F375 /* AppQuadBatch.h */,
 				BC91903D16F9EA7300507A00 /* AppVbo.h */,
 				BC25527916FFAEAC00D3F375 /* AppFbo.h */,
@@ -291,6 +296,7 @@
 				BC6F4DA616F1D90600B094F0 /* InfoPlist.strings in Resources */,
 				BCB50F6E16FB918A009A5476 /* metal.png in Resources */,
 				BCB50F8016FE34E7009A5476 /* grid.jpg in Resources */,
+				BC25529A1701A18A00D3F375 /* particle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

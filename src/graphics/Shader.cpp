@@ -40,9 +40,16 @@ bool Shader::InitWithFile(const string &vs, const string &fs)
     char *bvs = NULL;
     char *bfs = NULL;
     dry::Log(LogInfo, "[Shader] Load VS from file %s", vs.c_str());
-    dry::Log(LogInfo, "[Shader] Load FS from file %s", fs.c_str());
-    if (ReadFileContents(vs, &bvs) && ReadFileContents(fs, &bfs))
-        res = InitWithProgram(bvs, bfs);
+    if (ReadFileContents(vs, &bvs))
+    {
+        dry::Log(LogInfo, "[Shader] Load FS from file %s", fs.c_str());
+        if (ReadFileContents(fs, &bfs))
+            res = InitWithProgram(bvs, bfs);
+        else
+            dry::Log(LogWarning, "[Shader] Can't open FS file %s", fs.c_str());
+    }
+    else
+        dry::Log(LogWarning, "[Shader] Can't open VS file %s", fs.c_str());
     DISPOSE_ARRAY(bvs);
     DISPOSE_ARRAY(bfs);
     return false;

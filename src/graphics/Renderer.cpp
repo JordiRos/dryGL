@@ -40,6 +40,10 @@ Renderer::Renderer(int w, int h, bool depth, bool stencil)
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,  GL_RENDERBUFFER, m_DepthRenderBuffer);
     
     // Default gl states
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+
+    // Default render states
     SetBlendMode(dry::BlendAlpha);
     SetViewport (0, 0, w, h);
 }
@@ -62,12 +66,6 @@ Renderer::~Renderer()
 void Renderer::Begin()
 {
     glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
-
-    // Default options
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_ALPHA);
-    glEnable(GL_TEXTURE_2D);
-
 }
 
 
@@ -124,7 +122,7 @@ void Renderer::SetClearColor(glm::vec4 const &color, float depth, int stencil)
 //------------------------------------------------------------------------------------------------
 void Renderer::SetBlendMode(BlendMode blend)
 {
-    switch (m_BlendMode)
+    switch (blend)
     {
         case BlendAlpha:    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); break;
         case BlendAdd:      glBlendFunc(GL_SRC_ALPHA, GL_ONE); break;

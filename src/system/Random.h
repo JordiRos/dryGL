@@ -83,11 +83,26 @@ public:
 		return Value;
 	}
     
-	uint Next(uint p_MaxPlusOne)
+	int Next(int max)
 	{
-		return (((uint(Next()) >> 16) * uint(p_MaxPlusOne)) >> 16);
+		return (((uint(Next()) >> 16) * int(max+1)) >> 16);
 	}
     
+    int Next(int min, int max)
+    {
+        return Next(max-min) + min;
+    }
+
+    float Next(float max)
+    {
+        return (float)Next(1<<16) * max * (1.f / (float)(1<<16));
+    }
+
+    float Next(float min, float max)
+    {
+        return Next(max-min) + min;
+    }
+
 private:
     
 	uint m_State[624];

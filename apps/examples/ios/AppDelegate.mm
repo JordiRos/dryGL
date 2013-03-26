@@ -11,6 +11,7 @@
 #include "AppQuadBatch.h"
 #include "AppGLSL.h"
 #include "AppFbo.h"
+#include "AppParticles.h"
 //#include "AppGeometry.h"
 //#include "AppMaterial.h"
 
@@ -33,9 +34,8 @@
     //app = NEW AppVbo      (params);
     //app = NEW AppQuadBatch(params);
     //app = NEW AppGLSL     (params);
-    app = NEW AppFbo      (params);
-    //app = NEW AppGeometry (params);
-    //app = NEW AppMaterial (params);
+    //app = NEW AppFbo      (params);
+    app = NEW AppParticles  (params);
     app->Init();
     self.window.rootViewController = (UIViewController *)app->GetViewController();
 
