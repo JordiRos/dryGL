@@ -1,9 +1,9 @@
 dryGL
 =====
 
-#### OpenGL ES 2.0 engine ####
+#### C++ OpenGL ES 2.0 engine ####
 
-**dryGL** is a lightweight OpenGL ES 2.0 engine for mobile and ES devices, currently targeting iOS only. It is written mainly in **C++** and an Android version is currently on our roadmap.
+**dryGL** is a lightweight OpenGL ES 2.0 engine for mobile and ES devices. It is now available only for iOS, but an Android version is currently on our roadmap.
 
 The aim of the project is to build a framework for creating an ES 2.0 application very easy, but also providing a complete list of low and mid level classes for rendering things to screen.
 This means utilities for Vbo, Fbo, Textures, Shaders, Uniforms, Attributes, Cameras, etc, so then you can write your own object structures, scene renderers and custom shaders a lot easier.
