@@ -16,16 +16,18 @@ Current features
 ================
 - iOS version only (3.1+)
 - ES 2.0 Renderer
+- Images/Textures
+- Fbo
+- Shaders
 - Vbo
 - Ibo
-- Fbo
+- Uniform
+- Attribute
 - Cameras
-- Images/Textures
-- Shaders
-- Uniform utils
-- Attribute utils
+- Math (using glm)
 - Addons/Scene: Scene,Object,Mesh,Material (WIP)
 - Addons/QuadBatch: Quad drawer the simple way. TODO: Make it a real quadbatch pipeline
+
 
 Dependencies
 ============
