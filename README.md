@@ -16,14 +16,14 @@ Current features
 ================
 - iOS version only (3.1+)
 - ES 2.0 Renderer
-- Shader
 - Vbo
 - Ibo
 - Fbo
 - Cameras
+- Images/Textures
+- Shaders
 - Uniform utils
 - Attribute utils
-- Images/Textures
 - Addons/Scene: Scene,Object,Mesh,Material (WIP)
 - Addons/QuadBatch: Quad drawer the simple way. TODO: Make it a real quadbatch pipeline
 
@@ -52,6 +52,11 @@ Roadmap
 - Addons: ParticleSystem
 - Addons: EffectComposer, Postprocess effects / shaders
 - Addons: iOS features / accelerometer, camera, microphone, etc
+
+Contributions
+=============
+
+Once we release the first beta, you can contribute with fixes/addons/examples forking the project and pulling any request. We would be very happy!
 
 License
 =======
