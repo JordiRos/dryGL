@@ -122,13 +122,11 @@ void Draw()
     float angle = GetTimer().GetTime() * 45;
     glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
     glm::mat4 model = glm::translate(glm::vec3(0.0, 0.0, 0.0));
-    UModelViewProjection.Value = Camera.GetMatProj() * Camera.GetMatView() * model * anim;
+    UModelViewProjection.Update(Camera.GetMatProj() * Camera.GetMatView() * model * anim);
     UModelViewProjection.Bind();
 
     // Buffers
-    int stage = 1; // Bind texture to stage, set uniform to stage
-    Texture.Bind(stage);
-    UTexture.Value = stage;
+    UTexture.Update(&Texture, 0);
     UTexture.Bind();
     Vertices.Bind(Shader.GetAttribLocation("Position"));
     TexCoords.Bind(Shader.GetAttribLocation("TexCoord"));
@@ -138,7 +136,7 @@ void Draw()
     GetRenderer()->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
     
     // Unbind
-    Texture.Unbind();
+    UTexture.Unbind();
     Vertices.Unbind();
     TexCoords.Unbind();
     Indices.Unbind();

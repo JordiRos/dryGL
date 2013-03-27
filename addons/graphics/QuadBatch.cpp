@@ -46,6 +46,9 @@ void QuadBatch::Init(Renderer *renderer)
     m_Indices.Init(indices, 6, DataTypeUShort, false);
     // Shader
     m_Shader.Init();
+    m_UTexture.Init(m_Shader.GetUniformLocation("Texture"), DataTypeTex2D);
+    m_UFboColor.Init(m_Shader.GetUniformLocation("Texture"), DataTypeFboColor);
+    m_UFboDepth.Init(m_Shader.GetUniformLocation("Texture"), DataTypeFboDepth);
 }
 
 
@@ -59,35 +62,52 @@ void QuadBatch::Free()
 
 
 //------------------------------------------------------------------------------------------------
-// Draw Texture
+// DrawTexture
 //
 //------------------------------------------------------------------------------------------------
 void QuadBatch::DrawTexture(Texture *texture, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
     m_Shader.Bind();
-    texture->Bind(0);
-    glUniform1i(m_Shader.GetUniformLocation("Texture"), 0);
+    m_UTexture.Update(texture, 0);
+    m_UTexture.Bind();
 
     DrawShader(&m_Shader, camera, transform, x,y, w,h);
 
-    texture->Unbind();
+    m_UTexture.Unbind();
     m_Shader.Unbind();
 }
 
 
 //------------------------------------------------------------------------------------------------
-// Draw Fbo
+// DrawFboColor
 //
 //------------------------------------------------------------------------------------------------
-void QuadBatch::DrawFbo(Fbo *fbo, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
+void QuadBatch::DrawFboColor(Fbo *fbo, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
     m_Shader.Bind();
-    fbo->BindFboColor(0);
-    glUniform1i(m_Shader.GetUniformLocation("Texture"), 0);
+    m_UFboColor.Update(fbo, 0);
+    m_UFboColor.Bind();
     
     DrawShader(&m_Shader, camera, transform, x,y, w,h);
 
-    fbo->UnbindFboColor();
+    m_UFboColor.Unbind();
+    m_Shader.Unbind();
+}
+
+
+//------------------------------------------------------------------------------------------------
+// DrawFboDepth
+//
+//------------------------------------------------------------------------------------------------
+void QuadBatch::DrawFboDepth(Fbo *fbo, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
+{
+    m_Shader.Bind();
+    m_UFboDepth.Update(fbo, 0);
+    m_UFboDepth.Bind();
+    
+    DrawShader(&m_Shader, camera, transform, x,y, w,h);
+    
+    m_UFboDepth.Unbind();
     m_Shader.Unbind();
 }
 

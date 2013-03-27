@@ -34,7 +34,7 @@ void Draw()
     glDisable(GL_DEPTH_TEST);
 
     Shader.Bind();
-    UTime.Value = GetTimer().GetTime();
+    UTime.Update(GetTimer().GetTime());
     UTime.Bind();
     QuadBatch.DrawShader(&Shader, &Camera, glm::mat4(), 0.f,0.f, 1.f,1.f);
     Shader.Unbind();

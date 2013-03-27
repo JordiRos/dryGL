@@ -109,10 +109,7 @@ void Init()
     int h = GetParams().Height;
 
     // Fbo
-    dry::Fbo::Params params;
-    params.Width  = w;
-    params.Height = h;
-    Fbo.Init(params);
+    Fbo.Init(GetRenderer(), dry::Fbo::Params(w,h));
     
     // Perspective
     CameraP.Init(45.f, (float)w / h, 0.1f, 10000.f);
@@ -170,7 +167,7 @@ void Draw()
     // Draw background + Fbo to screen using quadbatch
     glDisable(GL_DEPTH_TEST);
     QuadBatch.DrawTexture(&Texture, &CameraO, glm::mat4(), 0.f,0.f, w,h);
-    QuadBatch.DrawFbo(&Fbo, &CameraO, anim, w/4.f,h/4.f, w/2.f, h/2.f);
+    QuadBatch.DrawFboColor(&Fbo, &CameraO, anim, w/4.f,h/4.f, w/2.f, h/2.f);
     glEnable(GL_DEPTH_TEST);
 }
 

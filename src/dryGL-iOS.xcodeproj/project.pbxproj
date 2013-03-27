@@ -51,7 +51,6 @@
 		BC25527C170042B500D3F375 /* ImageLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageLoader.mm; sourceTree = "<group>"; };
 		BC2552841700635D00D3F375 /* Uniform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Uniform.cpp; sourceTree = "<group>"; };
 		BC2552851700635D00D3F375 /* Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uniform.h; sourceTree = "<group>"; };
-		BC2552871700688600D3F375 /* DataVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVar.h; sourceTree = "<group>"; };
 		BC6B1F1216D02ED2008B939C /* libdryGL-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libdryGL-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC6B217B16D13759008B939C /* dry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.h; sourceTree = "<group>"; };
 		BC6B219A16D13810008B939C /* dry.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.pch; sourceTree = "<group>"; };
@@ -226,7 +225,6 @@
 				BCF38C7F16ED197100073C11 /* Timer.h */,
 				BCF38C7E16ED197100073C11 /* Random.h */,
 				BC91904B16FA641D00507A00 /* Color.h */,
-				BC2552871700688600D3F375 /* DataVar.h */,
 				BC887D6517023CD900BABCF8 /* DataType.cpp */,
 				BC887D6317023AA800BABCF8 /* DataType.h */,
 				BC887D6417023B3600BABCF8 /* DataTypeEnum.h */,

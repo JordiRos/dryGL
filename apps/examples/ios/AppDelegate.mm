@@ -12,10 +12,17 @@
 #include "AppGLSL.h"
 #include "AppFbo.h"
 #include "AppParticles.h"
+#include "AppPostprocess.h"
 
+// dryExamples
+//
+// Select: AppVbo, AppQuadBatch, AppGLSL, AppFbo, AppParticles, AppPostprocess
+//
+#define APP_EXAMPLE AppPostprocess
+//
+//
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,11 +35,7 @@
     
     // Create app with desired resolution and attach its viewController to rootViewController
     dry::AppParams params = dry::AppParams(frame.size.width * 2, frame.size.height * 2, true);
-    //app = NEW AppVbo      (params);
-    //app = NEW AppQuadBatch(params);
-    //app = NEW AppGLSL     (params);
-    //app = NEW AppFbo      (params);
-    app = NEW AppParticles  (params);
+    app = NEW APP_EXAMPLE(params);
     app->Init();
     self.window.rootViewController = (UIViewController *)app->GetViewController();
     [self.window makeKeyAndVisible];

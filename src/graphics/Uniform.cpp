@@ -49,16 +49,33 @@ void Uniform::Bind()
 {
     switch (m_Type)
     {
-        case DataTypeInt:     glUniform1i        (m_Uniform, Value.i); break;
-        case DataTypeFloat:   glUniform1f        (m_Uniform, Value.f); break;
-        case DataTypeVec2:    glUniform2fv       (m_Uniform, 1, glm::value_ptr(Value.v2)); break;
-        case DataTypeVec3:    glUniform3fv       (m_Uniform, 1, glm::value_ptr(Value.v3)); break;
-        case DataTypeVec4:    glUniform4fv       (m_Uniform, 1, glm::value_ptr(Value.v4)); break;
-        case DataTypeMat2:    glUniformMatrix2fv (m_Uniform, 1, false, glm::value_ptr(Value.m2)); break;
-        case DataTypeMat3:    glUniformMatrix3fv (m_Uniform, 1, false, glm::value_ptr(Value.m3)); break;
-        case DataTypeMat4:    glUniformMatrix4fv (m_Uniform, 1, false, glm::value_ptr(Value.m4)); break;
-        case DataTypeTex2D:   glUniform1i        (m_Uniform, Value.i); break;
-        case DataTypeTexCube: glUniform1i        (m_Uniform, Value.i); break;
-        default: dry::Log(LogWarning, "[MaterialUniform] Unsupported DataType specified"); break;
+        case DataTypeInt:      glUniform1i        (m_Uniform, m_Value.i); break;
+        case DataTypeFloat:    glUniform1f        (m_Uniform, m_Value.f); break;
+        case DataTypeVec2:     glUniform2fv       (m_Uniform, 1, glm::value_ptr(m_Value.v2)); break;
+        case DataTypeVec3:     glUniform3fv       (m_Uniform, 1, glm::value_ptr(m_Value.v3)); break;
+        case DataTypeVec4:     glUniform4fv       (m_Uniform, 1, glm::value_ptr(m_Value.v4)); break;
+        case DataTypeMat2:     glUniformMatrix2fv (m_Uniform, 1, false, glm::value_ptr(m_Value.m2)); break;
+        case DataTypeMat3:     glUniformMatrix3fv (m_Uniform, 1, false, glm::value_ptr(m_Value.m3)); break;
+        case DataTypeMat4:     glUniformMatrix4fv (m_Uniform, 1, false, glm::value_ptr(m_Value.m4)); break;
+        case DataTypeTex2D:    if (m_Value.tex.tex) { m_Value.tex.tex->Bind     (m_Value.tex.stage); glUniform1i(m_Uniform, m_Value.tex.stage); } break;
+        case DataTypeFboColor: if (m_Value.fbo.fbo) { m_Value.fbo.fbo->BindColor(m_Value.fbo.stage); glUniform1i(m_Uniform, m_Value.fbo.stage); } break;
+        case DataTypeFboDepth: if (m_Value.fbo.fbo) { m_Value.fbo.fbo->BindDepth(m_Value.fbo.stage); glUniform1i(m_Uniform, m_Value.fbo.stage); } break;
+        default: dry::Log(LogWarning, "[Uniform] Unsupported DataType specified"); break;
+    }
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Unbind
+//
+//------------------------------------------------------------------------------------------------
+void Uniform::Unbind()
+{
+    switch (m_Type)
+    {
+        case DataTypeTex2D:    if (m_Value.tex.tex) { m_Value.tex.tex->Unbind     (); } break;
+        case DataTypeFboColor: if (m_Value.fbo.fbo) { m_Value.fbo.fbo->UnbindColor(); } break;
+        case DataTypeFboDepth: if (m_Value.fbo.fbo) { m_Value.fbo.fbo->UnbindDepth(); } break;
+        default: break;
     }
 }

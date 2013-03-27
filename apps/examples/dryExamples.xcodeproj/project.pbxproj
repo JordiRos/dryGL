@@ -64,6 +64,7 @@
 		BC6F4D9E16F1D90600B094F0 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		BC6F4DAF16F1DB1800B094F0 /* dryGL-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "dryGL-iOS.xcodeproj"; path = "../../src/dryGL-iOS.xcodeproj"; sourceTree = "<group>"; };
 		BC6F4DBA16F1DB4300B094F0 /* libdryGL-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libdryGL-iOS.a"; path = "../../src/build/Release-iphoneos/libdryGL-iOS.a"; sourceTree = "<group>"; };
+		BC887D681702EF8000BABCF8 /* AppPostprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppPostprocess.h; path = src/AppPostprocess.h; sourceTree = SOURCE_ROOT; };
 		BC91903D16F9EA7300507A00 /* AppVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVbo.h; path = src/AppVbo.h; sourceTree = SOURCE_ROOT; };
 		BCB50F6D16FB918A009A5476 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glsl_isoshader.fs; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 				BC25527916FFAEAC00D3F375 /* AppFbo.h */,
 				BC5704FD16FB47CA00B45C68 /* AppGLSL.h */,
 				BC255297170190FF00D3F375 /* AppParticles.h */,
+				BC887D681702EF8000BABCF8 /* AppPostprocess.h */,
 			);
 			name = src;
 			path = Src;

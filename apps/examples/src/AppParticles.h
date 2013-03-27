@@ -14,7 +14,6 @@ class AppParticles : public dry::AppiOS
 public:
 
 #define PARTICLES    10000
-#define STRINGIFY(A) #A
 
 dry::CameraPerspective  Camera;
 dry::QuadBatch          QuadBatch;
@@ -28,7 +27,7 @@ dry::Uniform            UTexture;
 glm::vec3              *Positions;
 glm::vec2              *Attributes;
 
-    
+#define STRINGIFY(A) #A
 string VS = STRINGIFY(
     precision mediump float;
     
@@ -76,7 +75,7 @@ void Init()
     UModelViewProjection.Init(Shader.GetUniformLocation("ModelViewProjection"), dry::DataTypeMat4);
     UTime.Init(Shader.GetUniformLocation("Time"), dry::DataTypeFloat);
     UTexture.Init(Shader.GetUniformLocation("Texture"), dry::DataTypeTex2D);
-    UTexture.Value = 0;
+    UTexture.Update(&Texture, 0);
     
     // Attributes
     //Vertices.Init(Positions, PARTICLES, dry::DataTypeVec3, false);
@@ -113,12 +112,11 @@ void Draw()
     float angle = time * 45;
     glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
     glm::mat4 model = glm::translate(glm::vec3(0.0, 0.0, 0.0));
-    UModelViewProjection.Value = Camera.GetMatProj() * Camera.GetMatView() * model * anim;
+    UModelViewProjection.Update(Camera.GetMatProj() * Camera.GetMatView() * model * anim);
     UModelViewProjection.Bind();
 
-    Texture.Bind(UTexture.Value.i);
     UTexture.Bind();
-    UTime.Value = time;
+    UTime.Update(time);
     UTime.Bind();
     APositions.Bind();
     AAttributes.Bind();

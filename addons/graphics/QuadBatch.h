@@ -20,7 +20,8 @@ public:
     void            Free            ();
     
     void            DrawTexture     (Texture *texture, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h);
-    void            DrawFbo         (Fbo     *fbo,     Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h);
+    void            DrawFboColor    (Fbo     *fbo,     Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h);
+    void            DrawFboDepth    (Fbo     *fbo,     Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h);
     void            DrawShader      (Shader  *shader,  Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h);
 
 private:
@@ -33,6 +34,9 @@ private:
     Vbo             m_TexCoords;
     Ibo             m_Indices;
     ShaderBasic     m_Shader;
+    Uniform         m_UTexture;
+    Uniform         m_UFboColor;
+    Uniform         m_UFboDepth;
 };
 
 }

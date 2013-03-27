@@ -16,11 +16,12 @@ using namespace dry;
 // Init
 //
 //------------------------------------------------------------------------------------------------
-bool Fbo::Init(Fbo::Params const &params)
+bool Fbo::Init(Renderer *renderer, Fbo::Params const &params)
 {
-    m_Params = params;
-    m_FboDefault = -1;
-    m_Target = GL_TEXTURE_2D;
+    m_Renderer   = renderer;
+    m_Params     = params;
+    m_FboDefault = 0;
+    m_Target     = GL_TEXTURE_2D;
     
     // Create FBO
     glGenFramebuffers (1, (GLuint *)&m_Fbo);
@@ -73,11 +74,12 @@ void Fbo::Free()
 //------------------------------------------------------------------------------------------------
 void Fbo::Bind()
 {
-    if (m_FboDefault == -1)
+    if (!m_FboDefault)
     {
+        m_ViewportDefault = m_Renderer->GetViewport();
         glGetIntegerv    (GL_FRAMEBUFFER_BINDING, (GLint *)&m_FboDefault);
         glBindFramebuffer(GL_FRAMEBUFFER, m_Fbo);
-        glViewport       (0,0, m_Params.Width,m_Params.Height);
+        m_Renderer->SetViewport(0,0, m_Params.Width,m_Params.Height);
     }
 }
 
@@ -88,19 +90,20 @@ void Fbo::Bind()
 //------------------------------------------------------------------------------------------------
 void Fbo::Unbind()
 {
-    if (m_FboDefault != -1)
+    if (m_FboDefault)
     {
         glBindFramebuffer(GL_FRAMEBUFFER, m_FboDefault);
-        m_FboDefault = -1;
+        m_Renderer->SetViewport(m_ViewportDefault.x, m_ViewportDefault.y, m_ViewportDefault.z, m_ViewportDefault.w);
+        m_FboDefault = 0;
     }
 }
 
 
 //------------------------------------------------------------------------------------------------
-// BindFboColor
+// BindColor
 //
 //------------------------------------------------------------------------------------------------
-void Fbo::BindFboColor(int stage) const
+void Fbo::BindColor(int stage) const
 {
     glActiveTexture(GL_TEXTURE0 + stage);
     glBindTexture  (m_Target, m_FboColor);
@@ -108,20 +111,20 @@ void Fbo::BindFboColor(int stage) const
 
 
 //------------------------------------------------------------------------------------------------
-// UnbindFboColor
+// UnbindColor
 //
 //------------------------------------------------------------------------------------------------
-void Fbo::UnbindFboColor() const
+void Fbo::UnbindColor() const
 {
     glBindTexture(m_Target, 0);
 }
 
 
 //------------------------------------------------------------------------------------------------
-// BindFboDepth
+// BindDepth
 //
 //------------------------------------------------------------------------------------------------
-void Fbo::BindFboDepth(int stage) const
+void Fbo::BindDepth(int stage) const
 {
     glActiveTexture(GL_TEXTURE0 + stage);
     glBindTexture  (m_Target, m_FboDepth);
@@ -129,10 +132,10 @@ void Fbo::BindFboDepth(int stage) const
 
 
 //------------------------------------------------------------------------------------------------
-// UnbindFboDepth
+// UnbindDepth
 //
 //------------------------------------------------------------------------------------------------
-void Fbo::UnbindFboDepth() const
+void Fbo::UnbindDepth() const
 {
     glBindTexture(m_Target, 0);
 }

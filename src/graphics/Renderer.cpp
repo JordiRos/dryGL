@@ -19,7 +19,8 @@ using namespace dry;
 Renderer::Renderer(int w, int h, bool depth, bool stencil)
 {
     // Vars
-    m_ClearColor   = glm::vec4(80.f / 255.f, 130.f / 255.f, 200.f / 255.f, 1.0f);
+    m_Viewport     = glm::ivec4(0,0,0,0);
+    m_ClearColor   = glm::vec4 (80.f / 255.f, 130.f / 255.f, 200.f / 255.f, 1.0f);
     m_ClearDepth   = 1.f;
     m_ClearStencil = 0;
     m_BlendMode    = BlendUnknown;
@@ -101,6 +102,7 @@ void Renderer::Clear(bool color, bool depth, bool stencil)
 void Renderer::SetViewport(int x, int y, int w, int h)
 {
     glViewport(x, y, w, h);
+    m_Viewport = glm::ivec4(x, y, w, h);
 }
 
 
