@@ -30,8 +30,7 @@ Current features
 
 Examples
 ========
-There is a single project on apps/examples where you can switch easily between examples. Edit AppDelegate.mm and uncomment the desired one to run it.
-This project can help you build new applications as well.
+There is a single project on apps/examples where you can switch easily between examples. Edit AppDelegate.mm and instance desired App from the list.
 Current working examples:
 - AppVbo: Usage of Vbo / Ibo for rendering a cube in 3D
 - AppFbo: Usage of Fbo object for rendering scene to texture
@@ -39,6 +38,7 @@ Current working examples:
 - AppGLSL: Screen space GLSL shader
 - AppParticles: Particle system with custom attributes
 - AppPostprocess: Usage of Fbo + Shaders for postprocessing
+This project can help you build new applications as well.
 
 Roadmap
 =======
