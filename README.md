@@ -38,7 +38,7 @@ Current working examples:
 - AppQuadBatch: Usage of QuadBatch for rendering quads to screen the easy way
 - AppGLSL: Screen space GLSL shader
 - AppParticles: Particle system with custom attributes
-- AppPostprocess: Usage of Fbp + Shaders for postprocessing
+- AppPostprocess: Usage of Fbo + Shaders for postprocessing
 
 Roadmap
 =======
