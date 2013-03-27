@@ -26,7 +26,7 @@ Current features
 - Material
 - Cameras
 - Math (using glm)
-- Addons/Scene: Scene,Object,Mesh,Material (WIP)
+- Addons/Scene: Scene,Object,Mesh (WIP)
 - Addons/QuadBatch: Quad drawer the simple way. TODO: Make it a real quadbatch pipeline
 
 Examples
@@ -48,7 +48,7 @@ Roadmap
 - Debug functions (DebugDrawText, DebugDrawRectangle, etc)
 - Addons: TextRendering (FreeType, Bitmap)
 - Addons: Material instances (Diffuse, Lambert, etc)
-- Addons: ParticleSystem
+- Addons: Generic ParticleSystem
 - Addons: EffectComposer, Postprocess effects / shaders
 - Addons: iOS features / accelerometer, camera, microphone, etc
 
