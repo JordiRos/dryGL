@@ -8,14 +8,11 @@
 
 #pragma once
 
-#include "Object.h"
+#include "Geometry.h"
 
 namespace dry {
-
-class Geometry;
-class Material;
     
-class Mesh : public Object
+class Mesh
 {
 public:
                     Mesh            () { m_Geometry = NULL; m_Material = NULL; }
@@ -36,6 +33,8 @@ public:
     void            UpdateColors    () { m_UpdateColors     = true; }
     void            UpdateIndices   () { m_UpdateIndices    = true; }
 
+    Geometry       *GetGeometry     () { return m_Geometry; }
+    
 protected:
 
     Geometry       *m_Geometry;

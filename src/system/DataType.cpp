@@ -16,6 +16,7 @@ struct DataTypeInfo
 {
     int  Elements;
     int  Size;
+    int  GLVar;
     int  GLType;
     bool Vbo;
     bool Ibo;
@@ -24,7 +25,7 @@ struct DataTypeInfo
 };
 
 // DataTypeInfo
-#define ITEM(e,n,s,g,v,i,a,u) { n,s,g,v,i,a,u },
+#define ITEM(e,n,s,g,t,v,i,a,u) { n,s,g,t,v,i,a,u },
 static DataTypeInfo s_DataTypeInfo[DataTypeCount] = {
 #include "DataTypeEnum.h"
 };
@@ -43,6 +44,11 @@ int dry::GetDataTypeElements(DataType type)
 int dry::GetDataTypeSize(DataType type)
 {
     return DataTypeValid(type) ? s_DataTypeInfo[type].Size : 0;
+}
+
+int dry::GetDataTypeGLVar(DataType type)
+{
+    return DataTypeValid(type) ? s_DataTypeInfo[type].GLVar : 0;
 }
 
 int dry::GetDataTypeGLType(DataType type)
@@ -68,4 +74,15 @@ bool dry::GetDataTypeAttribute(DataType type)
 bool dry::GetDataTypeUniform(DataType type)
 {
     return DataTypeValid(type) ? s_DataTypeInfo[type].Uniform : false;
+}
+
+// Inverse
+DataType dry::GetDataTypeWithGLType(int glType)
+{
+    for (DataType i = (DataType)0; i < DataTypeCount; i++)
+    {
+        if (s_DataTypeInfo[i].GLType == glType)
+            return i;
+    }
+    return DataTypeUnknown;
 }

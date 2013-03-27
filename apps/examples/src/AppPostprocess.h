@@ -89,15 +89,15 @@ void OnInit()
     Fbo.Init(GetRenderer(), dry::Fbo::Params(GetParams().Width/4,GetParams().Height/4));
     
     // Uniforms
-    UModelViewProjection.Init(ShaderDot.GetUniformLocation("ModelViewProjection"), dry::DataTypeMat4);
-    UTexture.Init(ShaderDot.GetUniformLocation("texture"), dry::DataTypeFboColor);
-    UCenter.Init(ShaderDot.GetUniformLocation("center"), dry::DataTypeVec2);
-    UAngle.Init(ShaderDot.GetUniformLocation("angle"), dry::DataTypeFloat);
-    UScale.Init(ShaderDot.GetUniformLocation("scale"), dry::DataTypeFloat);
-    USize.Init(ShaderDot.GetUniformLocation("size"), dry::DataTypeVec2);
+    UModelViewProjection.Init(&ShaderDot, "ModelViewProjection", dry::DataTypeMat4);
+    UTexture.Init(&ShaderDot, "texture", dry::DataTypeTex2D);
+    UCenter.Init(&ShaderDot, "center", dry::DataTypeVec2);
+    UAngle.Init(&ShaderDot, "angle", dry::DataTypeFloat);
+    UScale.Init(&ShaderDot, "scale", dry::DataTypeFloat);
+    USize.Init(&ShaderDot, "size", dry::DataTypeVec2);
     
     // Init uniforms
-    UTexture.Update(&Fbo, 0);
+    UTexture.Update(Fbo.GetTextureColor(), 0);
     UCenter.Update(glm::vec2(0.5f, 0.5f));
     UAngle.Update(1.57f);
     UScale.Update(1.0f);

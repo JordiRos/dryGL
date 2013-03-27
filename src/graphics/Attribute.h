@@ -16,7 +16,8 @@ public:
                     Attribute   () { m_Attribute = 0; m_Data = NULL; }
                    ~Attribute   () { Free(); }
 
-    bool            Init        (int attribute, int size, DataType type, bool dynamic);
+    bool            Init        (Shader *shader, string const &name, int size, DataType type, bool dynamic);
+    bool            Init        (Shader *shader, int idx, int size, bool dynamic);
     void            Free        ();
     
     void            Update      (bool now);
@@ -24,13 +25,15 @@ public:
     void            Bind        ();
     void            Unbind      ();
     
-    void           *GetBuffer   () { return m_Data; }
+    void           *GetData     () { return m_Data; }
+    string const   &GetName     () const { return m_Name; }
 
 protected:
 
     int             m_Attribute;
     DataType        m_Type;
     int             m_Size;
+    string          m_Name;
     bool            m_Update;
     Vbo             m_Vbo;
     uchar          *m_Data;

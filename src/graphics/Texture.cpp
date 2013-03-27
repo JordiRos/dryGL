@@ -20,11 +20,12 @@ bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::P
 {
     Free();
     bool res = false;
-    m_Width  = width;
-    m_Height = height;
-    m_Format = format;
-    m_Params = params;
-    m_Target = GL_TEXTURE_2D;
+    m_Width   = width;
+    m_Height  = height;
+    m_Format  = format;
+    m_Params  = params;
+    m_Target  = GL_TEXTURE_2D;
+    m_Release = true;
 
 	glGenTextures(1, (GLuint *)&m_Handle);
     if (m_Handle != -1)
@@ -59,14 +60,31 @@ bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::P
 
 
 //------------------------------------------------------------------------------------------------
+// InitWithHandle
+//
+//------------------------------------------------------------------------------------------------
+bool Texture::InitWithHandle(int width, int height, PixelFormat format, int handle)
+{
+    m_Handle  = handle;
+    m_Width   = width;
+    m_Height  = height;
+    m_Format  = format;
+    m_Target  = GL_TEXTURE_2D;
+    m_Release = false;
+
+    return true;
+}
+
+
+//------------------------------------------------------------------------------------------------
 // Free
 //
 //------------------------------------------------------------------------------------------------
 void Texture::Free()
 {
-    if (m_Handle != -1)
+    if (m_Release && m_Handle)
         glDeleteTextures(1, (GLuint *)&m_Handle);
-    m_Handle = -1;
+    m_Handle = 0;
 }
 
 
@@ -89,7 +107,7 @@ void Texture::Update(void const *data)
 // Bind
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Bind(int stage) const
+void Texture::Bind(int stage)
 {
     glActiveTexture(GL_TEXTURE0 + stage);
     glBindTexture  (m_Target, m_Handle);
@@ -100,7 +118,7 @@ void Texture::Bind(int stage) const
 // Unbind
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Unbind() const
+void Texture::Unbind()
 {
     glBindTexture(m_Target, 0);
 }
@@ -110,7 +128,7 @@ void Texture::Unbind() const
 // GetGLFormat
 //
 //------------------------------------------------------------------------------------------------
-int Texture::GetGLFormat() const
+int Texture::GetGLFormat()
 {
     switch (m_Format)
     {
@@ -127,7 +145,7 @@ int Texture::GetGLFormat() const
 // GetGLType
 //
 //------------------------------------------------------------------------------------------------
-int Texture::GetGLType() const
+int Texture::GetGLType()
 {
     switch (m_Format)
     {

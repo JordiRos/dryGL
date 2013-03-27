@@ -26,7 +26,7 @@ void OnInit()
     Camera.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
     QuadBatch.Init(GetRenderer());
     Shader.InitWithFile(dry::GetFilePath("glsl.vs"), dry::GetFilePath("glsl_lights.fs"));
-    UTime.Init(Shader.GetUniformLocation("time"), dry::DataTypeFloat);
+    UTime.Init(&Shader, "time", dry::DataTypeFloat);
 }
 
 void OnDraw()

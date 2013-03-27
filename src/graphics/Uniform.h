@@ -13,27 +13,28 @@ namespace dry {
 class Uniform
 {
 public:
-                    Uniform () { m_Uniform = 0; }
-                   ~Uniform () { Free(); }
+                    Uniform         () { m_Uniform = 0; }
+                   ~Uniform         () { Free(); }
 
-    bool            Init    (int uniform, DataType type);
-    void            Free    ();
+    bool            Init            (Shader *shader, string const &name, DataType type);
+    bool            Init            (Shader *shader, int idx);
+    void            Free            ();
 
-    void            Bind    ();
-    void            Unbind  ();
+    void            Bind            ();
+    void            Unbind          ();
 
-    // Update
-    void            Update  (int              value) { m_Value.i   = value; }
-    void            Update  (float            value) { m_Value.f   = value; }
-    void            Update  (glm::vec2 const &value) { m_Value.v2  = value; }
-    void            Update  (glm::vec3 const &value) { m_Value.v3  = value; }
-    void            Update  (glm::vec4 const &value) { m_Value.v4  = value; }
-    void            Update  (glm::mat2 const &value) { m_Value.m2  = value; }
-    void            Update  (glm::mat3 const &value) { m_Value.m3  = value; }
-    void            Update  (glm::mat4 const &value) { m_Value.m4  = value; }
-    void            Update  (Texture     *tex,  int stage) { m_Value.tex.Set(tex, stage); }
-    void            Update  (TextureCube *cube, int stage) { m_Value.cube.Set(cube, stage); }
-    void            Update  (Fbo         *fbo,  int stage) { m_Value.fbo.Set(fbo, stage); }
+    void            Update          (int              value) { m_Value.i   = value; }
+    void            Update          (float            value) { m_Value.f   = value; }
+    void            Update          (glm::vec2 const &value) { m_Value.v2  = value; }
+    void            Update          (glm::vec3 const &value) { m_Value.v3  = value; }
+    void            Update          (glm::vec4 const &value) { m_Value.v4  = value; }
+    void            Update          (glm::mat2 const &value) { m_Value.m2  = value; }
+    void            Update          (glm::mat3 const &value) { m_Value.m3  = value; }
+    void            Update          (glm::mat4 const &value) { m_Value.m4  = value; }
+    void            Update          (Texture     *tex,  int stage) { m_Value.tex.Set(tex, stage); }
+    void            Update          (TextureCube *cube, int stage) { m_Value.cube.Set(cube, stage); }
+    
+    string const   &GetName         () const { return m_Name; }
 
 public:
 
@@ -51,13 +52,6 @@ public:
         TextureCube *tex;
         int          stage;
     };
-    struct TexFbo
-    {
-        TexFbo() { fbo = NULL; stage = 0; }
-        void Set(Fbo *f, int s) { fbo = f; stage = s; }
-        Fbo *fbo;
-        int  stage;
-    };
     
     union Var
     {
@@ -72,7 +66,6 @@ public:
         glm::mat4   m4;
         Tex2D       tex;
         TexCube     cube;
-        TexFbo      fbo;
     };
 
 protected:
@@ -80,6 +73,7 @@ protected:
     int             m_Uniform;
     DataType        m_Type;
     Var             m_Value;
+    string          m_Name;
 };
     
 }

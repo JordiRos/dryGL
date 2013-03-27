@@ -25,7 +25,7 @@ bool Vbo::Init(void const *data, int size, DataType type, bool dynamic)
         m_Type      = type;
         m_TypeSize  = GetDataTypeSize    (type);
         m_Elements  = GetDataTypeElements(type);
-        m_GLType    = GetDataTypeGLType  (type);
+        m_GLVar     = GetDataTypeGLVar   (type);
         m_Dynamic   = dynamic;
         m_Attribute = 0;
         // Create GL buffers
@@ -56,6 +56,18 @@ void Vbo::Free()
 
 
 //------------------------------------------------------------------------------------------------
+// Resize
+//
+//------------------------------------------------------------------------------------------------
+void Vbo::Resize(void const *data, int size)
+{
+    m_Size = size;
+    glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
+    glBufferData(GL_ARRAY_BUFFER, m_Size * m_TypeSize, data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+}
+
+
+//------------------------------------------------------------------------------------------------
 // Update
 //
 //------------------------------------------------------------------------------------------------
@@ -73,9 +85,9 @@ void Vbo::Update(void const *data, int size, int offset)
 void Vbo::Bind(int attribute)
 {
     m_Attribute = attribute;
-    glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
+    glBindBuffer             (GL_ARRAY_BUFFER, m_Vbo);
     glEnableVertexAttribArray(m_Attribute);
-    glVertexAttribPointer    (m_Attribute, m_Elements, m_GLType, GL_FALSE, 0, 0);
+    glVertexAttribPointer    (m_Attribute, m_Elements, m_GLVar, GL_FALSE, 0, 0);
 }
 
 

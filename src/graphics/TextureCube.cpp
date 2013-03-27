@@ -60,14 +60,31 @@ bool TextureCube::InitWithData(int width, int height, PixelFormat format, Textur
 
 
 //------------------------------------------------------------------------------------------------
+// InitWithHandle
+//
+//------------------------------------------------------------------------------------------------
+bool TextureCube::InitWithHandle(int width, int height, PixelFormat format, int handle)
+{
+    m_Handle  = handle;
+    m_Width   = width;
+    m_Height  = height;
+    m_Format  = format;
+    m_Target  = GL_TEXTURE_CUBE_MAP;
+    m_Release = false;
+    
+    return true;
+}
+
+
+//------------------------------------------------------------------------------------------------
 // Free
 //
 //------------------------------------------------------------------------------------------------
 void TextureCube::Free()
 {
-    if (m_Handle != -1)
+    if (m_Release && m_Handle)
         glDeleteTextures(1, (GLuint *)&m_Handle);
-    m_Handle = -1;
+    m_Handle = 0;
 }
 
 

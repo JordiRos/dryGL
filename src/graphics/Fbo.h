@@ -22,19 +22,17 @@ public:
     };
     
 public:
-                Fbo         () { m_Fbo = m_FboColor = m_FboDepth = 0; m_Renderer = NULL; }
-               ~Fbo         () { Free(); }
+                Fbo             () { m_Fbo = m_FboColor = m_FboDepth = 0; m_Renderer = NULL; }
+               ~Fbo             () { Free(); }
     
-    bool        Init        (Renderer * renderer, Params const &params);
-    void        Free        ();
+    bool        Init            (Renderer * renderer, Params const &params);
+    void        Free            ();
     
-    void        Bind        ();
-    void        Unbind      ();
+    void        Bind            ();
+    void        Unbind          ();
 
-    void        BindColor   (int stage) const;
-    void        UnbindColor () const;
-    void        BindDepth   (int stage) const;
-    void        UnbindDepth () const;
+    Texture    *GetTextureColor () { return &m_TextureColor; }
+    Texture    *GetTextureDepth () { return &m_TextureDepth; }
     
 private:
     
@@ -45,6 +43,8 @@ private:
     int         m_FboColor;
     int         m_FboDepth;
     int         m_FboDefault;
+    Texture     m_TextureColor;
+    Texture     m_TextureDepth;
     glm::ivec4  m_ViewportDefault;
 };
     

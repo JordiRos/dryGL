@@ -107,8 +107,8 @@ void OnInit()
     Camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
     
     // Uniforms
-    UTexture.Init(Shader.GetUniformLocation("Texture"), dry::DataTypeTex2D);
-    UModelViewProjection.Init(Shader.GetUniformLocation("ModelViewProjection"), dry::DataTypeMat4);
+    UTexture.Init(&Shader, "Texture", dry::DataTypeTex2D);
+    UModelViewProjection.Init(&Shader, "ModelViewProjection", dry::DataTypeMat4);
 }
 
 void OnDraw()

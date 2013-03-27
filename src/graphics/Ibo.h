@@ -26,7 +26,6 @@ public:
     
     int         GetType     () { return m_Type; }
     int         GetSize     () { return m_Size; }
-    int         GetGLType   () { return m_GLType; }
 
 private:
     
@@ -34,7 +33,7 @@ private:
     int         m_Size;
     DataType    m_Type;
     int         m_TypeSize;
-    int         m_GLType;
+    int         m_GLVar;
     bool        m_Dynamic;
 };
 

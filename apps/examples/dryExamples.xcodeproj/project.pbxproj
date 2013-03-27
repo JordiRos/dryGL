@@ -27,12 +27,15 @@
 		BC887D7B170355E000BABCF8 /* church_posy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC887D74170355E000BABCF8 /* church_posy.jpg */; };
 		BC887D7C170355E000BABCF8 /* church_posz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC887D75170355E000BABCF8 /* church_posz.jpg */; };
 		BC887D7D170355E000BABCF8 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC887D76170355E000BABCF8 /* readme.txt */; };
+		BC8BFE7A1703684300A90E6E /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE6F1703684300A90E6E /* Geometry.cpp */; };
+		BC8BFE7B1703684300A90E6E /* GeometryLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE711703684300A90E6E /* GeometryLoader.cpp */; };
+		BC8BFE8117036DDA00A90E6E /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = BC8BFE8017036DDA00A90E6E /* cube.obj */; };
+		BC8BFE8417037DEE00A90E6E /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE8217037DEE00A90E6E /* Mesh.cpp */; };
 		BCB50F6316FB5A9B009A5476 /* glsl_lights.fs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050516FB4ED300B45C68 /* glsl_lights.fs */; };
 		BCB50F6416FB5A9B009A5476 /* glsl.vs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050616FB4ED300B45C68 /* glsl.vs */; };
 		BCB50F6E16FB918A009A5476 /* metal.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F6D16FB918A009A5476 /* metal.png */; };
 		BCB50F7416FC8D40009A5476 /* glsl_isoshader.fs in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */; };
 		BCB50F7916FD2320009A5476 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F7716FD2320009A5476 /* QuadBatch.cpp */; };
-		BCB50F7C16FD23F1009A5476 /* GeometryPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F7A16FD23F1009A5476 /* GeometryPlane.cpp */; };
 		BCB50F8016FE34E7009A5476 /* grid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F7F16FE34E7009A5476 /* grid.jpg */; };
 /* End PBXBuildFile section */
 
@@ -80,13 +83,19 @@
 		BC887D75170355E000BABCF8 /* church_posz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = church_posz.jpg; sourceTree = "<group>"; };
 		BC887D76170355E000BABCF8 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		BC887D7F1703564300BABCF8 /* AppTextureCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppTextureCube.h; path = src/AppTextureCube.h; sourceTree = SOURCE_ROOT; };
+		BC8BFE6F1703684300A90E6E /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Geometry.cpp; sourceTree = "<group>"; };
+		BC8BFE701703684300A90E6E /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
+		BC8BFE711703684300A90E6E /* GeometryLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryLoader.cpp; sourceTree = "<group>"; };
+		BC8BFE721703684300A90E6E /* GeometryLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryLoader.h; sourceTree = "<group>"; };
+		BC8BFE8017036DDA00A90E6E /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
+		BC8BFE8217037DEE00A90E6E /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		BC8BFE8317037DEE00A90E6E /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		BC8BFE8817037FCD00A90E6E /* AppScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppScene.h; path = src/AppScene.h; sourceTree = SOURCE_ROOT; };
 		BC91903D16F9EA7300507A00 /* AppVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVbo.h; path = src/AppVbo.h; sourceTree = SOURCE_ROOT; };
 		BCB50F6D16FB918A009A5476 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glsl_isoshader.fs; sourceTree = "<group>"; };
 		BCB50F7716FD2320009A5476 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCB50F7816FD2320009A5476 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
-		BCB50F7A16FD23F1009A5476 /* GeometryPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryPlane.cpp; sourceTree = "<group>"; };
-		BCB50F7B16FD23F1009A5476 /* GeometryPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryPlane.h; sourceTree = "<group>"; };
 		BCB50F7F16FE34E7009A5476 /* grid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grid.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +153,7 @@
 		BC57050316FB4ED300B45C68 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				BC8BFE7F17036DDA00A90E6E /* objects */,
 				BC887D6E170355E000BABCF8 /* cubemaps */,
 				BC57050416FB4ED300B45C68 /* shaders */,
 				BC57050716FB4ED300B45C68 /* textures */,
@@ -198,6 +208,7 @@
 				BC255297170190FF00D3F375 /* AppParticles.h */,
 				BC887D681702EF8000BABCF8 /* AppPostprocess.h */,
 				BC887D7F1703564300BABCF8 /* AppTextureCube.h */,
+				BC8BFE8817037FCD00A90E6E /* AppScene.h */,
 			);
 			name = src;
 			path = Src;
@@ -233,10 +244,39 @@
 			path = church;
 			sourceTree = "<group>";
 		};
+		BC8BFE6B1703684300A90E6E /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				BC8BFE6F1703684300A90E6E /* Geometry.cpp */,
+				BC8BFE701703684300A90E6E /* Geometry.h */,
+				BC8BFE711703684300A90E6E /* GeometryLoader.cpp */,
+				BC8BFE721703684300A90E6E /* GeometryLoader.h */,
+				BC8BFE8217037DEE00A90E6E /* Mesh.cpp */,
+				BC8BFE8317037DEE00A90E6E /* Mesh.h */,
+				BC8BFE6C1703684300A90E6E /* geometries */,
+			);
+			name = scene;
+			path = ../../addons/scene;
+			sourceTree = "<group>";
+		};
+		BC8BFE6C1703684300A90E6E /* geometries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = geometries;
+			sourceTree = "<group>";
+		};
+		BC8BFE7F17036DDA00A90E6E /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				BC8BFE8017036DDA00A90E6E /* cube.obj */,
+			);
+			path = objects;
+			sourceTree = "<group>";
+		};
 		BCB50F7516FD2320009A5476 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
-				BCB50F7616FD2320009A5476 /* geometries */,
 				BCB50F7716FD2320009A5476 /* QuadBatch.cpp */,
 				BCB50F7816FD2320009A5476 /* QuadBatch.h */,
 			);
@@ -244,18 +284,10 @@
 			path = ../../addons/graphics;
 			sourceTree = "<group>";
 		};
-		BCB50F7616FD2320009A5476 /* geometries */ = {
-			isa = PBXGroup;
-			children = (
-				BCB50F7A16FD23F1009A5476 /* GeometryPlane.cpp */,
-				BCB50F7B16FD23F1009A5476 /* GeometryPlane.h */,
-			);
-			path = geometries;
-			sourceTree = "<group>";
-		};
 		BCF38C9516EE417E00073C11 /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				BC8BFE6B1703684300A90E6E /* scene */,
 				BCB50F7516FD2320009A5476 /* graphics */,
 			);
 			name = addons;
@@ -345,6 +377,7 @@
 				BC887D7B170355E000BABCF8 /* church_posy.jpg in Resources */,
 				BC887D7C170355E000BABCF8 /* church_posz.jpg in Resources */,
 				BC887D7D170355E000BABCF8 /* readme.txt in Resources */,
+				BC8BFE8117036DDA00A90E6E /* cube.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +391,9 @@
 				BC6F4DA216F1D90600B094F0 /* AppDelegate.mm in Sources */,
 				BC6F4DA916F1D90600B094F0 /* main.mm in Sources */,
 				BCB50F7916FD2320009A5476 /* QuadBatch.cpp in Sources */,
-				BCB50F7C16FD23F1009A5476 /* GeometryPlane.cpp in Sources */,
+				BC8BFE7A1703684300A90E6E /* Geometry.cpp in Sources */,
+				BC8BFE7B1703684300A90E6E /* GeometryLoader.cpp in Sources */,
+				BC8BFE8417037DEE00A90E6E /* Mesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -64,6 +64,7 @@ bool GeometryPlane::Init(float w, float h, glm::vec3 const &up)
         }
     }
     // Create geometry buffers
+    /*
     Geometry::Params params;
     params.NumIndices  = 6;
     params.NumVertices = 4;
@@ -72,6 +73,7 @@ bool GeometryPlane::Init(float w, float h, glm::vec3 const &up)
     params.TexCoords0  = texcoords;
     params.Flags       = Geometry::FL_TEXCOORDS0 | Geometry::FL_COLORS | Geometry::FL_NORMALS;
     Geometry::Init(params);
+     */
     
     return true;
 }

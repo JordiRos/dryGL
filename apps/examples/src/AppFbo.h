@@ -167,7 +167,7 @@ void OnDraw()
     // Draw background + Fbo to screen using quadbatch
     glDisable(GL_DEPTH_TEST);
     QuadBatch.DrawTexture(&Texture, &CameraO, glm::mat4(), 0.f,0.f, w,h);
-    QuadBatch.DrawFboColor(&Fbo, &CameraO, anim, w/4.f,h/4.f, w/2.f, h/2.f);
+    QuadBatch.DrawTexture(Fbo.GetTextureColor(), &CameraO, anim, w/4.f,h/4.f, w/2.f, h/2.f);
     glEnable(GL_DEPTH_TEST);
 }
 

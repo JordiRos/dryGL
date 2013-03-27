@@ -72,21 +72,21 @@ void OnInit()
     dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("particle.png"), dry::Texture::Params(false, false));
 
     // Uniforms
-    UModelViewProjection.Init(Shader.GetUniformLocation("ModelViewProjection"), dry::DataTypeMat4);
-    UTime.Init(Shader.GetUniformLocation("Time"), dry::DataTypeFloat);
-    UTexture.Init(Shader.GetUniformLocation("Texture"), dry::DataTypeTex2D);
+    UModelViewProjection.Init(&Shader, "ModelViewProjection", dry::DataTypeMat4);
+    UTime.Init(&Shader, "Time", dry::DataTypeFloat);
+    UTexture.Init(&Shader, "Texture", dry::DataTypeTex2D);
     UTexture.Update(&Texture, 0);
     
     // Attributes
     //Vertices.Init(Positions, PARTICLES, dry::DataTypeVec3, false);
     //VAttributes.Init(Attributes, PARTICLES, dry::DataTypeVec2, false);
-    APositions.Init(Shader.GetAttribLocation("Position"), PARTICLES, dry::DataTypeVec3, false);
-    AAttributes.Init(Shader.GetAttribLocation("Attribute"), PARTICLES, dry::DataTypeVec2, false);
+    APositions.Init(&Shader, "Position", PARTICLES, dry::DataTypeVec3, false);
+    AAttributes.Init(&Shader, "Attribute", PARTICLES, dry::DataTypeVec2, false);
     
     dry::Log(dry::LogInfo, "Initialize %d particles", PARTICLES);
     dry::Random random;
-    Positions  = (glm::vec3 *)APositions.GetBuffer();
-    Attributes = (glm::vec2 *)AAttributes.GetBuffer();
+    Positions  = (glm::vec3 *)APositions.GetData();
+    Attributes = (glm::vec2 *)AAttributes.GetData();
     for (int i = 0; i < PARTICLES; i++)
     {
         Positions[i].x = random.Next(-0.5f, 0.5f);

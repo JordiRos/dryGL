@@ -23,8 +23,8 @@ bool Ibo::Init(void const *data, int size, DataType type, bool dynamic)
     {
         m_Size     = size;
         m_Type     = type;
-        m_TypeSize = GetDataTypeSize  (m_Type);
-        m_GLType   = GetDataTypeGLType(m_Type);
+        m_TypeSize = GetDataTypeSize (m_Type);
+        m_GLVar    = GetDataTypeGLVar(m_Type);
         m_Dynamic  = dynamic;
         // Create GL buffers
         glGenBuffers(1, (GLuint *)&m_Ibo);

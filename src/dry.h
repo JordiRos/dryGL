@@ -16,7 +16,11 @@
 
 // STL
 #include <string>
+#include <vector>
+#include <map>
 using std::string;
+using std::vector;
+using std::map;
 
 // Null
 #ifndef NULL
@@ -157,16 +161,12 @@ enum BlendMode
 #include "graphics/Ibo.h"
 #include "graphics/Uniform.h"
 #include "graphics/Attribute.h"
+#include "graphics/Material.h"
 
 // Camera
 #include "camera/Camera.h"
 #include "camera/CameraPerspective.h"
 #include "camera/CameraOrthogonal.h"
-
-// Scene
-#include "scene/Material.h"
-//#include "scene/Geometry.h"
-//#include "scene/Mesh.h"
 
 // Target iOS
 #ifdef DRY_TARGET_IOS

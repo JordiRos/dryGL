@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "scene/Geometry.h"
+#include "../Geometry.h"
 
 namespace dry {
 

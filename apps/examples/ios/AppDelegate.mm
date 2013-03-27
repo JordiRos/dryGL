@@ -7,6 +7,8 @@
 //
 
 #include "AppDelegate.h"
+
+// dryExamples
 #include "AppVbo.h"
 #include "AppQuadBatch.h"
 #include "AppGLSL.h"
@@ -14,12 +16,12 @@
 #include "AppParticles.h"
 #include "AppPostprocess.h"
 #include "AppTextureCube.h"
-
-// dryExamples
+#include "AppScene.h"
+// Available:
 //
-// Select: AppVbo, AppQuadBatch, AppGLSL, AppFbo, AppParticles, AppPostprocess, AppTextureCube
+// AppQuadBatch, AppVbo, AppGLSL, AppFbo, AppParticles, AppPostprocess, AppTextureCube, AppScene
 //
-#define APP_EXAMPLE AppTextureCube
+#define APP_EXAMPLE AppScene
 //
 //
 

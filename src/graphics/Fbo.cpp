@@ -38,7 +38,7 @@ bool Fbo::Init(Renderer *renderer, Fbo::Params const &params)
 
     // Create depth texture
     glBindRenderbuffer   (GL_RENDERBUFFER, m_FboDepth);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_Params.Width, m_Params.Height);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24_OES, m_Params.Width, m_Params.Height);
 
     // FrameBuffer
 	glBindFramebuffer    (GL_FRAMEBUFFER, m_Fbo);
@@ -49,11 +49,15 @@ bool Fbo::Init(Renderer *renderer, Fbo::Params const &params)
     
     // Check status
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        dry::Log(LogWarning, "[Fbo] Error creating FrameBuffer: %d,%d", params.Width, params.Height);
+        dry::Log(LogWarning, "[Fbo] Error creating FrameBuffer: %d,%d", m_Params.Width, m_Params.Height);
     
     // Clear
 	glBindTexture    (GL_TEXTURE_2D,  0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // Create textures
+    m_TextureColor.InitWithHandle(m_Params.Width, m_Params.Height, PixelFormatArgb32, m_FboColor);
+    m_TextureDepth.InitWithHandle(m_Params.Width, m_Params.Height, PixelFormatArgb32, m_FboDepth);
     
     return true;
 }
@@ -96,46 +100,4 @@ void Fbo::Unbind()
         m_Renderer->SetViewport(m_ViewportDefault.x, m_ViewportDefault.y, m_ViewportDefault.z, m_ViewportDefault.w);
         m_FboDefault = 0;
     }
-}
-
-
-//------------------------------------------------------------------------------------------------
-// BindColor
-//
-//------------------------------------------------------------------------------------------------
-void Fbo::BindColor(int stage) const
-{
-    glActiveTexture(GL_TEXTURE0 + stage);
-    glBindTexture  (m_Target, m_FboColor);
-}
-
-
-//------------------------------------------------------------------------------------------------
-// UnbindColor
-//
-//------------------------------------------------------------------------------------------------
-void Fbo::UnbindColor() const
-{
-    glBindTexture(m_Target, 0);
-}
-
-
-//------------------------------------------------------------------------------------------------
-// BindDepth
-//
-//------------------------------------------------------------------------------------------------
-void Fbo::BindDepth(int stage) const
-{
-    glActiveTexture(GL_TEXTURE0 + stage);
-    glBindTexture  (m_Target, m_FboDepth);
-}
-
-
-//------------------------------------------------------------------------------------------------
-// UnbindDepth
-//
-//------------------------------------------------------------------------------------------------
-void Fbo::UnbindDepth() const
-{
-    glBindTexture(m_Target, 0);
 }
