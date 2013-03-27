@@ -60,7 +60,7 @@ string FS = STRINGIFY(
 
 AppParticles(dry::AppParams const &params) : dry::AppiOS(params) { }
 
-void Init()
+void OnInit()
 {
     int w = GetParams().Width;
     int h = GetParams().Height;
@@ -99,7 +99,7 @@ void Init()
     AAttributes.Update(true);
 }
 
-void Draw()
+void OnDraw()
 {
     GetRenderer()->Clear(true, true, false);
     GetRenderer()->SetBlendMode(dry::BlendPMAdd);

@@ -16,35 +16,44 @@ class App
 {
 public:
 
-                        App             (AppParams const &params);
-    virtual            ~App             ();
+                        App                 (AppParams const &params);
+    virtual            ~App                 ();
 
-    virtual void        Init            () {}
-	virtual void        Update          (float time, float delta) {}
-	virtual void        Draw            () {}
+    // Events
+    virtual void        OnInit              () {}
+    virtual void        OnUpdate            () {}
+	virtual void        OnDraw              () {}
 
-	virtual void        TouchDown       (float x, float y, int id) {}
-	virtual void        TouchMoved      (float x, float y, int id) {}
-	virtual void        TouchUp         (float x, float y, int id) {}
-	virtual void        TouchDoubleTap  (float x, float y, int id) {}
-	virtual void        TouchCancelled  (float x, float y, int id) {}
+	virtual void        OnTouchDown         (float x, float y, int id) {}
+	virtual void        OnTouchMoved        (float x, float y, int id) {}
+	virtual void        OnTouchUp           (float x, float y, int id) {}
+	virtual void        OnTouchDoubleTap    (float x, float y, int id) {}
+	virtual void        OnTouchCancelled    (float x, float y, int id) {}
 
-    virtual void        OnRotate        (DeviceOrientation orientation) {}
-	virtual void        LostFocus       () {}
-	virtual void        GotFocus        () {}
-	virtual void        MemoryWarning   () {}
+    virtual void        OnRotate            (DeviceOrientation orientation) {}
+	virtual void        OnLostFocus         () {}
+	virtual void        OnGotFocus          () {}
+	virtual void        OnMemoryWarning     () {}
 
-    void                SetRenderer     (Renderer *renderer) { m_Renderer = renderer; }
+    // App
+    void                SetRenderer         (Renderer *renderer) { m_Renderer = renderer; }
 
-    AppParams const    &GetParams       () { return m_Params; }
-    Timer              &GetTimer        () { return m_Timer; }
-    Renderer           *GetRenderer     () { return m_Renderer; }
+    AppParams const    &GetParams           () { return m_Params; }
+    Renderer           *GetRenderer         () { return m_Renderer; }
+    Timer              &GetTimer            () { return m_Timer; }
+    float               GetTime             () { return m_Time; }
+    float               GetDelta            () { return m_Delta; }
+    
+    void                Update              ();
+    void                Draw                ();
 
-protected:
+private:
  
     AppParams           m_Params;
-    Timer               m_Timer;
     Renderer           *m_Renderer;
+    Timer               m_Timer;
+    float               m_Time;
+    float               m_Delta;
 };
 
 }

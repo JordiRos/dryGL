@@ -13,19 +13,20 @@ class AppPostprocess : public dry::AppiOS
 {
 public:
 
-dry::CameraOrthogonal Camera;
-dry::ShaderBasic      Shader;
-dry::Shader           ShaderDot;
-dry::QuadBatch        QuadBatch;
-dry::Texture          Texture;
-dry::Fbo              Fbo;
+dry::CameraOrthogonal  CameraO;
+dry::CameraPerspective CameraP;
+dry::ShaderBasic       Shader;
+dry::Shader            ShaderDot;
+dry::QuadBatch         QuadBatch;
+dry::Texture           Texture;
+dry::Fbo               Fbo;
 // Uniforms
-dry::Uniform          UModelViewProjection;
-dry::Uniform          UTexture;
-dry::Uniform          UCenter;
-dry::Uniform          UAngle;
-dry::Uniform          UScale;
-dry::Uniform          USize;
+dry::Uniform           UModelViewProjection;
+dry::Uniform           UTexture;
+dry::Uniform           UCenter;
+dry::Uniform           UAngle;
+dry::Uniform           UScale;
+dry::Uniform           USize;
 
 #define STRINGIFY(A) #A
 string VS = STRINGIFY(
@@ -68,16 +69,19 @@ string FS = STRINGIFY(
     {
         vec4 color = texture2D( texture, vUv );
         float average = ( color.r + color.g + color.b ) / 3.0;
-        gl_FragColor = vec4( vec3( average * 10.0 - 5.0 + pattern() ), color.a );
+        gl_FragColor = vec4( vec3( average * 10.0 - 5.0 + pattern() ), 1.0 );
     }
 );
 
 AppPostprocess(dry::AppParams const &params) : dry::AppiOS(params) { }
 
-void Init()
+void OnInit()
 {
-    Camera.Init(0.f,1.f, 0.f,1.f, 0.1f,1000.f);
-    Camera.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    CameraO.Init(0.f,1.f, 0.f,1.f, 0.1f,1000.f);
+    CameraO.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    CameraP.Init(45.f, (float)GetParams().Width / GetParams().Height, 0.1f, 10000.f);
+    CameraP.LookAt(glm::vec3(0.0, 2.0, -2.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    
     QuadBatch.Init(GetRenderer());
     Shader.Init();
     ShaderDot.InitWithProgram(VS, FS);
@@ -97,27 +101,33 @@ void Init()
     UCenter.Update(glm::vec2(0.5f, 0.5f));
     UAngle.Update(1.57f);
     UScale.Update(1.0f);
-    USize.Update(glm::vec2(256.f,256.f));
+    USize.Update(glm::vec2(GetParams().Width / 4, GetParams().Height / 4));
+
+    GetRenderer()->SetClearColor(glm::vec4(0.f, 0.f, 0.f, 0.f), 0.f, 0);
 }
 
-void Draw()
+void OnDraw()
 {
     GetRenderer()->Clear(true, true, false);
     glDisable(GL_DEPTH_TEST);
 
+    float angle = GetTimer().GetTime() * 45.f;
+    glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
+
     Fbo.Bind();
-    QuadBatch.DrawTexture(&Texture, &Camera, glm::mat4(), 0.f, 0.f, 1.f, 1.f);
+    GetRenderer()->Clear(true, true, false);
+    QuadBatch.DrawTexture(&Texture, &CameraP, anim, -0.5,-0.5, 1.f,1.f);
     Fbo.Unbind();
 
+    // Postprocess: ShaderDot
     ShaderDot.Bind();
-    UModelViewProjection.Update(Camera.GetMatProj() * Camera.GetMatView());
     UTexture.Bind();
     UCenter.Bind();
     UAngle.Bind();
     UScale.Bind();
     USize.Bind();
     
-    QuadBatch.DrawShader(&ShaderDot, &Camera, glm::mat4(), 0.f, 0.f, 1.f, 1.f);
+    QuadBatch.DrawShader(&ShaderDot, &CameraO, glm::mat4(), 0.f, 0.f, 1.f, 1.f);
     
     UTexture.Unbind();
 }

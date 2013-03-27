@@ -20,6 +20,8 @@ using namespace dry;
 App::App(AppParams const &params)
 {
     m_Params = params;
+    m_Time   = -1;
+    m_Delta  = 0;
 }
 
 
@@ -30,4 +32,37 @@ App::App(AppParams const &params)
 App::~App()
 {
     DISPOSE(m_Renderer);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Update
+//
+//------------------------------------------------------------------------------------------------
+void App::Update()
+{
+    if (m_Time < 0)
+    {
+        m_Timer.Reset();
+        m_Time  = 0;
+        m_Delta = 0.f;
+    }
+    else
+    {
+        float time  = m_Timer.GetTime();
+        float delta = time - m_Time;
+        m_Time  = time;
+        m_Delta = delta;
+    }
+    OnUpdate();
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Draw
+//
+//------------------------------------------------------------------------------------------------
+void App::Draw()
+{
+    OnDraw();
 }

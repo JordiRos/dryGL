@@ -20,7 +20,7 @@ dry::Uniform          UTime;
 
 AppGLSL(dry::AppParams const &params) : dry::AppiOS(params) { }
 
-void Init()
+void OnInit()
 {
     Camera.Init(0,1, 0,1, 0.1f,10000.f);
     Camera.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
@@ -29,7 +29,7 @@ void Init()
     UTime.Init(Shader.GetUniformLocation("time"), dry::DataTypeFloat);
 }
 
-void Draw()
+void OnDraw()
 {
     glDisable(GL_DEPTH_TEST);
 

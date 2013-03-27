@@ -35,8 +35,6 @@
         self.multipleTouchEnabled = true;
         self.opaque = YES;
         m_App = app;
-        m_Time = 0.f;
-        m_First = true;
 
         // Layer
         m_EAGLLayer = (CAEAGLLayer *)super.layer;
@@ -117,16 +115,11 @@
 //------------------------------------------------------------------------------------------------
 - (void)onDraw
 {
-    if (m_First)
-        m_App->GetTimer().Reset();
-    
     [self beginRender];
     if (m_App)
     {
-        float time = m_App->GetTimer().GetTime();
-        float delta = time - m_Time;
-        m_App->Update(time, delta);
-        m_App->Draw();
+        m_App->Update();
+        m_App->Draw  ();
     }
     [self endRender];
 }
@@ -201,7 +194,7 @@
         float x = location.x * m_ScaleFactor;
         float y = location.y * m_ScaleFactor;
         dry::Log(dry::LogInfo, "[View] touchesBegan: %.2f,%.2f", x, y);
-        m_App->TouchDown(x, y, 0);
+        m_App->OnTouchDown(x, y, 0);
     }
 }
 
@@ -219,7 +212,7 @@
         float x = location.x * m_ScaleFactor;
         float y = location.y * m_ScaleFactor;
         dry::Log(dry::LogInfo, "[View] touchesMoved: %.2f,%.2f", x, y);
-        m_App->TouchMoved(x, y, 0);
+        m_App->OnTouchMoved(x, y, 0);
     }
 }
 
@@ -237,7 +230,7 @@
         float x = location.x * m_ScaleFactor;
         float y = location.y * m_ScaleFactor;
         dry::Log(dry::LogInfo, "[View] touchesEnded: %.2f,%.2f", x, y);
-        m_App->TouchUp(x, y, 0);
+        m_App->OnTouchUp(x, y, 0);
     }
 }
 

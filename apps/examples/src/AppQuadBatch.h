@@ -19,7 +19,7 @@ dry::Texture          Texture;
 
 AppQuadBatch(dry::AppParams const &params) : dry::AppiOS(params) { }
 
-void Init()
+void OnInit()
 {
     Camera.Init(0,1, 0,1, 0.1f,10000.f);
     Camera.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
@@ -27,7 +27,7 @@ void Init()
     dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, false));
 }
 
-void Draw()
+void OnDraw()
 {
     GetRenderer()->Clear(true, true, false);
 

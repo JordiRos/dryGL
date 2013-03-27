@@ -23,7 +23,7 @@ dry::Uniform            UModelViewProjection;
 
 AppVbo(dry::AppParams const &params) : dry::AppiOS(params) { }
     
-void Init()
+void OnInit()
 {
     // Vertices
     GLfloat vertices[] = {
@@ -111,7 +111,7 @@ void Init()
     UModelViewProjection.Init(Shader.GetUniformLocation("ModelViewProjection"), dry::DataTypeMat4);
 }
 
-void Draw()
+void OnDraw()
 {
     GetRenderer()->Clear(true, true, false);
     
