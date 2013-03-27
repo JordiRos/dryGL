@@ -104,6 +104,18 @@ enum PixelFormat
     PixelFormatUnknown = 0xFFFFFFFF,
 };
 
+// TextureCubeSide
+enum TextureCubeSide
+{
+    TextureCubeSidePosX,
+    TextureCubeSideNegX,
+    TextureCubeSidePosY,
+    TextureCubeSideNegY,
+    TextureCubeSidePosZ,
+    TextureCubeSideNegZ,
+    TextureCubeSideUnknown = 0xFFFFFFFF,
+};
+
 // BlendMode
 enum BlendMode
 {
@@ -137,6 +149,7 @@ enum BlendMode
 #include "graphics/Renderer.h"
 #include "graphics/Image.h"
 #include "graphics/Texture.h"
+#include "graphics/TextureCube.h"
 #include "graphics/Fbo.h"
 #include "graphics/Shader.h"
 #include "graphics/ShaderBasic.h"

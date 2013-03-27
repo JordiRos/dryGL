@@ -13,38 +13,34 @@ using namespace dry;
 
 
 //------------------------------------------------------------------------------------------------
-// LoadTexture
+// LoadImageData
 //
 //------------------------------------------------------------------------------------------------
-bool ImageLoader::LoadTexture(Texture &tex, string const &file, Texture::Params const &params)
+static bool LoadImageData(string const &file, int &w, int &h, uchar **data)
 {
     bool res = false;
-    dry::Log(LogInfo, "[ImageLoader] Load texture from file: %s", file.c_str());
-    NSString *path  = [NSString stringWithUTF8String:file.c_str()];
-    NSData   *data  = [NSData dataWithContentsOfFile:path];
-    UIImage  *image = [UIImage imageWithData:data];
+    dry::Log(LogInfo, "[ImageLoader] Load Image from file: %s", file.c_str());
+    NSString *path   = [NSString stringWithUTF8String:file.c_str()];
+    NSData   *nsdata = [NSData dataWithContentsOfFile:path];
+    UIImage  *image  = [UIImage imageWithData:nsdata];
     if (image != nil)
     {
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        GLuint w = CGImageGetWidth(image.CGImage);
-        GLuint h = CGImageGetHeight(image.CGImage);
-        uchar *buffer = NEW_ARRAY(uchar, w*h*4);
-        CGContextRef context = CGBitmapContextCreate(buffer, w,h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+        w = CGImageGetWidth (image.CGImage);
+        h = CGImageGetHeight(image.CGImage);
+        *data = NEW_ARRAY(uchar, w*h*4);
+        CGContextRef context = CGBitmapContextCreate(*data, w,h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
         CGColorSpaceRelease(colorSpace);
         CGContextTranslateCTM(context, 0, h);
         CGContextScaleCTM (context, 1.0, -1.0);
         CGContextDrawImage(context, CGRectMake(0,0, w,h), image.CGImage);
 
-        // Create and load texture data
-        tex.InitWithData(w, h, PixelFormatArgb32, params, buffer);
-        res = true;
-        
         // Release
         CGContextRelease(context);
-        DISPOSE_ARRAY(buffer);
+        res = true;
     }
     else
-        dry::Log(LogWarning, "[ImageLoader] Error loading image %s", file.c_str());
+        dry::Log(LogWarning, "[ImageLoader] Error loading Image from file %s", file.c_str());
     return res;
 }
 
@@ -55,32 +51,81 @@ bool ImageLoader::LoadTexture(Texture &tex, string const &file, Texture::Params 
 //------------------------------------------------------------------------------------------------
 bool ImageLoader::LoadImage(Image &img, string const &file)
 {
-    bool res = false;
-    dry::Log(LogInfo, "[ImageLoader] Load image from file: %s", file.c_str());
-    NSString *path  = [NSString stringWithUTF8String:file.c_str()];
-    NSData   *data  = [NSData dataWithContentsOfFile:path];
-    UIImage  *image = [UIImage imageWithData:data];
-    if (image != nil)
+    bool   res = false;
+    int    w, h;
+    uchar *data;
+    if (LoadImageData(file, w,h, &data))
     {
-        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        GLuint w = CGImageGetWidth(image.CGImage);
-        GLuint h = CGImageGetHeight(image.CGImage);
-        uchar *buffer = NEW_ARRAY(uchar, w*h*4);
-        CGContextRef context = CGBitmapContextCreate(buffer, w,h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-        CGColorSpaceRelease(colorSpace);
-        CGContextTranslateCTM(context, 0, h);
-        CGContextScaleCTM (context, 1.0, -1.0);
-        CGContextDrawImage(context, CGRectMake(0,0, w,h), image.CGImage);
-        
-        // Create and load texture data
-        img.InitWithData(w, h, PixelFormatArgb32, buffer);
+        img.InitWithData(w, h, PixelFormatArgb32, data);
+        DISPOSE_ARRAY(data);
         res = true;
-        
-        // Release
-        CGContextRelease(context);
-        DISPOSE_ARRAY(buffer);
     }
-    else
-        dry::Log(LogWarning, "[ImageLoader] Error loading image %s", file.c_str());
+    return res;
+}
+
+
+//------------------------------------------------------------------------------------------------
+// LoadTexture
+//
+//------------------------------------------------------------------------------------------------
+bool ImageLoader::LoadTexture(Texture &tex, string const &file, Texture::Params const &params)
+{
+    bool   res = false;
+    int    w, h;
+    uchar *data;
+    if (LoadImageData(file, w,h, &data))
+    {
+        tex.InitWithData(w, h, PixelFormatArgb32, params, data);
+        DISPOSE_ARRAY(data);
+        res = true;
+    }
+    return res;
+}
+
+
+//------------------------------------------------------------------------------------------------
+// LoadTextureCube
+//
+//------------------------------------------------------------------------------------------------
+bool ImageLoader::LoadTextureCube(TextureCube &tex, string const &file, TextureCube::Params const &params)
+{
+    struct ImageInfo
+    {
+        ImageInfo() { data = NULL; }
+        int    w;
+        int    h;
+        uchar *data;
+    };
+    int len = file.length();
+    bool res = true;
+    ImageInfo images[6];
+    string prefixes[6] = { "_posx", "_negx", "_posy", "_negy", "_posz", "_negz" };
+    for (int i = 0; i < 6; i++)
+    {
+        string pre  = file.substr(0, len-4);
+        string post = file.substr(len-4, 4);
+        string name = pre + prefixes[i] + post;
+        if (!LoadImageData(name, images[i].w, images[i].h, &images[i].data))
+            res = false;
+        else
+        {
+            if (i > 0 && (images[i].w != images[0].w || images[i].h != images[0].h))
+            {
+                dry::Log(LogWarning, "[ImageLoader] TextureCube %s has different cube texture sizes", file.c_str());
+                res = false;
+            }
+        }
+    }
+    // All images ok?
+    if (res)
+    {
+        uchar *data[6];
+        for (int i = 0; i < 6; i++)
+            data[i] = images[i].data;
+        tex.InitWithData(images[0].w, images[0].h, PixelFormatArgb32, params, (const void **)data);
+    }
+    // Free loaded textures
+    for (int i = 0; i < 6; i++)
+        DISPOSE_ARRAY(images[i].data);
     return res;
 }

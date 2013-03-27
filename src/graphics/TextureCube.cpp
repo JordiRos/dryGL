@@ -1,5 +1,5 @@
 //
-//  Texture.cpp
+//  TextureCube.cpp
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -7,7 +7,7 @@
 //
 
 #include "dry.h"
-#include "Texture.h"
+#include "TextureCube.h"
 
 using namespace dry;
 
@@ -16,7 +16,7 @@ using namespace dry;
 // InitWithData
 //
 //------------------------------------------------------------------------------------------------
-bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::Params const &params, void const *data)
+bool TextureCube::InitWithData(int width, int height, PixelFormat format, TextureCube::Params const &params, void const **data)
 {
     Free();
     bool res = false;
@@ -24,7 +24,7 @@ bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::P
     m_Height = height;
     m_Format = format;
     m_Params = params;
-    m_Target = GL_TEXTURE_2D;
+    m_Target = GL_TEXTURE_CUBE_MAP;
 
 	glGenTextures(1, (GLuint *)&m_Handle);
     if (m_Handle != -1)
@@ -47,7 +47,8 @@ bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::P
         glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, magf);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexImage2D   (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
+        for (int i = 0; i < 6; ++i)
+            glTexImage2D((GLenum)(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data ? data[i] : NULL);
         if (m_Params.Mipmaps) glGenerateMipmap(m_Target);
         glBindTexture  (m_Target, 0);
         res = true;
@@ -62,7 +63,7 @@ bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::P
 // Free
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Free()
+void TextureCube::Free()
 {
     if (m_Handle != -1)
         glDeleteTextures(1, (GLuint *)&m_Handle);
@@ -74,12 +75,12 @@ void Texture::Free()
 // Update
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Update(void const *data)
+void TextureCube::Update(TextureCubeSide side, void const *data)
 {
     int glFormat = GetGLFormat();
 
     glBindTexture(m_Target, m_Handle);
-    glTexImage2D (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
+    glTexImage2D ((GLenum)(GL_TEXTURE_CUBE_MAP_POSITIVE_X + side), 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
     if (m_Params.Mipmaps) glGenerateMipmap(m_Target);
     glBindTexture(m_Target, 0);
 }
@@ -89,7 +90,7 @@ void Texture::Update(void const *data)
 // Bind
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Bind(int stage) const
+void TextureCube::Bind(int stage) const
 {
     glActiveTexture(GL_TEXTURE0 + stage);
     glBindTexture  (m_Target, m_Handle);
@@ -100,7 +101,7 @@ void Texture::Bind(int stage) const
 // Unbind
 //
 //------------------------------------------------------------------------------------------------
-void Texture::Unbind() const
+void TextureCube::Unbind() const
 {
     glBindTexture(m_Target, 0);
 }
@@ -110,7 +111,7 @@ void Texture::Unbind() const
 // GetGLFormat
 //
 //------------------------------------------------------------------------------------------------
-int Texture::GetGLFormat() const
+int TextureCube::GetGLFormat() const
 {
     switch (m_Format)
     {
@@ -127,7 +128,7 @@ int Texture::GetGLFormat() const
 // GetGLType
 //
 //------------------------------------------------------------------------------------------------
-int Texture::GetGLType() const
+int TextureCube::GetGLType() const
 {
     switch (m_Format)
     {

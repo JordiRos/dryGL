@@ -31,24 +31,32 @@ public:
     void            Update  (glm::mat2 const &value) { m_Value.m2  = value; }
     void            Update  (glm::mat3 const &value) { m_Value.m3  = value; }
     void            Update  (glm::mat4 const &value) { m_Value.m4  = value; }
-    void            Update  (Texture         *tex, int stage) { m_Value.tex.Set(tex, stage); }
-    void            Update  (Fbo             *fbo, int stage) { m_Value.fbo.Set(fbo, stage); }
+    void            Update  (Texture     *tex,  int stage) { m_Value.tex.Set(tex, stage); }
+    void            Update  (TextureCube *cube, int stage) { m_Value.cube.Set(cube, stage); }
+    void            Update  (Fbo         *fbo,  int stage) { m_Value.fbo.Set(fbo, stage); }
 
 public:
 
-    struct tex2D
+    struct Tex2D
     {
-        tex2D() { tex = NULL; stage = 0; }
+        Tex2D() { tex = NULL; stage = 0; }
         void Set(Texture *t, int s) { tex = t; stage = s; }
-        Texture    *tex;
-        int         stage;
+        Texture *tex;
+        int      stage;
     };
-    struct texFbo
+    struct TexCube
     {
-        texFbo() { fbo = NULL; stage = 0; }
+        TexCube() { tex = NULL; stage = 0; }
+        void Set(TextureCube *t, int s) { tex = t; stage = s; }
+        TextureCube *tex;
+        int          stage;
+    };
+    struct TexFbo
+    {
+        TexFbo() { fbo = NULL; stage = 0; }
         void Set(Fbo *f, int s) { fbo = f; stage = s; }
-        Fbo        *fbo;
-        int         stage;
+        Fbo *fbo;
+        int  stage;
     };
     
     union Var
@@ -62,8 +70,9 @@ public:
         glm::mat2   m2;
         glm::mat3   m3;
         glm::mat4   m4;
-        tex2D       tex;
-        texFbo      fbo;
+        Tex2D       tex;
+        TexCube     cube;
+        TexFbo      fbo;
     };
 
 protected:

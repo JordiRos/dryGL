@@ -18,6 +18,6 @@ ITEM(DataTypeMat2,     4,  sizeof(float) * 4,  GL_FLOAT,          true,  false, 
 ITEM(DataTypeMat3,     9,  sizeof(float) * 9,  GL_FLOAT,          true,  false, true,  true)
 ITEM(DataTypeMat4,     16, sizeof(float) * 16, GL_FLOAT,          true,  false, true,  true)
 ITEM(DataTypeTex2D,    1,  0,                  0,                 false, false, false, true)
-//ITEM(DataTypeTexCube, 1,  0,                  0,                 false, false, false, true)
+ITEM(DataTypeTexCube, 1,  0,                  0,                 false, false, false, true)
 ITEM(DataTypeFboColor, 1,  0,                  0,                 false, false, false, true)
 ITEM(DataTypeFboDepth, 1,  0,                  0,                 false, false, false, true)

@@ -11,6 +11,7 @@
 		BC2552861700635E00D3F375 /* Uniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC2552841700635D00D3F375 /* Uniform.cpp */; };
 		BC887D611701DB0900BABCF8 /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D5F1701DB0800BABCF8 /* Attribute.cpp */; };
 		BC887D6617023CD900BABCF8 /* DataType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D6517023CD900BABCF8 /* DataType.cpp */; };
+		BC887D6D1703465100BABCF8 /* TextureCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D6B1703465100BABCF8 /* TextureCube.cpp */; };
 		BC91249F16DFA8B900E7F493 /* dry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91249E16DFA8B900E7F493 /* dry.cpp */; };
 		BCD9FE4D16F3DA3B00C38D61 /* Vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */; };
 		BCD9FE5016F5258700C38D61 /* Ibo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4E16F5258600C38D61 /* Ibo.cpp */; };
@@ -59,6 +60,8 @@
 		BC887D6317023AA800BABCF8 /* DataType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataType.h; sourceTree = "<group>"; };
 		BC887D6417023B3600BABCF8 /* DataTypeEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTypeEnum.h; sourceTree = "<group>"; };
 		BC887D6517023CD900BABCF8 /* DataType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataType.cpp; sourceTree = "<group>"; };
+		BC887D6B1703465100BABCF8 /* TextureCube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureCube.cpp; sourceTree = "<group>"; };
+		BC887D6C1703465100BABCF8 /* TextureCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureCube.h; sourceTree = "<group>"; };
 		BC91249E16DFA8B900E7F493 /* dry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dry.cpp; sourceTree = "<group>"; };
 		BC91904B16FA641D00507A00 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vbo.cpp; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				BCF38C6A16ED197100073C11 /* Image.h */,
 				BCF38C7116ED197100073C11 /* Texture.cpp */,
 				BCF38C7216ED197100073C11 /* Texture.h */,
+				BC887D6B1703465100BABCF8 /* TextureCube.cpp */,
+				BC887D6C1703465100BABCF8 /* TextureCube.h */,
 				BCF38C8C16EDD9EA00073C11 /* Fbo.cpp */,
 				BCF38C8D16EDD9EA00073C11 /* Fbo.h */,
 				BCF38C6D16ED197100073C11 /* Shader.cpp */,
@@ -310,6 +315,7 @@
 				BC2552861700635E00D3F375 /* Uniform.cpp in Sources */,
 				BC887D611701DB0900BABCF8 /* Attribute.cpp in Sources */,
 				BC887D6617023CD900BABCF8 /* DataType.cpp in Sources */,
+				BC887D6D1703465100BABCF8 /* TextureCube.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

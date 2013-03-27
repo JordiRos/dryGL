@@ -13,12 +13,13 @@
 #include "AppFbo.h"
 #include "AppParticles.h"
 #include "AppPostprocess.h"
+#include "AppTextureCube.h"
 
 // dryExamples
 //
-// Select: AppVbo, AppQuadBatch, AppGLSL, AppFbo, AppParticles, AppPostprocess
+// Select: AppVbo, AppQuadBatch, AppGLSL, AppFbo, AppParticles, AppPostprocess, AppTextureCube
 //
-#define APP_EXAMPLE AppPostprocess
+#define APP_EXAMPLE AppTextureCube
 //
 //
 
