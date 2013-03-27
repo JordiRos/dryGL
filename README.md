@@ -28,15 +28,10 @@ Current features
 - Addons/Scene: Scene,Object,Mesh,Material (WIP)
 - Addons/QuadBatch: Quad drawer the simple way. TODO: Make it a real quadbatch pipeline
 
-
-Dependencies
-============
-- Glm: [Download glm](http://glm.g-truc.net/) and copy contents to libs/glm
-
 Examples
 ========
-There is a single project on apps/examples where you can switch easily between example. Edit AppDelegate.mm and uncomment the desired example to run it.
-This project works also as a template for new applications.
+There is a single project on apps/examples where you can switch easily between examples. Edit AppDelegate.mm and uncomment the desired one to run it.
+This project can help you build new applications as well.
 Current working examples:
 - AppVbo: Usage of Vbo / Ibo for rendering a cube in 3D
 - AppFbo: Usage of Fbo object for rendering scene to texture
@@ -54,6 +49,10 @@ Roadmap
 - Addons: ParticleSystem
 - Addons: EffectComposer, Postprocess effects / shaders
 - Addons: iOS features / accelerometer, camera, microphone, etc
+
+Dependencies
+============
+- Glm: [Download glm](http://glm.g-truc.net/) and copy contents to libs/glm
 
 Contributions
 =============
