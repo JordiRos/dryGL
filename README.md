@@ -39,9 +39,9 @@ Current working examples:
 - AppVbo: Usage of Vbo / Ibo for rendering a cube in 3D
 - AppFbo: Usage of Fbo object for rendering scene to texture
 - AppQuadBatch: Usage of QuadBatch for rendering quads to screen the easy way
-- AppGLSL: Screen space GLSL shader
 - AppParticles: Particle system with custom attributes
 - AppPostprocess: Usage of Fbo + Shaders for postprocessing
+- AppShaderTpy: Screen space GLSL shader for loading ShaderToy awesome examples
 
 Roadmap
 =======
