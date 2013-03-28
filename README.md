@@ -3,12 +3,12 @@ dryGL
 
 #### C++ OpenGL ES 2.0 framework ####
 
-**dryGL** is a lightweight OpenGL ES 2.0 engine for mobile and ES devices. It is now available only for **iOS**, but we intend to be it cross-platform and an **Android** version is currently on our roadmap (maybe more in the future? Raspberry-Pi, Ouya, Windows CE/Embedded...)
+**dryGL** is a lightweight OpenGL ES 2.0 engine for mobile and ES devices. It is now available only for **iOS**, but we intend to be it cross-platform and an **Android** version is currently on our roadmap (maybe more in the future? Raspberry-Pi, Ouya, Windows Embedded...)
 
 The aim of the project is to have a framework for creating an ES 2.0 application very easy, but also providing a complete list of low and mid level classes for rendering things to screen.
-This means utilities for Vbo, Fbo, Textures, Shaders, Uniforms, Attributes, Cameras, etc, so then you can write your own object structures, scene renderers and custom shaders a lot easier.
+This means utilities for Vbo, Fbo, Textures, Shaders, Uniforms, Attributes, Cameras, etc, so you can write your own object structures, scene renderers and custom shaders a lot easier.
 
-On top of that, we plan to write some generic addons, like a basic scene renderer, geometry instances, device hardware access (accelerometer, camera), a sound engine, postprocess effects, text rendering, physics, resource managers, and many more.
+On top of that, we plan to write some generic addons, like a basic scene renderer, geometry/material instances, resource managers, textr rendering, postprocess effects, device hardware access (accelerometer, camera, extern display), a sound engine, physics, and many more.
 
 Currently we are close to a beta release, with some examples that can help understand how to setup an application and use the current features.
 
@@ -61,7 +61,7 @@ Dependencies
 Contributions
 =============
 
-Once we release the first beta, we will create a dev branch were you would be able contribute with fixes/addons/examples forking the project and pulling any request. We would be very happy!
+Once we release the first beta, we will create a dev branch were you should be able to contribute with fixes/addons/examples forking the project and pulling any request. We would be very happy!
 
 License
 =======
