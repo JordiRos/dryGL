@@ -3,19 +3,19 @@ dryGL
 
 #### C++ OpenGL ES 2.0 framework ####
 
-**dryGL** is a lightweight OpenGL ES 2.0 engine for mobile and ES devices. It is now available only for iOS, but an Android version is currently on our roadmap.
+**dryGL** is a lightweight OpenGL ES 2.0 engine for mobile and ES devices. It is now available only for **iOS**, but we intend to be it cross-platform and an **Android** version is currently on our roadmap (maybe more in the future? Raspberry-Pi, Ouya, Windows CE/Embedded...)
 
-The aim of the project is to build a framework for creating an ES 2.0 application very easy, but also providing a complete list of low and mid level classes for rendering things to screen.
+The aim of the project is to have a framework for creating an ES 2.0 application very easy, but also providing a complete list of low and mid level classes for rendering things to screen.
 This means utilities for Vbo, Fbo, Textures, Shaders, Uniforms, Attributes, Cameras, etc, so then you can write your own object structures, scene renderers and custom shaders a lot easier.
 
-On top of that, we plan to write some generic addons, like device hardware access (accelerometer, camera), a sound engine, a basic scene/object/material renderer, postprocess effects, text rendering, physics, resource manager, and many more.
+On top of that, we plan to write some generic addons, like a basic scene renderer, geometry instances, device hardware access (accelerometer, camera), a sound engine, postprocess effects, text rendering, physics, resource managers, and many more.
 
-Currently we are close to a beta release, with some examples that can help understand the current features and how to use the engine.
+Currently we are close to a beta release, with some examples that can help understand how to setup an application and use the current features.
 
-Current features
-================
-- iOS version only (3.1+)
+Features
+========
 - ES 2.0 Renderer
+- Math (using glm)
 - Image/Texture2D/TextureCube
 - Fbo
 - Shaders
@@ -25,9 +25,12 @@ Current features
 - Attribute
 - Material
 - Cameras
-- Math (using glm)
-- Addons/Scene: Scene,Object,Mesh (WIP)
-- Addons/QuadBatch: Quad drawer the simple way. TODO: Make it a real quadbatch pipeline
+- iOS version (3.1+)
+
+Addons
+======
+- Scene: Scene,Object,Mesh,Renderer,Materials (WIP)
+- QuadBatch: Quad drawer the simple way. TODO: Make it a real quadbatch pipeline
 
 Examples
 ========
@@ -39,13 +42,12 @@ Current working examples:
 - AppGLSL: Screen space GLSL shader
 - AppParticles: Particle system with custom attributes
 - AppPostprocess: Usage of Fbo + Shaders for postprocessing
-This project can help you build new applications as well.
 
 Roadmap
 =======
+- Debug functions (DebugDrawText, DebugDrawRectangle, DrawAxis, etc)
 - Android version
 - Sound engine (OpenAL?)
-- Debug functions (DebugDrawText, DebugDrawRectangle, etc)
 - Addons: TextRendering (FreeType, Bitmap)
 - Addons: Material instances (Diffuse, Lambert, etc)
 - Addons: Generic ParticleSystem
