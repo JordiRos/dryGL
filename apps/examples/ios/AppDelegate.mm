@@ -11,17 +11,17 @@
 // dryExamples
 #include "AppVbo.h"
 #include "AppQuadBatch.h"
-#include "AppGLSL.h"
 #include "AppFbo.h"
 #include "AppParticles.h"
 #include "AppPostprocess.h"
 #include "AppTextureCube.h"
+#include "AppShaderToy.h"
 #include "AppScene.h"
 // Available:
 //
-// AppQuadBatch, AppVbo, AppGLSL, AppFbo, AppParticles, AppPostprocess, AppTextureCube, AppScene
+// AppQuadBatch, AppVbo, AppFbo, AppParticles, AppPostprocess, AppTextureCube, AppShaderToy, AppScene
 //
-#define APP_EXAMPLE AppScene
+#define APP_EXAMPLE AppShaderToy
 //
 //
 
@@ -37,7 +37,7 @@
     dry::Log(dry::LogInfo, "[AppDelegate] Screen Size: %.0f,%.0f", frame.size.width,frame.size.height);
     
     // Create app with desired resolution and attach its viewController to rootViewController
-    dry::AppParams params = dry::AppParams(frame.size.width * 2, frame.size.height * 2, true);
+    dry::AppParams params = dry::AppParams(frame.size.width, frame.size.height, false);
     app = NEW APP_EXAMPLE(params);
     app->OnInit();
     self.window.rootViewController = (UIViewController *)app->GetViewController();

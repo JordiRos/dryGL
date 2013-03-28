@@ -31,7 +31,7 @@
 		BC8BFE7B1703684300A90E6E /* GeometryLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE711703684300A90E6E /* GeometryLoader.cpp */; };
 		BC8BFE8117036DDA00A90E6E /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = BC8BFE8017036DDA00A90E6E /* cube.obj */; };
 		BC8BFE8417037DEE00A90E6E /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE8217037DEE00A90E6E /* Mesh.cpp */; };
-		BCB50F6316FB5A9B009A5476 /* glsl_lights.fs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050516FB4ED300B45C68 /* glsl_lights.fs */; };
+		BCB50F6316FB5A9B009A5476 /* glsl.fs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050516FB4ED300B45C68 /* glsl.fs */; };
 		BCB50F6416FB5A9B009A5476 /* glsl.vs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050616FB4ED300B45C68 /* glsl.vs */; };
 		BCB50F6E16FB918A009A5476 /* metal.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F6D16FB918A009A5476 /* metal.png */; };
 		BCB50F7416FC8D40009A5476 /* glsl_isoshader.fs in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */; };
@@ -58,8 +58,8 @@
 		BC34D2EB16CE289A00B634C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC34D2ED16CE289A00B634C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BC34D2EF16CE289A00B634C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		BC5704FD16FB47CA00B45C68 /* AppGLSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppGLSL.h; path = src/AppGLSL.h; sourceTree = SOURCE_ROOT; };
-		BC57050516FB4ED300B45C68 /* glsl_lights.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glsl_lights.fs; sourceTree = "<group>"; };
+		BC5704FD16FB47CA00B45C68 /* AppShaderToy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppShaderToy.h; path = src/AppShaderToy.h; sourceTree = SOURCE_ROOT; };
+		BC57050516FB4ED300B45C68 /* glsl.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glsl.fs; sourceTree = "<group>"; };
 		BC57050616FB4ED300B45C68 /* glsl.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glsl.vs; sourceTree = "<group>"; };
 		BC6B1F7D16D03229008B939C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BC6B1F7F16D03284008B939C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -165,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */,
-				BC57050516FB4ED300B45C68 /* glsl_lights.fs */,
+				BC57050516FB4ED300B45C68 /* glsl.fs */,
 				BC57050616FB4ED300B45C68 /* glsl.vs */,
 			);
 			path = shaders;
@@ -204,10 +204,10 @@
 				BC25527816FF75CC00D3F375 /* AppQuadBatch.h */,
 				BC91903D16F9EA7300507A00 /* AppVbo.h */,
 				BC25527916FFAEAC00D3F375 /* AppFbo.h */,
-				BC5704FD16FB47CA00B45C68 /* AppGLSL.h */,
 				BC255297170190FF00D3F375 /* AppParticles.h */,
 				BC887D681702EF8000BABCF8 /* AppPostprocess.h */,
 				BC887D7F1703564300BABCF8 /* AppTextureCube.h */,
+				BC5704FD16FB47CA00B45C68 /* AppShaderToy.h */,
 				BC8BFE8817037FCD00A90E6E /* AppScene.h */,
 			);
 			name = src;
@@ -361,7 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCB50F7416FC8D40009A5476 /* glsl_isoshader.fs in Resources */,
-				BCB50F6316FB5A9B009A5476 /* glsl_lights.fs in Resources */,
+				BCB50F6316FB5A9B009A5476 /* glsl.fs in Resources */,
 				BCB50F6416FB5A9B009A5476 /* glsl.vs in Resources */,
 				BC6F4DA316F1D90600B094F0 /* Default-568h@2x.png in Resources */,
 				BC6F4DA416F1D90600B094F0 /* Default.png in Resources */,
@@ -476,6 +476,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iOS/dry.pch;
 				INFOPLIST_FILE = iOS/info.plist;
@@ -483,6 +485,8 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = dryExamples;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -493,6 +497,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iOS/dry.pch;
 				INFOPLIST_FILE = iOS/info.plist;
@@ -500,6 +506,8 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = dryExamples;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

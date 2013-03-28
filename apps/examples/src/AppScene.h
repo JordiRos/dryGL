@@ -1,7 +1,7 @@
 //
 //  AppScene.h
 //
-//  Example: Loading and drawing a TextureCube
+//  Example: Scene
 //
 
 #pragma once
@@ -14,19 +14,25 @@ class AppScene : public dry::AppiOS
 {
 public:
     
-AppScene(dry::AppParams const &params) : dry::AppiOS(params) { }
+    AppScene(dry::AppParams const &params) : dry::AppiOS(params) { }
 
-void OnInit()
-{
-    Shader.Init();
-    Material.Init(&Shader);
-    dry::GeometryLoader::LoadGeometry(Geometry, dry::GetFilePath("cube.obj"));
-}
+    //------------------------------------------------------------------------------------------------
+    // OnInit
+    //------------------------------------------------------------------------------------------------
+    void OnInit()
+    {
+        Shader.Init();
+        Material.Init(&Shader);
+        dry::GeometryLoader::LoadGeometry(Geometry, dry::GetFilePath("cube.obj"));
+    }
 
-void OnDraw()
-{
-    GetRenderer()->Clear(true, true, false);
-}
+    //------------------------------------------------------------------------------------------------
+    // OnDraw
+    //------------------------------------------------------------------------------------------------
+    void OnDraw()
+    {
+        GetRenderer()->Clear(true, true, false);
+    }
 
 private:
 

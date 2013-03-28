@@ -45,8 +45,8 @@ bool TextureCube::InitWithData(int width, int height, PixelFormat format, Textur
         glBindTexture  (m_Target, m_Handle);
         glTexParameteri(m_Target, GL_TEXTURE_MIN_FILTER, minf);
         glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, magf);
-        glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_REPEAT);
         for (int i = 0; i < 6; ++i)
             glTexImage2D((GLenum)(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data ? data[i] : NULL);
         if (m_Params.Mipmaps) glGenerateMipmap(m_Target);

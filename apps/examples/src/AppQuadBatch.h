@@ -12,26 +12,33 @@
 class AppQuadBatch : public dry::AppiOS
 {
 public:
+    
+    AppQuadBatch(dry::AppParams const &params) : dry::AppiOS(params) { }
 
-dry::CameraOrthogonal Camera;
-dry::QuadBatch        QuadBatch;
-dry::Texture          Texture;
+    //------------------------------------------------------------------------------------------------
+    // OnInit
+    //------------------------------------------------------------------------------------------------
+    void OnInit()
+    {
+        Camera.Init(0,1, 0,1, 0.1f,10000.f);
+        Camera.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+        QuadBatch.Init(GetRenderer());
+        dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, false));
+    }
 
-AppQuadBatch(dry::AppParams const &params) : dry::AppiOS(params) { }
+    //------------------------------------------------------------------------------------------------
+    // OnDraw
+    //------------------------------------------------------------------------------------------------
+    void OnDraw()
+    {
+        GetRenderer()->Clear(true, true, false);
 
-void OnInit()
-{
-    Camera.Init(0,1, 0,1, 0.1f,10000.f);
-    Camera.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-    QuadBatch.Init(GetRenderer());
-    dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, false));
-}
+        QuadBatch.DrawTexture(&Texture, &Camera, glm::mat4(), 0.1f,0.1f, 0.8f,0.8f);
+    }
 
-void OnDraw()
-{
-    GetRenderer()->Clear(true, true, false);
-
-    QuadBatch.DrawTexture(&Texture, &Camera, glm::mat4(), 0.1f,0.1f, 0.8f,0.8f);
-}
-
+private:
+    
+    dry::CameraOrthogonal Camera;
+    dry::QuadBatch        QuadBatch;
+    dry::Texture          Texture;
 };

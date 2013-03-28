@@ -46,8 +46,8 @@ bool Texture::InitWithData(int width, int height, PixelFormat format, Texture::P
         glBindTexture  (m_Target, m_Handle);
         glTexParameteri(m_Target, GL_TEXTURE_MIN_FILTER, minf);
         glTexParameteri(m_Target, GL_TEXTURE_MAG_FILTER, magf);
-        glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(m_Target, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(m_Target, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexImage2D   (m_Target, 0, glFormat, m_Width, m_Height, 0, glFormat, GL_UNSIGNED_BYTE, data);
         if (m_Params.Mipmaps) glGenerateMipmap(m_Target);
         glBindTexture  (m_Target, 0);

@@ -19,6 +19,7 @@ using namespace dry;
 bool Uniform::Init(Shader *shader, string const &name, DataType type)
 {
     bool res = false;
+    Free();
     if (GetDataTypeUniform(type))
     {
         int uniform = shader->GetUniformLocation(name.c_str());
@@ -46,6 +47,7 @@ bool Uniform::Init(Shader *shader, string const &name, DataType type)
 bool Uniform::Init(Shader *shader, int idx)
 {
     bool res = false;
+    Free();
     // Load info from shader
     char name[128];
     int len  = 0;
@@ -78,6 +80,7 @@ bool Uniform::Init(Shader *shader, int idx)
 //------------------------------------------------------------------------------------------------
 void Uniform::Free()
 {
+    m_Uniform = -1;
 }
 
 
@@ -87,6 +90,7 @@ void Uniform::Free()
 //------------------------------------------------------------------------------------------------
 void Uniform::Bind()
 {
+    if (!IsOk()) return;
     switch (m_Type)
     {
         case DataTypeInt:      glUniform1i           (m_Uniform, m_Value.i); break;
@@ -110,6 +114,7 @@ void Uniform::Bind()
 //------------------------------------------------------------------------------------------------
 void Uniform::Unbind()
 {
+    if (!IsOk()) return;
     switch (m_Type)
     {
         case DataTypeTex2D:    if (m_Value.tex.tex)  { m_Value.tex.tex ->Unbind(); } break;

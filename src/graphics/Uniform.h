@@ -13,12 +13,13 @@ namespace dry {
 class Uniform
 {
 public:
-                    Uniform         () { m_Uniform = 0; }
+                    Uniform         () { m_Uniform = -1; }
                    ~Uniform         () { Free(); }
 
     bool            Init            (Shader *shader, string const &name, DataType type);
     bool            Init            (Shader *shader, int idx);
     void            Free            ();
+    bool            IsOk            () { return m_Uniform >= 0; }
 
     void            Bind            ();
     void            Unbind          ();

@@ -54,14 +54,14 @@ public:
     bool                Init            (Params const &params);
     void                Free            ();
 
-    vector<Face>       &GetFaces        ();
-    vector<glm::vec3>  &GetVertices     ();
-    vector<glm::vec2>  &GetTexCoords0   ();
-    vector<glm::vec2>  &GetTexCoords1   ();
-    vector<glm::vec2>  &GetTexCoords2   ();
-    vector<glm::vec2>  &GetTexCoords3   ();
-    vector<glm::vec3>  &GetNormals      ();
-    vector<glm::vec4>  &GetColors       ();
+    vector<Face>       &GetFaces        () { return m_Faces; }
+    vector<glm::vec3>  &GetVertices     () { return m_Vertices; }
+    vector<glm::vec2>  &GetTexCoords0   () { return m_TexCoords0; }
+    vector<glm::vec2>  &GetTexCoords1   () { return m_TexCoords1; }
+    vector<glm::vec2>  &GetTexCoords2   () { return m_TexCoords2; }
+    vector<glm::vec2>  &GetTexCoords3   () { return m_TexCoords3; }
+    vector<glm::vec3>  &GetNormals      () { return m_Normals; }
+    vector<glm::vec4>  &GetColors       () { return m_Colors; }
 
 protected:
     
