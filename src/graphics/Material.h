@@ -20,6 +20,7 @@ public:
     void                    Free            ();
 
     void                    Bind            ();
+    void                    Unbind          ();
     
     Uniform                *GetUniform      (string const &name) { return m_Uniforms[name]; }
     Attribute              *GetAttribute    (string const &name) { return m_Attributes[name]; }

@@ -95,3 +95,24 @@ void Material::Bind()
         attribute->Bind();
     }
 }
+
+
+//------------------------------------------------------------------------------------------------
+// Unbind
+//
+//------------------------------------------------------------------------------------------------
+void Material::Unbind()
+{
+    // Uniforms
+    for (map<string,Uniform *>::iterator iter = m_Uniforms.begin(); iter != m_Uniforms.end(); ++iter)
+    {
+        Uniform *uniform = iter->second;
+        uniform->Unbind();
+    }
+    // Attributes
+    for (map<string,Attribute *>::iterator iter = m_Attributes.begin(); iter != m_Attributes.end(); ++iter)
+    {
+        Attribute *attribute = iter->second;
+        attribute->Unbind();
+    }
+}

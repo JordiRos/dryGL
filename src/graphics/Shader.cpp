@@ -12,7 +12,11 @@
 using namespace dry;
 
 
-bool ReadFileContents(const string &filename, char **buffer)
+//------------------------------------------------------------------------------------------------
+// ReadFileContents
+//
+//------------------------------------------------------------------------------------------------
+static bool ReadFileContents(const string &filename, char **buffer)
 {
     FILE *file = fopen(filename.c_str(), "r");
     if (file)
