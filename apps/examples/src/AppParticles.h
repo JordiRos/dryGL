@@ -12,12 +12,10 @@
 class AppParticles : public dry::AppiOS
 {
 public:
-
-    #define PARTICLES    10000
-    #define STRINGIFY(A) #A
-    string VS = STRINGIFY(
+    
+    const char *VS = STRING(
         precision mediump float;
-        
+                            
         attribute vec3 Position;
         attribute vec2 Attribute;
         uniform float Time;
@@ -32,9 +30,9 @@ public:
         }
     );
 
-    string FS = STRINGIFY(
+    const char *FS = STRING(
         precision mediump float;
-
+    
         uniform sampler2D Texture;
                           
         varying vec3 vParticle;
@@ -44,6 +42,8 @@ public:
             gl_FragColor = texture2D(Texture, gl_PointCoord);
         }
     );
+    
+    const int PARTICLES = 10000;
 
 public:
     
@@ -59,9 +59,9 @@ public:
         
         Camera.Init(45.f, (float)w / h, 0.1, 1000.f);
         Camera.LookAt(glm::vec3(0.0, 0.0, 2.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-        QuadBatch.Init(GetRenderer());
+        QuadBatch.Init(m_Renderer);
         Shader.InitWithProgram(VS, FS);
-        dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("particle.png"), dry::Texture::Params(false, false));
+        dry::ImageLoader::Load(Texture, dry::GetFilePath("particle.png"), dry::Texture::Params(false, false));
 
         // Uniforms
         UModelViewProjection.Init(&Shader, "ModelViewProjection", dry::DataTypeMat4);
@@ -96,8 +96,8 @@ public:
     //------------------------------------------------------------------------------------------------
     void OnDraw()
     {
-        GetRenderer()->Clear(true, true, false);
-        GetRenderer()->SetBlendMode(dry::BlendPMAdd);
+        m_Renderer->Clear(true, true, false);
+        m_Renderer->SetBlendMode(dry::BlendPMAdd);
         glDisable(GL_DEPTH_TEST);
         
         Shader.Bind();
@@ -107,7 +107,7 @@ public:
         float angle = time * 45;
         glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
         glm::mat4 model = glm::translate(glm::vec3(0.0, 0.0, 0.0));
-        UModelViewProjection.Update(Camera.GetMatProj() * Camera.GetMatView() * model * anim);
+        UModelViewProjection.Update(Camera.GetMatProjection() * Camera.GetMatView() * model * anim);
         UModelViewProjection.Bind();
 
         UTexture.Bind();
@@ -116,7 +116,7 @@ public:
         APositions.Bind();
         AAttributes.Bind();
         
-        GetRenderer()->DrawArrays(GL_POINTS, PARTICLES);
+        m_Renderer->DrawArrays(GL_POINTS, PARTICLES);
         
         Texture.Unbind();
         Shader.Unbind();

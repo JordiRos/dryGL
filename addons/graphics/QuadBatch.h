@@ -31,7 +31,7 @@ private:
     Vbo             m_Vertices;
     Vbo             m_TexCoords;
     Ibo             m_Indices;
-    ShaderBasic     m_Shader;
+    Shader          m_Shader;
     Uniform         m_UTexture;
 };
 

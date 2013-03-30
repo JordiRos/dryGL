@@ -24,11 +24,11 @@ public:
     glm::vec3 const    &GetTarget       () const { return m_Target; }
     glm::vec3 const    &GetUp           () const { return m_Up; }
     glm::mat4 const    &GetMatView      () const { return m_MatView; }
-    glm::mat4 const    &GetMatProj      () const { return m_MatProj; }
+    glm::mat4 const    &GetMatProjection() const { return m_MatProjection; }
 
 protected:
     
-    void                Update          ();
+    virtual void        Update          ();
     
 protected:
 
@@ -36,7 +36,7 @@ protected:
     glm::vec3           m_Target;
     glm::vec3           m_Up;
     glm::mat4           m_MatView;
-    glm::mat4           m_MatProj;
+    glm::mat4           m_MatProjection;
 };
 
 }

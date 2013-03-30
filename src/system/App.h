@@ -47,7 +47,7 @@ public:
     void                Update              ();
     void                Draw                ();
 
-private:
+protected:
  
     AppParams           m_Params;
     Renderer           *m_Renderer;

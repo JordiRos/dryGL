@@ -20,22 +20,24 @@ public:
     bool            Init        (Shader *shader, int idx, int size, bool dynamic);
     void            Free        ();
     
+    void            Resize      (int size);
     void            Update      (bool now);
 
     void            Bind        ();
     void            Unbind      ();
     
+    int             GetSize     () { return m_Vbo.GetSize(); }
+    DataType        GetType     () { return m_Vbo.GetType(); }
+    int             GetTypeSize () { return m_Vbo.GetTypeSize(); }
     void           *GetData     () { return m_Data; }
     string const   &GetName     () const { return m_Name; }
 
 protected:
 
     int             m_Attribute;
-    DataType        m_Type;
-    int             m_Size;
     string          m_Name;
-    bool            m_Update;
     Vbo             m_Vbo;
+    bool            m_Update;
     uchar          *m_Data;
 };
     

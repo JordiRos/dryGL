@@ -18,7 +18,7 @@ public:
                     GeometryPlane   () { }
                    ~GeometryPlane   () { Free(); }
     
-    bool            Init            (float w, float h, glm::vec3 const &up);
+    bool            Init            (float w, float h, int segw, int segh, glm::vec3 const &up);
     void            Free            ();
 
 protected:

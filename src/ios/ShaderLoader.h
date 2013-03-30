@@ -1,5 +1,5 @@
 //
-//  ShaderBasic.h
+//  ShaderLoader.h
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -8,14 +8,12 @@
 
 #pragma once
 
-#include "Shader.h"
-
 namespace dry {
-    
-class ShaderBasic : public Shader
+
+class ShaderLoader
 {
 public:
-    bool Init();
+    static bool Load(Shader &shader, string const &vs, string const &fs);
 };
 
 }

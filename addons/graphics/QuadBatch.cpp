@@ -8,6 +8,7 @@
 
 #include "dry.h"
 #include "QuadBatch.h"
+#include "Shaders.h"
 
 using namespace dry;
 
@@ -45,7 +46,7 @@ void QuadBatch::Init(Renderer *renderer)
     m_TexCoords.Init(texcoords, 4, DataTypeVec2, false);
     m_Indices.Init(indices, 6, DataTypeUShort, false);
     // Shader
-    m_Shader.Init();
+    m_Shader.InitWithProgram(Shaders::Texture2D_VS, Shaders::Texture2D_FS);
     m_UTexture.Init(&m_Shader, "Texture", DataTypeTex2D);
 }
 
@@ -86,8 +87,9 @@ void QuadBatch::DrawShader(Shader *shader, Camera const *camera, glm::mat4 const
     float hw = w * 0.5f;
     float hh = h * 0.5f;
     glm::mat4 model = glm::translate(x + hw, y + hh, 0.f) * glm::scale(hw, hh, 1.f);
-    glm::mat4 const &mvp = camera->GetMatProj() * camera->GetMatView() * model * transform;
-    glUniformMatrix4fv(shader->GetUniformLocation("ModelViewProjection"), 1, GL_FALSE, glm::value_ptr(mvp));
+    glUniformMatrix4fv(shader->GetUniformLocation("Model"),      1, GL_FALSE, glm::value_ptr(model * transform));
+    glUniformMatrix4fv(shader->GetUniformLocation("View"),       1, GL_FALSE, glm::value_ptr(camera->GetMatView()));
+    glUniformMatrix4fv(shader->GetUniformLocation("Projection"), 1, GL_FALSE, glm::value_ptr(camera->GetMatProjection()));
 
     // Bind
     m_Vertices.Bind(shader->GetAttribLocation("Position"));

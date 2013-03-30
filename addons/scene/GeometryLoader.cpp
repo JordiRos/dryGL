@@ -7,8 +7,7 @@
 //
 
 #include "dry.h"
-#include "Geometry.h"
-#include "GeometryLoader.h"
+#include "Scene.h"
 
 using namespace dry;
 

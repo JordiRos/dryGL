@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  DryGL Hello World
+//  dryGL Hello World
 //
 //  Created by Jordi Ros on 15/02/13.
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
@@ -17,13 +17,11 @@
 #include "AppTextureCube.h"
 #include "AppShaderToy.h"
 #include "AppScene.h"
-// Available:
 //
 // AppQuadBatch, AppVbo, AppFbo, AppParticles, AppPostprocess, AppTextureCube, AppShaderToy, AppScene
 //
-#define APP_EXAMPLE AppShaderToy
-//
-//
+#define APP_EXAMPLE AppScene
+
 
 @implementation AppDelegate
 

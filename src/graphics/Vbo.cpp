@@ -36,7 +36,6 @@ bool Vbo::Init(void const *data, int size, DataType type, bool dynamic)
     }
     else
         dry::Log(LogWarning, "[Vbo] Error creating VertexBufferObject with type: %d and size: %d", type, size);
-
     return res;
 }
 
@@ -63,7 +62,7 @@ void Vbo::Resize(void const *data, int size)
 {
     m_Size = size;
     glBindBuffer(GL_ARRAY_BUFFER, m_Vbo);
-    glBufferData(GL_ARRAY_BUFFER, m_Size * m_TypeSize, data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, size * m_TypeSize, data, m_Dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
 }
 
 
@@ -74,7 +73,7 @@ void Vbo::Resize(void const *data, int size)
 void Vbo::Update(void const *data, int size, int offset)
 {
     glBindBuffer   (GL_ARRAY_BUFFER, m_Vbo);
-    glBufferSubData(GL_ARRAY_BUFFER, offset, m_Size * m_TypeSize, data);
+    glBufferSubData(GL_ARRAY_BUFFER, offset, size * m_TypeSize, data);
 }
 
 

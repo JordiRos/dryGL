@@ -20,7 +20,7 @@ public:
     //------------------------------------------------------------------------------------------------
     void OnInit()
     {
-        dry::ImageLoader::LoadTextureCube(Texture, dry::GetFilePath("church.jpg"), dry::TextureCube::Params(true, true));
+        dry::ImageLoader::Load(Texture, dry::GetFilePath("church.jpg"), dry::TextureCube::Params(true, true));
     }
 
     //------------------------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ public:
     //------------------------------------------------------------------------------------------------
     void OnDraw()
     {
-        GetRenderer()->Clear(true, true, false);
+        m_Renderer->Clear(true, true, false);
     }
 
 private:

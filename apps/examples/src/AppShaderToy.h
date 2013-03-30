@@ -28,9 +28,9 @@ public:
     {
         Camera.Init(0,1, 0,1, 0.1f,1000.f);
         Camera.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-        QuadBatch.Init(GetRenderer());
-        Shader.InitWithFile(dry::GetFilePath("glsl.vs"), dry::GetFilePath("glsl.fs"));
-        dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true));
+        QuadBatch.Init(m_Renderer);
+        dry::ShaderLoader::Load(Shader, dry::GetFilePath("glsl.vs"), dry::GetFilePath("glsl.fs"));
+        dry::ImageLoader::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true));
         
         // Uniforms
         UResolution.Init(&Shader, "iResolution", dry::DataTypeVec3);
@@ -44,7 +44,7 @@ public:
         UMouse.Update(glm::vec4(0.f,0.f,0.f,0.f));
         UChannel0.Update(&Texture, 0);
         
-        Fbo.Init(GetRenderer(), dry::Fbo::Params(GetParams().Width / SAMPLES, GetParams().Height / SAMPLES));
+        Fbo.Init(m_Renderer, dry::Fbo::Params(GetParams().Width / SAMPLES, GetParams().Height / SAMPLES));
     }
 
     //------------------------------------------------------------------------------------------------

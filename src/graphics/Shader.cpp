@@ -13,71 +13,21 @@ using namespace dry;
 
 
 //------------------------------------------------------------------------------------------------
-// ReadFileContents
-//
-//------------------------------------------------------------------------------------------------
-static bool ReadFileContents(const string &filename, char **buffer)
-{
-    FILE *file = fopen(filename.c_str(), "r");
-    if (file)
-    {
-        fseek(file, 0, SEEK_END);
-        int size = ftell(file);
-        fseek(file, 0, SEEK_SET);
-        *buffer = NEW_ARRAY(char, size);
-        fread(*buffer, 1, size, file);
-        (*buffer)[size] = 0;
-        fclose(file);
-        return true;
-    }
-    return false;
-}
-
-
-//------------------------------------------------------------------------------------------------
-// InitWithFile
-//
-//------------------------------------------------------------------------------------------------
-bool Shader::InitWithFile(const string &vs, const string &fs)
-{
-    bool res = false;
-    char *bvs = NULL;
-    char *bfs = NULL;
-    dry::Log(LogInfo, "[Shader] Load VS from file %s", vs.c_str());
-    if (ReadFileContents(vs, &bvs))
-    {
-        dry::Log(LogInfo, "[Shader] Load FS from file %s", fs.c_str());
-        if (ReadFileContents(fs, &bfs))
-            res = InitWithProgram(bvs, bfs);
-        else
-            dry::Log(LogWarning, "[Shader] Can't open FS file %s", fs.c_str());
-    }
-    else
-        dry::Log(LogWarning, "[Shader] Can't open VS file %s", fs.c_str());
-    DISPOSE_ARRAY(bvs);
-    DISPOSE_ARRAY(bfs);
-    return false;
-}
-
-
-//------------------------------------------------------------------------------------------------
 // InitWithProgram
 //
 //------------------------------------------------------------------------------------------------
-bool Shader::InitWithProgram(const string &vs, const string &fs)
+bool Shader::InitWithProgram(const char *vs, const char *fs)
 {
     Free();
     bool res = true;
     
-    const char *strVS = vs.c_str();
-    const char *strFS = fs.c_str();
-    int lenVS = strlen(strVS);
-    int lenFS = strlen(strFS);
+    int lenVS = strlen(vs);
+    int lenFS = strlen(fs);
     int result;
     
     // Create VS
     m_HandleVS = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource (m_HandleVS, 1, &strVS, &lenVS);
+    glShaderSource (m_HandleVS, 1, (GLchar const **)&vs, &lenVS);
     glCompileShader(m_HandleVS);
     glGetShaderiv  (m_HandleVS, GL_COMPILE_STATUS, &result);
     if (result == GL_FALSE)
@@ -88,7 +38,7 @@ bool Shader::InitWithProgram(const string &vs, const string &fs)
 
     // Create FS
     m_HandleFS = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource (m_HandleFS, 1, &strFS, &lenFS);
+    glShaderSource (m_HandleFS, 1, (GLchar const **)&fs, &lenFS);
     glCompileShader(m_HandleFS);
     glGetShaderiv  (m_HandleFS, GL_COMPILE_STATUS, &result);
     if (result == GL_FALSE)

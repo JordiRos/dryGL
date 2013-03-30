@@ -12,25 +12,27 @@
 class AppPostprocess : public dry::AppiOS
 {
 public:
-
-    #define STRINGIFY(A) #A
-    string VS = STRINGIFY(
+    
+    // VertexShader
+    const char *VS = STRING(
         precision mediump float;
-
+        
         attribute vec3 Position;
         attribute vec2 TexCoord;
-        uniform mat4 ModelViewProjection;
-
+        uniform mat4 Model;
+        uniform mat4 View;
+        uniform mat4 Projection;
         varying vec2 vUv;
 
-        void main()
+        void main(void)
         {
+            gl_Position = Projection * View * Model * vec4(Position, 1.0);
             vUv = TexCoord;
-            gl_Position = ModelViewProjection * vec4(Position, 1.0);
         }
     );
 
-    string FS = STRINGIFY(
+    // FragmentShader
+    const char *FS = STRING(
         precision mediump float;
 
         uniform vec2 center;
@@ -72,11 +74,11 @@ public:
         CameraP.Init(45.f, (float)GetParams().Width / GetParams().Height, 0.1f, 10000.f);
         CameraP.LookAt(glm::vec3(0.0, 2.0, -2.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         
-        QuadBatch.Init(GetRenderer());
-        Shader.Init();
+        QuadBatch.Init(m_Renderer);
+        Shader.InitWithProgram(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
         ShaderDot.InitWithProgram(VS, FS);
-        dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false));
-        Fbo.Init(GetRenderer(), dry::Fbo::Params(GetParams().Width/4,GetParams().Height/4));
+        dry::ImageLoader::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false));
+        Fbo.Init(m_Renderer, dry::Fbo::Params(GetParams().Width/4,GetParams().Height/4));
         
         // Uniforms
         UModelViewProjection.Init(&ShaderDot, "ModelViewProjection", dry::DataTypeMat4);
@@ -93,7 +95,7 @@ public:
         UScale.Update(1.0f);
         USize.Update(glm::vec2(GetParams().Width / 4, GetParams().Height / 4));
 
-        GetRenderer()->SetClearColor(glm::vec4(0.f, 0.f, 0.f, 0.f), 0.f, 0);
+        m_Renderer->SetClearColor(glm::vec4(0.f, 0.f, 0.f, 0.f), 0.f, 0);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -101,14 +103,14 @@ public:
     //------------------------------------------------------------------------------------------------
     void OnDraw()
     {
-        GetRenderer()->Clear(true, true, false);
+        m_Renderer->Clear(true, true, false);
         glDisable(GL_DEPTH_TEST);
 
         float angle = GetTimer().GetTime() * 45.f;
         glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
 
         Fbo.Bind();
-        GetRenderer()->Clear(true, true, false);
+        m_Renderer->Clear(true, true, false);
         QuadBatch.DrawTexture(&Texture, &CameraP, anim, -0.5,-0.5, 1.f,1.f);
         Fbo.Unbind();
 
@@ -127,18 +129,18 @@ public:
 
 private:
     
-    dry::CameraOrthogonal  CameraO;
-    dry::CameraPerspective CameraP;
-    dry::ShaderBasic       Shader;
-    dry::Shader            ShaderDot;
-    dry::QuadBatch         QuadBatch;
-    dry::Texture           Texture;
-    dry::Fbo               Fbo;
+    dry::CameraOrthogonal   CameraO;
+    dry::CameraPerspective  CameraP;
+    dry::Shader             Shader;
+    dry::Shader             ShaderDot;
+    dry::QuadBatch          QuadBatch;
+    dry::Texture            Texture;
+    dry::Fbo                Fbo;
     // Uniforms
-    dry::Uniform           UModelViewProjection;
-    dry::Uniform           UTexture;
-    dry::Uniform           UCenter;
-    dry::Uniform           UAngle;
-    dry::Uniform           UScale;
-    dry::Uniform           USize;
+    dry::Uniform            UModelViewProjection;
+    dry::Uniform            UTexture;
+    dry::Uniform            UCenter;
+    dry::Uniform            UAngle;
+    dry::Uniform            UScale;
+    dry::Uniform            USize;
 };

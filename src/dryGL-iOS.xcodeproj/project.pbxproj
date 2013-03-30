@@ -14,6 +14,7 @@
 		BC887D6D1703465100BABCF8 /* TextureCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D6B1703465100BABCF8 /* TextureCube.cpp */; };
 		BC8BFE8B1703AD9D00A90E6E /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE891703AD9800A90E6E /* Material.cpp */; };
 		BC91249F16DFA8B900E7F493 /* dry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91249E16DFA8B900E7F493 /* dry.cpp */; };
+		BCD2131D1706FDEB009EF5F5 /* ShaderLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCD2131C1706FDEB009EF5F5 /* ShaderLoader.mm */; };
 		BCD9FE4D16F3DA3B00C38D61 /* Vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */; };
 		BCD9FE5016F5258700C38D61 /* Ibo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4E16F5258600C38D61 /* Ibo.cpp */; };
 		BCD9FE5C16F650A900C38D61 /* Time.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE5B16F650A900C38D61 /* Time.mm */; };
@@ -23,7 +24,6 @@
 		BCF38C8316ED197100073C11 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6916ED197100073C11 /* Image.cpp */; };
 		BCF38C8416ED197100073C11 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6B16ED197100073C11 /* Renderer.cpp */; };
 		BCF38C8516ED197100073C11 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6D16ED197100073C11 /* Shader.cpp */; };
-		BCF38C8616ED197100073C11 /* ShaderBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C6F16ED197100073C11 /* ShaderBasic.cpp */; };
 		BCF38C8716ED197100073C11 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C7116ED197100073C11 /* Texture.cpp */; };
 		BCF38C8816ED197100073C11 /* AppiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C7516ED197100073C11 /* AppiOS.mm */; };
 		BCF38C8916ED197100073C11 /* View.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCF38C7816ED197100073C11 /* View.mm */; };
@@ -63,6 +63,8 @@
 		BC8BFE8A1703AD9900A90E6E /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		BC91249E16DFA8B900E7F493 /* dry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dry.cpp; sourceTree = "<group>"; };
 		BC91904B16FA641D00507A00 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		BCD2131B1706FDEB009EF5F5 /* ShaderLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderLoader.h; sourceTree = "<group>"; };
+		BCD2131C1706FDEB009EF5F5 /* ShaderLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShaderLoader.mm; sourceTree = "<group>"; };
 		BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vbo.cpp; sourceTree = "<group>"; };
 		BCD9FE4C16F3DA3B00C38D61 /* Vbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vbo.h; sourceTree = "<group>"; };
 		BCD9FE4E16F5258600C38D61 /* Ibo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ibo.cpp; sourceTree = "<group>"; };
@@ -80,8 +82,6 @@
 		BCF38C6C16ED197100073C11 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		BCF38C6D16ED197100073C11 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		BCF38C6E16ED197100073C11 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
-		BCF38C6F16ED197100073C11 /* ShaderBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderBasic.cpp; sourceTree = "<group>"; };
-		BCF38C7016ED197100073C11 /* ShaderBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderBasic.h; sourceTree = "<group>"; };
 		BCF38C7116ED197100073C11 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		BCF38C7216ED197100073C11 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		BCF38C7416ED197100073C11 /* AppiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiOS.h; sourceTree = "<group>"; };
@@ -168,8 +168,6 @@
 				BCF38C8D16EDD9EA00073C11 /* Fbo.h */,
 				BCF38C6D16ED197100073C11 /* Shader.cpp */,
 				BCF38C6E16ED197100073C11 /* Shader.h */,
-				BCF38C6F16ED197100073C11 /* ShaderBasic.cpp */,
-				BCF38C7016ED197100073C11 /* ShaderBasic.h */,
 				BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */,
 				BCD9FE4C16F3DA3B00C38D61 /* Vbo.h */,
 				BCD9FE4E16F5258600C38D61 /* Ibo.cpp */,
@@ -197,6 +195,8 @@
 				BCD9FE5B16F650A900C38D61 /* Time.mm */,
 				BC25527B170042B500D3F375 /* ImageLoader.h */,
 				BC25527C170042B500D3F375 /* ImageLoader.mm */,
+				BCD2131B1706FDEB009EF5F5 /* ShaderLoader.h */,
+				BCD2131C1706FDEB009EF5F5 /* ShaderLoader.mm */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -274,7 +274,6 @@
 				BCF38C8316ED197100073C11 /* Image.cpp in Sources */,
 				BCF38C8416ED197100073C11 /* Renderer.cpp in Sources */,
 				BCF38C8516ED197100073C11 /* Shader.cpp in Sources */,
-				BCF38C8616ED197100073C11 /* ShaderBasic.cpp in Sources */,
 				BCF38C8716ED197100073C11 /* Texture.cpp in Sources */,
 				BCF38C8816ED197100073C11 /* AppiOS.mm in Sources */,
 				BCF38C8916ED197100073C11 /* View.mm in Sources */,
@@ -290,6 +289,7 @@
 				BC887D6617023CD900BABCF8 /* DataType.cpp in Sources */,
 				BC887D6D1703465100BABCF8 /* TextureCube.cpp in Sources */,
 				BC8BFE8B1703AD9D00A90E6E /* Material.cpp in Sources */,
+				BCD2131D1706FDEB009EF5F5 /* ShaderLoader.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

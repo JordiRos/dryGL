@@ -39,6 +39,9 @@ using std::map;
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define MAX(a,b) ((a)>(b)?(a):(b))
 
+// Stringify
+#define STRING(A) #A
+
 // Types
 typedef unsigned char   uchar;
 typedef unsigned short  ushort;
@@ -156,7 +159,6 @@ enum BlendMode
 #include "graphics/TextureCube.h"
 #include "graphics/Fbo.h"
 #include "graphics/Shader.h"
-#include "graphics/ShaderBasic.h"
 #include "graphics/Vbo.h"
 #include "graphics/Ibo.h"
 #include "graphics/Uniform.h"

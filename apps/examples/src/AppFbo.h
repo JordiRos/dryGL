@@ -8,6 +8,7 @@
 
 #include "dry.h"
 #include "QuadBatch.h"
+#include "Shaders.h"
 
 class AppFbo : public dry::AppiOS
 {
@@ -90,26 +91,29 @@ public:
         TexCoords.Init(texcoords, 24, dry::DataTypeVec2, false);
         
         // Texture
-        dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true));
+        dry::ImageLoader::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true));
         
         // Shader
-        Shader.Init();
+        Shader.InitWithProgram(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
 
         int w = GetParams().Width;
         int h = GetParams().Height;
 
         // Fbo
-        Fbo.Init(GetRenderer(), dry::Fbo::Params(w,h));
+        Fbo.Init(m_Renderer, dry::Fbo::Params(w,h));
         
         // Perspective
         CameraP.Init(45.f, (float)w / h, 0.1f, 10000.f);
-        CameraP.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+        CameraP.LookAt(glm::vec3(0.0, 3.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         // Orthogonal
         CameraO.Init(0,w, 0,h, 0.1f,10000.f);
         CameraO.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         
         // QuadBatch
-        QuadBatch.Init(GetRenderer());
+        QuadBatch.Init(m_Renderer);
+        
+        // Semi transparent background in FBO
+        m_Renderer->SetClearColor(glm::vec4(0,0,0,0.75f), 1, 0);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -123,7 +127,7 @@ public:
         // Bind Fbo
         Fbo.Bind();
         
-        GetRenderer()->Clear(true, true, false);
+        m_Renderer->Clear(true, true, false);
         
         // Bind Shader
         Shader.Bind();
@@ -132,8 +136,9 @@ public:
         float angle = GetTimer().GetTime() * 45;
         glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
         glm::mat4 model = glm::translate(glm::vec3(0.0, 0.0, 0.0));
-        glm::mat4 mvp = CameraP.GetMatProj() * CameraP.GetMatView() * model * anim;
-        glUniformMatrix4fv(Shader.GetUniformLocation("ModelViewProjection"), 1, GL_FALSE, glm::value_ptr(mvp));
+        glUniformMatrix4fv(Shader.GetUniformLocation("Model"),      1, GL_FALSE, glm::value_ptr(model * anim));
+        glUniformMatrix4fv(Shader.GetUniformLocation("View"),       1, GL_FALSE, glm::value_ptr(CameraP.GetMatView()));
+        glUniformMatrix4fv(Shader.GetUniformLocation("Projection"), 1, GL_FALSE, glm::value_ptr(CameraP.GetMatProjection()));
 
         // Buffers
         Texture.Bind(0);
@@ -143,7 +148,7 @@ public:
         Indices.Bind();
         
         // Draw!
-        GetRenderer()->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
+        m_Renderer->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
         
         // Unbind
         Texture.Unbind();
@@ -153,19 +158,44 @@ public:
         Shader.Unbind();
         
         Fbo.Unbind();
+
+        // Draw background
+        QuadBatch.DrawTexture(&Texture, &CameraO, glm::mat4(), 0,0, w,h);
+
+        // Bind Fbo
+        m_Renderer->Clear(false, true, false);
         
-        // Draw background + Fbo to screen using quadbatch
-        glDisable(GL_DEPTH_TEST);
-        QuadBatch.DrawTexture(&Texture, &CameraO, glm::mat4(), 0.f,0.f, w,h);
-        QuadBatch.DrawTexture(Fbo.GetTextureColor(), &CameraO, anim, w/4.f,h/4.f, w/2.f, h/2.f);
-        glEnable(GL_DEPTH_TEST);
+        // Bind Shader
+        Shader.Bind();
+        
+        // Matrices
+        glUniformMatrix4fv(Shader.GetUniformLocation("Model"),      1, GL_FALSE, glm::value_ptr(model * anim));
+        glUniformMatrix4fv(Shader.GetUniformLocation("View"),       1, GL_FALSE, glm::value_ptr(CameraP.GetMatView()));
+        glUniformMatrix4fv(Shader.GetUniformLocation("Projection"), 1, GL_FALSE, glm::value_ptr(CameraP.GetMatProjection()));
+        
+        // Buffers
+        Fbo.GetTextureColor()->Bind(0);
+        glUniform1i(Shader.GetUniformLocation("Texture"), 0);
+        Vertices.Bind(Shader.GetAttribLocation("Position"));
+        TexCoords.Bind(Shader.GetAttribLocation("TexCoord"));
+        Indices.Bind();
+        
+        // Draw!
+        m_Renderer->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
+        
+        // Unbind
+        Texture.Unbind();
+        Vertices.Unbind();
+        TexCoords.Unbind();
+        Indices.Unbind();
+        Shader.Unbind();
     }
 
 private:
     
     dry::CameraPerspective  CameraP;
     dry::CameraOrthogonal   CameraO;
-    dry::ShaderBasic        Shader;
+    dry::Shader             Shader;
     dry::Texture            Texture;
     dry::Fbo                Fbo;
     dry::QuadBatch          QuadBatch;

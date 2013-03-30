@@ -37,6 +37,10 @@
 		BCB50F7416FC8D40009A5476 /* glsl_isoshader.fs in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F7116FC8D39009A5476 /* glsl_isoshader.fs */; };
 		BCB50F7916FD2320009A5476 /* QuadBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCB50F7716FD2320009A5476 /* QuadBatch.cpp */; };
 		BCB50F8016FE34E7009A5476 /* grid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCB50F7F16FE34E7009A5476 /* grid.jpg */; };
+		BCD213181706FD30009EF5F5 /* MeshMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD213171706FD30009EF5F5 /* MeshMaterial.cpp */; };
+		BCD21321170703F7009EF5F5 /* MeshMaterialDiffuse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD2131F170703F7009EF5F5 /* MeshMaterialDiffuse.cpp */; };
+		BCD74A88170492BC0007822B /* GeometryPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD74A86170492BC0007822B /* GeometryPlane.cpp */; };
+		BCD74A8E17064EBE0007822B /* Shaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD74A8D17064EBE0007822B /* Shaders.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +101,15 @@
 		BCB50F7716FD2320009A5476 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCB50F7816FD2320009A5476 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
 		BCB50F7F16FE34E7009A5476 /* grid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grid.jpg; sourceTree = "<group>"; };
+		BCD213171706FD30009EF5F5 /* MeshMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshMaterial.cpp; sourceTree = "<group>"; };
+		BCD2131A1706FD37009EF5F5 /* MeshMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeshMaterial.h; sourceTree = "<group>"; };
+		BCD2131F170703F7009EF5F5 /* MeshMaterialDiffuse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshMaterialDiffuse.cpp; sourceTree = "<group>"; };
+		BCD21320170703F7009EF5F5 /* MeshMaterialDiffuse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeshMaterialDiffuse.h; sourceTree = "<group>"; };
+		BCD74A86170492BC0007822B /* GeometryPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryPlane.cpp; sourceTree = "<group>"; };
+		BCD74A87170492BC0007822B /* GeometryPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryPlane.h; sourceTree = "<group>"; };
+		BCD74A891704B5B70007822B /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		BCD74A8B17064B780007822B /* Shaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shaders.h; sourceTree = "<group>"; };
+		BCD74A8D17064EBE0007822B /* Shaders.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shaders.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,13 +260,17 @@
 		BC8BFE6B1703684300A90E6E /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				BCD74A891704B5B70007822B /* Scene.h */,
 				BC8BFE6F1703684300A90E6E /* Geometry.cpp */,
 				BC8BFE701703684300A90E6E /* Geometry.h */,
 				BC8BFE711703684300A90E6E /* GeometryLoader.cpp */,
 				BC8BFE721703684300A90E6E /* GeometryLoader.h */,
 				BC8BFE8217037DEE00A90E6E /* Mesh.cpp */,
 				BC8BFE8317037DEE00A90E6E /* Mesh.h */,
+				BCD213171706FD30009EF5F5 /* MeshMaterial.cpp */,
+				BCD2131A1706FD37009EF5F5 /* MeshMaterial.h */,
 				BC8BFE6C1703684300A90E6E /* geometries */,
+				BCD2131E170703F7009EF5F5 /* meshmaterials */,
 			);
 			name = scene;
 			path = ../../addons/scene;
@@ -262,6 +279,8 @@
 		BC8BFE6C1703684300A90E6E /* geometries */ = {
 			isa = PBXGroup;
 			children = (
+				BCD74A86170492BC0007822B /* GeometryPlane.cpp */,
+				BCD74A87170492BC0007822B /* GeometryPlane.h */,
 			);
 			path = geometries;
 			sourceTree = "<group>";
@@ -279,9 +298,28 @@
 			children = (
 				BCB50F7716FD2320009A5476 /* QuadBatch.cpp */,
 				BCB50F7816FD2320009A5476 /* QuadBatch.h */,
+				BCD74A8A17064B780007822B /* shaders */,
 			);
 			name = graphics;
 			path = ../../addons/graphics;
+			sourceTree = "<group>";
+		};
+		BCD2131E170703F7009EF5F5 /* meshmaterials */ = {
+			isa = PBXGroup;
+			children = (
+				BCD2131F170703F7009EF5F5 /* MeshMaterialDiffuse.cpp */,
+				BCD21320170703F7009EF5F5 /* MeshMaterialDiffuse.h */,
+			);
+			path = meshmaterials;
+			sourceTree = "<group>";
+		};
+		BCD74A8A17064B780007822B /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				BCD74A8D17064EBE0007822B /* Shaders.cpp */,
+				BCD74A8B17064B780007822B /* Shaders.h */,
+			);
+			path = shaders;
 			sourceTree = "<group>";
 		};
 		BCF38C9516EE417E00073C11 /* addons */ = {
@@ -394,6 +432,10 @@
 				BC8BFE7A1703684300A90E6E /* Geometry.cpp in Sources */,
 				BC8BFE7B1703684300A90E6E /* GeometryLoader.cpp in Sources */,
 				BC8BFE8417037DEE00A90E6E /* Mesh.cpp in Sources */,
+				BCD74A88170492BC0007822B /* GeometryPlane.cpp in Sources */,
+				BCD74A8E17064EBE0007822B /* Shaders.cpp in Sources */,
+				BCD213181706FD30009EF5F5 /* MeshMaterial.cpp in Sources */,
+				BCD21321170703F7009EF5F5 /* MeshMaterialDiffuse.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

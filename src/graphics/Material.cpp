@@ -40,12 +40,15 @@ bool Material::Init(Shader *shader)
         for (int i = 0; i < attributes; ++i)
         {
             Attribute *attribute = NEW Attribute();
-            if (attribute->Init(m_Shader, i, 0, false))
+            if (attribute->Init(m_Shader, i, 0, true))
                 m_Attributes[attribute->GetName()] = attribute;
             else
                 DISPOSE(attribute);
         }
+        res = true;
     }
+    else
+        dry::Log(LogWarning, "[Material] Can't initialize Material without Shader");
     return res;
 }
 
@@ -82,6 +85,7 @@ void Material::Free()
 //------------------------------------------------------------------------------------------------
 void Material::Bind()
 {
+    m_Shader->Bind();
     // Uniforms
     for (map<string,Uniform *>::iterator iter = m_Uniforms.begin(); iter != m_Uniforms.end(); ++iter)
     {
@@ -115,4 +119,5 @@ void Material::Unbind()
         Attribute *attribute = iter->second;
         attribute->Unbind();
     }
+    m_Shader->Unbind();
 }

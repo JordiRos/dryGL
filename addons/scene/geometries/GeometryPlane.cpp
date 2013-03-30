@@ -7,7 +7,7 @@
 //
 
 #include "dry.h"
-#include "GeometryPlane.h"
+#include "Scene.h"
 
 using namespace dry;
 
@@ -16,65 +16,81 @@ using namespace dry;
 // Init
 //
 //------------------------------------------------------------------------------------------------
-bool GeometryPlane::Init(float w, float h, glm::vec3 const &up)
+bool GeometryPlane::Init(float w, float h, int segw, int segh, glm::vec3 const &up)
 {
-    // Vertices
-    glm::vec3 verticesX[] = {
-        glm::vec3(0.0f, -1.0f * w, -1.0f * h),
-        glm::vec3(0.0f,  1.0f * w, -1.0f * h),
-        glm::vec3(0.0f,  1.0f * w,  1.0f * h),
-        glm::vec3(0.0f, -1.0f * w,  1.0f * h),
-    };
-    glm::vec3 verticesY[] = {
-        glm::vec3(-1.0f * w, 0.0f, -1.0f * h),
-        glm::vec3( 1.0f * w, 0.0f, -1.0f * h),
-        glm::vec3( 1.0f * w, 0.0f,  1.0f * h),
-        glm::vec3(-1.0f * w, 0.0f,  1.0f * h),
-    };
-    glm::vec3 verticesZ[] = {
-        glm::vec3(-1.0f * w, -1.0f * h, 0.0f),
-        glm::vec3( 1.0f * w, -1.0f * h, 0.0f),
-        glm::vec3( 1.0f * w,  1.0f * h, 0.0f),
-        glm::vec3(-1.0f * w,  1.0f * h, 0.0f),
-    };
-    // TexCoords
-    glm::vec2 texcoords[] = {
-        glm::vec2(0.0f, 1.0f),
-        glm::vec2(1.0f, 1.0f),
-        glm::vec2(1.0f, 0.0f),
-        glm::vec2(0.0f, 0.0f),
-    };
-    // Indices
-    GLushort indices[] = {
-        0,  1,  2,
-        2,  3,  0,
-    };
-
-    glm::vec3 *vertices = verticesY;
-    if (up.x > 0.f) vertices = verticesX;
-    if (up.y > 0.f) vertices = verticesY;
-    if (up.z > 0.f) vertices = verticesZ;
-    if (up.x < 0.f || up.y < 0.f || up.z < 0.f)
-    {
-        for (int i = 0; i < 4; ++i)
-        {
-            vertices[i].x = -vertices[i].x;
-            vertices[i].y = -vertices[i].y;
-            vertices[i].z = -vertices[i].z;
-        }
-    }
-    // Create geometry buffers
-    /*
-    Geometry::Params params;
-    params.NumIndices  = 6;
-    params.NumVertices = 4;
-    params.Indices     = indices;
-    params.Vertices    = vertices;
-    params.TexCoords0  = texcoords;
-    params.Flags       = Geometry::FL_TEXCOORDS0 | Geometry::FL_COLORS | Geometry::FL_NORMALS;
-    Geometry::Init(params);
-     */
+    Free();
     
+	float hw = w / 2.f;
+	float hh = h / 2.f;
+	float dw = w / segw;
+	float dh = h / segh;
+    
+    // Create geometry buffers
+    int nvertices = (segw+1) * (segh+1);
+    int nfaces    = segw * segh * 2;
+    Geometry::Params params;
+    params.Faces      = nfaces;
+    params.Vertices   = nvertices;
+    params.TexCoords0 = nvertices;
+    params.Normals    = 1;
+    params.Colors     = nvertices;
+    Geometry::Init(params);
+
+    // Buffers
+    vector<Geometry::Face> &faces      = GetFaces     ();
+    vector<glm::vec3>      &vertices   = GetVertices  ();
+    vector<glm::vec2>      &texcoords0 = GetTexCoords0();
+    vector<glm::vec3>      &normals    = GetNormals   ();
+    vector<glm::vec4>      &colors     = GetColors    ();
+    
+    // Normals
+    normals[0] = up;
+    
+    // Vertices/TexCoords/Colors
+    int f = 0;
+    int v = 0;
+    for (int i = 0; i <= segh; i++)
+    {
+        for (int j = 0; j <= segw; j++)
+        {
+			float x = j * dw - hw;
+			float y = i * dh - hh;
+            glm::vec3 vec;
+            glm::vec2 tex;
+            glm::vec4 col = glm::vec4(1.f, 1.f, 1.f, 1.f);
+            // Vertices
+            if      (up.x != 0) { vec = glm::vec3( 0, y,-x * up.x); tex = glm::vec2((float)j / segw, (float)(i) / segh); }
+            else if (up.y != 0) { vec = glm::vec3( x, 0,-y * up.y); tex = glm::vec2((float)j / segw, (float)(i) / segh); }
+            else if (up.z != 0) { vec = glm::vec3( x * up.z, y, 0); tex = glm::vec2((float)j / segw, (float)(i) / segh); }
+            vertices  [v] = vec;
+            texcoords0[v] = tex;
+            colors    [v] = col;
+            // Face
+            if (i < segh && j < segw)
+            {
+                int i0, i1, i2;
+                int f0 =  j      + (segw+1) * i;
+                int f1 = (j + 1) + (segw+1) * i;
+                int f2 = (j + 1) + (segw+1) * (i + 1);
+                int f3 =  j      + (segw+1) * (i + 1);
+                // Face 0
+                i0 = f0; i1 = f2; i2 = f1;
+                faces[f].vtx[0] = i0; faces[f].vtx[1] = i2; faces[f].vtx[2] = i1;
+                faces[f].uv0[0] = i0; faces[f].uv0[1] = i2; faces[f].uv0[2] = i1;
+                faces[f].nor[0] = 0;  faces[f].nor[1] = 0;  faces[f].nor[2] = 0;
+                faces[f].col[0] = i0; faces[f].col[1] = i2; faces[f].col[2] = i1;
+                f++;
+                // Face 1
+                i0 = f0; i1 = f3; i2 = f2;
+                faces[f].vtx[0] = i0; faces[f].vtx[1] = i2; faces[f].vtx[2] = i1;
+                faces[f].uv0[0] = i0; faces[f].uv0[1] = i2; faces[f].uv0[2] = i1;
+                faces[f].nor[0] = 0;  faces[f].nor[1] = 0;  faces[f].nor[2] = 0;
+                faces[f].col[0] = i0; faces[f].col[1] = i2; faces[f].col[2] = i1;
+                f++;
+            }
+            v++;
+        }
+	}
     return true;
 }
 
@@ -85,4 +101,5 @@ bool GeometryPlane::Init(float w, float h, glm::vec3 const &up)
 //------------------------------------------------------------------------------------------------
 void GeometryPlane::Free()
 {
+    Geometry::Free();
 }

@@ -49,7 +49,7 @@ static bool LoadImageData(string const &file, int &w, int &h, uchar **data)
 // LoadImage
 //
 //------------------------------------------------------------------------------------------------
-bool ImageLoader::LoadImage(Image &img, string const &file)
+bool ImageLoader::Load(Image &img, string const &file)
 {
     bool   res = false;
     int    w, h;
@@ -68,7 +68,7 @@ bool ImageLoader::LoadImage(Image &img, string const &file)
 // LoadTexture
 //
 //------------------------------------------------------------------------------------------------
-bool ImageLoader::LoadTexture(Texture &tex, string const &file, Texture::Params const &params)
+bool ImageLoader::Load(Texture &tex, string const &file, Texture::Params const &params)
 {
     bool   res = false;
     int    w, h;
@@ -87,7 +87,7 @@ bool ImageLoader::LoadTexture(Texture &tex, string const &file, Texture::Params 
 // LoadTextureCube
 //
 //------------------------------------------------------------------------------------------------
-bool ImageLoader::LoadTextureCube(TextureCube &tex, string const &file, TextureCube::Params const &params)
+bool ImageLoader::Load(TextureCube &tex, string const &file, TextureCube::Params const &params)
 {
     struct ImageInfo
     {

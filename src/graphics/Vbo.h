@@ -25,8 +25,9 @@ public:
     void        Bind        (int attribute);
     void        Unbind      ();
 
-    int         GetType     () { return m_Type; }
     int         GetSize     () { return m_Size; }
+    DataType    GetType     () { return m_Type; }
+    int         GetTypeSize () { return m_TypeSize; }
 
 private:
     

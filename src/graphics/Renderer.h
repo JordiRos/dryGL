@@ -32,6 +32,7 @@ public:
     uint                GetColorBuffer  () { return m_ColorRenderBuffer; }
     uint                GetDepthBuffer  () { return m_DepthRenderBuffer; }
     uint                GetFrameBuffer  () { return m_FrameBuffer; }
+    bool                GetRendering    () { return m_Rendering; }
 
 private:
     
@@ -43,6 +44,7 @@ private:
     float               m_ClearDepth;
     float               m_ClearStencil;
     BlendMode           m_BlendMode;
+    bool                m_Rendering;
 };
 
 }

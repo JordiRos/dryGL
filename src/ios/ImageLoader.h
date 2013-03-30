@@ -13,9 +13,9 @@ namespace dry {
 class ImageLoader
 {
 public:
-    static bool LoadImage       (Image       &img, string const &file);
-    static bool LoadTexture     (Texture     &tex, string const &file, Texture::Params const &params);
-    static bool LoadTextureCube (TextureCube &tex, string const &file, TextureCube::Params const &params);
+    static bool Load(Image       &img, string const &file);
+    static bool Load(Texture     &tex, string const &file, Texture::Params const &params);
+    static bool Load(TextureCube &tex, string const &file, TextureCube::Params const &params);
 };
 
 }

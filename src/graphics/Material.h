@@ -14,16 +14,17 @@ class Material
 {
 public:
                             Material        () { m_Shader = NULL; }
-                           ~Material        () { Free(); }
+    virtual                ~Material        () { Free(); }
 
-    bool                    Init            (Shader *shader);
-    void                    Free            ();
+    virtual bool            Init            (Shader *shader);
+    virtual void            Free            ();
 
-    void                    Bind            ();
-    void                    Unbind          ();
+    virtual void            Bind            ();
+    virtual void            Unbind          ();
     
-    Uniform                *GetUniform      (string const &name) { return m_Uniforms[name]; }
-    Attribute              *GetAttribute    (string const &name) { return m_Attributes[name]; }
+    Shader                 *GetShader       () { return m_Shader; }
+    Uniform                *GetUniform      (string const &name) { map<string,Uniform   *>::iterator iter = m_Uniforms  .find(name); return (iter != m_Uniforms  .end()) ? iter->second : NULL; }
+    Attribute              *GetAttribute    (string const &name) { map<string,Attribute *>::iterator iter = m_Attributes.find(name); return (iter != m_Attributes.end()) ? iter->second : NULL; }
     
 protected:
 

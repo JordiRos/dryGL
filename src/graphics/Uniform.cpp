@@ -50,23 +50,23 @@ bool Uniform::Init(Shader *shader, int idx)
     Free();
     // Load info from shader
     char name[128];
-    int len  = 0;
-    int num  = 0;
-    int type = 0;
-    glGetActiveUniform(shader->GetHandleProgram(), (GLuint)idx, sizeof(name)-1, &len, &num, (GLenum *)&type, name);
+    int len = 0;
+    int num = 0;
+    int gltype = 0;
+    glGetActiveUniform(shader->GetHandleProgram(), (GLuint)idx, sizeof(name)-1, &len, &num, (GLenum *)&gltype, name);
     if (len > 0)
     {
         name[len] = 0;
-        DataType dataType = GetDataTypeWithGLType(type);
-        if (GetDataTypeUniform(dataType))
+        DataType type = GetDataTypeWithGLType(gltype);
+        if (GetDataTypeUniform(type))
         {
             m_Uniform = glGetUniformLocation(shader->GetHandleProgram(), name);
-            m_Type    = dataType;
+            m_Type    = type;
             m_Name    = name;
             res       = true;
         }
         else
-            dry::Log(LogWarning, "[Uniform] Unsupported data type in uniform: %d", dataType);
+            dry::Log(LogWarning, "[Uniform] Unsupported data type in uniform: %d", type);
     }
     else
         dry::Log(LogWarning, "[Uniform] Can't find Uniform with index %d", idx);

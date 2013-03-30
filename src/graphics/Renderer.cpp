@@ -20,10 +20,11 @@ Renderer::Renderer(int w, int h, bool depth, bool stencil)
 {
     // Vars
     m_Viewport     = glm::ivec4(0,0,0,0);
-    m_ClearColor   = glm::vec4 (80.f / 255.f, 130.f / 255.f, 200.f / 255.f, 1.0f);
+    m_ClearColor   = glm::vec4 (70.f / 255.f, 130.f / 255.f, 180.f / 255.f, 1.0f);
     m_ClearDepth   = 1.f;
     m_ClearStencil = 0;
     m_BlendMode    = BlendUnknown;
+    m_Rendering    = false;
 
     // RenderBuffer
     glGenRenderbuffers(1, &m_ColorRenderBuffer);
@@ -66,7 +67,11 @@ Renderer::~Renderer()
 //------------------------------------------------------------------------------------------------
 void Renderer::Begin()
 {
-    glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
+    if (!m_Rendering)
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
+        m_Rendering = true;
+    }
 }
 
 
@@ -76,7 +81,11 @@ void Renderer::Begin()
 //------------------------------------------------------------------------------------------------
 void Renderer::End()
 {
-    glBindRenderbuffer(GL_RENDERBUFFER, m_ColorRenderBuffer);
+    if (m_Rendering)
+    {
+        glBindRenderbuffer(GL_RENDERBUFFER, m_ColorRenderBuffer);
+        m_Rendering = false;
+    }
 }
 
 

@@ -16,8 +16,7 @@ public:
                 Shader              () { m_HandleVS = -1; m_HandleFS = -1; m_HandleProgram = -1; }
                ~Shader              () { Free(); }
 
-    bool        InitWithFile        (const string &vs, const string &fs);
-    bool        InitWithProgram     (const string &vs, const string &fs);
+    bool        InitWithProgram     (const char *vs, const char *fs);
     void        Free                ();
     
     void        Bind                ();

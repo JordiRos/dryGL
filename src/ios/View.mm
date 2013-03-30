@@ -115,13 +115,18 @@
 //------------------------------------------------------------------------------------------------
 - (void)onDraw
 {
-    [self beginRender];
-    if (m_App)
+    if (!m_Renderer->GetRendering())
     {
-        m_App->Update();
-        m_App->Draw  ();
+        [self beginRender];
+        if (m_App)
+        {
+            m_App->Update();
+            m_App->Draw  ();
+        }
+        [self endRender];
     }
-    [self endRender];
+    else
+        dry::Log(dry::LogWarning, "[View] onDraw called when Renderer already in render loop");
 }
 
 

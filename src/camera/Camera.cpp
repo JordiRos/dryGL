@@ -18,8 +18,8 @@ using namespace dry;
 //------------------------------------------------------------------------------------------------
 Camera::Camera()
 {
-    m_Position = glm::vec3(0.f, 0.f, 0.f);
-    m_Target   = glm::vec3(0.f, 0.f, 1.f);
+    m_Position = glm::vec3(0.f, 0.f, 1.f);
+    m_Target   = glm::vec3(0.f, 0.f, 0.f);
     m_Up       = glm::vec3(0.f, 1.f, 0.f);
     Update();
 }

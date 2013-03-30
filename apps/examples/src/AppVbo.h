@@ -7,6 +7,7 @@
 #pragma once
 
 #include "dry.h"
+#include "Shaders.h"
 
 class AppVbo : public dry::AppiOS
 {
@@ -89,10 +90,10 @@ public:
         TexCoords.Init(texcoords, 24, dry::DataTypeVec2, false);
 
         // Texture
-        dry::ImageLoader::LoadTexture(Texture, dry::GetFilePath("metal.png"), dry::Texture::Params(true, false));
+        dry::ImageLoader::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false));
         
         // Shader
-        Shader.Init();
+        Shader.InitWithProgram(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
         
         // Camera
         int w = GetParams().Width;
@@ -102,7 +103,10 @@ public:
         
         // Uniforms
         UTexture.Init(&Shader, "Texture", dry::DataTypeTex2D);
-        UModelViewProjection.Init(&Shader, "ModelViewProjection", dry::DataTypeMat4);
+        UTexture.Update(&Texture, 0);
+        UModel.Init(&Shader, "Model", dry::DataTypeMat4);
+        UView.Init(&Shader, "View", dry::DataTypeMat4);
+        UProjection.Init(&Shader, "Projection", dry::DataTypeMat4);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -110,7 +114,7 @@ public:
     //------------------------------------------------------------------------------------------------
     void OnDraw()
     {
-        GetRenderer()->Clear(true, true, false);
+        m_Renderer->Clear(true, true, false);
         
         // Bind
         Shader.Bind();
@@ -119,18 +123,21 @@ public:
         float angle = GetTimer().GetTime() * 45;
         glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
         glm::mat4 model = glm::translate(glm::vec3(0.0, 0.0, 0.0));
-        UModelViewProjection.Update(Camera.GetMatProj() * Camera.GetMatView() * model * anim);
-        UModelViewProjection.Bind();
+        UModel.Update(model * anim);
+        UView.Update(Camera.GetMatView());
+        UProjection.Update(Camera.GetMatProjection());
+        UModel.Bind();
+        UView.Bind();
+        UProjection.Bind();
 
         // Buffers
-        UTexture.Update(&Texture, 0);
         UTexture.Bind();
         Vertices.Bind(Shader.GetAttribLocation("Position"));
         TexCoords.Bind(Shader.GetAttribLocation("TexCoord"));
         Indices.Bind();
         
         // Draw!
-        GetRenderer()->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
+        m_Renderer->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
         
         // Unbind
         UTexture.Unbind();
@@ -143,11 +150,13 @@ public:
 private:
 
     dry::CameraPerspective  Camera;
-    dry::ShaderBasic        Shader;
+    dry::Shader             Shader;
     dry::Texture            Texture;
     dry::Vbo                Vertices;
     dry::Vbo                TexCoords;
     dry::Ibo                Indices;
     dry::Uniform            UTexture;
-    dry::Uniform            UModelViewProjection;
+    dry::Uniform            UModel;
+    dry::Uniform            UView;
+    dry::Uniform            UProjection;
 };
