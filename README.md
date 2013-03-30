@@ -29,7 +29,8 @@ Features
 
 Addons
 ======
-- Scene: Scene,Object,Mesh,Renderer,Materials (WIP)
+- Scene: Scene,Object,Mesh,MeshMaterial,Geometry (wip)
+- Scene: Geometry/ Simple Obj-Collada loader
 - QuadBatch: Quad drawer the simple way. TODO: Make it a real quadbatch pipeline
 
 Examples
@@ -42,6 +43,7 @@ Current working examples:
 - AppParticles: Particle system with custom attributes
 - AppPostprocess: Usage of Fbo + Shaders for postprocessing
 - AppShaderToy: Screen space GLSL shader for loading ShaderToy awesome examples
+- AppGeometries: Usage of Geometry (Obj loader or instanced)
 
 Roadmap
 =======
