@@ -12,17 +12,9 @@
 
 namespace dry {
 
-class GeometryPlane : public Geometry
+namespace GeometryUtils
 {
-public:
-                    GeometryPlane   () { }
-                   ~GeometryPlane   () { Free(); }
-    
-    bool            Init            (float w, float h, int segw, int segh, glm::vec3 const &up);
-    void            Free            ();
-
-protected:
-
+    bool    CreatePlane (Geometry &geo, float w, float h, int segw, int segh, glm::vec3 const &up);
 };
     
 }

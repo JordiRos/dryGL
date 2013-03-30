@@ -96,7 +96,7 @@ vec3 camera(vec2 px)
   vec2 rd = (px / iResolution.yy - vec2(iResolution.x/iResolution.y*0.5-0.5, 0.0)) * 2.0 - 1.0;
   
   float time = iGlobalTime * 0.2;
-  vec3 rayDir = rotate(normalize(vec3(rd.x, rd.y, 1.0)), time);
+  vec3 rayDir = rotate(normalize(vec3(rd.x, rd.y, 0.75)), time);
   vec3 rayPos = rotate(vec3(0.0, 0.0, 10.0), time);
     
   return trace(rayPos, rayDir);

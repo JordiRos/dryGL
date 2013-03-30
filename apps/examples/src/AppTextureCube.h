@@ -20,7 +20,7 @@ public:
     //------------------------------------------------------------------------------------------------
     void OnInit()
     {
-        dry::ImageLoader::Load(Texture, dry::GetFilePath("church.jpg"), dry::TextureCube::Params(true, true));
+        dry::ImageUtils::Load(Texture, dry::GetFilePath("church.jpg"), dry::TextureCube::Params(true, true, false));
     }
 
     //------------------------------------------------------------------------------------------------

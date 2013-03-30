@@ -13,13 +13,11 @@ using namespace dry;
 
 
 //------------------------------------------------------------------------------------------------
-// Init
+// CreatePlane
 //
 //------------------------------------------------------------------------------------------------
-bool GeometryPlane::Init(float w, float h, int segw, int segh, glm::vec3 const &up)
+bool GeometryUtils::CreatePlane(Geometry &geo, float w, float h, int segw, int segh, glm::vec3 const &up)
 {
-    Free();
-    
 	float hw = w / 2.f;
 	float hh = h / 2.f;
 	float dw = w / segw;
@@ -34,14 +32,14 @@ bool GeometryPlane::Init(float w, float h, int segw, int segh, glm::vec3 const &
     params.TexCoords0 = nvertices;
     params.Normals    = 1;
     params.Colors     = nvertices;
-    Geometry::Init(params);
+    geo.Init(params);
 
     // Buffers
-    vector<Geometry::Face> &faces      = GetFaces     ();
-    vector<glm::vec3>      &vertices   = GetVertices  ();
-    vector<glm::vec2>      &texcoords0 = GetTexCoords0();
-    vector<glm::vec3>      &normals    = GetNormals   ();
-    vector<glm::vec4>      &colors     = GetColors    ();
+    vector<Geometry::Face> &faces      = geo.GetFaces     ();
+    vector<glm::vec3>      &vertices   = geo.GetVertices  ();
+    vector<glm::vec2>      &texcoords0 = geo.GetTexCoords0();
+    vector<glm::vec3>      &normals    = geo.GetNormals   ();
+    vector<glm::vec4>      &colors     = geo.GetColors    ();
     
     // Normals
     normals[0] = up;
@@ -92,14 +90,4 @@ bool GeometryPlane::Init(float w, float h, int segw, int segh, glm::vec3 const &
         }
 	}
     return true;
-}
-
-
-//------------------------------------------------------------------------------------------------
-// Free
-//
-//------------------------------------------------------------------------------------------------
-void GeometryPlane::Free()
-{
-    Geometry::Free();
 }

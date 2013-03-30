@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Geometry.h"
-#include "GeometryLoader.h"
+#include "GeometryUtils.h"
 #include "Mesh.h"
 #include "MeshMaterial.h"
 #include "geometries/GeometryPlane.h"

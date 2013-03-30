@@ -61,7 +61,7 @@ public:
         Camera.LookAt(glm::vec3(0.0, 0.0, 2.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         QuadBatch.Init(m_Renderer);
         Shader.InitWithProgram(VS, FS);
-        dry::ImageLoader::Load(Texture, dry::GetFilePath("particle.png"), dry::Texture::Params(false, false));
+        dry::ImageUtils::Load(Texture, dry::GetFilePath("particle.png"), dry::Texture::Params(false, false, false));
 
         // Uniforms
         UModelViewProjection.Init(&Shader, "ModelViewProjection", dry::DataTypeMat4);

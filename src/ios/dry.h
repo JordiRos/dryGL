@@ -24,5 +24,5 @@
 
 // dry
 #include "AppiOS.h"
-#include "ImageLoader.h"
-#include "ShaderLoader.h"
+#include "ImageUtils.h"
+#include "ShaderUtils.h"

@@ -21,7 +21,7 @@
 		BC6F4DA916F1D90600B094F0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC6F4D9E16F1D90600B094F0 /* main.mm */; };
 		BC6F4DC816F2210600B094F0 /* libdryGL-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6F4DC716F220C500B094F0 /* libdryGL-iOS.a */; };
 		BC8BFE7A1703684300A90E6E /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE6F1703684300A90E6E /* Geometry.cpp */; };
-		BC8BFE7B1703684300A90E6E /* GeometryLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE711703684300A90E6E /* GeometryLoader.cpp */; };
+		BC8BFE7B1703684300A90E6E /* GeometryUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE711703684300A90E6E /* GeometryUtils.cpp */; };
 		BC8BFE8117036DDA00A90E6E /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = BC8BFE8017036DDA00A90E6E /* cube.obj */; };
 		BC8BFE8417037DEE00A90E6E /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE8217037DEE00A90E6E /* Mesh.cpp */; };
 		BCB50F6416FB5A9B009A5476 /* glsl.vs in Resources */ = {isa = PBXBuildFile; fileRef = BC57050616FB4ED300B45C68 /* glsl.vs */; };
@@ -48,6 +48,12 @@
 		BCD2137617074310009EF5F5 /* cube02_posx.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCD2137017074310009EF5F5 /* cube02_posx.jpg */; };
 		BCD2137717074310009EF5F5 /* cube02_posy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCD2137117074310009EF5F5 /* cube02_posy.jpg */; };
 		BCD2137817074310009EF5F5 /* cube02_posz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCD2137217074310009EF5F5 /* cube02_posz.jpg */; };
+		BCD213801707742F009EF5F5 /* cubetest_negx.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCD2137A1707742F009EF5F5 /* cubetest_negx.jpg */; };
+		BCD213811707742F009EF5F5 /* cubetest_negy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCD2137B1707742F009EF5F5 /* cubetest_negy.jpg */; };
+		BCD213821707742F009EF5F5 /* cubetest_negz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCD2137C1707742F009EF5F5 /* cubetest_negz.jpg */; };
+		BCD213831707742F009EF5F5 /* cubetest_posx.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCD2137D1707742F009EF5F5 /* cubetest_posx.jpg */; };
+		BCD213841707742F009EF5F5 /* cubetest_posy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCD2137E1707742F009EF5F5 /* cubetest_posy.jpg */; };
+		BCD213851707742F009EF5F5 /* cubetest_posz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCD2137F1707742F009EF5F5 /* cubetest_posz.jpg */; };
 		BCD74A88170492BC0007822B /* GeometryPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD74A86170492BC0007822B /* GeometryPlane.cpp */; };
 		BCD74A8E17064EBE0007822B /* Shaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD74A8D17064EBE0007822B /* Shaders.cpp */; };
 /* End PBXBuildFile section */
@@ -90,12 +96,12 @@
 		BC887D7F1703564300BABCF8 /* AppTextureCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppTextureCube.h; path = src/AppTextureCube.h; sourceTree = SOURCE_ROOT; };
 		BC8BFE6F1703684300A90E6E /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Geometry.cpp; sourceTree = "<group>"; };
 		BC8BFE701703684300A90E6E /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
-		BC8BFE711703684300A90E6E /* GeometryLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryLoader.cpp; sourceTree = "<group>"; };
-		BC8BFE721703684300A90E6E /* GeometryLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryLoader.h; sourceTree = "<group>"; };
+		BC8BFE711703684300A90E6E /* GeometryUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryUtils.cpp; sourceTree = "<group>"; };
+		BC8BFE721703684300A90E6E /* GeometryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryUtils.h; sourceTree = "<group>"; };
 		BC8BFE8017036DDA00A90E6E /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		BC8BFE8217037DEE00A90E6E /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		BC8BFE8317037DEE00A90E6E /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
-		BC8BFE8817037FCD00A90E6E /* AppScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppScene.h; path = src/AppScene.h; sourceTree = SOURCE_ROOT; };
+		BC8BFE8817037FCD00A90E6E /* AppGeometries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppGeometries.h; path = src/AppGeometries.h; sourceTree = SOURCE_ROOT; };
 		BC91903D16F9EA7300507A00 /* AppVbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVbo.h; path = src/AppVbo.h; sourceTree = SOURCE_ROOT; };
 		BCB50F7716FD2320009A5476 /* QuadBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadBatch.cpp; sourceTree = "<group>"; };
 		BCB50F7816FD2320009A5476 /* QuadBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadBatch.h; sourceTree = "<group>"; };
@@ -123,6 +129,12 @@
 		BCD2137017074310009EF5F5 /* cube02_posx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cube02_posx.jpg; sourceTree = "<group>"; };
 		BCD2137117074310009EF5F5 /* cube02_posy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cube02_posy.jpg; sourceTree = "<group>"; };
 		BCD2137217074310009EF5F5 /* cube02_posz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cube02_posz.jpg; sourceTree = "<group>"; };
+		BCD2137A1707742F009EF5F5 /* cubetest_negx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cubetest_negx.jpg; sourceTree = "<group>"; };
+		BCD2137B1707742F009EF5F5 /* cubetest_negy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cubetest_negy.jpg; sourceTree = "<group>"; };
+		BCD2137C1707742F009EF5F5 /* cubetest_negz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cubetest_negz.jpg; sourceTree = "<group>"; };
+		BCD2137D1707742F009EF5F5 /* cubetest_posx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cubetest_posx.jpg; sourceTree = "<group>"; };
+		BCD2137E1707742F009EF5F5 /* cubetest_posy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cubetest_posy.jpg; sourceTree = "<group>"; };
+		BCD2137F1707742F009EF5F5 /* cubetest_posz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cubetest_posz.jpg; sourceTree = "<group>"; };
 		BCD74A86170492BC0007822B /* GeometryPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryPlane.cpp; sourceTree = "<group>"; };
 		BCD74A87170492BC0007822B /* GeometryPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryPlane.h; sourceTree = "<group>"; };
 		BCD74A891704B5B70007822B /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
@@ -243,7 +255,7 @@
 				BC887D681702EF8000BABCF8 /* AppPostprocess.h */,
 				BC887D7F1703564300BABCF8 /* AppTextureCube.h */,
 				BC5704FD16FB47CA00B45C68 /* AppShaderToy.h */,
-				BC8BFE8817037FCD00A90E6E /* AppScene.h */,
+				BC8BFE8817037FCD00A90E6E /* AppGeometries.h */,
 			);
 			name = src;
 			path = Src;
@@ -263,8 +275,8 @@
 				BCD74A891704B5B70007822B /* Scene.h */,
 				BC8BFE6F1703684300A90E6E /* Geometry.cpp */,
 				BC8BFE701703684300A90E6E /* Geometry.h */,
-				BC8BFE711703684300A90E6E /* GeometryLoader.cpp */,
-				BC8BFE721703684300A90E6E /* GeometryLoader.h */,
+				BC8BFE711703684300A90E6E /* GeometryUtils.cpp */,
+				BC8BFE721703684300A90E6E /* GeometryUtils.h */,
 				BC8BFE8217037DEE00A90E6E /* Mesh.cpp */,
 				BC8BFE8317037DEE00A90E6E /* Mesh.h */,
 				BCD213171706FD30009EF5F5 /* MeshMaterial.cpp */,
@@ -316,6 +328,7 @@
 		BCD2132817073F15009EF5F5 /* cubemaps */ = {
 			isa = PBXGroup;
 			children = (
+				BCD213791707742F009EF5F5 /* cubetest */,
 				BCD2132917073F15009EF5F5 /* cube00 */,
 				BCD2136C17074310009EF5F5 /* cube02 */,
 			);
@@ -346,6 +359,19 @@
 				BCD2137217074310009EF5F5 /* cube02_posz.jpg */,
 			);
 			path = cube02;
+			sourceTree = "<group>";
+		};
+		BCD213791707742F009EF5F5 /* cubetest */ = {
+			isa = PBXGroup;
+			children = (
+				BCD2137A1707742F009EF5F5 /* cubetest_negx.jpg */,
+				BCD2137B1707742F009EF5F5 /* cubetest_negy.jpg */,
+				BCD2137C1707742F009EF5F5 /* cubetest_negz.jpg */,
+				BCD2137D1707742F009EF5F5 /* cubetest_posx.jpg */,
+				BCD2137E1707742F009EF5F5 /* cubetest_posy.jpg */,
+				BCD2137F1707742F009EF5F5 /* cubetest_posz.jpg */,
+			);
+			path = cubetest;
 			sourceTree = "<group>";
 		};
 		BCD74A8A17064B780007822B /* shaders */ = {
@@ -460,6 +486,12 @@
 				BCD2137617074310009EF5F5 /* cube02_posx.jpg in Resources */,
 				BCD2137717074310009EF5F5 /* cube02_posy.jpg in Resources */,
 				BCD2137817074310009EF5F5 /* cube02_posz.jpg in Resources */,
+				BCD213801707742F009EF5F5 /* cubetest_negx.jpg in Resources */,
+				BCD213811707742F009EF5F5 /* cubetest_negy.jpg in Resources */,
+				BCD213821707742F009EF5F5 /* cubetest_negz.jpg in Resources */,
+				BCD213831707742F009EF5F5 /* cubetest_posx.jpg in Resources */,
+				BCD213841707742F009EF5F5 /* cubetest_posy.jpg in Resources */,
+				BCD213851707742F009EF5F5 /* cubetest_posz.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +506,7 @@
 				BC6F4DA916F1D90600B094F0 /* main.mm in Sources */,
 				BCB50F7916FD2320009A5476 /* QuadBatch.cpp in Sources */,
 				BC8BFE7A1703684300A90E6E /* Geometry.cpp in Sources */,
-				BC8BFE7B1703684300A90E6E /* GeometryLoader.cpp in Sources */,
+				BC8BFE7B1703684300A90E6E /* GeometryUtils.cpp in Sources */,
 				BC8BFE8417037DEE00A90E6E /* Mesh.cpp in Sources */,
 				BCD74A88170492BC0007822B /* GeometryPlane.cpp in Sources */,
 				BCD74A8E17064EBE0007822B /* Shaders.cpp in Sources */,

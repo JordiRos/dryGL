@@ -77,7 +77,7 @@ public:
         QuadBatch.Init(m_Renderer);
         Shader.InitWithProgram(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
         ShaderDot.InitWithProgram(VS, FS);
-        dry::ImageLoader::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false));
+        dry::ImageUtils::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false, false));
         Fbo.Init(m_Renderer, dry::Fbo::Params(GetParams().Width/4,GetParams().Height/4));
         
         // Uniforms

@@ -13,7 +13,7 @@
 #include "dry.h"
 #include "QuadBatch.h"
 
-#define SAMPLES 6
+#define SAMPLES 8
 
 class AppShaderToy : public dry::AppiOS
 {
@@ -29,9 +29,9 @@ public:
         Camera.Init(0,1, 0,1, 0.1f,1000.f);
         Camera.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         QuadBatch.Init(m_Renderer);
-        dry::ShaderLoader::Load(Shader, dry::GetFilePath("glsl.vs"), dry::GetFilePath("glsl_cube.fs"));
-        //dry::ImageLoader::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true));
-        dry::ImageLoader::Load(TextureCube, dry::GetFilePath("cube02.jpg"), dry::TextureCube::Params(true, true));
+        //dry::ImageUtils::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true));
+        dry::ImageUtils::Load(TextureCube, dry::GetFilePath("cubetest.jpg"), dry::TextureCube::Params(true, true, true));
+        dry::ShaderUtils::Load(Shader, dry::GetFilePath("glsl.vs"), dry::GetFilePath("glsl_cube.fs"));
         
         // Uniforms
         UResolution.Init(&Shader, "iResolution", dry::DataTypeVec3);

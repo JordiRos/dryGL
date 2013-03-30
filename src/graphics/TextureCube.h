@@ -19,14 +19,17 @@ public:
         {
             Bilinear = true;
             Mipmaps  = false;
+            FlipY    = false;
         }
-        Params(bool bilinear, bool mipmaps)
+        Params(bool bilinear, bool mipmaps, bool flipy)
         {
             Bilinear = bilinear;
             Mipmaps  = mipmaps;
+            FlipY    = flipy;
         }
         bool    Bilinear;
         bool    Mipmaps;
+        bool    FlipY;
     };
     
 public:

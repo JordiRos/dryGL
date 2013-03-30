@@ -1,5 +1,5 @@
 //
-//  ShaderLoader.mm
+//  ShaderUtils.mm
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -7,7 +7,7 @@
 //
 
 #include "dry.h"
-#include "ShaderLoader.h"
+#include "ShaderUtils.h"
 
 using namespace dry;
 
@@ -35,25 +35,25 @@ static bool ReadFileContents(const string &filename, char **buffer)
 
 
 //------------------------------------------------------------------------------------------------
-// LoadShader
+// Load
 //
 //------------------------------------------------------------------------------------------------
-bool ShaderLoader::Load(Shader &shader, const string &vs, const string &fs)
+bool ShaderUtils::Load(Shader &shader, const string &vs, const string &fs)
 {
     bool res = false;
     char *bvs = NULL;
     char *bfs = NULL;
-    dry::Log(LogInfo, "[ShaderLoader] Load VS from file %s", vs.c_str());
+    dry::Log(LogInfo, "[ShaderUtils] Load VS from file %s", vs.c_str());
     if (ReadFileContents(vs, &bvs))
     {
-        dry::Log(LogInfo, "[ShaderLoader] Load FS from file %s", fs.c_str());
+        dry::Log(LogInfo, "[ShaderUtils] Load FS from file %s", fs.c_str());
         if (ReadFileContents(fs, &bfs))
             res = shader.InitWithProgram(bvs, bfs);
         else
-            dry::Log(LogWarning, "[ShaderLoader] Can't open FS file %s", fs.c_str());
+            dry::Log(LogWarning, "[ShaderUtils] Can't open FS file %s", fs.c_str());
     }
     else
-        dry::Log(LogWarning, "[ShaderLoader] Can't open VS file %s", fs.c_str());
+        dry::Log(LogWarning, "[ShaderUtils] Can't open VS file %s", fs.c_str());
     DISPOSE_ARRAY(bvs);
     DISPOSE_ARRAY(bfs);
     return res;

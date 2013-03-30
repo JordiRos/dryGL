@@ -90,7 +90,7 @@ public:
         TexCoords.Init(texcoords, 24, dry::DataTypeVec2, false);
 
         // Texture
-        dry::ImageLoader::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false));
+        dry::ImageUtils::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false, false));
         
         // Shader
         Shader.InitWithProgram(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
@@ -121,9 +121,9 @@ public:
 
         // Matrices
         float angle = GetTimer().GetTime() * 45;
-        glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
-        glm::mat4 model = glm::translate(glm::vec3(0.0, 0.0, 0.0));
-        UModel.Update(model * anim);
+        glm::mat4 rotation = glm::rotate(angle, glm::vec3(0, 1, 0));
+        glm::mat4 position = glm::translate(glm::vec3(0.0, 0.0, 0.0));
+        UModel.Update(position * rotation);
         UView.Update(Camera.GetMatView());
         UProjection.Update(Camera.GetMatProjection());
         UModel.Bind();

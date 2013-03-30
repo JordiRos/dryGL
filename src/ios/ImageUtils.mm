@@ -1,5 +1,5 @@
 //
-//  ImageLoader.mm
+//  ImageUtils.mm
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -7,7 +7,6 @@
 //
 
 #include "dry.h"
-#include "ImageLoader.h"
 
 using namespace dry;
 
@@ -16,10 +15,10 @@ using namespace dry;
 // LoadImageData
 //
 //------------------------------------------------------------------------------------------------
-static bool LoadImageData(string const &file, int &w, int &h, uchar **data)
+static bool LoadImageData(string const &file, bool flipy, int &w, int &h, uchar **data)
 {
     bool res = false;
-    dry::Log(LogInfo, "[ImageLoader] Load Image from file: %s", file.c_str());
+    dry::Log(LogInfo, "[ImageUtils] Load Image from file: %s", file.c_str());
     NSString *path   = [NSString stringWithUTF8String:file.c_str()];
     NSData   *nsdata = [NSData dataWithContentsOfFile:path];
     UIImage  *image  = [UIImage imageWithData:nsdata];
@@ -31,8 +30,11 @@ static bool LoadImageData(string const &file, int &w, int &h, uchar **data)
         *data = NEW_ARRAY(uchar, w*h*4);
         CGContextRef context = CGBitmapContextCreate(*data, w,h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
         CGColorSpaceRelease(colorSpace);
-        CGContextTranslateCTM(context, 0, h);
-        CGContextScaleCTM (context, 1.0, -1.0);
+        if (flipy)
+        {
+            CGContextTranslateCTM(context, 0, h);
+            CGContextScaleCTM (context, 1.0, -1.0);
+        }
         CGContextDrawImage(context, CGRectMake(0,0, w,h), image.CGImage);
 
         // Release
@@ -40,21 +42,21 @@ static bool LoadImageData(string const &file, int &w, int &h, uchar **data)
         res = true;
     }
     else
-        dry::Log(LogWarning, "[ImageLoader] Error loading Image from file %s", file.c_str());
+        dry::Log(LogWarning, "[ImageUtils] Error loading Image from file %s", file.c_str());
     return res;
 }
 
 
 //------------------------------------------------------------------------------------------------
-// LoadImage
+// Load Image
 //
 //------------------------------------------------------------------------------------------------
-bool ImageLoader::Load(Image &img, string const &file)
+bool ImageUtils::Load(Image &img, string const &file)
 {
     bool   res = false;
     int    w, h;
     uchar *data;
-    if (LoadImageData(file, w,h, &data))
+    if (LoadImageData(file, false, w,h, &data))
     {
         img.InitWithData(w, h, PixelFormatArgb32, data);
         DISPOSE_ARRAY(data);
@@ -65,15 +67,15 @@ bool ImageLoader::Load(Image &img, string const &file)
 
 
 //------------------------------------------------------------------------------------------------
-// LoadTexture
+// Load Texture
 //
 //------------------------------------------------------------------------------------------------
-bool ImageLoader::Load(Texture &tex, string const &file, Texture::Params const &params)
+bool ImageUtils::Load(Texture &tex, string const &file, Texture::Params const &params)
 {
     bool   res = false;
     int    w, h;
     uchar *data;
-    if (LoadImageData(file, w,h, &data))
+    if (LoadImageData(file, !params.FlipY, w,h, &data))
     {
         tex.InitWithData(w, h, PixelFormatArgb32, params, data);
         DISPOSE_ARRAY(data);
@@ -84,10 +86,10 @@ bool ImageLoader::Load(Texture &tex, string const &file, Texture::Params const &
 
 
 //------------------------------------------------------------------------------------------------
-// LoadTextureCube
+// Load TextureCube
 //
 //------------------------------------------------------------------------------------------------
-bool ImageLoader::Load(TextureCube &tex, string const &file, TextureCube::Params const &params)
+bool ImageUtils::Load(TextureCube &tex, string const &file, TextureCube::Params const &params)
 {
     struct ImageInfo
     {
@@ -99,19 +101,20 @@ bool ImageLoader::Load(TextureCube &tex, string const &file, TextureCube::Params
     int len = file.length();
     bool res = true;
     ImageInfo images[6];
-    string prefixes[6] = { "_posx", "_negx", "_posy", "_negy", "_posz", "_negz" };
+    string prefixesN[6] = { "_posx", "_negx", "_negy", "_posy", "_posz", "_negz" };
+    string prefixesR[6] = { "_posx", "_negx", "_posy", "_negy", "_posz", "_negz" };
     for (int i = 0; i < 6; i++)
     {
         string pre  = file.substr(0, len-4);
         string post = file.substr(len-4, 4);
-        string name = pre + prefixes[i] + post;
-        if (!LoadImageData(name, images[i].w, images[i].h, &images[i].data))
+        string name = pre + (params.FlipY ? prefixesR[i] : prefixesN[i]) + post;
+        if (!LoadImageData(name, !params.FlipY, images[i].w, images[i].h, &images[i].data))
             res = false;
         else
         {
             if (i > 0 && (images[i].w != images[0].w || images[i].h != images[0].h))
             {
-                dry::Log(LogWarning, "[ImageLoader] TextureCube %s has different cube texture sizes", file.c_str());
+                dry::Log(LogWarning, "[ImageUtils] TextureCube %s has different cube texture sizes", file.c_str());
                 res = false;
             }
         }

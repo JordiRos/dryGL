@@ -91,7 +91,7 @@ public:
         TexCoords.Init(texcoords, 24, dry::DataTypeVec2, false);
         
         // Texture
-        dry::ImageLoader::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true));
+        dry::ImageUtils::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, true, false));
         
         // Shader
         Shader.InitWithProgram(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);

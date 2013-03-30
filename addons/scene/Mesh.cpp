@@ -11,6 +11,8 @@
 
 using namespace dry;
 
+#define DEBUG_VERTICES
+
 
 //------------------------------------------------------------------------------------------------
 // Constructor
@@ -83,10 +85,11 @@ void Mesh::Update()
                 vertices[i*3+0] = gvertices[gfaces[i].vtx[0]];
                 vertices[i*3+1] = gvertices[gfaces[i].vtx[1]];
                 vertices[i*3+2] = gvertices[gfaces[i].vtx[2]];
-                /*
+                #ifdef DEBUG_VERTICES
+                dry::Log(LogInfo, "[Mesh] Face Index %d => %d, %d, %d", i, gfaces[i].vtx[0], gfaces[i].vtx[1], gfaces[i].vtx[2]);
                 for (int j = 0; j < 3; j++)
                     dry::Log(LogInfo, "[Mesh] Face Vtx %d => %d: %.2f, %.2f, %.2f", i, j, vertices[i*3+j].x, vertices[i*3+j].y, vertices[i*3+j].z);
-                 */
+                #endif
             }
             m_Material->GetAttrVertices()->Update(false);
             m_Geometry->UpdateVertices(false);
@@ -101,10 +104,10 @@ void Mesh::Update()
                 texcoords0[i*3+0] = gtexcoords0[gfaces[i].uv0[0]];
                 texcoords0[i*3+1] = gtexcoords0[gfaces[i].uv0[1]];
                 texcoords0[i*3+2] = gtexcoords0[gfaces[i].uv0[2]];
-                /*
+                #ifdef DEBUG_VERTICES
                 for (int j = 0; j < 3; j++)
                     dry::Log(LogInfo, "[Mesh] Face Tex0 %d => %d: %.2f, %.2f", i, j, texcoords0[i*3+j].x, texcoords0[i*3+j].y);
-                 */
+                #endif
             }
             m_Material->GetAttrTexCoords0()->Update(false);
             m_Geometry->UpdateTexCoords0(false);
@@ -119,10 +122,10 @@ void Mesh::Update()
                 texcoords1[i*3+0] = gtexcoords1[gfaces[i].uv1[0]];
                 texcoords1[i*3+1] = gtexcoords1[gfaces[i].uv1[1]];
                 texcoords1[i*3+2] = gtexcoords1[gfaces[i].uv1[2]];
-                /*
+                #ifdef DEBUG_VERTICES
                 for (int j = 0; j < 3; j++)
                     dry::Log(LogInfo, "[Mesh] Face Tex1 %d => %d: %.2f, %.2f", i, j, texcoords1[i*3+j].x, texcoords1[i*3+j].y);
-                 */
+                #endif
             }
             m_Material->GetAttrTexCoords1()->Update(false);
             m_Geometry->UpdateTexCoords1(false);
@@ -137,10 +140,10 @@ void Mesh::Update()
                 texcoords2[i*3+0] = gtexcoords2[gfaces[i].uv2[0]];
                 texcoords2[i*3+1] = gtexcoords2[gfaces[i].uv2[1]];
                 texcoords2[i*3+2] = gtexcoords2[gfaces[i].uv2[2]];
-                /*
+                #ifdef DEBUG_VERTICES
                 for (int j = 0; j < 3; j++)
                     dry::Log(LogInfo, "[Mesh] Face Tex2 %d => %d: %.2f, %.2f", i, j, texcoords2[i*3+j].x, texcoords2[i*3+j].y);
-                 */
+                #endif
             }
             m_Material->GetAttrTexCoords2()->Update(false);
             m_Geometry->UpdateTexCoords2(false);
@@ -155,10 +158,10 @@ void Mesh::Update()
                 texcoords3[i*3+0] = gtexcoords3[gfaces[i].uv3[0]];
                 texcoords3[i*3+1] = gtexcoords3[gfaces[i].uv3[1]];
                 texcoords3[i*3+2] = gtexcoords3[gfaces[i].uv3[2]];
-                /*
+                #ifdef DEBUG_VERTICES
                 for (int j = 0; j < 3; j++)
                     dry::Log(LogInfo, "[Mesh] Face Tex3 %d => %d: %.2f, %.2f", i, j, texcoords3[i*3+j].x, texcoords3[i*3+j].y);
-                 */
+                #endif
             }
             m_Material->GetAttrTexCoords3()->Update(false);
             m_Geometry->UpdateTexCoords3(false);
@@ -173,10 +176,10 @@ void Mesh::Update()
                 normals[i*3+0] = gnormals[gfaces[i].nor[0]];
                 normals[i*3+1] = gnormals[gfaces[i].nor[1]];
                 normals[i*3+2] = gnormals[gfaces[i].nor[2]];
-                /*
+                #ifdef DEBUG_VERTICES
                 for (int j = 0; j < 3; j++)
                     dry::Log(LogInfo, "[Mesh] Face Norm %d => %d: %.2f, %.2f, %.2f", i, j, normals[i*3+j].x, normals[i*3+j].y, normals[i*3+j].z);
-                 */
+                #endif
             }
             m_Material->GetAttrNormals()->Update(false);
             m_Geometry->UpdateNormals(false);
@@ -191,10 +194,10 @@ void Mesh::Update()
                 colors[i*3+0] = gcolors[gfaces[i].col[0]];
                 colors[i*3+1] = gcolors[gfaces[i].col[1]];
                 colors[i*3+2] = gcolors[gfaces[i].col[2]];
-                /*
+                #ifdef DEBUG_VERTICES
                 for (int j = 0; j < 3; j++)
                     dry::Log(LogInfo, "[Mesh] Face Col %d => %d: %.2f, %.2f, %.2f, %.2f", i, j, colors[i*3+j].r, colors[i*3+j].g, colors[i*3+j].b, colors[i*3+j].a);
-                 */
+                #endif
             }
             m_Material->GetAttrColors()->Update(false);
             m_Geometry->UpdateColors(false);

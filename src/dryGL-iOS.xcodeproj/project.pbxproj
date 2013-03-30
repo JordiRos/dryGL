@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BC25527D170042B500D3F375 /* ImageLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC25527C170042B500D3F375 /* ImageLoader.mm */; };
+		BC25527D170042B500D3F375 /* ImageUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC25527C170042B500D3F375 /* ImageUtils.mm */; };
 		BC2552861700635E00D3F375 /* Uniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC2552841700635D00D3F375 /* Uniform.cpp */; };
 		BC887D611701DB0900BABCF8 /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D5F1701DB0800BABCF8 /* Attribute.cpp */; };
 		BC887D6617023CD900BABCF8 /* DataType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D6517023CD900BABCF8 /* DataType.cpp */; };
 		BC887D6D1703465100BABCF8 /* TextureCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D6B1703465100BABCF8 /* TextureCube.cpp */; };
 		BC8BFE8B1703AD9D00A90E6E /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8BFE891703AD9800A90E6E /* Material.cpp */; };
 		BC91249F16DFA8B900E7F493 /* dry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC91249E16DFA8B900E7F493 /* dry.cpp */; };
-		BCD2131D1706FDEB009EF5F5 /* ShaderLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCD2131C1706FDEB009EF5F5 /* ShaderLoader.mm */; };
+		BCD2131D1706FDEB009EF5F5 /* ShaderUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCD2131C1706FDEB009EF5F5 /* ShaderUtils.mm */; };
 		BCD9FE4D16F3DA3B00C38D61 /* Vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */; };
 		BCD9FE5016F5258700C38D61 /* Ibo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE4E16F5258600C38D61 /* Ibo.cpp */; };
 		BCD9FE5C16F650A900C38D61 /* Time.mm in Sources */ = {isa = PBXBuildFile; fileRef = BCD9FE5B16F650A900C38D61 /* Time.mm */; };
@@ -45,8 +45,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BC25527B170042B500D3F375 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
-		BC25527C170042B500D3F375 /* ImageLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageLoader.mm; sourceTree = "<group>"; };
+		BC25527B170042B500D3F375 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		BC25527C170042B500D3F375 /* ImageUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageUtils.mm; sourceTree = "<group>"; };
 		BC2552841700635D00D3F375 /* Uniform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Uniform.cpp; sourceTree = "<group>"; };
 		BC2552851700635D00D3F375 /* Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uniform.h; sourceTree = "<group>"; };
 		BC6B1F1216D02ED2008B939C /* libdryGL-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libdryGL-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,8 +63,8 @@
 		BC8BFE8A1703AD9900A90E6E /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		BC91249E16DFA8B900E7F493 /* dry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dry.cpp; sourceTree = "<group>"; };
 		BC91904B16FA641D00507A00 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
-		BCD2131B1706FDEB009EF5F5 /* ShaderLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderLoader.h; sourceTree = "<group>"; };
-		BCD2131C1706FDEB009EF5F5 /* ShaderLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShaderLoader.mm; sourceTree = "<group>"; };
+		BCD2131B1706FDEB009EF5F5 /* ShaderUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtils.h; sourceTree = "<group>"; };
+		BCD2131C1706FDEB009EF5F5 /* ShaderUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShaderUtils.mm; sourceTree = "<group>"; };
 		BCD9FE4B16F3DA3B00C38D61 /* Vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vbo.cpp; sourceTree = "<group>"; };
 		BCD9FE4C16F3DA3B00C38D61 /* Vbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vbo.h; sourceTree = "<group>"; };
 		BCD9FE4E16F5258600C38D61 /* Ibo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ibo.cpp; sourceTree = "<group>"; };
@@ -193,10 +193,10 @@
 				BCF38C7916ED197100073C11 /* ViewController.h */,
 				BCF38C7A16ED197100073C11 /* ViewController.mm */,
 				BCD9FE5B16F650A900C38D61 /* Time.mm */,
-				BC25527B170042B500D3F375 /* ImageLoader.h */,
-				BC25527C170042B500D3F375 /* ImageLoader.mm */,
-				BCD2131B1706FDEB009EF5F5 /* ShaderLoader.h */,
-				BCD2131C1706FDEB009EF5F5 /* ShaderLoader.mm */,
+				BC25527B170042B500D3F375 /* ImageUtils.h */,
+				BC25527C170042B500D3F375 /* ImageUtils.mm */,
+				BCD2131B1706FDEB009EF5F5 /* ShaderUtils.h */,
+				BCD2131C1706FDEB009EF5F5 /* ShaderUtils.mm */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -283,13 +283,13 @@
 				BCD9FE4D16F3DA3B00C38D61 /* Vbo.cpp in Sources */,
 				BCD9FE5016F5258700C38D61 /* Ibo.cpp in Sources */,
 				BCD9FE5C16F650A900C38D61 /* Time.mm in Sources */,
-				BC25527D170042B500D3F375 /* ImageLoader.mm in Sources */,
+				BC25527D170042B500D3F375 /* ImageUtils.mm in Sources */,
 				BC2552861700635E00D3F375 /* Uniform.cpp in Sources */,
 				BC887D611701DB0900BABCF8 /* Attribute.cpp in Sources */,
 				BC887D6617023CD900BABCF8 /* DataType.cpp in Sources */,
 				BC887D6D1703465100BABCF8 /* TextureCube.cpp in Sources */,
 				BC8BFE8B1703AD9D00A90E6E /* Material.cpp in Sources */,
-				BCD2131D1706FDEB009EF5F5 /* ShaderLoader.mm in Sources */,
+				BCD2131D1706FDEB009EF5F5 /* ShaderUtils.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

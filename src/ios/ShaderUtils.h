@@ -1,5 +1,5 @@
 //
-//  GeometryLoader.h
+//  ShaderUtils.h
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -10,12 +10,9 @@
 
 namespace dry {
 
-class Geometry;
-    
-class GeometryLoader
+namespace ShaderUtils
 {
-public:
-    static bool LoadGeometry(Geometry &geo, string const &file);
+    bool Load(Shader &shader, string const &vs, string const &fs);
 };
-    
+
 }

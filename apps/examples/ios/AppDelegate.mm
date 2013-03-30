@@ -16,11 +16,11 @@
 #include "AppPostprocess.h"
 #include "AppTextureCube.h"
 #include "AppShaderToy.h"
-#include "AppScene.h"
+#include "AppGeometries.h"
 //
-// AppQuadBatch, AppVbo, AppFbo, AppParticles, AppPostprocess, AppTextureCube, AppShaderToy, AppScene
+// AppQuadBatch, AppVbo, AppFbo, AppParticles, AppPostprocess, AppTextureCube, AppShaderToy, AppGeometries
 //
-#define APP_EXAMPLE AppShaderToy
+#define APP_EXAMPLE AppGeometries
 
 
 @implementation AppDelegate
