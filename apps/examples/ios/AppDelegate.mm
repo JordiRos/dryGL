@@ -20,7 +20,7 @@
 //
 // AppQuadBatch, AppVbo, AppFbo, AppParticles, AppPostprocess, AppTextureCube, AppShaderToy, AppScene
 //
-#define APP_EXAMPLE AppScene
+#define APP_EXAMPLE AppShaderToy
 
 
 @implementation AppDelegate
