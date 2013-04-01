@@ -29,7 +29,7 @@ Shader::Shader(const char *vertex_source, const char *pixel_source)
 bool Shader::Compile(const char *source, GLenum type, GLuint &target) {
 	target = glCreateShader(type);
 
-	glShaderSource(target, 1, &vertex_source, NULL);
+	glShaderSource(target, 1, &source, NULL);
 	glCompileShader(target);
 
 	// Check compile errors
@@ -40,7 +40,7 @@ bool Shader::Compile(const char *source, GLenum type, GLuint &target) {
 		GLsizei length;
 		glGetShaderiv(target, GL_INFO_LOG_LENGTH, &length);
 
-		std::string log(length);
+		std::string log(length, 0);
 		glGetShaderInfoLog(target, length, NULL, &log[0]);
 		m_Log += log;
 
@@ -61,16 +61,16 @@ bool Shader::Link() {
 
 	// Check for errors
 	GLint error;
-	glGetProgramiv(program, GL_LINK_STATUS, &error);
+	glGetProgramiv(m_Program, GL_LINK_STATUS, &error);
 	if (error == GL_FALSE)
 	{
 		m_Error = true;
 		
 		GLsizei length;
-		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
+		glGetProgramiv(m_Program, GL_INFO_LOG_LENGTH, &length);
 
-		std::string log(length);
-		glGetProgramInfoLog(program, length, NULL, &log[0]);
+		std::string log(length, 0);
+		glGetProgramInfoLog(m_Program, length, NULL, &log[0]);
 		m_Log += log;
 
 		return false;
@@ -85,8 +85,8 @@ void Shader::LoadUniforms()
     glGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &amount);
 
     GLint nameLenght;
-    glGetProgramiv(m_Program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &longName);
-    std::string name(nameLenght);
+    glGetProgramiv(m_Program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &nameLenght);
+    std::string name(nameLenght, 0);
 
     GLint size;
     GLenum type;
@@ -94,7 +94,7 @@ void Shader::LoadUniforms()
     for(int index = 0; index < amount; ++index)
     {
         glGetActiveUniform(m_Program, index, 1024, &length, &size, &type, &name[0]);
-        m_Uniforms[name] = UniformCreate(type, glGetUniformLocation(m_Program, name), *this);
+        m_Uniforms[name] = UniformCreate(type, glGetUniformLocation(m_Program, name.c_str()), *this);
     }
 }
 	
@@ -104,15 +104,15 @@ void Shader::LoadAttribs()
     glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTES, &amount);
 
     GLint nameLenght;
-    glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &longName);
-    std::string name(nameLenght);
+    glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &nameLenght);
+    std::string name(nameLenght, 0);
     
     GLint size;
     GLenum type;
     GLsizei length;
     for(int index = 0; index < amount; ++index)
     {
-        m_Attribs[name] = UniformCreate(type, glGetUniformLocation(m_Program, name), *this);
+        m_Attribs[name] = glGetAttribLocation(m_Program, name.c_str());
     }
 }
 
@@ -133,7 +133,7 @@ UniformInterface* Shader::GetUniformByName(const std::string &name)
 	return target->second;            
 }
 
-unsigned Shader::GetAttribByName(const std::string &name);
+unsigned Shader::GetAttribByName(const std::string &name)
 {
 	auto target = m_Attribs.find(name);
 	if(target == m_Attribs.end())
@@ -141,7 +141,7 @@ unsigned Shader::GetAttribByName(const std::string &name);
 	return target->second;            
 }
 
-void Bind() const
+    void Shader::Bind() const
 {
 	glUseProgram(m_Program);
 	// TODO:  dirty uniforms vector instead of all uniforms on map
