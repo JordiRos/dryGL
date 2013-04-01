@@ -33,7 +33,7 @@ void Uniform<glm::mat4>::Submit() const
 	glUniformMatrix4fv(m_Location, 1, false, &m_Value[0][0]);
 }
 
-UniformInterface* UniformCreate(unsigned type, int location, ShaderProgram &shader)
+UniformInterface* UniformCreate(unsigned type, int location, Shader &shader)
 {
 	switch(type)
 	{
