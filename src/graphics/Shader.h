@@ -12,7 +12,7 @@ public:
 	~Shader();
 
 	// TODO: I think we should use r-value and go for Load on constructor
-    bool Load(const char *vertex_source, const char *pixel_source);
+    bool Load(const char *vertex_source, const char *fragment_source);
 
 	void Bind() const;
 	UniformInterface* GetUniformByName(const std::string &name);

@@ -7,10 +7,10 @@ Shader::Shader()
 {}
     
 
-bool Shader::Load(const char *vertex_source, const char *pixel_source)
+bool Shader::Load(const char *vertex_source, const char *fragment_source)
 {
 	bool vertex = Compile(vertex_source, GL_VERTEX_SHADER, m_Vertex);
-	bool fragment = Compile(vertex_source, GL_VERTEX_SHADER, m_Vertex);
+	bool fragment = Compile(fragment_source, GL_FRAGMENT_SHADER, m_Fragment);
     
 	if (!vertex || !fragment) {
 		m_Error = true;
@@ -94,15 +94,16 @@ void Shader::LoadUniforms()
 
     GLint nameLenght;
     glGetProgramiv(m_Program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &nameLenght);
-    std::string name(nameLenght, 0);
+//    std::string name(nameLenght, 0);
 
     GLint size;
     GLenum type;
     GLsizei length;
+    char name[1024];    // TODO: Use objects + max lenght
     for(int index = 0; index < amount; ++index)
     {
         glGetActiveUniform(m_Program, index, 1024, &length, &size, &type, &name[0]);
-        m_Uniforms[name] = UniformCreate(type, glGetUniformLocation(m_Program, name.c_str()), *this);
+        m_Uniforms[name] = UniformCreate(type, glGetUniformLocation(m_Program, name), *this);
     }
 }
 	
@@ -113,11 +114,16 @@ void Shader::LoadAttribs()
 
     GLint nameLenght;
     glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &nameLenght);
-    std::string name(nameLenght, 0);
+//    std::string name(nameLenght, 0);
     
+    GLint size;
+    GLenum type;
+    GLsizei length;
+    char name[1024];    // TODO: Use objects + max lenght
     for(int index = 0; index < amount; ++index)
     {
-        m_Attribs[name] = glGetAttribLocation(m_Program, name.c_str());
+        glGetActiveAttrib(m_Program, index, 1024, &length, &size, &type, &name[0]);
+        m_Attribs[name] = glGetAttribLocation(m_Program, name);
     }
 }
 
@@ -142,7 +148,7 @@ unsigned Shader::GetAttribByName(const std::string &name)
 {
 	auto target = m_Attribs.find(name);
 	if(target == m_Attribs.end())
-		return NULL;
+		return 0;
 	return target->second;            
 }
 
