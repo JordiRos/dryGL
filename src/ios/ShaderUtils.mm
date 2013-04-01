@@ -48,7 +48,7 @@ bool ShaderUtils::Load(Shader &shader, const string &vs, const string &fs)
     {
         dry::Log(LogInfo, "[ShaderUtils] Load FS from file %s", fs.c_str());
         if (ReadFileContents(fs, &bfs))
-            res = shader.InitWithProgram(bvs, bfs);
+            res = shader.Load(bvs, bfs);
         else
             dry::Log(LogWarning, "[ShaderUtils] Can't open FS file %s", fs.c_str());
     }

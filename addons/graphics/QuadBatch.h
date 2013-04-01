@@ -27,12 +27,12 @@ private:
 
 private:
 
-    Renderer       *m_Renderer;
-    Vbo             m_Vertices;
-    Vbo             m_TexCoords;
-    Ibo             m_Indices;
-    Shader          m_Shader;
-    Uniform         m_UTexture;
+    Renderer            *m_Renderer;
+    Vbo                 m_Vertices;
+    Vbo                 m_TexCoords;
+    Ibo                 m_Indices;
+    Shader              m_Shader;
+    UniformInterface    *m_UTexture;
 };
 
 }

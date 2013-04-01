@@ -23,14 +23,12 @@ public:
     virtual void            Unbind          ();
     
     Shader                 *GetShader       () { return m_Shader; }
-    Uniform                *GetUniform      (string const &name) { map<string,Uniform   *>::iterator iter = m_Uniforms  .find(name); return (iter != m_Uniforms  .end()) ? iter->second : NULL; }
-    Attribute              *GetAttribute    (string const &name) { map<string,Attribute *>::iterator iter = m_Attributes.find(name); return (iter != m_Attributes.end()) ? iter->second : NULL; }
+    UniformInterface       *GetUniform      (string const &name) { return m_Shader->GetUniformByName(name); }
+//    Attribute              *GetAttribute    (string const &name) { return NULL; }
     
 protected:
 
     Shader                 *m_Shader;
-    map<string,Uniform *>   m_Uniforms;
-    map<string,Attribute *> m_Attributes;
 };
     
 }

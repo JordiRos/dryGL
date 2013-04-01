@@ -167,8 +167,8 @@ enum BlendMode
 #include "graphics/Shader.h"
 #include "graphics/Vbo.h"
 #include "graphics/Ibo.h"
-#include "graphics/Attribute.h"
-#include "graphics/Material.h"
+//#include "graphics/Attribute.h"
+//#include "graphics/Material.h"
 
 // Camera
 #include "camera/Camera.h"
