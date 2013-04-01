@@ -134,6 +134,10 @@ Shader::~Shader()
 	glDeleteShader(m_Vertex);
 	glDeleteShader(m_Fragment);
 	glDeleteProgram(m_Program);
+    
+    for (auto it = m_Uniforms.begin(); it != m_Uniforms.end(); ++it) {
+        delete it->second;
+    }
 }
 
 UniformInterface* Shader::GetUniformByName(const std::string &name)
