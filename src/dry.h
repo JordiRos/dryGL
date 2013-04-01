@@ -47,6 +47,11 @@ typedef unsigned char   uchar;
 typedef unsigned short  ushort;
 typedef unsigned int    uint;
 
+// Macro
+#define DISALLOW_COPY_AND_ASSIGN(TypeName) \
+  TypeName(const TypeName&);               \
+  void operator=(const TypeName&)
+
 //------------------------------------------------------------------------------------------------
 // Dry
 //------------------------------------------------------------------------------------------------
@@ -56,6 +61,7 @@ namespace dry {
 #define DRY_VERSION_STR     "0.1.0"     // DRY version
 
 // LogLevel
+// TODO: Log policy we do not log by ourselfs (we offer a default policy tho)
 enum LogLevel
 {
     LogSystem  = 1<<0,
