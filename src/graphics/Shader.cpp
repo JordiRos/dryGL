@@ -20,8 +20,10 @@ Shader::Shader(const char *vertex_source, const char *pixel_source)
 		return;
 	}
 
-	LoadUniforms();
-	LoadAttribs();
+    if (IsReady()) {
+        LoadUniforms();
+        LoadAttribs();
+    }
 }
 
 bool Shader::Compile(const char *source, GLenum type, GLuint &target) {
@@ -79,45 +81,39 @@ bool Shader::Link() {
 
 void Shader::LoadUniforms() 
 {
-	if (IsReady())
-	{
-		GLint amount;
-		glGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &amount);
+    GLint amount;
+    glGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &amount);
 
-		GLint nameLenght;
-		glGetProgramiv(m_Program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &longName);
-		std::string name(nameLenght);
+    GLint nameLenght;
+    glGetProgramiv(m_Program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &longName);
+    std::string name(nameLenght);
 
-		GLint size;
-		GLenum type;
-		GLsizei length;
-		for(int index = 0; index < amount; ++index)
-		{
-			glGetActiveUniform(m_Program, index, 1024, &length, &size, &type, &name[0]);
-			m_Uniforms[name] = UniformCreate(type, glGetUniformLocation(m_Program, name), *this);
-		}
-	}
+    GLint size;
+    GLenum type;
+    GLsizei length;
+    for(int index = 0; index < amount; ++index)
+    {
+        glGetActiveUniform(m_Program, index, 1024, &length, &size, &type, &name[0]);
+        m_Uniforms[name] = UniformCreate(type, glGetUniformLocation(m_Program, name), *this);
+    }
 }
 	
 void Shader::LoadAttribs() 
 {
-	if (IsReady())
-	{
-		GLint amount;
-		glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTES, &amount);
+    GLint amount;
+    glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTES, &amount);
 
-		GLint nameLenght;
-		glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &longName);
-		std::string name(nameLenght);
-
-		GLint size;
-		GLenum type;
-		GLsizei length;
-		for(int index = 0; index < amount; ++index)
-		{
-			m_Attribs[name] = UniformCreate(type, glGetUniformLocation(m_Program, name), *this);
-		}
-	}
+    GLint nameLenght;
+    glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &longName);
+    std::string name(nameLenght);
+    
+    GLint size;
+    GLenum type;
+    GLsizei length;
+    for(int index = 0; index < amount; ++index)
+    {
+        m_Attribs[name] = UniformCreate(type, glGetUniformLocation(m_Program, name), *this);
+    }
 }
 
 
