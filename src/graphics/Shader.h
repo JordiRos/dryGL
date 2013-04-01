@@ -1,41 +1,51 @@
-//
-//  Shader.h
-//  dryGL
-//
-//  Created by Jordi Ros on 15/02/13.
-//  Copyright (c) 2013 Jordi Ros. All rights reserved.
-//
+#ifndef DRY_GRAPHICS_SHADER_H_
+#define DRY_GRAPHICS_SHADER_H_
 
-#pragma once
+#include "Uniforms.h"
 
 namespace dry {
-    
+
 class Shader
 {
 public:
-                Shader              () { m_HandleVS = -1; m_HandleFS = -1; m_HandleProgram = -1; }
-               ~Shader              () { Free(); }
+	// TODO: Inconsistent with GetUniformBynName (std::string vs const char*)
+	Shader(const char *vertex_source, const char *pixel_source);
+	~Shader();
 
-    bool        InitWithProgram     (const char *vs, const char *fs);
-    void        Free                ();
-    
-    void        Bind                ();
-    void        Unbind              ();
-    
-    int         GetHandleProgram    () const { return m_HandleProgram; }
-    int         GetAttribLocation   (const char *name);
-    int         GetUniformLocation  (const char *name);
-    
+	void Bind() const;
+	UniformInterface* GetUniformByName(const std::string &name);
+	unsigned GetAttribByName(const std::string &name);
+
+	bool IsReady() const
+	{
+		return !m_Error;
+	}
+
+	const std::string GetLog() const
+	{
+		return m_Log;
+	}
+
 private:
+	bool Compile(const char *source, GLenum type, GLuint &target);
+	bool Link();
 
-    void        LogShaderError      (int handle, const string &info);
-    void        LogProgramError     (int handle, const string &info);
+	void LoadUniforms();
+	void LoadAttribs();
 
-private:
+	GLuint m_Vertex;
+	GLuint m_Fragment;
+	GLuint m_Program;
+	bool m_Error;
 
-    int         m_HandleVS;
-    int         m_HandleFS;
-    int         m_HandleProgram;
+	// TODO: Resource utils
+	std::map<std::string, UniformInterface*> m_Uniforms;
+	std::map<std::string, unsigned> m_Attribs;
+	std::string m_Log;
+
+	DISALLOW_COPY_AND_ASSIGN(Shader);
 };
 
-}
+}  // namespace dry
+
+#endif  // DRY_GRAPHICS_SHADER_H_
