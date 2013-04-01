@@ -2,28 +2,36 @@
 
 namespace dry {
 
-Shader::Shader(const char *vertex_source, const char *pixel_source)
+Shader::Shader()
 	: m_Vertex(0), m_Fragment(0), m_Program(0), m_Error(false)
+{}
+    
+
+bool Shader::Load(const char *vertex_source, const char *pixel_source)
 {
 	bool vertex = Compile(vertex_source, GL_VERTEX_SHADER, m_Vertex);
 	bool fragment = Compile(vertex_source, GL_VERTEX_SHADER, m_Vertex);
-
+    
 	if (!vertex || !fragment) {
 		m_Error = true;
-		return;
+		return false;
 	}
-
+    
 	bool link = Link();
-
+    
 	if (!link) {
 		m_Error = true;
-		return;
+		return false;
 	}
-
-    if (IsReady()) {
+    
+    if (HasErrors()) {
         LoadUniforms();
         LoadAttribs();
+        
+        return true;
     }
+    
+    return false;
 }
 
 bool Shader::Compile(const char *source, GLenum type, GLuint &target) {
@@ -107,9 +115,6 @@ void Shader::LoadAttribs()
     glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &nameLenght);
     std::string name(nameLenght, 0);
     
-    GLint size;
-    GLenum type;
-    GLsizei length;
     for(int index = 0; index < amount; ++index)
     {
         m_Attribs[name] = glGetAttribLocation(m_Program, name.c_str());

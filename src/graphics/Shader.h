@@ -8,17 +8,24 @@ namespace dry {
 class Shader
 {
 public:
-	// TODO: Inconsistent with GetUniformBynName (std::string vs const char*)
-	Shader(const char *vertex_source, const char *pixel_source);
+	Shader();
 	~Shader();
+
+	// TODO: I think we should use r-value and go for Load on constructor
+    bool Load(const char *vertex_source, const char *pixel_source);
 
 	void Bind() const;
 	UniformInterface* GetUniformByName(const std::string &name);
 	unsigned GetAttribByName(const std::string &name);
 
+    bool HasErrors() const
+    {
+		return !m_Error;
+    }
+    
 	bool IsReady() const
 	{
-		return !m_Error;
+		return m_Program != 0;
 	}
 
 	const std::string GetLog() const
