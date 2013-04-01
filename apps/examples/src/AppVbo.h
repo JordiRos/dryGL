@@ -21,7 +21,7 @@ public:
     void OnInit()
     {
         // Vertices
-        GLfloat vertices[] = {
+        GLfloat aVertices[] = {
             // front
             -1.0, -1.0,  1.0,
             1.0, -1.0,  1.0,
@@ -54,16 +54,16 @@ public:
             1.0,  1.0,  1.0,
         };
         // TexCoords
-        GLfloat texcoords[2*4*6] = {
+        GLfloat aTexcoords[2*4*6] = {
             0.0, 0.0,
             1.0, 0.0,
             1.0, 1.0,
             0.0, 1.0,
         };
         for (int i = 1; i < 6; i++)
-            memcpy(&texcoords[i*4*2], &texcoords[0], 2*4*sizeof(GLfloat));
+            memcpy(&aTexcoords[i*4*2], &aTexcoords[0], 2*4*sizeof(GLfloat));
         // Indices
-        GLushort indices[] = {
+        GLushort aIndices[] = {
             // front
             0,  1,  2,
             2,  3,  0,
@@ -85,28 +85,28 @@ public:
         };
 
         // Buffers
-        Indices.Init(indices, 36, dry::DataTypeUShort, false);
-        Vertices.Init(vertices, 24, dry::DataTypeVec3, false);
-        TexCoords.Init(texcoords, 24, dry::DataTypeVec2, false);
+        indices.Init(aIndices, 36, dry::DataTypeUShort, false);
+        vertices.Init(aVertices, 24, dry::DataTypeVec3, false);
+        texCoords.Init(aTexcoords, 24, dry::DataTypeVec2, false);
 
         // Texture
-        dry::ImageUtils::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false, false));
+        dry::ImageUtils::Load(texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false, false));
         
         // Shader
-        Shader.Load(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
+        shader.Load(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
         
         // Camera
         int w = GetParams().Width;
         int h = GetParams().Height;
-        Camera.Init(45.f, (float)w / h, 0.1f, 10000.f);
-        Camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+        camera.Init(45.f, (float)w / h, 0.1f, 10000.f);
+        camera.LookAt(glm::vec3(0.0, 2.0, -8.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         
         // Uniforms
-        UTexture = Shader.GetUniformByName("Texture");
-        UTexture->Update(0);
-        UModel = Shader.GetUniformByName("Model");
-        UView = Shader.GetUniformByName("View");
-        UProjection = Shader.GetUniformByName("Projection");
+        uTexture = shader.GetUniformByName("Texture");
+        uTexture->Update(0);
+        uModel = shader.GetUniformByName("Model");
+        uView = shader.GetUniformByName("View");
+        uProjection = shader.GetUniformByName("Projection");
     }
 
     //------------------------------------------------------------------------------------------------
@@ -116,42 +116,42 @@ public:
     {
         m_Renderer->Clear(true, true, false);
         
-        // Bind
-        Texture.Bind(0);
-        Shader.Bind();
-
-        // Matrices
+        // Update uniform values
         float angle = GetTimer().GetTime() * 45;
         glm::mat4 rotation = glm::rotate(angle, glm::vec3(0, 1, 0));
         glm::mat4 position = glm::translate(glm::vec3(0.0, 0.0, 0.0));
-        UModel->Update(position * rotation);
-        UView->Update(Camera.GetMatView());
-        UProjection->Update(Camera.GetMatProjection());
+        uModel->Update(position * rotation);
+        uView->Update(camera.GetMatView());
+        uProjection->Update(camera.GetMatProjection());
+
+        // Bind
+        texture.Bind(0);
+        shader.Bind();
 
         // Buffers
-        Vertices.Bind(Shader.GetAttribByName("Position"));
-        TexCoords.Bind(Shader.GetAttribByName("TexCoord"));
-        Indices.Bind();
+        vertices.Bind(shader.GetAttribByName("Position"));
+        texCoords.Bind(shader.GetAttribByName("TexCoord"));
+        indices.Bind();
         
         // Draw!
         m_Renderer->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
         
         // Unbind
-        Vertices.Unbind();
-        TexCoords.Unbind();
-        Indices.Unbind();
+        vertices.Unbind();
+        texCoords.Unbind();
+        indices.Unbind();
     }
 
 private:
 
-    dry::CameraPerspective  Camera;
-    dry::Shader             Shader;
-    dry::Texture            Texture;
-    dry::Vbo                Vertices;
-    dry::Vbo                TexCoords;
-    dry::Ibo                Indices;
-    dry::UniformInterface   *UTexture;
-    dry::UniformInterface   *UModel;
-    dry::UniformInterface   *UView;
-    dry::UniformInterface   *UProjection;
+    dry::CameraPerspective  camera;
+    dry::Shader             shader;
+    dry::Texture            texture;
+    dry::Vbo                vertices;
+    dry::Vbo                texCoords;
+    dry::Ibo                indices;
+    dry::UniformInterface  *uTexture;
+    dry::UniformInterface  *uModel;
+    dry::UniformInterface  *uView;
+    dry::UniformInterface  *uProjection;
 };

@@ -22,7 +22,7 @@ bool Attribute::Init(Shader *shader, string const &name, int size, DataType type
     Free();
     if (GetDataTypeAttribute(type))
     {
-        m_Attribute = NULL; // shader->GetAttribLocation(name.c_str());
+        m_Attribute = shader->GetAttribByName(name);
         m_Name      = name;
         m_Update    = false;
         m_Vbo.Init(NULL, size, type, dynamic);
