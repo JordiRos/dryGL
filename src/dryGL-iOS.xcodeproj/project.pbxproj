@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD472321170A246D00EE3899 /* Uniforms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD47231F170A246D00EE3899 /* Uniforms.cpp */; };
 		BC25527D170042B500D3F375 /* ImageUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = BC25527C170042B500D3F375 /* ImageUtils.mm */; };
-		BC2552861700635E00D3F375 /* Uniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC2552841700635D00D3F375 /* Uniform.cpp */; };
 		BC887D611701DB0900BABCF8 /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D5F1701DB0800BABCF8 /* Attribute.cpp */; };
 		BC887D6617023CD900BABCF8 /* DataType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D6517023CD900BABCF8 /* DataType.cpp */; };
 		BC887D6D1703465100BABCF8 /* TextureCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC887D6B1703465100BABCF8 /* TextureCube.cpp */; };
@@ -45,10 +45,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AD47231F170A246D00EE3899 /* Uniforms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Uniforms.cpp; sourceTree = "<group>"; };
+		AD472320170A246D00EE3899 /* Uniforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uniforms.h; sourceTree = "<group>"; };
 		BC25527B170042B500D3F375 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
 		BC25527C170042B500D3F375 /* ImageUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageUtils.mm; sourceTree = "<group>"; };
-		BC2552841700635D00D3F375 /* Uniform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Uniform.cpp; sourceTree = "<group>"; };
-		BC2552851700635D00D3F375 /* Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uniform.h; sourceTree = "<group>"; };
 		BC6B1F1216D02ED2008B939C /* libdryGL-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libdryGL-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC6B217B16D13759008B939C /* dry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.h; sourceTree = "<group>"; };
 		BC6B219A16D13810008B939C /* dry.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dry.pch; sourceTree = "<group>"; };
@@ -156,6 +156,8 @@
 		BCF38C6716ED197100073C11 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				AD47231F170A246D00EE3899 /* Uniforms.cpp */,
+				AD472320170A246D00EE3899 /* Uniforms.h */,
 				BCF38C6B16ED197100073C11 /* Renderer.cpp */,
 				BCF38C6C16ED197100073C11 /* Renderer.h */,
 				BCF38C6916ED197100073C11 /* Image.cpp */,
@@ -172,8 +174,6 @@
 				BCD9FE4C16F3DA3B00C38D61 /* Vbo.h */,
 				BCD9FE4E16F5258600C38D61 /* Ibo.cpp */,
 				BCD9FE4F16F5258700C38D61 /* Ibo.h */,
-				BC2552841700635D00D3F375 /* Uniform.cpp */,
-				BC2552851700635D00D3F375 /* Uniform.h */,
 				BC887D5F1701DB0800BABCF8 /* Attribute.cpp */,
 				BC887D601701DB0900BABCF8 /* Attribute.h */,
 				BC8BFE891703AD9800A90E6E /* Material.cpp */,
@@ -284,12 +284,12 @@
 				BCD9FE5016F5258700C38D61 /* Ibo.cpp in Sources */,
 				BCD9FE5C16F650A900C38D61 /* Time.mm in Sources */,
 				BC25527D170042B500D3F375 /* ImageUtils.mm in Sources */,
-				BC2552861700635E00D3F375 /* Uniform.cpp in Sources */,
 				BC887D611701DB0900BABCF8 /* Attribute.cpp in Sources */,
 				BC887D6617023CD900BABCF8 /* DataType.cpp in Sources */,
 				BC887D6D1703465100BABCF8 /* TextureCube.cpp in Sources */,
 				BC8BFE8B1703AD9D00A90E6E /* Material.cpp in Sources */,
 				BCD2131D1706FDEB009EF5F5 /* ShaderUtils.mm in Sources */,
+				AD472321170A246D00EE3899 /* Uniforms.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
