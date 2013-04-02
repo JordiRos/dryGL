@@ -155,13 +155,12 @@ public:
         // Unbind
         indices.Unbind();
         shader.Unbind();
-        
         fbo.Unbind();
 
         // Draw background
         quadBatch.DrawTexture(&texture, &cameraO, glm::mat4(), 0,0, w,h);
 
-        // Bind Fbo
+        // Clear depth only
         m_Renderer->Clear(false, true, false);
     
         // Matrices

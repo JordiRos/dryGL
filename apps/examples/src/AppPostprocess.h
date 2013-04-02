@@ -14,7 +14,7 @@ class AppPostprocess : public dry::AppiOS
 public:
     
     // VertexShader
-    const char *VS = STRING(
+    const char *vertexShader = STRING(
         precision mediump float;
         
         attribute vec3 Position;
@@ -32,7 +32,7 @@ public:
     );
 
     // FragmentShader
-    const char *FS = STRING(
+    const char *fragmentShader = STRING(
         precision mediump float;
 
         uniform vec2 center;
@@ -69,32 +69,31 @@ public:
     //------------------------------------------------------------------------------------------------
     void OnInit()
     {
-        CameraO.Init(0.f,1.f, 0.f,1.f, 0.1f,1000.f);
-        CameraO.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-        CameraP.Init(45.f, (float)GetParams().Width / GetParams().Height, 0.1f, 10000.f);
-        CameraP.LookAt(glm::vec3(0.0, 2.0, -2.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+        cameraO.Init(0.f,1.f, 0.f,1.f, 0.1f,1000.f);
+        cameraO.LookAt(glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+        cameraP.Init(45.f, (float)GetParams().Width / GetParams().Height, 0.1f, 10000.f);
+        cameraP.LookAt(glm::vec3(0.0, 1.0, -3.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         
-        QuadBatch.Init(m_Renderer);
-        Shader.InitWithProgram(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
-        ShaderDot.InitWithProgram(VS, FS);
-        dry::ImageUtils::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false, false));
-        Fbo.Init(m_Renderer, dry::Fbo::Params(GetParams().Width/4,GetParams().Height/4));
+        quadBatch.Init(m_Renderer);
+        shaderDot.Init(vertexShader, fragmentShader);
+        dry::ImageUtils::Load(texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false, false));
+        fbo.Init(m_Renderer, dry::Fbo::Params(GetParams().Width/4,GetParams().Height/4));
         
         // Uniforms
-        UModelViewProjection.Init(&ShaderDot, "ModelViewProjection", dry::DataTypeMat4);
-        UTexture.Init(&ShaderDot, "texture", dry::DataTypeTex2D);
-        UCenter.Init(&ShaderDot, "center", dry::DataTypeVec2);
-        UAngle.Init(&ShaderDot, "angle", dry::DataTypeFloat);
-        UScale.Init(&ShaderDot, "scale", dry::DataTypeFloat);
-        USize.Init(&ShaderDot, "size", dry::DataTypeVec2);
+        uModelViewProjection = shaderDot.GetUniformByName("ModelViewProjection");
+        uTexture = shaderDot.GetUniformByName("texture");
+        uCenter  = shaderDot.GetUniformByName("center");
+        uAngle   = shaderDot.GetUniformByName("angle");
+        uScale   = shaderDot.GetUniformByName("scale");
+        uSize    = shaderDot.GetUniformByName("size");
         
         // Init uniforms
-        UTexture.Update(Fbo.GetTextureColor(), 0);
-        UCenter.Update(glm::vec2(0.5f, 0.5f));
-        UAngle.Update(1.57f);
-        UScale.Update(1.0f);
-        USize.Update(glm::vec2(GetParams().Width / 4, GetParams().Height / 4));
-
+        uTexture->Update(0);
+        uCenter ->Update(glm::vec2(0.5f, 0.5f));
+        uAngle  ->Update(1.57f);
+        uScale  ->Update(1.0f);
+        uSize   ->Update(glm::vec2(GetParams().Width / 4, GetParams().Height / 4));
+        
         m_Renderer->SetClearColor(glm::vec4(0.f, 0.f, 0.f, 0.f), 0.f, 0);
     }
 
@@ -103,44 +102,36 @@ public:
     //------------------------------------------------------------------------------------------------
     void OnDraw()
     {
-        m_Renderer->Clear(true, true, false);
+        m_Renderer->Clear(true, false, false);
         glDisable(GL_DEPTH_TEST);
 
         float angle = GetTimer().GetTime() * 45.f;
         glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
 
-        Fbo.Bind();
-        m_Renderer->Clear(true, true, false);
-        QuadBatch.DrawTexture(&Texture, &CameraP, anim, -0.5,-0.5, 1.f,1.f);
-        Fbo.Unbind();
+        texture.Bind(0);
+        fbo.Bind();
+        m_Renderer->Clear(true, false, false);
+        quadBatch.DrawTexture(&texture, &cameraP, anim, -0.5,-0.5, 1.f,1.f);
+        fbo.Unbind();
 
         // Postprocess: ShaderDot
-        ShaderDot.Bind();
-        UTexture.Bind();
-        UCenter.Bind();
-        UAngle.Bind();
-        UScale.Bind();
-        USize.Bind();
-        
-        QuadBatch.DrawShader(&ShaderDot, &CameraO, glm::mat4(), 0.f, 0.f, 1.f, 1.f);
-        
-        UTexture.Unbind();
+        fbo.GetTextureColor()->Bind(0);
+        quadBatch.DrawShader(&shaderDot, &cameraO, glm::mat4(), 0.f, 0.f, 1.f, 1.f);
     }
 
 private:
     
-    dry::CameraOrthogonal   CameraO;
-    dry::CameraPerspective  CameraP;
-    dry::Shader             Shader;
-    dry::Shader             ShaderDot;
-    dry::QuadBatch          QuadBatch;
-    dry::Texture            Texture;
-    dry::Fbo                Fbo;
+    dry::CameraOrthogonal   cameraO;
+    dry::CameraPerspective  cameraP;
+    dry::Shader             shaderDot;
+    dry::QuadBatch          quadBatch;
+    dry::Texture            texture;
+    dry::Fbo                fbo;
     // Uniforms
-    dry::Uniform            UModelViewProjection;
-    dry::Uniform            UTexture;
-    dry::Uniform            UCenter;
-    dry::Uniform            UAngle;
-    dry::Uniform            UScale;
-    dry::Uniform            USize;
+    dry::Uniform           *uModelViewProjection;
+    dry::Uniform           *uTexture;
+    dry::Uniform           *uCenter;
+    dry::Uniform           *uAngle;
+    dry::Uniform           *uScale;
+    dry::Uniform           *uSize;
 };

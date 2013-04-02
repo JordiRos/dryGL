@@ -83,18 +83,20 @@ void QuadBatch::DrawShader(Shader *shader, Camera const *camera, glm::mat4 const
     float hw = w * 0.5f;
     float hh = h * 0.5f;
     glm::mat4 model = glm::translate(x + hw, y + hh, 0.f) * glm::scale(hw, hh, 1.f);
-    
+
     // TODO: Not to be queried every time
+    shader->GetAttribByName("Position")->SetVbo(&m_Vertices);
+    shader->GetAttribByName("TexCoord")->SetVbo(&m_TexCoords);
     shader->GetUniformByName("Model")->Update(model * transform);
     shader->GetUniformByName("View")->Update(camera->GetView());
     shader->GetUniformByName("Projection")->Update(camera->GetProjection());
 
-    m_Shader.Bind();
+    shader->Bind();
     m_Indices.Bind();
 
     // Draw!
     m_Renderer->DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT);
 
     m_Indices.Unbind();    
-    m_Shader.Unbind();
+    shader->Unbind();
 }
