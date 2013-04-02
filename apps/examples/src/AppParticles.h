@@ -4,7 +4,8 @@
 //  Example: Screen space GLSL shader example
 //
 
-#pragma once
+#ifndef APP_PARTICLES_H_
+#define APP_PARTICLES_H_
 
 #include "dry.h"
 #include "QuadBatch.h"
@@ -13,7 +14,7 @@ class AppParticles : public dry::AppiOS
 {
 public:
     
-    const char *VS = STRING(
+    const char *vertexShader = STRING(
         precision mediump float;
                             
         attribute vec3 Position;
@@ -30,7 +31,7 @@ public:
         }
     );
 
-    const char *FS = STRING(
+    const char *fragmentShader = STRING(
         precision mediump float;
     
         uniform sampler2D Texture;
@@ -43,7 +44,7 @@ public:
         }
     );
     
-    const int PARTICLES = 10000;
+    static const int PARTICLES = 10000;
 
 public:
     
@@ -57,38 +58,35 @@ public:
         int w = GetParams().Width;
         int h = GetParams().Height;
         
-        Camera.Init(45.f, (float)w / h, 0.1, 1000.f);
-        Camera.LookAt(glm::vec3(0.0, 0.0, 2.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-        QuadBatch.Init(m_Renderer);
-        Shader.InitWithProgram(VS, FS);
-        dry::ImageUtils::Load(Texture, dry::GetFilePath("particle.png"), dry::Texture::Params(false, false, false));
+        camera.Init(45.f, (float)w / h, 0.1, 1000.f);
+        camera.LookAt(glm::vec3(0.0, 0.0, 2.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+        quadBatch.Init(m_Renderer);
+        shader.Init(vertexShader, fragmentShader);
+        dry::ImageUtils::Load(texture, dry::GetFilePath("particle.png"), dry::Texture::Params(false, false, false));
 
         // Uniforms
-        UModelViewProjection.Init(&Shader, "ModelViewProjection", dry::DataTypeMat4);
-        UTime.Init(&Shader, "Time", dry::DataTypeFloat);
-        UTexture.Init(&Shader, "Texture", dry::DataTypeTex2D);
-        UTexture.Update(&Texture, 0);
+        uModelViewProjection = shader.GetUniformByName("ModelViewProjection");
+        uTime = shader.GetUniformByName("Time");
+        uTexture = shader.GetUniformByName("Texture");
+        uTexture->Update(0);
         
-        // Attributes
-        //Vertices.Init(Positions, PARTICLES, dry::DataTypeVec3, false);
-        //VAttributes.Init(Attributes, PARTICLES, dry::DataTypeVec2, false);
-        APositions.Init(&Shader, "Position", PARTICLES, dry::DataTypeVec3, false);
-        AAttributes.Init(&Shader, "Attribute", PARTICLES, dry::DataTypeVec2, false);
-        
+        // Data
         dry::Log(dry::LogInfo, "Initialize %d particles", PARTICLES);
         dry::Random random;
-        Positions  = (glm::vec3 *)APositions.GetData();
-        Attributes = (glm::vec2 *)AAttributes.GetData();
         for (int i = 0; i < PARTICLES; i++)
         {
-            Positions[i].x = random.Next(-0.5f, 0.5f);
-            Positions[i].y = random.Next(-0.5f, 0.5f);
-            Positions[i].z = random.Next(-0.5f, 0.5f);
-            Attributes[i].x = random.Next(0.f, (float)M_PI); // Offset
-            Attributes[i].y = random.Next(5.f, 10.f);         // Speed
+            vPos[i].x = random.Next(-0.5f, 0.5f);
+            vPos[i].y = random.Next(-0.5f, 0.5f);
+            vPos[i].z = random.Next(-0.5f, 0.5f);
+            vAtt[i].x = random.Next(0.f, (float)M_PI); // Offset
+            vAtt[i].y = random.Next(5.f, 10.f);         // Speed
         }
-        APositions.Update(true);
-        AAttributes.Update(true);
+        // Vbos
+        positions.Init(vPos, PARTICLES, dry::DataTypeVec3, false);
+        attributes.Init(vAtt, PARTICLES, dry::DataTypeVec2, false);
+        
+        shader.GetAttribByName("Position")->SetVbo(&positions);
+        shader.GetAttribByName("Attribute")->SetVbo(&attributes);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -100,40 +98,37 @@ public:
         m_Renderer->SetBlendMode(dry::BlendPMAdd);
         glDisable(GL_DEPTH_TEST);
         
-        Shader.Bind();
-
+        // Update
         float time = GetTimer().GetTime();
-        // Matrices
         float angle = time * 45;
         glm::mat4 anim = glm::rotate(angle, glm::vec3(0, 1, 0));
         glm::mat4 model = glm::translate(glm::vec3(0.0, 0.0, 0.0));
-        UModelViewProjection.Update(Camera.GetMatProjection() * Camera.GetMatView() * model * anim);
-        UModelViewProjection.Bind();
-
-        UTexture.Bind();
-        UTime.Update(time);
-        UTime.Bind();
-        APositions.Bind();
-        AAttributes.Bind();
+        uModelViewProjection->Update(camera.GetProjection() * camera.GetView() * model * anim);
+        uTime->Update(time);
+        
+        // Bind
+        texture.Bind(0);
+        shader.Bind();
         
         m_Renderer->DrawArrays(GL_POINTS, PARTICLES);
         
-        Texture.Unbind();
-        Shader.Unbind();
+        shader.Unbind();
+        texture.Unbind();
     }
 
 private:
 
-    dry::CameraPerspective  Camera;
-    dry::QuadBatch          QuadBatch;
-    dry::Shader             Shader;
-    dry::Texture            Texture;
-    dry::Attribute          APositions;
-    dry::Attribute          AAttributes;
-    dry::Uniform            UModelViewProjection;
-    dry::Uniform            UTime;
-    dry::Uniform            UTexture;
-    glm::vec3              *Positions;
-    glm::vec2              *Attributes;
-
+    dry::CameraPerspective  camera;
+    dry::QuadBatch          quadBatch;
+    dry::Shader             shader;
+    dry::Texture            texture;
+    dry::Vbo                positions;
+    dry::Vbo                attributes;
+    dry::Uniform           *uModelViewProjection;
+    dry::Uniform           *uTime;
+    dry::Uniform           *uTexture;
+    glm::vec3               vPos[PARTICLES];
+    glm::vec2               vAtt[PARTICLES];
 };
+
+#endif
