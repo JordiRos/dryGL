@@ -15,9 +15,9 @@
 // Format
 //
 //------------------------------------------------------------------------------------------------
-static string Format(NSString const *nsstr)
+static std::string Format(const NSString *nsstr)
 {
-    return string([nsstr UTF8String]);
+    return std::string([nsstr UTF8String]);
 }
 
 
@@ -28,7 +28,7 @@ static string Format(NSString const *nsstr)
 dry::AppiOS::AppiOS(AppParams const &params) : App(params)
 {
     m_ViewController = [[[dryViewController alloc] initWithFrame:[[UIScreen mainScreen] bounds] app:this] autorelease];
-    string pathBundle  = Format([[NSBundle mainBundle] bundlePath]);
-    string pathDocpath = Format(NSHomeDirectory());
+    std::string pathBundle  = Format([[NSBundle mainBundle] bundlePath]);
+    std::string pathDocpath = Format(NSHomeDirectory());
     dry::SetPaths(pathBundle, pathDocpath);
 }

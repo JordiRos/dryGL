@@ -16,7 +16,7 @@ using namespace dry;
 // LoadObj
 //
 //------------------------------------------------------------------------------------------------
-bool GeometryUtils::LoadObj(Geometry &geo, string const &file)
+bool GeometryUtils::LoadObj(Geometry &geo, const std::string &file)
 {
     bool res = false;
     dry::Log(LogWarning, "[GeometryUtils] Load geometry from file %s", file.c_str());
@@ -51,10 +51,10 @@ bool GeometryUtils::LoadObj(Geometry &geo, string const &file)
             // Geometry
             params.Colors = 1;
             geo.Init(params);
-            vector<Geometry::Face> &faces      = geo.GetFaces     ();
-            vector<glm::vec3>      &vertices   = geo.GetVertices  ();
-            vector<glm::vec2>      &texcoords0 = geo.GetTexCoords0();
-            vector<glm::vec3>      &normals    = geo.GetNormals   ();
+            std::vector<Geometry::Face> &faces      = geo.GetFaces     ();
+            std::vector<glm::vec3>      &vertices   = geo.GetVertices  ();
+            std::vector<glm::vec2>      &texcoords0 = geo.GetTexCoords0();
+            std::vector<glm::vec3>      &normals    = geo.GetNormals   ();
             if (params.Faces      > 0) faces.clear();
             if (params.Vertices   > 0) vertices.clear();
             if (params.TexCoords0 > 0) texcoords0.clear();

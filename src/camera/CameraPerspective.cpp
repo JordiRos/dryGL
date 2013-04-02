@@ -45,5 +45,5 @@ void CameraPerspective::Init(float fov, float aspect, float near, float far)
 //------------------------------------------------------------------------------------------------
 void CameraPerspective::UpdateProjection()
 {
-    m_MatProjection = glm::perspective(m_Fov, m_Aspect, m_Near, m_Far);
+    m_Projection = glm::perspective(m_Fov, m_Aspect, m_Near, m_Far);
 }

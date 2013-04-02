@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_GRAPHICS_MATERIAL_H_
+#define DRY_GRAPHICS_MATERIAL_H_
 
 namespace dry {
     
@@ -23,8 +24,6 @@ public:
     virtual void            Unbind          ();
     
     Shader                 *GetShader       () { return m_Shader; }
-    UniformInterface       *GetUniform      (string const &name) { return m_Shader->GetUniformByName(name); }
-//    Attribute              *GetAttribute    (string const &name) { return NULL; }
     
 protected:
 
@@ -32,3 +31,5 @@ protected:
 };
     
 }
+
+#endif

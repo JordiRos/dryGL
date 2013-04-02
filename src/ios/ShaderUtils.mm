@@ -16,7 +16,7 @@ using namespace dry;
 // ReadFileContents
 //
 //------------------------------------------------------------------------------------------------
-static bool ReadFileContents(const string &filename, char **buffer)
+static bool ReadFileContents(const std::string &filename, char **buffer)
 {
     FILE *file = fopen(filename.c_str(), "r");
     if (file)
@@ -38,7 +38,7 @@ static bool ReadFileContents(const string &filename, char **buffer)
 // Load
 //
 //------------------------------------------------------------------------------------------------
-bool ShaderUtils::Load(Shader &shader, const string &vs, const string &fs)
+bool ShaderUtils::Load(Shader &shader, const std::string &vs, const std::string &fs)
 {
     bool res = false;
     char *bvs = NULL;
@@ -48,7 +48,7 @@ bool ShaderUtils::Load(Shader &shader, const string &vs, const string &fs)
     {
         dry::Log(LogInfo, "[ShaderUtils] Load FS from file %s", fs.c_str());
         if (ReadFileContents(fs, &bfs))
-            res = shader.Load(bvs, bfs);
+            res = shader.Init(bvs, bfs);
         else
             dry::Log(LogWarning, "[ShaderUtils] Can't open FS file %s", fs.c_str());
     }

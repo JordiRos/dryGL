@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_IOS_DRY_H_
+#define DRY_IOS_DRY_H_
 
 // Headers
 #ifdef __OBJC__
@@ -26,3 +27,5 @@
 #include "AppiOS.h"
 #include "ImageUtils.h"
 #include "ShaderUtils.h"
+
+#endif

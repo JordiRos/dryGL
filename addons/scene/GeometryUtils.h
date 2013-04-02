@@ -14,7 +14,7 @@ class Geometry;
     
 namespace GeometryUtils
 {
-    bool LoadObj(Geometry &geo, string const &file);
+    bool LoadObj(Geometry &geo, const std::string &file);
 };
     
 }

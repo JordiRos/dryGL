@@ -35,11 +35,11 @@ bool GeometryUtils::CreatePlane(Geometry &geo, float w, float h, int segw, int s
     geo.Init(params);
 
     // Buffers
-    vector<Geometry::Face> &faces      = geo.GetFaces     ();
-    vector<glm::vec3>      &vertices   = geo.GetVertices  ();
-    vector<glm::vec2>      &texcoords0 = geo.GetTexCoords0();
-    vector<glm::vec3>      &normals    = geo.GetNormals   ();
-    vector<glm::vec4>      &colors     = geo.GetColors    ();
+    std::vector<Geometry::Face> &faces      = geo.GetFaces     ();
+    std::vector<glm::vec3>      &vertices   = geo.GetVertices  ();
+    std::vector<glm::vec2>      &texcoords0 = geo.GetTexCoords0();
+    std::vector<glm::vec3>      &normals    = geo.GetNormals   ();
+    std::vector<glm::vec4>      &colors     = geo.GetColors    ();
     
     // Normals
     normals[0] = up;

@@ -1,58 +1,57 @@
+//
+//  Shader.h
+//  dryGL
+//
+//  Created by Jordi Ros on 15/02/13.
+//  Copyright (c) 2013 Jordi Ros. All rights reserved.
+//
+
 #ifndef DRY_GRAPHICS_SHADER_H_
 #define DRY_GRAPHICS_SHADER_H_
 
-#include "Uniforms.h"
-
 namespace dry {
-
+    
+class Uniform;
+class Attrib;
+    
 class Shader
 {
 public:
-	Shader();
-	~Shader();
-
-	// TODO: I think we should use r-value and go for Load on constructor
-    bool Load(const char *vertex_source, const char *fragment_source);
-
-	void Bind() const;
-	UniformInterface* GetUniformByName(const std::string &name);
-	unsigned GetAttribByName(const std::string &name);
-
-    bool HasErrors() const
-    {
-		return !m_Error;
-    }
+                        Shader          () { m_Vertex = m_Fragment = m_Program = -1; }
+                       ~Shader          () { Free(); }
     
-	bool IsReady() const
-	{
-		return m_Program != 0;
-	}
+    bool                Init            (const char *vertex, const char *fragment);
+    void                Free            ();
+    bool                IsOk            () const { return m_Program != 0; }
+    
+    void                Bind            ();
+    void                Unbind          ();
+    
+    Uniform            *GetUniformByName(const std::string &name);
+    Attrib             *GetAttribByName (const std::string &name);
 
-	const std::string GetLog() const
-	{
-		return m_Log;
-	}
+    
+private:
+    
+    void                LogShaderError  (int handle, const std::string &info);
+    void                LogProgramError (int handle, const std::string &info);
+    
+private:
+    
+    void                LoadUniforms    ();
+	void                LoadAttribs     ();
 
 private:
-	bool Compile(const char *source, GLenum type, GLuint &target);
-	bool Link();
-
-	void LoadUniforms();
-	void LoadAttribs();
-
-	GLuint m_Vertex;
-	GLuint m_Fragment;
-	GLuint m_Program;
-	bool m_Error;
-
-	// TODO: Resource utils
-	std::map<std::string, UniformInterface*> m_Uniforms;
-	std::map<std::string, unsigned> m_Attribs;
-	std::string m_Log;
+    
+    int                 m_Vertex;
+    int                 m_Fragment;
+    int                 m_Program;
+	std::map<std::string, Uniform *>   m_Uniforms;
+	std::map<std::string, Attrib *>    m_Attribs;
 
 	DISALLOW_COPY_AND_ASSIGN(Shader);
 };
 
-}  // namespace dry
+}
 
-#endif  // DRY_GRAPHICS_SHADER_H_
+#endif

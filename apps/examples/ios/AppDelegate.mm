@@ -10,8 +10,8 @@
 
 // dryExamples
 #include "AppVbo.h"
-//#include "AppQuadBatch.h"
-//#include "AppFbo.h"
+#include "AppQuadBatch.h"
+#include "AppFbo.h"
 //#include "AppParticles.h"
 //#include "AppPostprocess.h"
 //#include "AppTextureCube.h"
@@ -20,7 +20,7 @@
 //
 // AppQuadBatch, AppVbo, AppFbo, AppParticles, AppPostprocess, AppTextureCube, AppShaderToy, AppGeometries
 //
-#define APP_EXAMPLE AppVbo
+#define APP_EXAMPLE AppFbo
 
 
 @implementation AppDelegate

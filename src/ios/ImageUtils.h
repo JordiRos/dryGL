@@ -6,15 +6,18 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_IOS_IMAGEUTILS_H_
+#define DRY_IOS_IMAGEUTILS_H_
 
 namespace dry {
 
 namespace ImageUtils
 {
-    bool Load(Image       &img, string const &file);
-    bool Load(Texture     &tex, string const &file, Texture::Params const &params);
-    bool Load(TextureCube &tex, string const &file, TextureCube::Params const &params);
+    bool Load(Image       &img, const std::string &file);
+    bool Load(Texture     &tex, const std::string &file, Texture::Params const &params);
+    bool Load(TextureCube &tex, const std::string &file, TextureCube::Params const &params);
 };
 
 }
+
+#endif

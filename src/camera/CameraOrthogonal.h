@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_CAMERA_ORTHOGONAL_H_
+#define DRY_CAMERA_ORTHOGONAL_H_
 
 #include "Camera.h"
 
@@ -34,3 +35,5 @@ protected:
 };
 
 }
+
+#endif

@@ -4,7 +4,8 @@
 //  Example: Load a texture and draw using a QuadBatch object
 //
 
-#pragma once
+#ifndef APP_QUADBATCH_H_
+#define APP_QUADBATCH_H_
 
 #include "dry.h"
 #include "QuadBatch.h"
@@ -20,10 +21,10 @@ public:
     //------------------------------------------------------------------------------------------------
     void OnInit()
     {
-        Camera.Init(0.f,1.f, 0.f,1.f, 0.1f,10000.f);
-        Camera.LookAt(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        QuadBatch.Init(m_Renderer);
-        dry::ImageUtils::Load(Texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, false, false));
+        camera.Init(0.f,1.f, 0.f,1.f, 0.1f,10000.f);
+        camera.LookAt(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        quadBatch.Init(m_Renderer);
+        dry::ImageUtils::Load(texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(true, false, false));
     }
 
     //------------------------------------------------------------------------------------------------
@@ -33,12 +34,14 @@ public:
     {
         m_Renderer->Clear(true, true, false);
 
-        QuadBatch.DrawTexture(&Texture, &Camera, glm::mat4(), 0.05f,0.05f, 0.9f,0.9f);
+        quadBatch.DrawTexture(&texture, &camera, glm::mat4(), 0.05f,0.05f, 0.9f,0.9f);
     }
 
 private:
     
-    dry::CameraOrthogonal Camera;
-    dry::QuadBatch        QuadBatch;
-    dry::Texture          Texture;
+    dry::CameraOrthogonal camera;
+    dry::QuadBatch        quadBatch;
+    dry::Texture          texture;
 };
+
+#endif

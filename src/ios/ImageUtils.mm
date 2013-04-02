@@ -15,7 +15,7 @@ using namespace dry;
 // LoadImageData
 //
 //------------------------------------------------------------------------------------------------
-static bool LoadImageData(string const &file, bool flipy, int &w, int &h, uchar **data)
+static bool LoadImageData(const std::string &file, bool flipy, int &w, int &h, uchar **data)
 {
     bool res = false;
     dry::Log(LogInfo, "[ImageUtils] Load Image from file: %s", file.c_str());
@@ -51,7 +51,7 @@ static bool LoadImageData(string const &file, bool flipy, int &w, int &h, uchar 
 // Load Image
 //
 //------------------------------------------------------------------------------------------------
-bool ImageUtils::Load(Image &img, string const &file)
+bool ImageUtils::Load(Image &img, const std::string &file)
 {
     bool   res = false;
     int    w, h;
@@ -70,7 +70,7 @@ bool ImageUtils::Load(Image &img, string const &file)
 // Load Texture
 //
 //------------------------------------------------------------------------------------------------
-bool ImageUtils::Load(Texture &tex, string const &file, Texture::Params const &params)
+bool ImageUtils::Load(Texture &tex, const std::string &file, Texture::Params const &params)
 {
     bool   res = false;
     int    w, h;
@@ -89,7 +89,7 @@ bool ImageUtils::Load(Texture &tex, string const &file, Texture::Params const &p
 // Load TextureCube
 //
 //------------------------------------------------------------------------------------------------
-bool ImageUtils::Load(TextureCube &tex, string const &file, TextureCube::Params const &params)
+bool ImageUtils::Load(TextureCube &tex, const std::string &file, TextureCube::Params const &params)
 {
     struct ImageInfo
     {
@@ -101,13 +101,13 @@ bool ImageUtils::Load(TextureCube &tex, string const &file, TextureCube::Params 
     int len = file.length();
     bool res = true;
     ImageInfo images[6];
-    string prefixesN[6] = { "_posx", "_negx", "_negy", "_posy", "_posz", "_negz" };
-    string prefixesR[6] = { "_posx", "_negx", "_posy", "_negy", "_posz", "_negz" };
+    std::string prefixesN[6] = { "_posx", "_negx", "_negy", "_posy", "_posz", "_negz" };
+    std::string prefixesR[6] = { "_posx", "_negx", "_posy", "_negy", "_posz", "_negz" };
     for (int i = 0; i < 6; i++)
     {
-        string pre  = file.substr(0, len-4);
-        string post = file.substr(len-4, 4);
-        string name = pre + (params.FlipY ? prefixesR[i] : prefixesN[i]) + post;
+        std::string pre  = file.substr(0, len-4);
+        std::string post = file.substr(len-4, 4);
+        std::string name = pre + (params.FlipY ? prefixesR[i] : prefixesN[i]) + post;
         if (!LoadImageData(name, !params.FlipY, images[i].w, images[i].h, &images[i].data))
             res = false;
         else

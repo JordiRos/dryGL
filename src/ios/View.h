@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
-
+#ifndef DRY_IOS_VIEW_H_
+#define DRY_IOS_VIEW_H_
 
 @interface dryView : UIView
 {
@@ -25,3 +25,5 @@
 - (void)stopAnimation;
 
 @end
+
+#endif

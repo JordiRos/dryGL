@@ -4,7 +4,8 @@
 //  Example: How to setup VertexBufferObjects and use them for custom rendering
 //
 
-#pragma once
+#ifndef APP_VBO_H_
+#define APP_VBO_H_
 
 #include "dry.h"
 #include "Shaders.h"
@@ -93,7 +94,7 @@ public:
         dry::ImageUtils::Load(texture, dry::GetFilePath("grid.jpg"), dry::Texture::Params(false, false, false));
         
         // Shader
-        shader.Load(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
+        shader.Init(dry::Shaders::Texture2D_VS, dry::Shaders::Texture2D_FS);
         
         // Camera
         int w = GetParams().Width;
@@ -107,6 +108,10 @@ public:
         uModel = shader.GetUniformByName("Model");
         uView = shader.GetUniformByName("View");
         uProjection = shader.GetUniformByName("Projection");
+        
+        // Attribs
+        shader.GetAttribByName("Position")->SetVbo(&vertices);
+        shader.GetAttribByName("TexCoord")->SetVbo(&texCoords);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -121,25 +126,22 @@ public:
         glm::mat4 rotation = glm::rotate(angle, glm::vec3(0, 1, 0));
         glm::mat4 position = glm::translate(glm::vec3(0.0, 0.0, 0.0));
         uModel->Update(position * rotation);
-        uView->Update(camera.GetMatView());
-        uProjection->Update(camera.GetMatProjection());
+        uView->Update(camera.GetView());
+        uProjection->Update(camera.GetProjection());
 
         // Bind
         texture.Bind(0);
         shader.Bind();
 
         // Buffers
-        vertices.Bind(shader.GetAttribByName("Position"));
-        texCoords.Bind(shader.GetAttribByName("TexCoord"));
         indices.Bind();
         
         // Draw!
         m_Renderer->DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT);
         
         // Unbind
-        vertices.Unbind();
-        texCoords.Unbind();
         indices.Unbind();
+        shader.Unbind();
     }
 
 private:
@@ -150,8 +152,10 @@ private:
     dry::Vbo                vertices;
     dry::Vbo                texCoords;
     dry::Ibo                indices;
-    dry::UniformInterface  *uTexture;
-    dry::UniformInterface  *uModel;
-    dry::UniformInterface  *uView;
-    dry::UniformInterface  *uProjection;
+    dry::Uniform           *uTexture;
+    dry::Uniform           *uModel;
+    dry::Uniform           *uView;
+    dry::Uniform           *uProjection;
 };
+
+#endif

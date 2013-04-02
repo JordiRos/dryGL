@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_IOS_VIEWCONTROLLER_H_
+#define DRY_IOS_VIEWCONTROLLER_H_
 
 #import "View.h"
 
@@ -22,3 +23,5 @@ class dry::AppiOS;
 - (id)initWithFrame:(CGRect)frame app:(dry::AppiOS *)app;
 
 @end
+
+#endif

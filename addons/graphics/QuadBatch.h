@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_ADDONS_QUADBATCH_H_
+#define DRY_ADDONS_QUADBATCH_H_
 
 namespace dry {
 
@@ -27,12 +28,13 @@ private:
 
 private:
 
-    Renderer            *m_Renderer;
-    Vbo                 m_Vertices;
-    Vbo                 m_TexCoords;
-    Ibo                 m_Indices;
-    Shader              m_Shader;
-    UniformInterface    *m_UTexture;
+    Renderer       *m_Renderer;
+    Vbo             m_Vertices;
+    Vbo             m_TexCoords;
+    Ibo             m_Indices;
+    Shader          m_Shader;
 };
 
 }
+
+#endif

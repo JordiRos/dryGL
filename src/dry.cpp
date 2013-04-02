@@ -10,21 +10,20 @@
 
 using namespace dry;
 
-
-// Private vars
-static string   s_PathBundle  = "";
-static string   s_PathDocpath = "";
-static LogLevel s_LogLevel    = LogRelease;
 #define MAX_STATIC_DIR 10
-static string   s_StaticDir[MAX_STATIC_DIR];
-static int      s_StaticIdx = 0;
+
+static std::string  s_PathBundle  = "";
+static std::string  s_PathDocpath = "";
+static LogLevel     s_LogLevel    = LogRelease;
+static std::string  s_StaticDir[MAX_STATIC_DIR];
+static int          s_StaticIdx = 0;
 
 
 //------------------------------------------------------------------------------------------------
 // Init
 //
 //------------------------------------------------------------------------------------------------
-void dry::Init(LogLevel loglevel, const string &logfile)
+void dry::Init(LogLevel loglevel, const std::string &logfile)
 {
     s_LogLevel = loglevel;
     dry::Log(LogSystem, "dryGL v%s", DRY_VERSION_STR);
@@ -63,7 +62,7 @@ void dry::Log(LogLevel loglevel, const char *log, ...)
 // SetPaths
 //
 //------------------------------------------------------------------------------------------------
-void dry::SetPaths(const string &bundle, const string &docpath)
+void dry::SetPaths(const std::string &bundle, const std::string &docpath)
 {
     s_PathBundle  = bundle;
     s_PathDocpath = docpath;
@@ -74,7 +73,7 @@ void dry::SetPaths(const string &bundle, const string &docpath)
 // GetFilePath
 //
 //------------------------------------------------------------------------------------------------
-const string &dry::GetFilePath(const string &file)
+const std::string &dry::GetFilePath(const std::string &file)
 {
     s_StaticIdx = (s_StaticIdx+1) % 10;
     s_StaticDir[s_StaticIdx] = s_PathBundle + "/" + file;
@@ -86,7 +85,7 @@ const string &dry::GetFilePath(const string &file)
 // GetFilePath
 //
 //------------------------------------------------------------------------------------------------
-const string &dry::GetFilePath(const string &file, const string &docpath)
+const std::string &dry::GetFilePath(const std::string &file, const std::string &docpath)
 {
     s_StaticIdx = (s_StaticIdx+1) % 10;
     s_StaticDir[s_StaticIdx] = s_PathDocpath + "/" + file;

@@ -1,5 +1,5 @@
 //
-//  CameraOrthogonal.cpp
+//  Attrib.cpp
 //  dryGL
 //
 //  Created by Jordi Ros on 15/02/13.
@@ -7,47 +7,39 @@
 //
 
 #include "dry.h"
-#include "CameraOrthogonal.h"
+#include "Attrib.h"
 
 using namespace dry;
 
 
 //------------------------------------------------------------------------------------------------
-// CameraOrthogonal
+// SetVbo
 //
 //------------------------------------------------------------------------------------------------
-CameraOrthogonal::CameraOrthogonal() : Camera()
+void Attrib::SetVbo(Vbo *vbo)
 {
-    m_Left   = 0.f;
-    m_Right  = 1.f;
-    m_Top    = 0.f;
-    m_Bottom = 1.f;
-    m_Near   = 1.f;
-    m_Far    = 1000.f;
+    // TODO: assert(m_GLType == Vbo->GetGLType())
+    m_Vbo = vbo;
 }
 
 
 //------------------------------------------------------------------------------------------------
-// Init
+// Bind
 //
 //------------------------------------------------------------------------------------------------
-void CameraOrthogonal::Init(float left, float right, float top, float bottom, float near, float far)
+void Attrib::Bind()
 {
-    m_Left   = left;
-    m_Right  = right;
-    m_Top    = top;
-    m_Bottom = bottom;
-    m_Near   = near;
-    m_Far    = far;
-    UpdateProjection();
+    if (m_Vbo)
+        m_Vbo->Bind(m_Location);
 }
 
 
 //------------------------------------------------------------------------------------------------
-// UpdateProjection
+// Unbind
 //
 //------------------------------------------------------------------------------------------------
-void CameraOrthogonal::UpdateProjection()
+void Attrib::Unbind()
 {
-    m_Projection = glm::ortho(m_Left, m_Right, m_Bottom, m_Top, m_Near, m_Far);
+    if (m_Vbo)
+        m_Vbo->Unbind();
 }

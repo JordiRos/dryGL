@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_GRAPHICS_TEXTURECUBE_H_
+#define DRY_GRAPHICS_TEXTURECUBE_H_
 
 namespace dry {
     
@@ -62,3 +63,5 @@ private:
 };
 
 }
+
+#endif

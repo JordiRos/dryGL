@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_IOS_APPIOS_H_
+#define DRY_IOS_APPIOS_H_
 
 namespace dry {
     
@@ -23,3 +24,5 @@ private:
 };
 
 }
+
+#endif

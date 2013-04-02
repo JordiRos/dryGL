@@ -46,9 +46,10 @@ void QuadBatch::Init(Renderer *renderer)
     m_TexCoords.Init(texcoords, 4, DataTypeVec2, false);
     m_Indices.Init(indices, 6, DataTypeUShort, false);
     // Shader
-    m_Shader.Load(Shaders::Texture2D_VS, Shaders::Texture2D_FS);
-    m_UTexture = m_Shader.GetUniformByName("Texture");
-    m_UTexture->Update(0);
+    m_Shader.Init(Shaders::Texture2D_VS, Shaders::Texture2D_FS);
+    m_Shader.GetUniformByName("Texture")->Update(0);
+    m_Shader.GetAttribByName("Position")->SetVbo(&m_Vertices);
+    m_Shader.GetAttribByName("TexCoord")->SetVbo(&m_TexCoords);
 }
 
 
@@ -67,8 +68,7 @@ void QuadBatch::Free()
 //------------------------------------------------------------------------------------------------
 void QuadBatch::DrawTexture(Texture *texture, Camera const *camera, glm::mat4 const &transform, float x, float y, float w, float h)
 {
-    m_Shader.Bind();
-
+    texture->Bind(0);
     DrawShader(&m_Shader, camera, transform, x,y, w,h);
 }
 
@@ -86,19 +86,15 @@ void QuadBatch::DrawShader(Shader *shader, Camera const *camera, glm::mat4 const
     
     // TODO: Not to be queried every time
     shader->GetUniformByName("Model")->Update(model * transform);
-    shader->GetUniformByName("View")->Update(camera->GetMatView());
-    shader->GetUniformByName("Projection")->Update(camera->GetMatProjection());
+    shader->GetUniformByName("View")->Update(camera->GetView());
+    shader->GetUniformByName("Projection")->Update(camera->GetProjection());
 
-    // Bind
-    m_Vertices.Bind(shader->GetAttribByName("Position"));
-    m_TexCoords.Bind(shader->GetAttribByName("Position"));
+    m_Shader.Bind();
     m_Indices.Bind();
 
     // Draw!
     m_Renderer->DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT);
 
-    // Unbind
-    m_Vertices.Unbind();
-    m_TexCoords.Unbind();
-    m_Indices.Unbind();
+    m_Indices.Unbind();    
+    m_Shader.Unbind();
 }

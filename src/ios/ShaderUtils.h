@@ -6,13 +6,16 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_IOS_SHADERUTILS_H_
+#define DRY_IOS_SHADERUTILS_H_
 
 namespace dry {
 
 namespace ShaderUtils
 {
-    bool Load(Shader &shader, string const &vs, string const &fs);
+    bool Load(Shader &shader, const std::string &vs, const std::string &fs);
 };
 
 }
+
+#endif

@@ -1,167 +1,217 @@
+//
+//  Shader.cpp
+//  dryGL
+//
+//  Created by Jordi Ros on 15/02/13.
+//  Copyright (c) 2013 Jordi Ros. All rights reserved.
+//
+
+#include "dry.h"
 #include "Shader.h"
+#include "Uniform.h"
 
-namespace dry {
+using namespace dry;
 
-Shader::Shader()
-	: m_Vertex(0), m_Fragment(0), m_Program(0), m_Error(false)
-{}
-    
 
-bool Shader::Load(const char *vertex_source, const char *fragment_source)
+//------------------------------------------------------------------------------------------------
+// Init
+//
+//------------------------------------------------------------------------------------------------
+bool Shader::Init(const char *vertex, const char *fragment)
 {
-	bool vertex = Compile(vertex_source, GL_VERTEX_SHADER, m_Vertex);
-	bool fragment = Compile(fragment_source, GL_FRAGMENT_SHADER, m_Fragment);
+    bool res = true;
+    Free();
     
-	if (!vertex || !fragment) {
-		m_Error = true;
-		return false;
-	}
+    int result;
     
-	bool link = Link();
-    
-	if (!link) {
-		m_Error = true;
-		return false;
-	}
-    
-    if (HasErrors()) {
-        LoadUniforms();
-        LoadAttribs();
-        
-        return true;
-    }
-    
-    return false;
-}
-
-bool Shader::Compile(const char *source, GLenum type, GLuint &target) {
-	target = glCreateShader(type);
-
-	glShaderSource(target, 1, &source, NULL);
-	glCompileShader(target);
-
-	// Check compile errors
-	GLint error;
-	glGetShaderiv(target, GL_COMPILE_STATUS, &error);
-	if (error == GL_FALSE)
-	{
-		GLsizei length;
-		glGetShaderiv(target, GL_INFO_LOG_LENGTH, &length);
-
-		std::string log(length, 0);
-		glGetShaderInfoLog(target, length, NULL, &log[0]);
-		m_Log += log;
-
-		return false;
-	}
-
-	return true;
-}
-
-bool Shader::Link() {
-	m_Program = glCreateProgram();
-
-	glAttachShader(m_Program, m_Vertex);
-	glAttachShader(m_Program, m_Fragment);
-
-	// Link
-	glLinkProgram(m_Program);
-
-	// Check for errors
-	GLint error;
-	glGetProgramiv(m_Program, GL_LINK_STATUS, &error);
-	if (error == GL_FALSE)
-	{
-		m_Error = true;
-		
-		GLsizei length;
-		glGetProgramiv(m_Program, GL_INFO_LOG_LENGTH, &length);
-
-		std::string log(length, 0);
-		glGetProgramInfoLog(m_Program, length, NULL, &log[0]);
-		m_Log += log;
-
-		return false;
-	}
-
-	return true;
-}
-
-void Shader::LoadUniforms() 
-{
-    GLint amount;
-    glGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &amount);
-
-    GLint nameLenght;
-    glGetProgramiv(m_Program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &nameLenght);
-//    std::string name(nameLenght, 0);
-
-    GLint size;
-    GLenum type;
-    GLsizei length;
-    char name[1024];    // TODO: Use objects + max lenght
-    for(int index = 0; index < amount; ++index)
+    // Create Vertex
+    m_Vertex = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource (m_Vertex, 1, (GLchar const **)&vertex, NULL);
+    glCompileShader(m_Vertex);
+    glGetShaderiv  (m_Vertex, GL_COMPILE_STATUS, &result);
+    if (result == GL_FALSE)
     {
-        glGetActiveUniform(m_Program, index, 1024, &length, &size, &type, &name[0]);
-        m_Uniforms[name] = UniformCreate(type, glGetUniformLocation(m_Program, name), *this);
+        LogShaderError(m_Vertex, "vertex shader");
+        res = false;
     }
-}
-	
-void Shader::LoadAttribs() 
-{
-    GLint amount;
-    glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTES, &amount);
-
-    GLint nameLenght;
-    glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &nameLenght);
-//    std::string name(nameLenght, 0);
     
-    GLint size;
-    GLenum type;
-    GLsizei length;
-    char name[1024];    // TODO: Use objects + max lenght
-    for(int index = 0; index < amount; ++index)
+    // Create Fragment
+    m_Fragment = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource (m_Fragment, 1, (GLchar const **)&fragment, NULL);
+    glCompileShader(m_Fragment);
+    glGetShaderiv  (m_Fragment, GL_COMPILE_STATUS, &result);
+    if (result == GL_FALSE)
     {
-        glGetActiveAttrib(m_Program, index, 1024, &length, &size, &type, &name[0]);
-        m_Attribs[name] = glGetAttribLocation(m_Program, name);
+        LogShaderError(m_Fragment, "fragment shader");
+        res = false;
     }
-}
-
-
-
-Shader::~Shader()
-{
-	glDeleteShader(m_Vertex);
-	glDeleteShader(m_Fragment);
-	glDeleteProgram(m_Program);
     
-    for (auto it = m_Uniforms.begin(); it != m_Uniforms.end(); ++it) {
-        delete it->second;
+    // Create Program
+    if (res)
+    {
+        m_Program = glCreateProgram();
+        glAttachShader(m_Program, m_Vertex);
+        glAttachShader(m_Program, m_Fragment);
+        glLinkProgram (m_Program);
+        glGetProgramiv(m_Program, GL_LINK_STATUS, &result);
+        if (result == GL_FALSE)
+        {
+            LogProgramError(m_Program, "program");
+            res = false;
+        }
+        else
+        {
+            LoadUniforms();
+            LoadAttribs ();
+        }
     }
+
+    // All ok?
+    if (!res)
+        Free();
+    
+    return res;
 }
 
-UniformInterface* Shader::GetUniformByName(const std::string &name)
+
+//------------------------------------------------------------------------------------------------
+// Free
+//
+//------------------------------------------------------------------------------------------------
+void Shader::Free()
+{
+    if (m_Vertex   != -1) glDeleteShader(m_Vertex);
+    if (m_Fragment != -1) glDeleteShader(m_Fragment);
+    if (m_Program  != -1) glDeleteProgram(m_Program);
+    for (auto it = m_Uniforms.begin(); it != m_Uniforms.end(); ++it)
+        DISPOSE(it->second);
+    for (auto it = m_Attribs.begin(); it != m_Attribs.end(); ++it)
+        DISPOSE(it->second);
+    m_Vertex   = -1;
+    m_Fragment = -1;
+    m_Program  = -1;
+    m_Uniforms.clear();
+    m_Attribs.clear();
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Bind
+//
+//------------------------------------------------------------------------------------------------
+void Shader::Bind()
+{
+    glUseProgram(m_Program);
+    // Uniforms
+	for (auto it = m_Uniforms.begin(); it != m_Uniforms.end(); ++it)
+		it->second->Bind();
+    // Attribs
+	for (auto it = m_Attribs.begin(); it != m_Attribs.end(); ++it)
+		it->second->Bind();
+}
+
+
+//------------------------------------------------------------------------------------------------
+// Unbind
+//
+//------------------------------------------------------------------------------------------------
+void Shader::Unbind()
+{
+    // Attribs
+	for (auto it = m_Attribs.begin(); it != m_Attribs.end(); ++it)
+		it->second->Unbind();
+    glUseProgram(0);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// LogShaderError
+//
+//------------------------------------------------------------------------------------------------
+void Shader::LogShaderError(int handle, const std::string &info)
+{
+    char messages[256];
+    glGetShaderInfoLog(handle, sizeof(messages), 0, &messages[0]);
+    dry::Log(LogError, "[dryShader] Error compiling %s", info.c_str());
+    dry::Log(LogError, messages);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// LogProgramError
+//
+//------------------------------------------------------------------------------------------------
+void Shader::LogProgramError(int handle, const std::string &info)
+{
+    GLchar messages[256];
+    glGetProgramInfoLog(handle, sizeof(messages), 0, &messages[0]);
+    dry::Log(LogError, "[dryShader] Error compiling %s", info.c_str());
+    dry::Log(LogError, messages);
+}
+
+
+//------------------------------------------------------------------------------------------------
+// GetUniformByName
+//
+//------------------------------------------------------------------------------------------------
+Uniform *Shader::GetUniformByName(const std::string &name)
 {
 	auto target = m_Uniforms.find(name);
-	if(target == m_Uniforms.end())
-		return NULL;
-	return target->second;            
+	return (target == m_Uniforms.end()) ? NULL : target->second;
 }
 
-unsigned Shader::GetAttribByName(const std::string &name)
+
+//------------------------------------------------------------------------------------------------
+// GetAttribByName
+//
+//------------------------------------------------------------------------------------------------
+Attrib *Shader::GetAttribByName(const std::string &name)
 {
 	auto target = m_Attribs.find(name);
-	if(target == m_Attribs.end())
-		return 0;
-	return target->second;            
+	return (target == m_Attribs.end()) ? NULL : target->second;
 }
 
-    void Shader::Bind() const
+
+//------------------------------------------------------------------------------------------------
+// LoadUniforms
+//
+//------------------------------------------------------------------------------------------------
+void Shader::LoadUniforms()
 {
-	glUseProgram(m_Program);
-	// TODO:  dirty uniforms vector instead of all uniforms on map
-	for(auto it = m_Uniforms.begin(); it != m_Uniforms.end(); ++it)
-		it->second->Submit();
+    GLint   count;
+    GLint   len;
+    GLint   size;
+    GLenum  gltype;
+    GLsizei length;
+    char    name[1024];
+    glGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &count);
+    glGetProgramiv(m_Program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &len);
+    for(int i = 0; i < count; ++i)
+    {
+        glGetActiveUniform(m_Program, i, 1024, &length, &size, &gltype, name);
+        m_Uniforms[name] = Uniform::Create(glGetUniformLocation(m_Program, name), gltype);
+    }
 }
 
-}  // namespace dry
+
+//------------------------------------------------------------------------------------------------
+// LoadAttribs
+//
+//------------------------------------------------------------------------------------------------
+void Shader::LoadAttribs()
+{
+    GLint   count;
+    GLint   len;
+    GLint   size;
+    GLenum  gltype;
+    GLsizei length;
+    char    name[1024];
+    glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTES, &count);
+    glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &len);
+    for(int i = 0; i < count; ++i)
+    {
+        glGetActiveAttrib(m_Program, i, 1024, &length, &size, &gltype, name);
+        m_Attribs[name] = NEW Attrib(glGetAttribLocation(m_Program, name), gltype);
+    }
+}
+

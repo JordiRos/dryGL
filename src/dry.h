@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
-#pragma once
+#ifndef DRY_H_
+#define DRY_H_
 
 // Common includes
 #include <time.h>
@@ -18,9 +19,6 @@
 #include <string>
 #include <vector>
 #include <map>
-using std::string;
-using std::vector;
-using std::map;
 
 // Null
 #ifndef NULL
@@ -74,13 +72,13 @@ enum LogLevel
     LogRelease  = LogError,
 };
     
-void            Init        (LogLevel loglevel, const string &logfile);
-void            Shut        ();
-void            Log         (LogLevel loglevel, const char *log, ...);      // Log function
-void            SetPaths    (const string &bundle, const string &docpath);  // Set app paths
-const string   &GetFilePath (const string &file);                           // Main bundle path (read only)
-const string   &GetFilePath (const string &file, const string &docpath);    // Documents path (read/write)
-float           GetTime     ();                                             // Get system time
+void                Init        (LogLevel loglevel, const std::string &logfile);
+void                Shut        ();
+void                Log         (LogLevel loglevel, const char *log, ...);                  // Log function
+void                SetPaths    (const std::string &bundle, const std::string &docpath);    // Set app paths
+const std::string  &GetFilePath (const std::string &file);                                  // Main bundle path (read only)
+const std::string  &GetFilePath (const std::string &file, const std::string &docpath);      // Documents path (read/write)
+float               GetTime     ();                                                         // Get system time
 
 // AppParams
 struct AppParams
@@ -164,10 +162,11 @@ enum BlendMode
 #include "graphics/Texture.h"
 #include "graphics/TextureCube.h"
 #include "graphics/Fbo.h"
-#include "graphics/Shader.h"
 #include "graphics/Vbo.h"
 #include "graphics/Ibo.h"
-//#include "graphics/Attribute.h"
+#include "graphics/Shader.h"
+#include "graphics/Uniform.h"
+#include "graphics/Attrib.h"
 //#include "graphics/Material.h"
 
 // Camera
@@ -178,4 +177,6 @@ enum BlendMode
 // Target iOS
 #ifdef DRY_TARGET_IOS
     #include "ios/dry.h"
+#endif
+
 #endif

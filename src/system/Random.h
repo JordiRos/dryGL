@@ -3,7 +3,8 @@
 // This source is public domain
 //------------------------------------------------------------------------------
 
-#pragma once
+#ifndef DRY_SYSTEM_RANDOM_H_
+#define DRY_SYSTEM_RANDOM_H_
 
 namespace dry {
 
@@ -132,3 +133,5 @@ private:
 };
 
 }
+
+#endif

@@ -77,5 +77,5 @@ void Camera::SetUp(glm::vec3 const &up)
 //------------------------------------------------------------------------------------------------
 void Camera::Update()
 {
-    m_MatView = glm::lookAt(m_Position, m_Target, m_Up);
+    m_View = glm::lookAt(m_Position, m_Target, m_Up);
 }
