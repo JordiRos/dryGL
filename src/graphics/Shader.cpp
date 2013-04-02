@@ -186,7 +186,7 @@ void Shader::LoadUniforms()
     char    name[1024];
     glGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &count);
     glGetProgramiv(m_Program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &len);
-    for(int i = 0; i < count; ++i)
+    for (int i = 0; i < count; ++i)
     {
         glGetActiveUniform(m_Program, i, 1024, &length, &size, &gltype, name);
         m_Uniforms[name] = Uniform::Create(glGetUniformLocation(m_Program, name), gltype);
@@ -208,7 +208,7 @@ void Shader::LoadAttribs()
     char    name[1024];
     glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTES, &count);
     glGetProgramiv(m_Program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &len);
-    for(int i = 0; i < count; ++i)
+    for (int i = 0; i < count; ++i)
     {
         glGetActiveAttrib(m_Program, i, 1024, &length, &size, &gltype, name);
         m_Attribs[name] = NEW Attrib(glGetAttribLocation(m_Program, name), gltype);

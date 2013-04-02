@@ -11,7 +11,7 @@
 
 namespace dry {
 
-#define ITEM(e,n,s,g,t,v,i,a,u) e,
+#define ITEM(e,n,s,g,t,v,i) e,
 // DataType
 enum DataType
 {
@@ -28,11 +28,6 @@ int         GetDataTypeGLVar       (DataType type);
 int         GetDataTypeGLType      (DataType type);
 bool        GetDataTypeVbo         (DataType type);
 bool        GetDataTypeIbo         (DataType type);
-bool        GetDataTypeAttribute   (DataType type);
-bool        GetDataTypeUniform     (DataType type);
-
-// Inverse
-DataType    GetDataTypeWithGLType  (int glType);
 
 }
 

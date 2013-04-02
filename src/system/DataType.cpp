@@ -20,12 +20,10 @@ struct DataTypeInfo
     int  GLType;
     bool Vbo;
     bool Ibo;
-    bool Attribute;
-    bool Uniform;
 };
 
 // DataTypeInfo
-#define ITEM(e,n,s,g,t,v,i,a,u) { n,s,g,t,v,i,a,u },
+#define ITEM(e,n,s,g,t,v,i) { n,s,g,t,v,i },
 static DataTypeInfo s_DataTypeInfo[DataTypeCount] = {
 #include "DataTypeEnum.h"
 };
@@ -64,25 +62,4 @@ bool dry::GetDataTypeVbo(DataType type)
 bool dry::GetDataTypeIbo(DataType type)
 {
     return DataTypeValid(type) ? s_DataTypeInfo[type].Ibo : false;
-}
-
-bool dry::GetDataTypeAttribute(DataType type)
-{
-    return DataTypeValid(type) ? s_DataTypeInfo[type].Attribute : false;
-}
-
-bool dry::GetDataTypeUniform(DataType type)
-{
-    return DataTypeValid(type) ? s_DataTypeInfo[type].Uniform : false;
-}
-
-// Inverse
-DataType dry::GetDataTypeWithGLType(int glType)
-{
-    for (DataType i = (DataType)0; i < DataTypeCount; i++)
-    {
-        if (s_DataTypeInfo[i].GLType == glType)
-            return i;
-    }
-    return DataTypeUnknown;
 }
