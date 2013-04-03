@@ -10,7 +10,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    dry::AppiOS *app;
+    dry::App *app;
 }
 
 @property (strong, nonatomic) UIWindow *window;

@@ -15,11 +15,11 @@
 
 #define SAMPLES 8
 
-class AppShaderToy : public dry::AppiOS
+class AppShaderToy : public dry::App
 {
 public:
 
-    AppShaderToy(dry::AppParams const &params) : dry::AppiOS(params) { }
+    AppShaderToy(dry::AppParams const &params) : dry::App(params) { }
 
     //------------------------------------------------------------------------------------------------
     // OnInit

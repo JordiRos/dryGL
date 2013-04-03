@@ -28,7 +28,7 @@
 // initWithFrame
 //
 //------------------------------------------------------------------------------------------------
-- (id)initWithFrame:(CGRect)frame app:(dry::AppiOS *)app
+- (id)initWithFrame:(CGRect)frame app:(dry::App *)app
 {
     if (self = [super initWithFrame:frame])
     {
@@ -59,6 +59,7 @@
         // Renderer
         m_Renderer = NEW dry::Renderer(w, h, true, true);
         app->SetRenderer(m_Renderer);
+        app->OnInit();
 
         // Bind render buffer to EAGLLayer
         glBindRenderbuffer(GL_RENDERBUFFER, m_Renderer->GetColorBuffer());

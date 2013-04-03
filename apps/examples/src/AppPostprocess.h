@@ -9,7 +9,7 @@
 #include "dry.h"
 #include "QuadBatch.h"
 
-class AppPostprocess : public dry::AppiOS
+class AppPostprocess : public dry::App
 {
 public:
     
@@ -62,7 +62,7 @@ public:
 
 public:
     
-    AppPostprocess(dry::AppParams const &params) : dry::AppiOS(params) { }
+    AppPostprocess(dry::AppParams const &params) : dry::App(params) { }
 
     //------------------------------------------------------------------------------------------------
     // OnInit

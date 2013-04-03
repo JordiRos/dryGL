@@ -10,11 +10,11 @@
 #include "dry.h"
 #include "QuadBatch.h"
 
-class AppQuadBatch : public dry::AppiOS
+class AppQuadBatch : public dry::App
 {
 public:
     
-    AppQuadBatch(dry::AppParams const &params) : dry::AppiOS(params) { }
+    AppQuadBatch(dry::AppParams const &params) : dry::App(params) { }
 
     //------------------------------------------------------------------------------------------------
     // OnInit

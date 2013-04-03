@@ -11,11 +11,11 @@
 #include "QuadBatch.h"
 #include "Shaders.h"
 
-class AppFbo : public dry::AppiOS
+class AppFbo : public dry::App
 {
 public:
     
-    AppFbo(dry::AppParams const &params) : dry::AppiOS(params) { }
+    AppFbo(dry::AppParams const &params) : dry::App(params) { }
         
     //------------------------------------------------------------------------------------------------
     // OnInit

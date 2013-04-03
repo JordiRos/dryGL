@@ -10,7 +10,7 @@
 #include "dry.h"
 #include "QuadBatch.h"
 
-class AppParticles : public dry::AppiOS
+class AppParticles : public dry::App
 {
 public:
     
@@ -48,7 +48,7 @@ public:
 
 public:
     
-    AppParticles(dry::AppParams const &params) : dry::AppiOS(params) { }
+    AppParticles(dry::AppParams const &params) : dry::App(params) { }
 
     //------------------------------------------------------------------------------------------------
     // OnInit

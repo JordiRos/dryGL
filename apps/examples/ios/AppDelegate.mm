@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Jordi Ros. All rights reserved.
 //
 
+#include "dry.h"
 #include "AppDelegate.h"
 
 // dryExamples
@@ -22,6 +23,10 @@
 //
 #define APP_EXAMPLE AppPostprocess
 
+static std::string Format(const NSString *nsstr)
+{
+    return std::string([nsstr UTF8String]);
+}
 
 @implementation AppDelegate
 
@@ -33,12 +38,14 @@
     // Initialize dry subsystem
     dry::Init(dry::LogDebug, "dry.log");
     dry::Log(dry::LogInfo, "[AppDelegate] Screen Size: %.0f,%.0f", frame.size.width,frame.size.height);
+    std::string pathBundle  = Format([[NSBundle mainBundle] bundlePath]);
+    std::string pathDocpath = Format(NSHomeDirectory());
+    dry::SetPaths(pathBundle, pathDocpath);
     
     // Create app with desired resolution and attach its viewController to rootViewController
     dry::AppParams params = dry::AppParams(frame.size.width, frame.size.height, false);
     app = NEW APP_EXAMPLE(params);
-    app->OnInit();
-    self.window.rootViewController = (UIViewController *)app->GetViewController();
+    self.window.rootViewController = [[[dryViewController alloc] initWithFrame:[[UIScreen mainScreen] bounds] app:app] autorelease];
     [self.window makeKeyAndVisible];
     
     return YES;

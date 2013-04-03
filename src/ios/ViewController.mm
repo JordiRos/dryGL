@@ -19,7 +19,7 @@
 // initWithFrame
 //
 //------------------------------------------------------------------------------------------------
-- (id)initWithFrame:(CGRect)frame app:(dry::AppiOS *)app
+- (id)initWithFrame:(CGRect)frame app:(dry::App *)app
 {
     dry::Log(dry::LogSystem, "[ViewController] initWithFrame");
     if ((self = [super init]))

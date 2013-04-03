@@ -17,6 +17,9 @@
     // EAGL
     #import <OpenGLES/EAGL.h>
     #import <OpenGLES/EAGLDrawable.h>
+    // iOS
+    #import "View.h"
+    #import "ViewController.h"
 #endif
 
 // ES2
@@ -24,7 +27,6 @@
 #include <OpenGLES/ES2/glext.h>
 
 // dry
-#include "AppiOS.h"
 #include "ImageUtils.h"
 #include "ShaderUtils.h"
 

@@ -16,11 +16,11 @@
     bool            m_Active;
 	id              m_DisplayLink;
     float           m_ScaleFactor;
-    dry::AppiOS    *m_App;
+    dry::App       *m_App;
     dry::Renderer  *m_Renderer;
 }
 
-- (id)initWithFrame:(CGRect)frame app:(dry::AppiOS *)app;
+- (id)initWithFrame:(CGRect)frame app:(dry::App *)app;
 - (void)startAnimation;
 - (void)stopAnimation;
 

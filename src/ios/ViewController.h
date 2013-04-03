@@ -11,7 +11,7 @@
 
 #import "View.h"
 
-class dry::AppiOS;
+class dry::App;
 
 @interface dryViewController : UIViewController <UIApplicationDelegate>
 {
@@ -20,7 +20,7 @@ class dry::AppiOS;
 
 @property (readonly, nonatomic) dryView *glView;
 
-- (id)initWithFrame:(CGRect)frame app:(dry::AppiOS *)app;
+- (id)initWithFrame:(CGRect)frame app:(dry::App *)app;
 
 @end
 

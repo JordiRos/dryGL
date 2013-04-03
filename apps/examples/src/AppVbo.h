@@ -10,11 +10,11 @@
 #include "dry.h"
 #include "Shaders.h"
 
-class AppVbo : public dry::AppiOS
+class AppVbo : public dry::App
 {
 public:
     
-    AppVbo(dry::AppParams const &params) : dry::AppiOS(params) { }
+    AppVbo(dry::AppParams const &params) : dry::App(params) { }
 
     //------------------------------------------------------------------------------------------------
     // OnInit

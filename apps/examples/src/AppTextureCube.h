@@ -9,11 +9,11 @@
 #include "dry.h"
 #include "QuadBatch.h"
 
-class AppTextureCube : public dry::AppiOS
+class AppTextureCube : public dry::App
 {
 public:
 
-    AppTextureCube(dry::AppParams const &params) : dry::AppiOS(params) { }
+    AppTextureCube(dry::AppParams const &params) : dry::App(params) { }
 
     //------------------------------------------------------------------------------------------------
     // OnInit

@@ -9,11 +9,11 @@
 #include "dry.h"
 #include "Scene.h"
 
-class AppGeometries : public dry::AppiOS
+class AppGeometries : public dry::App
 {
 public:
     
-    AppGeometries(dry::AppParams const &params) : dry::AppiOS(params) { }
+    AppGeometries(dry::AppParams const &params) : dry::App(params) { }
 
     //------------------------------------------------------------------------------------------------
     // OnInit
